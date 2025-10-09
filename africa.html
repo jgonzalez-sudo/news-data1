@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Africa News Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-green-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Africa News Tracker</h1>
+                        <p class="text-sm text-gray-600">Top English-language newspapers from 6 African nations</p>
+                    </div>
+                </div>
+                <button onclick="fetchHeadlines()" id="fetchBtn" class="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 disabled:bg-gray-400 transition-colors">
+                    <svg id="loadIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    <span id="btnText">Fetch Headlines</span>
+                </button>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-sm" id="currentDate"></span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content" class="space-y-8"></div>
+    </div>
+
+    <script>
+        const newspapers = {
+            'Kenya': [
+                { name: 'Daily Nation', url: 'https://nation.africa/' },
+                { name: 'The Standard', url: 'https://www.standardmedia.co.ke/' },
+                { name: 'The Star', url: 'https://www.the-star.co.ke/' }
+            ],
+            'Nigeria': [
+                { name: 'The Guardian', url: 'https://guardian.ng/' },
+                { name: 'Punch', url: 'https://punchng.com/' },
+                { name: 'Vanguard', url: 'https://www.vanguardngr.com/' }
+            ],
+            'South Africa': [
+                { name: 'News24', url: 'https://www.news24.com/' },
+                { name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/' },
+                { name: 'The Citizen', url: 'https://www.citizen.co.za/' }
+            ],
+            'Ghana': [
+                { name: 'Daily Graphic', url: 'https://www.graphic.com.gh/' },
+                { name: 'GhanaWeb', url: 'https://www.ghanaweb.com/' },
+                { name: 'Citinewsroom', url: 'https://citinewsroom.com/' }
+            ],
+            'Ethiopia': [
+                { name: 'The Ethiopian Herald', url: 'https://www.press.et/english/' },
+                { name: 'Addis Standard', url: 'https://addisstandard.com/' },
+                { name: 'The Reporter Ethiopia', url: 'https://www.thereporterethiopia.com/' }
+            ],
+            'Ivory Coast': [
+                { name: 'Abidjan.net', url: 'https://news.abidjan.net/' },
+                { name: 'Fraternité Matin', url: 'https://www.fratmat.info/' },
+                { name: "L'Intelligent d'Abidjan", url: 'https://lintelligentdabidjan.info/' }
+            ]
+        };
+
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        });
+
+        async function fetchHeadlines() {
+            const btn = document.getElementById('fetchBtn');
+            const icon = document.getElementById('loadIcon');
+            const text = document.getElementById('btnText');
+            
+            btn.disabled = true;
+            icon.classList.add('animate-spin');
+            text.textContent = 'Loading...';
+
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/africa_headlines.json?' + Date.now());
+                const data = await response.json();
+                displayHeadlines(data);
+            } catch (error) {
+                alert('Error loading headlines: ' + error.message);
+            }
+
+            btn.disabled = false;
+            icon.classList.remove('animate-spin');
+            text.textContent = 'Fetch Headlines';
+        }
+
+        function displayHeadlines(data) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            Object.keys(newspapers).forEach(country => {
+                const section = document.createElement('div');
+                section.className = 'mb-8';
+                
+                const header = document.createElement('h2');
+                header.className = 'text-2xl font-bold text-gray-800 mb-4';
+                header.textContent = `🌍 ${country}`;
+                section.appendChild(header);
+
+                const grid = document.createElement('div');
+                grid.className = 'grid md:grid-cols-3 gap-4';
+
+                newspapers[country].forEach(paper => {
+                    const key = `${country}-${paper.name}`;
+                    const headlines = data[key] || [];
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+                    
+                    const paperHeader = document.createElement('div');
+                    paperHeader.className = 'bg-gradient-to-r from-green-600 to-green-700 p-3';
+                    paperHeader.innerHTML = `<h3 class="text-white font-bold">${paper.name}</h3>`;
+                    card.appendChild(paperHeader);
+
+                    const headlinesDiv = document.createElement('div');
+                    headlinesDiv.className = 'p-3';
+                    
+                    if (headlines.length > 0) {
+                        headlines.forEach(headline => {
+                            const item = document.createElement('div');
+                            item.className = 'border-b border-gray-100 pb-2 mb-2 last:border-0';
+                            item.innerHTML = `
+                                <a href="${headline.url}" target="_blank" class="text-gray-800 hover:text-green-600 font-medium text-xs block mb-1 transition-colors">
+                                    ${headline.title}
+                                </a>
+                                <p class="text-xs text-gray-600 mb-1">${headline.description}</p>
+                                <span class="text-xs text-gray-500">${headline.time}</span>
+                            `;
+                            headlinesDiv.appendChild(item);
+                        });
+                    } else {
+                        headlinesDiv.innerHTML = '<p class="text-center py-6 text-gray-400 text-xs">No headlines loaded</p>';
+                    }
+                    
+                    card.appendChild(headlinesDiv);
+
+                    const linkDiv = document.createElement('div');
+                    linkDiv.className = 'px-3 pb-3';
+                    linkDiv.innerHTML = `
+                        <a href="${paper.url}" target="_blank" class="flex items-center justify-center gap-2 text-green-600 hover:text-green-700 text-xs font-medium border border-green-200 rounded-lg py-1.5 hover:bg-green-50 transition-colors">
+                            Visit Site
+                        </a>
+                    `;
+                    card.appendChild(linkDiv);
+
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                content.appendChild(section);
+            });
+        }
+    </script>
+</body>
+</html>
