@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Africa News Tracker</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,10 L55,15 L60,12 L65,18 L68,25 L72,30 L75,38 L78,48 L80,58 L78,68 L74,76 L68,82 L60,86 L52,88 L45,87 L38,84 L32,78 L28,70 L26,60 L25,50 L26,40 L30,32 L35,25 L40,20 L45,15 Z' fill='%2310B981' stroke='%23059669' stroke-width='2'/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-green-50 min-h-screen p-6">
@@ -38,14 +39,6 @@
 
     <script>
         const newspapers = {
-            'Kenya': {
-                flag: '🇰🇪',
-                papers: [
-                    { name: 'Daily Nation', url: 'https://nation.africa/' },
-                    { name: 'Capital FM', url: 'https://www.capitalfm.co.ke/' },
-                    { name: 'Business Daily', url: 'https://www.businessdailyafrica.com/' }
-                ]
-            },
             'Nigeria': {
                 flag: '🇳🇬',
                 papers: [
@@ -60,6 +53,14 @@
                     { name: 'News24', url: 'https://www.news24.com/' },
                     { name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/' },
                     { name: 'The Citizen', url: 'https://www.citizen.co.za/' }
+                ]
+            },
+            'Kenya': {
+                flag: '🇰🇪',
+                papers: [
+                    { name: 'Daily Nation', url: 'https://nation.africa/' },
+                    { name: 'Capital FM', url: 'https://www.capitalfm.co.ke/' },
+                    { name: 'Business Daily', url: 'https://www.businessdailyafrica.com/' }
                 ]
             },
             'Ghana': {
@@ -131,7 +132,6 @@
                 header.textContent = `${countryInfo.flag} ${country}`;
                 section.appendChild(header);
 
-                // Add country summary
                 if (summaries[country]) {
                     const summary = document.createElement('p');
                     summary.className = 'text-sm text-gray-600 italic mb-4 pl-10 leading-relaxed';
