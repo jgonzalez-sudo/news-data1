@@ -16,7 +16,7 @@
                     </svg>
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Latin America News Tracker</h1>
-                        <p class="text-sm text-gray-600">Top 3 newspapers from 20 countries</p>
+                        <p class="text-sm text-gray-600">Top 3 newspapers from 9 countries</p>
                     </div>
                 </div>
                 <button onclick="fetchHeadlines()" id="fetchBtn" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors">
@@ -38,106 +38,78 @@
 
     <script>
         const newspapers = {
-            'Argentina': [
-                { name: 'Clarín', url: 'https://www.clarin.com/' },
-                { name: 'La Nación', url: 'https://www.lanacion.com.ar/' },
-                { name: 'Página/12', url: 'https://www.pagina12.com.ar/' }
-            ],
-            'Brazil': [
-                { name: 'Folha de S.Paulo', url: 'https://www.folha.uol.com.br/' },
-                { name: 'O Globo', url: 'https://oglobo.globo.com/' },
-                { name: 'O Estado de S. Paulo', url: 'https://www.estadao.com.br/' }
-            ],
-            'Mexico': [
-                { name: 'El Universal', url: 'https://www.eluniversal.com.mx/' },
-                { name: 'Reforma', url: 'https://www.reforma.com/' },
-                { name: 'La Jornada', url: 'https://www.jornada.com.mx/' }
-            ],
-            'Colombia': [
-                { name: 'El Tiempo', url: 'https://www.eltiempo.com/' },
-                { name: 'El Espectador', url: 'https://www.elespectador.com/' },
-                { name: 'El Colombiano', url: 'https://www.elcolombiano.com/' }
-            ],
-            'Chile': [
-                { name: 'El Mercurio', url: 'https://www.elmercurio.com/' },
-                { name: 'La Tercera', url: 'https://www.latercera.com/' },
-                { name: 'Las Últimas Noticias', url: 'https://www.lun.com/' }
-            ],
-            'Peru': [
-                { name: 'El Comercio', url: 'https://elcomercio.pe/' },
-                { name: 'La República', url: 'https://larepublica.pe/' },
-                { name: 'Perú21', url: 'https://peru21.pe/' }
-            ],
-            'Venezuela': [
-                { name: 'El Nacional', url: 'https://www.elnacional.com/' },
-                { name: 'El Universal', url: 'https://www.eluniversal.com/' },
-                { name: 'Últimas Noticias', url: 'https://www.ultimasnoticias.com.ve/' }
-            ],
-            'Ecuador': [
-                { name: 'El Universo', url: 'https://www.eluniverso.com/' },
-                { name: 'El Comercio', url: 'https://www.elcomercio.com/' },
-                { name: 'El Telégrafo', url: 'https://www.eltelegrafo.com.ec/' }
-            ],
-            'Bolivia': [
-                { name: 'El Deber', url: 'https://eldeber.com.bo/' },
-                { name: 'Los Tiempos', url: 'https://www.lostiempos.com/' },
-                { name: 'La Razón', url: 'https://www.la-razon.com/' }
-            ],
-            'Paraguay': [
-                { name: 'ABC Color', url: 'https://www.abc.com.py/' },
-                { name: 'La Nación', url: 'https://www.lanacion.com.py/' },
-                { name: 'Última Hora', url: 'https://www.ultimahora.com/' }
-            ],
-            'Uruguay': [
-                { name: 'El País', url: 'https://www.elpais.com.uy/' },
-                { name: 'El Observador', url: 'https://www.elobservador.com.uy/' },
-                { name: 'La República', url: 'https://www.republica.com.uy/' }
-            ],
-            'Costa Rica': [
-                { name: 'La Nación', url: 'https://www.nacion.com/' },
-                { name: 'La República', url: 'https://www.larepublica.net/' },
-                { name: 'El Financiero', url: 'https://www.elfinancierocr.com/' }
-            ],
-            'Panama': [
-                { name: 'La Prensa', url: 'https://www.prensa.com/' },
-                { name: 'La Estrella de Panamá', url: 'https://www.laestrella.com.pa/' },
-                { name: 'Panamá América', url: 'https://www.panamaamerica.com.pa/' }
-            ],
-            'Guatemala': [
-                { name: 'Prensa Libre', url: 'https://www.prensalibre.com/' },
-                { name: 'elPeriódico', url: 'https://elperiodico.com.gt/' },
-                { name: 'Siglo 21', url: 'https://www.s21.gt/' }
-            ],
-            'Honduras': [
-                { name: 'La Prensa', url: 'https://www.laprensa.hn/' },
-                { name: 'El Heraldo', url: 'https://www.elheraldo.hn/' },
-                { name: 'La Tribuna', url: 'https://www.latribuna.hn/' }
-            ],
-            'El Salvador': [
-                { name: 'La Prensa Gráfica', url: 'https://www.laprensagrafica.com/' },
-                { name: 'El Diario de Hoy', url: 'https://www.elsalvador.com/' },
-                { name: 'El Mundo', url: 'https://elmundo.sv/' }
-            ],
-            'Nicaragua': [
-                { name: 'La Prensa', url: 'https://www.laprensa.com.ni/' },
-                { name: 'El Nuevo Diario', url: 'https://www.elnuevodiario.com.ni/' },
-                { name: 'Confidencial', url: 'https://confidencial.com.ni/' }
-            ],
-            'Dominican Republic': [
-                { name: 'Listín Diario', url: 'https://listindiario.com/' },
-                { name: 'El Caribe', url: 'https://www.elcaribe.com.do/' },
-                { name: 'Diario Libre', url: 'https://www.diariolibre.com/' }
-            ],
-            'Cuba': [
-                { name: 'Granma', url: 'https://www.granma.cu/' },
-                { name: 'Juventud Rebelde', url: 'https://www.juventudrebelde.cu/' },
-                { name: 'Cubadebate', url: 'https://www.cubadebate.cu/' }
-            ],
-            'Puerto Rico': [
-                { name: 'El Nuevo Día', url: 'https://www.elnuevodia.com/' },
-                { name: 'Primera Hora', url: 'https://www.primerahora.com/' },
-                { name: 'El Vocero', url: 'https://www.elvocero.com/' }
-            ]
+            'Argentina': {
+                flag: '🇦🇷',
+                papers: [
+                    { name: 'Clarín', url: 'https://www.clarin.com/' },
+                    { name: 'La Nación', url: 'https://www.lanacion.com.ar/' },
+                    { name: 'Página/12', url: 'https://www.pagina12.com.ar/' }
+                ]
+            },
+            'Brazil': {
+                flag: '🇧🇷',
+                papers: [
+                    { name: 'Folha de S.Paulo', url: 'https://www.folha.uol.com.br/' },
+                    { name: 'O Globo', url: 'https://oglobo.globo.com/' },
+                    { name: 'O Estado de S. Paulo', url: 'https://www.estadao.com.br/' }
+                ]
+            },
+            'Mexico': {
+                flag: '🇲🇽',
+                papers: [
+                    { name: 'El Universal', url: 'https://www.eluniversal.com.mx/' },
+                    { name: 'Reforma', url: 'https://www.reforma.com/' },
+                    { name: 'La Jornada', url: 'https://www.jornada.com.mx/' }
+                ]
+            },
+            'Colombia': {
+                flag: '🇨🇴',
+                papers: [
+                    { name: 'El Tiempo', url: 'https://www.eltiempo.com/' },
+                    { name: 'Portafolio', url: 'https://www.portafolio.co/' },
+                    { name: 'Semana', url: 'https://www.semana.com/' }
+                ]
+            },
+            'Chile': {
+                flag: '🇨🇱',
+                papers: [
+                    { name: 'La Tercera', url: 'https://www.latercera.com/' },
+                    { name: 'BioBioChile', url: 'https://www.biobiochile.cl/' },
+                    { name: 'El Mostrador', url: 'https://www.elmostrador.cl/' }
+                ]
+            },
+            'Peru': {
+                flag: '🇵🇪',
+                papers: [
+                    { name: 'El Comercio', url: 'https://elcomercio.pe/' },
+                    { name: 'Perú21', url: 'https://peru21.pe/' },
+                    { name: 'RPP', url: 'https://rpp.pe/' }
+                ]
+            },
+            'Venezuela': {
+                flag: '🇻🇪',
+                papers: [
+                    { name: 'El Nacional', url: 'https://www.elnacional.com/' },
+                    { name: 'El Universal', url: 'https://www.eluniversal.com/' },
+                    { name: 'Tal Cual', url: 'https://talcualdigital.com/' }
+                ]
+            },
+            'Ecuador': {
+                flag: '🇪🇨',
+                papers: [
+                    { name: 'El Comercio', url: 'https://www.elcomercio.com/' },
+                    { name: 'El Universo', url: 'https://www.eluniverso.com/' },
+                    { name: 'Primicias', url: 'https://www.primicias.ec/' }
+                ]
+            },
+            'Bolivia': {
+                flag: '🇧🇴',
+                papers: [
+                    { name: 'El Deber', url: 'https://eldeber.com.bo/' },
+                    { name: 'Página Siete', url: 'https://www.paginasiete.bo/' },
+                    { name: 'Erbol', url: 'https://erbol.com.bo/' }
+                ]
+            }
         };
 
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
@@ -170,21 +142,33 @@
             const content = document.getElementById('content');
             content.innerHTML = '';
 
+            const headlines = data.headlines || data;
+            const summaries = data.summaries || {};
+
             Object.keys(newspapers).forEach(country => {
+                const countryInfo = newspapers[country];
                 const section = document.createElement('div');
                 section.className = 'mb-8';
                 
                 const header = document.createElement('h2');
-                header.className = 'text-2xl font-bold text-gray-800 mb-4';
-                header.textContent = `🌎 ${country}`;
+                header.className = 'text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2';
+                header.textContent = `${countryInfo.flag} ${country}`;
                 section.appendChild(header);
+
+                // Add country summary
+                if (summaries[country]) {
+                    const summary = document.createElement('p');
+                    summary.className = 'text-sm text-gray-600 italic mb-4 pl-10 leading-relaxed';
+                    summary.textContent = summaries[country];
+                    section.appendChild(summary);
+                }
 
                 const grid = document.createElement('div');
                 grid.className = 'grid md:grid-cols-3 gap-4';
 
-                newspapers[country].forEach(paper => {
+                countryInfo.papers.forEach(paper => {
                     const key = `${country}-${paper.name}`;
-                    const headlines = data[key] || [];
+                    const paperHeadlines = headlines[key] || [];
 
                     const card = document.createElement('div');
                     card.className = 'bg-white rounded-lg shadow-md overflow-hidden';
@@ -197,8 +181,8 @@
                     const headlinesDiv = document.createElement('div');
                     headlinesDiv.className = 'p-3';
                     
-                    if (headlines.length > 0) {
-                        headlines.forEach(headline => {
+                    if (paperHeadlines.length > 0) {
+                        paperHeadlines.forEach(headline => {
                             const item = document.createElement('div');
                             item.className = 'border-b border-gray-100 pb-2 mb-2 last:border-0';
                             item.innerHTML = `
