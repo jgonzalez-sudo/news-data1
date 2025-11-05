@@ -8,7 +8,6 @@
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-green-50 min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
-        <!-- Header -->
         <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -34,46 +33,61 @@
                 <span class="text-sm" id="currentDate"></span>
             </div>
         </div>
-
-        <!-- Content -->
         <div id="content" class="space-y-8"></div>
     </div>
 
     <script>
         const newspapers = {
-            'Kenya': [
-                { name: 'Daily Nation', url: 'https://nation.africa/' },
-                { name: 'The Standard', url: 'https://www.standardmedia.co.ke/' },
-                { name: 'The Star', url: 'https://www.the-star.co.ke/' }
-            ],
-            'Nigeria': [
-                { name: 'The Guardian', url: 'https://guardian.ng/' },
-                { name: 'Punch', url: 'https://punchng.com/' },
-                { name: 'Vanguard', url: 'https://www.vanguardngr.com/' }
-            ],
-            'South Africa': [
-                { name: 'News24', url: 'https://www.news24.com/' },
-                { name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/' },
-                { name: 'The Citizen', url: 'https://www.citizen.co.za/' }
-            ],
-            'Ghana': [
-                { name: 'Daily Graphic', url: 'https://www.graphic.com.gh/' },
-                { name: 'GhanaWeb', url: 'https://www.ghanaweb.com/' },
-                { name: 'Citinewsroom', url: 'https://citinewsroom.com/' }
-            ],
-            'Ethiopia': [
-                { name: 'The Ethiopian Herald', url: 'https://www.press.et/english/' },
-                { name: 'Addis Standard', url: 'https://addisstandard.com/' },
-                { name: 'The Reporter Ethiopia', url: 'https://www.thereporterethiopia.com/' }
-            ],
-            'Ivory Coast': [
-                { name: 'Abidjan.net', url: 'https://news.abidjan.net/' },
-                { name: 'Fraternité Matin', url: 'https://www.fratmat.info/' },
-                { name: "L'Intelligent d'Abidjan", url: 'https://lintelligentdabidjan.info/' }
-            ]
+            'Kenya': {
+                flag: '🇰🇪',
+                papers: [
+                    { name: 'Daily Nation', url: 'https://nation.africa/' },
+                    { name: 'Capital FM', url: 'https://www.capitalfm.co.ke/' },
+                    { name: 'Business Daily', url: 'https://www.businessdailyafrica.com/' }
+                ]
+            },
+            'Nigeria': {
+                flag: '🇳🇬',
+                papers: [
+                    { name: 'The Guardian', url: 'https://guardian.ng/' },
+                    { name: 'Premium Times', url: 'https://www.premiumtimesng.com/' },
+                    { name: 'Vanguard', url: 'https://www.vanguardngr.com/' }
+                ]
+            },
+            'South Africa': {
+                flag: '🇿🇦',
+                papers: [
+                    { name: 'News24', url: 'https://www.news24.com/' },
+                    { name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/' },
+                    { name: 'The Citizen', url: 'https://www.citizen.co.za/' }
+                ]
+            },
+            'Ghana': {
+                flag: '🇬🇭',
+                papers: [
+                    { name: 'Citinewsroom', url: 'https://citinewsroom.com/' },
+                    { name: 'Graphic Online', url: 'https://www.graphic.com.gh/' },
+                    { name: 'MyJoyOnline', url: 'https://www.myjoyonline.com/' }
+                ]
+            },
+            'Ethiopia': {
+                flag: '🇪🇹',
+                papers: [
+                    { name: 'Addis Standard', url: 'https://addisstandard.com/' },
+                    { name: 'The Reporter Ethiopia', url: 'https://www.thereporterethiopia.com/' },
+                    { name: 'Fana Broadcasting', url: 'https://www.fanabc.com/' }
+                ]
+            },
+            'Ivory Coast': {
+                flag: '🇨🇮',
+                papers: [
+                    { name: 'Abidjan.net', url: 'https://news.abidjan.net/' },
+                    { name: 'Connectionivoirienne', url: 'https://connectionivoirienne.net/' },
+                    { name: 'Le Nouveau Courrier', url: 'https://lenouveaucourrier.info/' }
+                ]
+            }
         };
 
-        // Set current date
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
         });
@@ -104,21 +118,33 @@
             const content = document.getElementById('content');
             content.innerHTML = '';
 
+            const headlines = data.headlines || data;
+            const summaries = data.summaries || {};
+
             Object.keys(newspapers).forEach(country => {
+                const countryInfo = newspapers[country];
                 const section = document.createElement('div');
                 section.className = 'mb-8';
                 
                 const header = document.createElement('h2');
-                header.className = 'text-2xl font-bold text-gray-800 mb-4';
-                header.textContent = `🌍 ${country}`;
+                header.className = 'text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2';
+                header.textContent = `${countryInfo.flag} ${country}`;
                 section.appendChild(header);
+
+                // Add country summary
+                if (summaries[country]) {
+                    const summary = document.createElement('p');
+                    summary.className = 'text-sm text-gray-600 italic mb-4 pl-10 leading-relaxed';
+                    summary.textContent = summaries[country];
+                    section.appendChild(summary);
+                }
 
                 const grid = document.createElement('div');
                 grid.className = 'grid md:grid-cols-3 gap-4';
 
-                newspapers[country].forEach(paper => {
+                countryInfo.papers.forEach(paper => {
                     const key = `${country}-${paper.name}`;
-                    const headlines = data[key] || [];
+                    const paperHeadlines = headlines[key] || [];
 
                     const card = document.createElement('div');
                     card.className = 'bg-white rounded-lg shadow-md overflow-hidden';
@@ -131,8 +157,8 @@
                     const headlinesDiv = document.createElement('div');
                     headlinesDiv.className = 'p-3';
                     
-                    if (headlines.length > 0) {
-                        headlines.forEach(headline => {
+                    if (paperHeadlines.length > 0) {
+                        paperHeadlines.forEach(headline => {
                             const item = document.createElement('div');
                             item.className = 'border-b border-gray-100 pb-2 mb-2 last:border-0';
                             item.innerHTML = `
