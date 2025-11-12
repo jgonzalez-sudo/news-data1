@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latin America News Tracker</title>
+    <title>Latin America News Tracker - Enhanced</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M30,10 Q20,15 15,25 L15,40 Q15,50 20,55 L25,70 Q30,80 40,85 L50,90 L60,85 Q70,80 75,70 L80,55 Q85,50 85,40 L85,25 Q80,15 70,10 L50,5 Z' fill='%234F46E5' stroke='%231E40AF' stroke-width='2'/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen p-6">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-[1600px] mx-auto">
         <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -17,7 +17,7 @@
                     </svg>
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Latin America News Tracker</h1>
-                        <p class="text-sm text-gray-600">Top 3 newspapers from 9 countries</p>
+                        <p class="text-sm text-gray-600">Top newspapers + international coverage from 9 countries</p>
                     </div>
                 </div>
                 <button onclick="fetchHeadlines()" id="fetchBtn" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors">
@@ -145,6 +145,7 @@
 
             const headlines = data.headlines || data;
             const summaries = data.summaries || {};
+            const international = data.international || {};
 
             Object.keys(newspapers).forEach(country => {
                 const countryInfo = newspapers[country];
@@ -163,9 +164,11 @@
                     section.appendChild(summary);
                 }
 
+                // 4-column grid: 3 local papers + 1 international
                 const grid = document.createElement('div');
-                grid.className = 'grid md:grid-cols-3 gap-4';
+                grid.className = 'grid lg:grid-cols-4 md:grid-cols-2 gap-4';
 
+                // Add 3 local newspapers
                 countryInfo.papers.forEach(paper => {
                     const key = `${country}-${paper.name}`;
                     const paperHeadlines = headlines[key] || [];
@@ -175,27 +178,27 @@
                     
                     const paperHeader = document.createElement('div');
                     paperHeader.className = 'bg-gradient-to-r from-blue-600 to-blue-700 p-3';
-                    paperHeader.innerHTML = `<h3 class="text-white font-bold">${paper.name}</h3>`;
+                    paperHeader.innerHTML = `<h3 class="text-white font-bold text-sm">${paper.name}</h3>`;
                     card.appendChild(paperHeader);
 
                     const headlinesDiv = document.createElement('div');
-                    headlinesDiv.className = 'p-3';
+                    headlinesDiv.className = 'p-3 min-h-[300px]';
                     
                     if (paperHeadlines.length > 0) {
                         paperHeadlines.forEach(headline => {
                             const item = document.createElement('div');
                             item.className = 'border-b border-gray-100 pb-2 mb-2 last:border-0';
                             item.innerHTML = `
-                                <a href="${headline.url}" target="_blank" class="text-gray-800 hover:text-blue-600 font-medium text-xs block mb-1 transition-colors">
+                                <a href="${headline.url}" target="_blank" class="text-gray-800 hover:text-blue-600 font-medium text-xs block mb-1 transition-colors leading-tight">
                                     ${headline.title}
                                 </a>
-                                <p class="text-xs text-gray-600 mb-1">${headline.description}</p>
+                                <p class="text-xs text-gray-600 mb-1 leading-tight">${headline.description}</p>
                                 <span class="text-xs text-gray-500">${headline.time}</span>
                             `;
                             headlinesDiv.appendChild(item);
                         });
                     } else {
-                        headlinesDiv.innerHTML = '<p class="text-center py-6 text-gray-400 text-xs">No headlines loaded</p>';
+                        headlinesDiv.innerHTML = '<p class="text-center py-6 text-gray-400 text-xs">No headlines available</p>';
                     }
                     
                     card.appendChild(headlinesDiv);
@@ -211,6 +214,46 @@
 
                     grid.appendChild(card);
                 });
+
+                // Add international coverage column
+                const intlCard = document.createElement('div');
+                intlCard.className = 'bg-white rounded-lg shadow-md overflow-hidden border-2 border-purple-200';
+                
+                const intlHeader = document.createElement('div');
+                intlHeader.className = 'bg-gradient-to-r from-purple-600 to-purple-700 p-3';
+                intlHeader.innerHTML = `
+                    <h3 class="text-white font-bold text-sm">Coverage from International Outlets</h3>
+                    <p class="text-purple-100 text-xs mt-1">Last 24 hours</p>
+                `;
+                intlCard.appendChild(intlHeader);
+
+                const intlDiv = document.createElement('div');
+                intlDiv.className = 'p-3 min-h-[300px]';
+                
+                const intlStories = international[country] || [];
+                if (intlStories.length > 0) {
+                    intlStories.forEach(story => {
+                        const item = document.createElement('div');
+                        item.className = 'border-b border-gray-100 pb-2 mb-2 last:border-0';
+                        item.innerHTML = `
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="text-xs font-semibold text-purple-600">${story.source}</span>
+                                <span class="text-xs text-gray-400">•</span>
+                                <span class="text-xs text-gray-500">${story.time}</span>
+                            </div>
+                            <a href="${story.url}" target="_blank" class="text-gray-800 hover:text-purple-600 font-medium text-xs block mb-1 transition-colors leading-tight">
+                                ${story.title}
+                            </a>
+                            <p class="text-xs text-gray-600 leading-tight">${story.description}</p>
+                        `;
+                        intlDiv.appendChild(item);
+                    });
+                } else {
+                    intlDiv.innerHTML = '<p class="text-center py-6 text-gray-400 text-xs">No international coverage in last 24h</p>';
+                }
+                
+                intlCard.appendChild(intlDiv);
+                grid.appendChild(intlCard);
 
                 section.appendChild(grid);
                 content.appendChild(section);
