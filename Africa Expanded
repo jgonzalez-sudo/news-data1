@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Africa News - Maximum Coverage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .news-grid { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+        @media (min-width: 1536px) { .news-grid { grid-template-columns: repeat(13, 1fr); } }
+        @media (min-width: 1280px) and (max-width: 1535px) { .news-grid { grid-template-columns: repeat(8, 1fr); } }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="max-w-[2400px] mx-auto">
+        <div class="bg-white rounded-lg shadow p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">🌍 Africa News - Maximum Coverage</h1>
+                    <p class="text-sm text-gray-600">10 countries • 86 newspapers • Last 48 hours</p>
+                </div>
+                <button onclick="fetchHeadlines()" id="btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                    <span id="btnText">Fetch</span>
+                </button>
+            </div>
+        </div>
+        <div id="content"></div>
+    </div>
+    <script>
+        const newspapers = {
+            'Nigeria': {flag: '🇳🇬', papers: [{name: 'Guardian', url: 'https://guardian.ng/'}, {name: 'Premium Times', url: 'https://www.premiumtimesng.com/'}, {name: 'Vanguard', url: 'https://www.vanguardngr.com/'}, {name: 'Punch', url: 'https://punchng.com/'}, {name: 'ThisDay', url: 'https://www.thisdaylive.com/'}, {name: 'Daily Trust', url: 'https://dailytrust.com/'}, {name: 'The Nation', url: 'https://thenationonlineng.net/'}, {name: 'Blueprint', url: 'https://blueprint.ng/'}, {name: 'Leadership', url: 'https://leadership.ng/'}, {name: 'BusinessDay', url: 'https://businessday.ng/'}, {name: 'The Cable', url: 'https://www.thecable.ng/'}, {name: 'Sahara Reporters', url: 'https://saharareporters.com/'}]},
+            'South Africa': {flag: '🇿🇦', papers: [{name: 'News24', url: 'https://www.news24.com/'}, {name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/'}, {name: 'Citizen', url: 'https://www.citizen.co.za/'}, {name: 'Business Day', url: 'https://www.businesslive.co.za/bd/'}, {name: 'IOL', url: 'https://www.iol.co.za/'}, {name: 'M&G', url: 'https://mg.co.za/'}, {name: 'TimesLIVE', url: 'https://www.timeslive.co.za/'}, {name: 'EWN', url: 'https://ewn.co.za/'}, {name: 'SABC', url: 'https://www.sabcnews.com/'}, {name: 'The SA', url: 'https://www.thesouthafrican.com/'}, {name: 'BusinessTech', url: 'https://businesstech.co.za/'}]},
+            'Kenya': {flag: '🇰🇪', papers: [{name: 'Daily Nation', url: 'https://nation.africa/'}, {name: 'Capital FM', url: 'https://www.capitalfm.co.ke/'}, {name: 'Business Daily', url: 'https://www.businessdailyafrica.com/'}, {name: 'The Star', url: 'https://www.the-star.co.ke/'}, {name: 'Standard', url: 'https://www.standardmedia.co.ke/'}, {name: 'KenyanWS', url: 'https://kenyanwallstreet.com/'}, {name: 'K24', url: 'https://www.k24tv.co.ke/'}, {name: 'Citizen Digital', url: 'https://www.citizen.digital/'}, {name: 'NTV', url: 'https://www.nation.co.ke/'}, {name: 'Tuko', url: 'https://www.tuko.co.ke/'}]},
+            'Ghana': {flag: '🇬🇭', papers: [{name: 'Citi', url: 'https://citinewsroom.com/'}, {name: 'Graphic', url: 'https://www.graphic.com.gh/'}, {name: 'MyJoy', url: 'https://www.myjoyonline.com/'}, {name: 'GhanaWeb', url: 'https://www.ghanaweb.com/'}, {name: 'DailyGraphic', url: 'https://www.graphic.com.gh/'}, {name: 'BizGhana', url: 'https://www.businessghana.com/'}, {name: 'GNA', url: 'https://www.ghananewsagency.org/'}, {name: 'Peace FM', url: 'https://www.peacefmonline.com/'}, {name: 'Joy News', url: 'https://www.myjoyonline.com/'}, {name: 'Asaase', url: 'https://www.asaaseradio.com/'}]},
+            'Ethiopia': {flag: '🇪🇹', papers: [{name: 'Addis Standard', url: 'https://addisstandard.com/'}, {name: 'Reporter', url: 'https://www.thereporterethiopia.com/'}, {name: 'Fana', url: 'https://www.fanabc.com/'}, {name: 'Monitor', url: 'https://ethiopianmonitor.com/'}, {name: 'Capital', url: 'https://www.capitalethiopia.com/'}, {name: 'Herald', url: 'https://www.press.et/'}, {name: 'Borkena', url: 'https://borkena.com/'}, {name: 'ENA', url: 'https://www.ena.et/'}]},
+            'Tanzania': {flag: '🇹🇿', papers: [{name: 'Citizen', url: 'https://www.thecitizen.co.tz/'}, {name: 'Daily News', url: 'https://www.dailynews.co.tz/'}, {name: 'Guardian', url: 'https://www.ippmedia.com/'}, {name: 'Mwananchi', url: 'https://www.mwananchi.co.tz/'}, {name: 'East African', url: 'https://www.theeastafrican.co.ke/'}, {name: 'Mtanzania', url: 'https://mtanzania.co.tz/'}, {name: 'TZ Daima', url: 'https://www.tanzaniadaima.com/'}]},
+            'Uganda': {flag: '🇺🇬', papers: [{name: 'Monitor', url: 'https://www.monitor.co.ug/'}, {name: 'New Vision', url: 'https://www.newvision.co.ug/'}, {name: 'Observer', url: 'https://www.observer.ug/'}, {name: 'Independent', url: 'https://www.independent.co.ug/'}, {name: 'Red Pepper', url: 'https://www.redpepper.co.ug/'}, {name: 'NBS', url: 'https://www.nbstv.co.ug/'}, {name: 'Nile Post', url: 'https://nilepost.co.ug/'}, {name: 'Watchdog', url: 'https://www.watchdoguganda.com/'}]},
+            'Ivory Coast': {flag: '🇨🇮', papers: [{name: 'Abidjan.net', url: 'https://news.abidjan.net/'}, {name: 'Connection', url: 'https://connectionivoirienne.net/'}, {name: 'Courrier', url: 'https://lenouveaucourrier.info/'}, {name: 'Fratmat', url: 'https://www.fratmat.info/'}, {name: 'Koaci', url: 'https://koaci.com/'}, {name: 'Abidjan TV', url: 'https://www.abidjan.tv/'}, {name: "L'Inter", url: 'https://linter.ci/'}, {name: 'Soir Info', url: 'https://www.soirinfo.com/'}]},
+            'Egypt': {flag: '🇪🇬', papers: [{name: 'Ahram', url: 'https://english.ahram.org.eg/'}, {name: 'Egypt Today', url: 'https://www.egypttoday.com/'}, {name: 'Daily News', url: 'https://dailynewsegypt.com/'}, {name: 'Egy Streets', url: 'https://egyptianstreets.com/'}, {name: 'Independent', url: 'https://www.egyptindependent.com/'}, {name: 'Mada Masr', url: 'https://www.madamasr.com/'}]},
+            'Morocco': {flag: '🇲🇦', papers: [{name: 'MWN', url: 'https://www.moroccoworldnews.com/'}, {name: 'Medias24', url: 'https://www.medias24.com/'}, {name: 'Le360', url: 'https://fr.le360.ma/'}, {name: 'Hespress', url: 'https://www.hespress.com/'}, {name: 'Tel Quel', url: 'https://telquel.ma/'}, {name: 'Newsline', url: 'https://morroconewsline.com/'}]}
+        };
+        async function fetchHeadlines() {
+            document.getElementById('btnText').textContent = 'Loading...';
+            const res = await fetch('https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/africa_headlines.json?' + Date.now());
+            const data = await res.json();
+            displayHeadlines(data);
+            document.getElementById('btnText').textContent = 'Fetch';
+        }
+        function displayHeadlines(data) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+            Object.keys(newspapers).forEach(country => {
+                const info = newspapers[country];
+                const sec = document.createElement('div');
+                sec.className = 'mb-6 bg-white rounded-lg shadow p-3';
+                sec.innerHTML = `<h2 class="text-xl font-bold mb-2">${info.flag} ${country}</h2>` + 
+                    (data.summaries?.[country] ? `<p class="text-xs text-gray-600 italic mb-3">${data.summaries[country]}</p>` : '');
+                const grid = document.createElement('div');
+                grid.className = 'news-grid';
+                info.papers.forEach(paper => {
+                    const headlines = data.headlines?.[`${country}-${paper.name}`] || [];
+                    const card = document.createElement('div');
+                    card.className = 'bg-gray-50 rounded p-2 text-xs';
+                    card.innerHTML = `<div class="font-bold text-green-700 mb-1">${paper.name}</div>`;
+                    if (headlines.length > 0) {
+                        headlines.slice(0, 5).forEach(h => {
+                            card.innerHTML += `<div class="mb-2 border-b pb-1"><a href="${h.url}" target="_blank" class="hover:text-green-600">${h.title}</a><div class="text-gray-500 text-xs">${h.time}</div></div>`;
+                        });
+                    } else {
+                        card.innerHTML += '<div class="text-gray-400 py-2">No stories</div>';
+                    }
+                    grid.appendChild(card);
+                });
+                const intl = data.international?.[country] || [];
+                if (intl.length > 0) {
+                    const intlCard = document.createElement('div');
+                    intlCard.className = 'bg-blue-50 rounded p-2 text-xs border-2 border-blue-200';
+                    intlCard.innerHTML = '<div class="font-bold text-blue-700 mb-1">International</div>';
+                    intl.slice(0, 5).forEach(s => {
+                        intlCard.innerHTML += `<div class="mb-2 border-b pb-1"><span class="font-semibold text-blue-600">${s.source}</span><a href="${s.url}" target="_blank" class="block hover:text-blue-600">${s.title}</a></div>`;
+                    });
+                    grid.appendChild(intlCard);
+                }
+                sec.appendChild(grid);
+                content.appendChild(sec);
+            });
+        }
+    </script>
+</body>
+</html>
