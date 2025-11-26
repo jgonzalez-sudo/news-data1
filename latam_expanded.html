@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LatAm News - Maximum Coverage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .news-grid { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+        @media (min-width: 1536px) { .news-grid { grid-template-columns: repeat(12, 1fr); } }
+        @media (min-width: 1280px) and (max-width: 1535px) { .news-grid { grid-template-columns: repeat(8, 1fr); } }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="max-w-[2400px] mx-auto">
+        <div class="bg-white rounded-lg shadow p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">🌎 Latin America News - Maximum Coverage</h1>
+                    <p class="text-sm text-gray-600">13 countries • 123 newspapers • Last 48 hours</p>
+                </div>
+                <button onclick="fetchHeadlines()" id="btn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    <span id="btnText">Fetch</span>
+                </button>
+            </div>
+        </div>
+        <div id="content"></div>
+    </div>
+    <script>
+        const newspapers = {
+            'Argentina': {flag: '🇦🇷', papers: [{name: 'Clarín', url: 'https://www.clarin.com/'}, {name: 'La Nación', url: 'https://www.lanacion.com.ar/'}, {name: 'Página/12', url: 'https://www.pagina12.com.ar/'}, {name: 'Infobae', url: 'https://www.infobae.com/'}, {name: 'Ámbito', url: 'https://www.ambito.com/'}, {name: 'Perfil', url: 'https://www.perfil.com/'}, {name: 'Cronista', url: 'https://www.cronista.com/'}, {name: 'BAE', url: 'https://www.baenegocios.com/'}, {name: 'Tiempo AR', url: 'https://www.tiempoar.com.ar/'}, {name: 'Minuto Uno', url: 'https://www.minutouno.com/'}, {name: 'El Cronista', url: 'https://www.cronista.com/'}]},
+            'Brazil': {flag: '🇧🇷', papers: [{name: 'Folha', url: 'https://www.folha.uol.com.br/'}, {name: 'O Globo', url: 'https://oglobo.globo.com/'}, {name: 'Estadão', url: 'https://www.estadao.com.br/'}, {name: 'UOL', url: 'https://www.uol.com.br/'}, {name: 'G1', url: 'https://g1.globo.com/'}, {name: 'Valor', url: 'https://valor.globo.com/'}, {name: 'R7', url: 'https://noticias.r7.com/'}, {name: 'iG', url: 'https://ultimosegundo.ig.com.br/'}, {name: 'Exame', url: 'https://exame.com/'}, {name: 'Correio', url: 'https://www.correiobraziliense.com.br/'}, {name: 'Metrópoles', url: 'https://www.metropoles.com/'}]},
+            'Mexico': {flag: '🇲🇽', papers: [{name: 'Universal', url: 'https://www.eluniversal.com.mx/'}, {name: 'Reforma', url: 'https://www.reforma.com/'}, {name: 'La Jornada', url: 'https://www.jornada.com.mx/'}, {name: 'Milenio', url: 'https://www.milenio.com/'}, {name: 'Excélsior', url: 'https://www.excelsior.com.mx/'}, {name: 'Financiero', url: 'https://www.elfinanciero.com.mx/'}, {name: 'Proceso', url: 'https://www.proceso.com.mx/'}, {name: 'Animal Pol', url: 'https://www.animalpolitico.com/'}, {name: 'Sin Embargo', url: 'https://www.sinembargo.mx/'}, {name: 'Aristegui', url: 'https://aristeguinoticias.com/'}, {name: 'Economista', url: 'https://www.eleconomista.com.mx/'}]},
+            'Colombia': {flag: '🇨🇴', papers: [{name: 'El Tiempo', url: 'https://www.eltiempo.com/'}, {name: 'Portafolio', url: 'https://www.portafolio.co/'}, {name: 'Semana', url: 'https://www.semana.com/'}, {name: 'Espectador', url: 'https://www.elespectador.com/'}, {name: 'Colombiano', url: 'https://www.elcolombiano.com/'}, {name: 'República', url: 'https://www.larepublica.co/'}, {name: 'RCN', url: 'https://www.rcnradio.com/'}, {name: 'Caracol', url: 'https://caracol.com.co/'}, {name: 'W Radio', url: 'https://www.wradio.com.co/'}, {name: 'Pulzo', url: 'https://www.pulzo.com/'}]},
+            'Chile': {flag: '🇨🇱', papers: [{name: 'La Tercera', url: 'https://www.latercera.com/'}, {name: 'BioBio', url: 'https://www.biobiochile.cl/'}, {name: 'Mostrador', url: 'https://www.elmostrador.cl/'}, {name: 'Emol', url: 'https://www.emol.com/'}, {name: 'Mercurio', url: 'https://digital.elmercurio.com/'}, {name: 'La Segunda', url: 'https://www.lasegunda.com/'}, {name: 'El Dínamo', url: 'https://www.eldinamo.cl/'}, {name: 'CIPER', url: 'https://www.ciperchile.cl/'}, {name: 'Coop', url: 'https://cooperativa.cl/'}, {name: 'T13', url: 'https://www.t13.cl/'}]},
+            'Peru': {flag: '🇵🇪', papers: [{name: 'Comercio', url: 'https://elcomercio.pe/'}, {name: 'Perú21', url: 'https://peru21.pe/'}, {name: 'RPP', url: 'https://rpp.pe/'}, {name: 'República', url: 'https://larepublica.pe/'}, {name: 'Gestión', url: 'https://gestion.pe/'}, {name: 'Correo', url: 'https://diariocorreo.pe/'}, {name: 'Trome', url: 'https://trome.pe/'}, {name: 'Expreso', url: 'https://www.expreso.com.pe/'}, {name: 'Ojo', url: 'https://ojo.pe/'}, {name: 'Exitosa', url: 'https://exitosanoticias.pe/'}]},
+            'Venezuela': {flag: '🇻🇪', papers: [{name: 'El Nacional', url: 'https://www.elnacional.com/'}, {name: 'Universal', url: 'https://www.eluniversal.com/'}, {name: 'Tal Cual', url: 'https://talcualdigital.com/'}, {name: 'Cocuyo', url: 'https://efectococuyo.com/'}, {name: 'Runrunes', url: 'https://runrun.es/'}, {name: 'Últ Noticias', url: 'https://ultimasnoticias.com.ve/'}, {name: 'El Pitazo', url: 'https://elpitazo.net/'}, {name: 'Estímulo', url: 'https://elestimulo.com/'}, {name: 'Crónica', url: 'https://cronica.uno/'}, {name: 'VPI', url: 'https://www.vpitv.com/'}]},
+            'Ecuador': {flag: '🇪🇨', papers: [{name: 'Comercio', url: 'https://www.elcomercio.com/'}, {name: 'Universo', url: 'https://www.eluniverso.com/'}, {name: 'Primicias', url: 'https://www.primicias.ec/'}, {name: 'Expreso', url: 'https://www.expreso.ec/'}, {name: 'Telégrafo', url: 'https://www.eltelegrafo.com.ec/'}, {name: 'Plan V', url: 'https://www.planv.com.ec/'}, {name: 'Ecuavisa', url: 'https://www.ecuavisa.com/'}, {name: 'La Hora', url: 'https://www.lahora.com.ec/'}, {name: 'Extra', url: 'https://www.extra.ec/'}, {name: 'Metro', url: 'https://www.metroecuador.com.ec/'}]},
+            'Bolivia': {flag: '🇧🇴', papers: [{name: 'El Deber', url: 'https://eldeber.com.bo/'}, {name: 'Página 7', url: 'https://www.paginasiete.bo/'}, {name: 'Erbol', url: 'https://erbol.com.bo/'}, {name: 'Los Tiempos', url: 'https://www.lostiempos.com/'}, {name: 'La Razón', url: 'https://www.la-razon.com/'}, {name: 'El Potosí', url: 'https://elpotosi.net/'}, {name: 'Opinión', url: 'https://www.opinion.com.bo/'}, {name: 'El Día', url: 'https://www.eldia.com.bo/'}, {name: 'Correo Sur', url: 'https://correodelsur.com/'}]},
+            'Uruguay': {flag: '🇺🇾', papers: [{name: 'El País', url: 'https://www.elpais.com.uy/'}, {name: 'Observador', url: 'https://www.elobservador.com.uy/'}, {name: 'La Diaria', url: 'https://ladiaria.com.uy/'}, {name: 'Montevideo', url: 'https://www.montevideo.com.uy/'}, {name: 'República', url: 'https://www.republica.com.uy/'}, {name: 'Búsqueda', url: 'https://www.busqueda.com.uy/'}, {name: 'Telégrafo', url: 'https://www.eltelegrafo.com/'}, {name: 'Subrayado', url: 'https://www.subrayado.com.uy/'}]},
+            'Paraguay': {flag: '🇵🇾', papers: [{name: 'ABC', url: 'https://www.abc.com.py/'}, {name: 'Últ Hora', url: 'https://www.ultimahora.com/'}, {name: 'La Nación', url: 'https://www.lanacion.com.py/'}, {name: '5 Días', url: 'https://www.5dias.com.py/'}, {name: 'HOY', url: 'https://www.hoy.com.py/'}, {name: 'Crónica', url: 'https://www.cronica.com.py/'}, {name: 'Extra', url: 'https://www.extra.com.py/'}]},
+            'Costa Rica': {flag: '🇨🇷', papers: [{name: 'La Nación', url: 'https://www.nacion.com/'}, {name: 'República', url: 'https://www.larepublica.net/'}, {name: 'Financiero', url: 'https://www.elfinancierocr.com/'}, {name: 'CRHoy', url: 'https://www.crhoy.com/'}, {name: 'Teletica', url: 'https://www.teletica.com/'}, {name: 'Repretel', url: 'https://www.repretel.com/'}, {name: 'Semanario U', url: 'https://semanariouniversidad.com/'}]},
+            'Panama': {flag: '🇵🇦', papers: [{name: 'La Prensa', url: 'https://www.prensa.com/'}, {name: 'La Estrella', url: 'https://www.laestrella.com.pa/'}, {name: 'Panamá Am', url: 'https://www.panamaamerica.com.pa/'}, {name: 'El Siglo', url: 'https://elsiglo.com.pa/'}, {name: 'Metro Libre', url: 'https://www.metrolibre.com/'}, {name: 'TVN', url: 'https://www.tvn-2.com/'}]}
+        };
+        async function fetchHeadlines() {
+            document.getElementById('btnText').textContent = 'Loading...';
+            const res = await fetch('https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/latam_headlines.json?' + Date.now());
+            const data = await res.json();
+            displayHeadlines(data);
+            document.getElementById('btnText').textContent = 'Fetch';
+        }
+        function displayHeadlines(data) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+            Object.keys(newspapers).forEach(country => {
+                const info = newspapers[country];
+                const sec = document.createElement('div');
+                sec.className = 'mb-6 bg-white rounded-lg shadow p-3';
+                sec.innerHTML = `<h2 class="text-xl font-bold mb-2">${info.flag} ${country}</h2>` + 
+                    (data.summaries?.[country] ? `<p class="text-xs text-gray-600 italic mb-3">${data.summaries[country]}</p>` : '');
+                const grid = document.createElement('div');
+                grid.className = 'news-grid';
+                info.papers.forEach(paper => {
+                    const headlines = data.headlines?.[`${country}-${paper.name}`] || [];
+                    const card = document.createElement('div');
+                    card.className = 'bg-gray-50 rounded p-2 text-xs';
+                    card.innerHTML = `<div class="font-bold text-blue-700 mb-1">${paper.name}</div>`;
+                    if (headlines.length > 0) {
+                        headlines.slice(0, 5).forEach(h => {
+                            card.innerHTML += `<div class="mb-2 border-b pb-1"><a href="${h.url}" target="_blank" class="hover:text-blue-600">${h.title}</a><div class="text-gray-500 text-xs">${h.time}</div></div>`;
+                        });
+                    } else {
+                        card.innerHTML += '<div class="text-gray-400 py-2">No stories</div>';
+                    }
+                    grid.appendChild(card);
+                });
+                const intl = data.international?.[country] || [];
+                if (intl.length > 0) {
+                    const intlCard = document.createElement('div');
+                    intlCard.className = 'bg-purple-50 rounded p-2 text-xs border-2 border-purple-200';
+                    intlCard.innerHTML = '<div class="font-bold text-purple-700 mb-1">International</div>';
+                    intl.slice(0, 5).forEach(s => {
+                        intlCard.innerHTML += `<div class="mb-2 border-b pb-1"><span class="font-semibold text-purple-600">${s.source}</span><a href="${s.url}" target="_blank" class="block hover:text-purple-600">${s.title}</a></div>`;
+                    });
+                    grid.appendChild(intlCard);
+                }
+                sec.appendChild(grid);
+                content.appendChild(sec);
+            });
+        }
+    </script>
+</body>
+</html>
