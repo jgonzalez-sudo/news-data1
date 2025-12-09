@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latin America News Tracker - Expanded</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M30,10 Q20,15 15,25 L15,40 Q15,50 20,55 L25,70 Q30,80 40,85 L50,90 L60,85 Q70,80 75,70 L80,55 Q85,50 85,40 L85,25 Q80,15 70,10 L50,5 Z' fill='%234F46E5' stroke='%231E40AF' stroke-width='2'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen p-6">
+    <div class="max-w-[2000px] mx-auto">
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Latin America News Tracker</h1>
+                        <p class="text-sm text-gray-600">Expanded coverage: 4-6 newspapers + international outlets (Last 48 hours)</p>
+                    </div>
+                </div>
+                <button onclick="fetchHeadlines()" id="fetchBtn" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors">
+                    <svg id="loadIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    <span id="btnText">Fetch Headlines</span>
+                </button>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-sm" id="currentDate"></span>
+            </div>
+        </div>
+        <div id="content" class="space-y-8"></div>
+    </div>
+
+    <script>
+        const newspapers = {
+            'Argentina': {
+                flag: '🇦🇷',
+                papers: [
+                    { name: 'Clarín', url: 'https://www.clarin.com/' },
+                    { name: 'La Nación', url: 'https://www.lanacion.com.ar/' },
+                    { name: 'Página/12', url: 'https://www.pagina12.com.ar/' },
+                    { name: 'Infobae', url: 'https://www.infobae.com/' },
+                    { name: 'Ámbito', url: 'https://www.ambito.com/' },
+                    { name: 'Perfil', url: 'https://www.perfil.com/' }
+                ]
+            },
+            'Brazil': {
+                flag: '🇧🇷',
+                papers: [
+                    { name: 'Folha de S.Paulo', url: 'https://www.folha.uol.com.br/' },
+                    { name: 'O Globo', url: 'https://oglobo.globo.com/' },
+                    { name: 'O Estado de S. Paulo', url: 'https://www.estadao.com.br/' },
+                    { name: 'UOL', url: 'https://www.uol.com.br/' },
+                    { name: 'G1', url: 'https://g1.globo.com/' },
+                    { name: 'Valor Econômico', url: 'https://valor.globo.com/' }
+                ]
+            },
+            'Mexico': {
+                flag: '🇲🇽',
+                papers: [
+                    { name: 'El Universal', url: 'https://www.eluniversal.com.mx/' },
+                    { name: 'Reforma', url: 'https://www.reforma.com/' },
+                    { name: 'La Jornada', url: 'https://www.jornada.com.mx/' },
+                    { name: 'Milenio', url: 'https://www.milenio.com/' },
+                    { name: 'Excélsior', url: 'https://www.excelsior.com.mx/' },
+                    { name: 'El Financiero', url: 'https://www.elfinanciero.com.mx/' }
+                ]
+            },
+            'Colombia': {
+                flag: '🇨🇴',
+                papers: [
+                    { name: 'El Tiempo', url: 'https://www.eltiempo.com/' },
+                    { name: 'Portafolio', url: 'https://www.portafolio.co/' },
+                    { name: 'Semana', url: 'https://www.semana.com/' },
+                    { name: 'El Espectador', url: 'https://www.elespectador.com/' },
+                    { name: 'El Colombiano', url: 'https://www.elcolombiano.com/' },
+                    { name: 'La República', url: 'https://www.larepublica.co/' }
+                ]
+            },
+            'Chile': {
+                flag: '🇨🇱',
+                papers: [
+                    { name: 'La Tercera', url: 'https://www.latercera.com/' },
+                    { name: 'BioBioChile', url: 'https://www.biobiochile.cl/' },
+                    { name: 'El Mostrador', url: 'https://www.elmostrador.cl/' },
+                    { name: 'Emol', url: 'https://www.emol.com/' },
+                    { name: 'El Mercurio', url: 'https://digital.elmercurio.com/' },
+                    { name: 'La Segunda', url: 'https://www.lasegunda.com/' }
+                ]
+            },
+            'Peru': {
+                flag: '🇵🇪',
+                papers: [
+                    { name: 'El Comercio', url: 'https://elcomercio.pe/' },
+                    { name: 'Perú21', url: 'https://peru21.pe/' },
+                    { name: 'RPP', url: 'https://rpp.pe/' },
+                    { name: 'La República', url: 'https://larepublica.pe/' },
+                    { name: 'Gestión', url: 'https://gestion.pe/' },
+                    { name: 'Correo', url: 'https://diariocorreo.pe/' }
+                ]
+            },
+            'Venezuela': {
+                flag: '🇻🇪',
+                papers: [
+                    { name: 'El Nacional', url: 'https://www.elnacional.com/' },
+                    { name: 'El Universal', url: 'https://www.eluniversal.com/' },
+                    { name: 'Tal Cual', url: 'https://talcualdigital.com/' },
+                    { name: 'Efecto Cocuyo', url: 'https://efectococuyo.com/' },
+                    { name: 'Runrunes', url: 'https://runrun.es/' },
+                    { name: 'Últimas Noticias', url: 'https://ultimasnoticias.com.ve/' }
+                ]
+            },
+            'Ecuador': {
+                flag: '🇪🇨',
+                papers: [
+                    { name: 'El Comercio', url: 'https://www.elcomercio.com/' },
+                    { name: 'El Universo', url: 'https://www.eluniverso.com/' },
+                    { name: 'Primicias', url: 'https://www.primicias.ec/' },
+                    { name: 'Expreso', url: 'https://www.expreso.ec/' },
+                    { name: 'El Telégrafo', url: 'https://www.eltelegrafo.com.ec/' },
+                    { name: 'Plan V', url: 'https://www.planv.com.ec/' }
+                ]
+            },
+            'Bolivia': {
+                flag: '🇧🇴',
+                papers: [
+                    { name: 'El Deber', url: 'https://eldeber.com.bo/' },
+                    { name: 'Página Siete', url: 'https://www.paginasiete.bo/' },
+                    { name: 'Erbol', url: 'https://erbol.com.bo/' },
+                    { name: 'Los Tiempos', url: 'https://www.lostiempos.com/' },
+                    { name: 'La Razón', url: 'https://www.la-razon.com/' },
+                    { name: 'El Potosí', url: 'https://elpotosi.net/' }
+                ]
+            },
+            'Uruguay': {
+                flag: '🇺🇾',
+                papers: [
+                    { name: 'El País', url: 'https://www.elpais.com.uy/' },
+                    { name: 'El Observador', url: 'https://www.elobservador.com.uy/' },
+                    { name: 'La Diaria', url: 'https://ladiaria.com.uy/' },
+                    { name: 'Montevideo Portal', url: 'https://www.montevideo.com.uy/' },
+                    { name: 'La República', url: 'https://www.republica.com.uy/' }
+                ]
+            },
+            'Paraguay': {
+                flag: '🇵🇾',
+                papers: [
+                    { name: 'ABC Color', url: 'https://www.abc.com.py/' },
+                    { name: 'Última Hora', url: 'https://www.ultimahora.com/' },
+                    { name: 'La Nación', url: 'https://www.lanacion.com.py/' },
+                    { name: '5 Días', url: 'https://www.5dias.com.py/' }
+                ]
+            }
+        };
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        });
+
+        async function fetchHeadlines() {
+            const btn = document.getElementById('fetchBtn');
+            const icon = document.getElementById('loadIcon');
+            const text = document.getElementById('btnText');
+            
+            btn.disabled = true;
+            icon.classList.add('animate-spin');
+            text.textContent = 'Loading...';
+
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/latam_headlines.json?' + Date.now());
+                const data = await response.json();
+                displayHeadlines(data);
+            } catch (error) {
+                alert('Error loading headlines: ' + error.message);
+            }
+
+            btn.disabled = false;
+            icon.classList.remove('animate-spin');
+            text.textContent = 'Fetch Headlines';
+        }
+
+        function displayHeadlines(data) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            const headlines = data.headlines || data;
+            const summaries = data.summaries || {};
+            const international = data.international || {};
+
+            Object.keys(newspapers).forEach(country => {
+                const countryInfo = newspapers[country];
+                const section = document.createElement('div');
+                section.className = 'mb-8';
+                
+                const header = document.createElement('h2');
+                header.className = 'text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2';
+                header.textContent = `${countryInfo.flag} ${country}`;
+                section.appendChild(header);
+
+                if (summaries[country]) {
+                    const summary = document.createElement('p');
+                    summary.className = 'text-sm text-gray-600 italic mb-4 pl-10 leading-relaxed';
+                    summary.textContent = summaries[country];
+                    section.appendChild(summary);
+                }
+
+                // Dynamic grid based on number of sources
+                const numPapers = countryInfo.papers.length;
+                const grid = document.createElement('div');
+                grid.className = `grid gap-3 ${numPapers === 6 ? 'xl:grid-cols-7 lg:grid-cols-4 md:grid-cols-3' : numPapers === 5 ? 'xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-2' : 'xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2'} grid-cols-1`;
+
+                // Add local newspapers
+                countryInfo.papers.forEach(paper => {
+                    const key = `${country}-${paper.name}`;
+                    const paperHeadlines = headlines[key] || [];
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+                    
+                    const paperHeader = document.createElement('div');
+                    paperHeader.className = 'bg-gradient-to-r from-blue-600 to-blue-700 p-2';
+                    paperHeader.innerHTML = `<h3 class="text-white font-bold text-xs">${paper.name}</h3>`;
+                    card.appendChild(paperHeader);
+
+                    const headlinesDiv = document.createElement('div');
+                    headlinesDiv.className = 'p-2 min-h-[250px] text-xs';
+                    
+                    if (paperHeadlines.length > 0) {
+                        paperHeadlines.forEach(headline => {
+                            const item = document.createElement('div');
+                            item.className = 'border-b border-gray-100 pb-1 mb-1 last:border-0';
+                            item.innerHTML = `
+                                <a href="${headline.url}" target="_blank" class="text-gray-800 hover:text-blue-600 font-medium block mb-1 transition-colors leading-tight">
+                                    ${headline.title}
+                                </a>
+                                <p class="text-gray-600 mb-1 leading-tight">${headline.description}</p>
+                                <span class="text-gray-500">${headline.time}</span>
+                            `;
+                            headlinesDiv.appendChild(item);
+                        });
+                    } else {
+                        headlinesDiv.innerHTML = '<p class="text-center py-4 text-gray-400">No recent stories</p>';
+                    }
+                    
+                    card.appendChild(headlinesDiv);
+                    grid.appendChild(card);
+                });
+
+                // Add international coverage column
+                const intlCard = document.createElement('div');
+                intlCard.className = 'bg-white rounded-lg shadow-md overflow-hidden border-2 border-purple-200';
+                
+                const intlHeader = document.createElement('div');
+                intlHeader.className = 'bg-gradient-to-r from-purple-600 to-purple-700 p-2';
+                intlHeader.innerHTML = `
+                    <h3 class="text-white font-bold text-xs">International Outlets</h3>
+                    <p class="text-purple-100 text-xs mt-1">Last 48 hours</p>
+                `;
+                intlCard.appendChild(intlHeader);
+
+                const intlDiv = document.createElement('div');
+                intlDiv.className = 'p-2 min-h-[250px] text-xs';
+                
+                const intlStories = international[country] || [];
+                if (intlStories.length > 0) {
+                    intlStories.forEach(story => {
+                        const item = document.createElement('div');
+                        item.className = 'border-b border-gray-100 pb-1 mb-1 last:border-0';
+                        item.innerHTML = `
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-semibold text-purple-600">${story.source}</span>
+                                <span class="text-gray-400">•</span>
+                                <span class="text-gray-500">${story.time}</span>
+                            </div>
+                            <a href="${story.url}" target="_blank" class="text-gray-800 hover:text-purple-600 font-medium block mb-1 transition-colors leading-tight">
+                                ${story.title}
+                            </a>
+                            <p class="text-gray-600 leading-tight">${story.description}</p>
+                        `;
+                        intlDiv.appendChild(item);
+                    });
+                } else {
+                    intlDiv.innerHTML = '<p class="text-center py-4 text-gray-400">No international coverage</p>';
+                }
+                
+                intlCard.appendChild(intlDiv);
+                grid.appendChild(intlCard);
+
+                section.appendChild(grid);
+                content.appendChild(section);
+            });
+        }
+    </script>
+</body>
+</html>
