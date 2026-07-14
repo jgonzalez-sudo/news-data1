@@ -18,6 +18,7 @@
   </div>
 
   <div id="nt-countries"></div>
+  <button class="nt-more-btn" id="nt-more-btn" style="display:none;"></button>
 
   <div class="nt-suggestions" id="nt-suggestions" style="display:none;">
     <div class="nt-suggest-header">
@@ -74,6 +75,8 @@
   .nt-suggest-cat.nt-weekend { color: var(--accent); }
   .nt-suggest-item { font-size: 12.5px; color: var(--text); line-height: 1.6; margin-bottom: 2px; }
   .nt-suggest-block { margin-bottom: 10px; }
+  .nt-more-btn { width: 100%; background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 10px; font-size: 12.5px; cursor: pointer; margin-bottom: 16px; }
+  .nt-more-btn:hover { color: var(--text); border-color: var(--muted); }
   /* Slack proxy: /api/send-brief.js keeps SLACK_WEBHOOK_URL server-side */
 
 </style>
@@ -93,6 +96,7 @@
   ];
 
   const root = document.getElementById('nt-countries');
+  const moreBtn = document.getElementById('nt-more-btn');
   const statusEl = document.getElementById('nt-status');
   const dateEl = document.getElementById('nt-date');
   const fetchBtn = document.getElementById('nt-fetch');
@@ -103,6 +107,8 @@
   const slackBtn = document.getElementById('nt-slack-btn');
 
   let lastBrief = null;
+  const VISIBLE_COUNT = 6;
+  let expanded = false;
 
   dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -122,18 +128,35 @@
     } catch (e) { return ''; }
   }
 
-  function renderExec(topStories) {
-    const pool = [];
-    Object.keys(topStories || {}).forEach(country => {
-      (topStories[country] || []).forEach(s => pool.push(s));
-    });
-    pool.sort((a, b) => b.count - a.count);
-    const top = pool.slice(0, 6);
-    if (!top.length) { execBox.style.display = 'none'; return; }
-    execList.innerHTML = top.map(s =>
-      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>`
-    ).join('');
+  function renderExec(brief) {
+    const items = (brief && brief.executive_summary) || [];
+    if (!items.length) { execBox.style.display = 'none'; return; }
+    execList.innerHTML = items.map(s => {
+      const headline = escapeHtml(s.headline || s);
+      const url = s.url ? escapeHtml(s.url) : '#';
+      return `<a href="${url}" target="_blank" rel="noopener">${headline}</a>`;
+    }).join('');
     execBox.style.display = 'block';
+  }
+
+  function countryCardHtml(country, stories, checked) {
+    let html = `<div class="nt-country-head">
+      <span class="nt-country-name">${escapeHtml(country)}</span>
+      <span class="nt-country-updated">${checked ? 'checked ' + timeAgo(checked) : ''}</span>
+    </div>`;
+    if (!stories.length) {
+      html += `<div class="nt-quiet">No significant coverage today.</div>`;
+    } else {
+      stories.forEach(s => {
+        const badge = s.count > 1 ? `<span class="nt-badge">${s.count} sources</span>` : '';
+        html += `<div class="nt-story">
+          <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>
+          ${badge}
+          <span class="nt-story-meta">${escapeHtml(s.time || '')}</span>
+        </div>`;
+      });
+    }
+    return html;
   }
 
   function renderCountries(data) {
@@ -141,32 +164,30 @@
     const topStories = data.top_stories || {};
     const lastChecked = data.last_checked || {};
 
-    COUNTRIES.forEach(([country]) => {
-      const stories = topStories[country] || [];
-      const checked = lastChecked[country];
+    // Countries with real coverage first, quiet ones pushed to the end —
+    // so the visible-by-default slice is never wasted on empty cards.
+    const ordered = COUNTRIES.slice().sort((a, b) => {
+      const aHas = (topStories[a[0]] || []).length > 0 ? 0 : 1;
+      const bHas = (topStories[b[0]] || []).length > 0 ? 0 : 1;
+      return aHas - bHas;
+    });
+
+    const visible = expanded ? ordered : ordered.slice(0, VISIBLE_COUNT);
+    visible.forEach(([country]) => {
       const div = document.createElement('div');
       div.className = 'nt-country';
-
-      let html = `<div class="nt-country-head">
-        <span class="nt-country-name">${escapeHtml(country)}</span>
-        <span class="nt-country-updated">${checked ? 'checked ' + timeAgo(checked) : ''}</span>
-      </div>`;
-
-      if (!stories.length) {
-        html += `<div class="nt-quiet">No significant coverage today.</div>`;
-      } else {
-        stories.forEach(s => {
-          const badge = s.count > 1 ? `<span class="nt-badge">${s.count} sources</span>` : '';
-          html += `<div class="nt-story">
-            <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>
-            ${badge}
-            <span class="nt-story-meta">${escapeHtml(s.time || '')}</span>
-          </div>`;
-        });
-      }
-      div.innerHTML = html;
+      div.innerHTML = countryCardHtml(country, topStories[country] || [], lastChecked[country]);
       root.appendChild(div);
     });
+
+    const hiddenCount = ordered.length - visible.length;
+    if (hiddenCount > 0 || expanded) {
+      moreBtn.style.display = 'block';
+      moreBtn.textContent = expanded ? 'Show fewer countries' : `+${hiddenCount} more countries`;
+      moreBtn.onclick = () => { expanded = !expanded; renderCountries(data); };
+    } else {
+      moreBtn.style.display = 'none';
+    }
   }
 
   function renderSuggestions(brief) {
@@ -198,7 +219,6 @@
       const res = await fetch(JSON_URL + '?t=' + Date.now());
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-      renderExec(data.top_stories);
       renderCountries(data);
       statusEl.textContent = 'Headlines loaded.';
       statusEl.className = 'nt-status nt-ok';
@@ -213,11 +233,14 @@
       const briefRes = await fetch(BRIEF_URL + '?t=' + Date.now());
       if (briefRes.ok) {
         lastBrief = await briefRes.json();
+        renderExec(lastBrief);
         renderSuggestions(lastBrief);
       } else {
+        renderExec(null);
         renderSuggestions(null);
       }
     } catch (e) {
+      renderExec(null);
       renderSuggestions(null);
     }
   }
