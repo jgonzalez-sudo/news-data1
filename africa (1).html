@@ -1,0 +1,246 @@
+<div id="nt-root">
+  <div class="nt-header">
+    <div class="nt-header-left">
+      <div class="nt-icon">A</div>
+      <div>
+        <h1 class="nt-title">Africa news tracker</h1>
+        <p class="nt-subtitle">Executive digest — top stories by country</p>
+      </div>
+    </div>
+    <button class="nt-fetch-btn" id="nt-fetch">Refresh</button>
+  </div>
+  <div class="nt-date" id="nt-date"></div>
+  <div class="nt-status" id="nt-status">Loading latest headlines…</div>
+
+  <div class="nt-exec" id="nt-exec" style="display:none;">
+    <div class="nt-exec-label">Today's biggest stories</div>
+    <div id="nt-exec-list"></div>
+  </div>
+
+  <div id="nt-countries"></div>
+
+  <div class="nt-suggestions" id="nt-suggestions" style="display:none;">
+    <div class="nt-suggest-header">
+      <div class="nt-exec-label">Suggested for today's newsletter</div>
+      <button class="nt-slack-btn" id="nt-slack-btn">Send to Slack</button>
+    </div>
+    <div id="nt-suggest-body"></div>
+  </div>
+</div>
+
+<style>
+  #nt-root {
+    --bg: #11151a; --panel: #171c23; --line: #2a313b;
+    --text: #e7ecf1; --muted: #8b97a5; --accent: #f7f5d7;
+    --accent-dim: #4a4a30; --blue: #5ab0ff; --blue-dim: #1c2f42;
+    --green: #5fd99a; --red: #ff6b6b;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text); background: var(--bg);
+    border-radius: 12px; padding: 24px; box-sizing: border-box;
+  }
+  #nt-root * { box-sizing: border-box; }
+
+  .nt-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .nt-header-left { display: flex; align-items: flex-start; gap: 14px; }
+  .nt-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+  .nt-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px 0; }
+  .nt-subtitle { font-size: 13px; color: var(--muted); margin: 0; }
+  .nt-fetch-btn, .nt-slack-btn { background: var(--accent); color: #1a1305; border: none; border-radius: 8px; padding: 8px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .nt-fetch-btn:disabled, .nt-slack-btn:disabled { opacity: 0.5; cursor: default; }
+
+  .nt-date { font-size: 12.5px; color: var(--muted); margin: 10px 0 4px 0; }
+  .nt-status { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .nt-status.nt-error { color: var(--red); }
+  .nt-status.nt-ok { color: var(--green); }
+
+  .nt-exec { background: var(--accent-dim); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; }
+  .nt-exec-label { font-size: 11px; font-weight: 600; letter-spacing: .03em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .nt-exec a { display: block; font-size: 13.5px; color: var(--accent); text-decoration: underline; line-height: 1.9; }
+
+  .nt-country { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+  .nt-country-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .nt-country-name { font-size: 14px; font-weight: 600; }
+  .nt-country-updated { font-size: 10.5px; color: var(--muted); }
+  .nt-story { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; }
+  .nt-story a { color: var(--text); text-decoration: none; font-size: 13px; font-weight: 500; }
+  .nt-story a:hover { color: var(--accent); }
+  .nt-badge { font-size: 10px; background: var(--blue-dim); color: var(--blue); border-radius: 6px; padding: 1px 6px; flex-shrink: 0; }
+  .nt-story-meta { font-size: 11px; color: var(--muted); margin-left: 6px; }
+  .nt-quiet { font-size: 12px; color: var(--muted); font-style: italic; padding: 4px 0; }
+
+  .nt-suggestions { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
+  .nt-suggest-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .nt-suggest-cat { font-size: 11px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+  .nt-suggest-cat.nt-weekend { color: var(--accent); }
+  .nt-suggest-item { font-size: 12.5px; color: var(--text); line-height: 1.6; margin-bottom: 2px; }
+  .nt-suggest-block { margin-bottom: 10px; }
+  /* Slack proxy: /api/send-brief.js keeps SLACK_WEBHOOK_URL server-side */
+
+</style>
+
+<script>
+(function () {
+  const JSON_URL = 'https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/africa_headlines.json';
+  const BRIEF_URL = 'https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/africa_brief.json';
+  const SLACK_PROXY_URL = '/api/send-brief';
+
+  const COUNTRIES = [
+    ['Nigeria','NG'],['South Africa','ZA'],['Kenya','KE'],['Ghana','GH'],['Ethiopia','ET'],
+    ['Tanzania','TZ'],['Uganda','UG'],['Egypt','EG'],['Morocco','MA'],['Senegal','SN'],
+    ['Rwanda','RW'],['Zimbabwe','ZW'],['Algeria','DZ'],['Ivory Coast','CI'],['Tunisia','TN'],
+    ['DR Congo','CD'],['Angola','AO'],['Sudan','SD'],['South Sudan','SS'],['Somalia','SO'],
+    ['Libya','LY'],['Zambia','ZM'],['Mozambique','MZ'],['Cameroon','CM'],['Mali','ML']
+  ];
+
+  const root = document.getElementById('nt-countries');
+  const statusEl = document.getElementById('nt-status');
+  const dateEl = document.getElementById('nt-date');
+  const fetchBtn = document.getElementById('nt-fetch');
+  const execBox = document.getElementById('nt-exec');
+  const execList = document.getElementById('nt-exec-list');
+  const suggestBox = document.getElementById('nt-suggestions');
+  const suggestBody = document.getElementById('nt-suggest-body');
+  const slackBtn = document.getElementById('nt-slack-btn');
+
+  let lastBrief = null;
+
+  dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  function timeAgo(iso) {
+    try {
+      const diffMs = Date.now() - new Date(iso).getTime();
+      const mins = Math.round(diffMs / 60000);
+      if (mins < 60) return mins + 'm ago';
+      const hrs = Math.round(mins / 60);
+      if (hrs < 24) return hrs + 'h ago';
+      return Math.round(hrs / 24) + 'd ago';
+    } catch (e) { return ''; }
+  }
+
+  function renderExec(topStories) {
+    const pool = [];
+    Object.keys(topStories || {}).forEach(country => {
+      (topStories[country] || []).forEach(s => pool.push(s));
+    });
+    pool.sort((a, b) => b.count - a.count);
+    const top = pool.slice(0, 6);
+    if (!top.length) { execBox.style.display = 'none'; return; }
+    execList.innerHTML = top.map(s =>
+      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>`
+    ).join('');
+    execBox.style.display = 'block';
+  }
+
+  function renderCountries(data) {
+    root.innerHTML = '';
+    const topStories = data.top_stories || {};
+    const lastChecked = data.last_checked || {};
+
+    COUNTRIES.forEach(([country]) => {
+      const stories = topStories[country] || [];
+      const checked = lastChecked[country];
+      const div = document.createElement('div');
+      div.className = 'nt-country';
+
+      let html = `<div class="nt-country-head">
+        <span class="nt-country-name">${escapeHtml(country)}</span>
+        <span class="nt-country-updated">${checked ? 'checked ' + timeAgo(checked) : ''}</span>
+      </div>`;
+
+      if (!stories.length) {
+        html += `<div class="nt-quiet">No significant coverage today.</div>`;
+      } else {
+        stories.forEach(s => {
+          const badge = s.count > 1 ? `<span class="nt-badge">${s.count} sources</span>` : '';
+          html += `<div class="nt-story">
+            <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title)}</a>
+            ${badge}
+            <span class="nt-story-meta">${escapeHtml(s.time || '')}</span>
+          </div>`;
+        });
+      }
+      div.innerHTML = html;
+      root.appendChild(div);
+    });
+  }
+
+  function renderSuggestions(brief) {
+    if (!brief) { suggestBox.style.display = 'none'; return; }
+    const cb = brief.continental_briefing || {};
+    const section = (label, items, cls) => {
+      if (!items || !items.length) return '';
+      return `<div class="nt-suggest-block">
+        <div class="nt-suggest-cat ${cls || ''}">${label}</div>
+        ${items.map(i => `<div class="nt-suggest-item">${escapeHtml(i)}</div>`).join('')}
+      </div>`;
+    };
+    suggestBody.innerHTML =
+      section('Business & macro', cb.business_macro) +
+      section('Climate & energy', cb.climate_energy) +
+      section('Geopolitics & politics', cb.geopolitics_politics) +
+      section('Tech & deals', cb.tech_deals) +
+      section('Political story pitches', brief.political_story_suggestions) +
+      section('Business/tech story pitches', brief.business_tech_story_suggestions) +
+      section('Weekend read', brief.weekend_read_suggestion ? [brief.weekend_read_suggestion] : null, 'nt-weekend');
+    suggestBox.style.display = 'block';
+  }
+
+  async function load() {
+    statusEl.textContent = 'Loading latest headlines…';
+    statusEl.className = 'nt-status';
+    fetchBtn.disabled = true;
+    try {
+      const res = await fetch(JSON_URL + '?t=' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      renderExec(data.top_stories);
+      renderCountries(data);
+      statusEl.textContent = 'Headlines loaded.';
+      statusEl.className = 'nt-status nt-ok';
+    } catch (err) {
+      statusEl.textContent = 'Could not load headlines (' + err.message + ').';
+      statusEl.className = 'nt-status nt-error';
+    } finally {
+      fetchBtn.disabled = false;
+    }
+
+    try {
+      const briefRes = await fetch(BRIEF_URL + '?t=' + Date.now());
+      if (briefRes.ok) {
+        lastBrief = await briefRes.json();
+        renderSuggestions(lastBrief);
+      } else {
+        renderSuggestions(null);
+      }
+    } catch (e) {
+      renderSuggestions(null);
+    }
+  }
+
+  slackBtn.addEventListener('click', async () => {
+    if (!lastBrief) return;
+    slackBtn.disabled = true;
+    slackBtn.textContent = 'Sending…';
+    try {
+      const res = await fetch(SLACK_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lastBrief),
+      });
+      slackBtn.textContent = res.ok ? 'Sent' : 'Failed';
+    } catch (e) {
+      slackBtn.textContent = 'Failed';
+    } finally {
+      setTimeout(() => { slackBtn.disabled = false; slackBtn.textContent = 'Send to Slack'; }, 2500);
+    }
+  });
+
+  fetchBtn.addEventListener('click', load);
+  load();
+})();
+</script>
