@@ -11,24 +11,31 @@ export default async function handler(req, res) {
   const brief = req.body || {};
   const cb = brief.continental_briefing || {};
 
-  const bullets = (items) =>
-    (items && items.length) ? items.map((i) => `• ${i}`).join('\n') : '_none flagged_';
+  const linkedBullets = (items) =>
+    (items && items.length)
+      ? items.map((i) => (i && i.url ? `• <${i.url}|${i.text || 'Untitled'}>` : `• ${(i && i.text) || i}`)).join('\n')
+      : '_none flagged_';
 
   const execBullets = (items) =>
     (items && items.length)
       ? items.map((i) => (i && i.url ? `• <${i.url}|${i.headline || 'Untitled'}>` : `• ${(i && i.headline) || i}`)).join('\n')
       : '_none flagged_';
 
+  const weekendRead = (item) => {
+    if (!item) return '_none flagged_';
+    return item.url ? `<${item.url}|${item.text || 'Untitled'}>` : (item.text || item);
+  };
+
   const blocks = [
     { type: 'header', text: { type: 'plain_text', text: 'Africa daily brief (on demand)' } },
     { type: 'section', text: { type: 'mrkdwn', text: '*Today\'s biggest stories:*\n' + execBullets(brief.executive_summary) } },
     { type: 'divider' },
-    { type: 'section', text: { type: 'mrkdwn', text: '*Business & macro*\n' + bullets(cb.business_macro) } },
-    { type: 'section', text: { type: 'mrkdwn', text: '*Climate & energy*\n' + bullets(cb.climate_energy) } },
-    { type: 'section', text: { type: 'mrkdwn', text: '*Geopolitics & politics*\n' + bullets(cb.geopolitics_politics) } },
-    { type: 'section', text: { type: 'mrkdwn', text: '*Tech & deals*\n' + bullets(cb.tech_deals) } },
+    { type: 'section', text: { type: 'mrkdwn', text: '*Business & macro*\n' + linkedBullets(cb.business_macro) } },
+    { type: 'section', text: { type: 'mrkdwn', text: '*Climate & energy*\n' + linkedBullets(cb.climate_energy) } },
+    { type: 'section', text: { type: 'mrkdwn', text: '*Geopolitics & politics*\n' + linkedBullets(cb.geopolitics_politics) } },
+    { type: 'section', text: { type: 'mrkdwn', text: '*Tech & deals*\n' + linkedBullets(cb.tech_deals) } },
     { type: 'divider' },
-    { type: 'section', text: { type: 'mrkdwn', text: '*Weekend read*\n' + (brief.weekend_read_suggestion || '_none flagged_') } },
+    { type: 'section', text: { type: 'mrkdwn', text: '*Weekend read*\n' + weekendRead(brief.weekend_read_suggestion) } },
   ];
 
   try {
