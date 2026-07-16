@@ -1,32 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semafor Africa Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath fill='%23f7f5d7' d='M25 5 L55 8 L60 20 L78 45 L65 55 L68 90 L45 118 L30 95 L38 65 L30 55 L8 50 L20 25 Z'/%3E%3C/svg%3E">
+<style>
+  html, body { margin: 0; padding: 0; background: #11151a; }
+</style>
+</head>
+<body>
 <div id="nt-root">
-  <div class="nt-header">
-    <div class="nt-header-left">
-      <div class="nt-icon">A</div>
-      <div>
-        <h1 class="nt-title">Africa news tracker</h1>
-        <p class="nt-subtitle">Executive digest — top stories by country</p>
-      </div>
+  <div class="nt-masthead">
+    <div class="nt-masthead-top">
+      <span class="nt-eyebrow">Semafor</span>
+      <span class="nt-eyebrow" id="nt-date"></span>
     </div>
-    <button class="nt-fetch-btn" id="nt-fetch">Refresh</button>
+    <h1 class="nt-title">Africa</h1>
+    <div class="nt-rule"></div>
+    <div class="nt-masthead-bottom">
+      <p class="nt-subtitle" id="nt-status">Loading latest headlines…</p>
+      <button class="nt-fetch-btn" id="nt-fetch">Refresh</button>
+    </div>
   </div>
-  <div class="nt-date" id="nt-date"></div>
-  <div class="nt-status" id="nt-status">Loading latest headlines…</div>
 
   <div class="nt-exec" id="nt-exec" style="display:none;">
-    <div class="nt-exec-label">Today's biggest stories</div>
-    <div id="nt-exec-list"></div>
+    <div class="nt-section-label">In today's edition</div>
+    <ol id="nt-exec-list"></ol>
   </div>
-
-  <div id="nt-countries"></div>
-  <button class="nt-more-btn" id="nt-more-btn" style="display:none;"></button>
 
   <div class="nt-suggestions" id="nt-suggestions" style="display:none;">
     <div class="nt-suggest-header">
-      <div class="nt-exec-label">Suggested for today's newsletter</div>
+      <div class="nt-section-label">Suggested for today's newsletter</div>
       <button class="nt-slack-btn" id="nt-slack-btn">Send to Slack</button>
     </div>
     <div id="nt-suggest-body"></div>
   </div>
+
+  <div id="nt-regions"></div>
+
+  <div class="nt-quiet-line" id="nt-quiet-line" style="display:none;"></div>
 </div>
 
 <style>
@@ -35,50 +48,56 @@
     --text: #e7ecf1; --muted: #8b97a5; --accent: #f7f5d7;
     --accent-dim: #4a4a30; --blue: #5ab0ff; --blue-dim: #1c2f42;
     --green: #5fd99a; --red: #ff6b6b;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--sans);
     color: var(--text); background: var(--bg);
-    border-radius: 12px; padding: 24px; box-sizing: border-box;
+    border-radius: 12px; padding: 28px; box-sizing: border-box;
+    max-width: 900px; margin: 0 auto;
   }
   #nt-root * { box-sizing: border-box; }
 
-  .nt-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
-  .nt-header-left { display: flex; align-items: flex-start; gap: 14px; }
-  .nt-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
-  .nt-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px 0; }
-  .nt-subtitle { font-size: 13px; color: var(--muted); margin: 0; }
-  .nt-fetch-btn, .nt-slack-btn { background: var(--accent); color: #1a1305; border: none; border-radius: 8px; padding: 8px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .nt-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .nt-masthead-top { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .nt-title { font-family: var(--serif); font-size: 42px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1; }
+  .nt-rule { border-top: 2px solid var(--text); margin: 12px 0 8px 0; }
+  .nt-masthead-bottom { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .nt-subtitle { font-size: 12.5px; color: var(--muted); margin: 0; }
+  .nt-subtitle.nt-error { color: var(--red); }
+  .nt-subtitle.nt-ok { color: var(--green); }
+  .nt-fetch-btn, .nt-slack-btn { background: var(--accent); color: #1a1305; border: none; border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
   .nt-fetch-btn:disabled, .nt-slack-btn:disabled { opacity: 0.5; cursor: default; }
 
-  .nt-date { font-size: 12.5px; color: var(--muted); margin: 10px 0 4px 0; }
-  .nt-status { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
-  .nt-status.nt-error { color: var(--red); }
-  .nt-status.nt-ok { color: var(--green); }
+  .nt-section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 
-  .nt-exec { background: var(--accent-dim); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; }
-  .nt-exec-label { font-size: 11px; font-weight: 600; letter-spacing: .03em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
-  .nt-exec a { display: block; font-size: 13.5px; color: var(--accent); text-decoration: underline; line-height: 1.9; }
+  .nt-exec { background: var(--accent-dim); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
+  .nt-exec ol { margin: 0; padding-left: 20px; }
+  .nt-exec li { margin-bottom: 8px; }
+  .nt-exec a { font-family: var(--serif); font-size: 16px; color: var(--accent); text-decoration: none; line-height: 1.4; }
+  .nt-exec a:hover { text-decoration: underline; }
 
-  .nt-country { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
-  .nt-country-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .nt-country-name { font-size: 14px; font-weight: 600; }
-  .nt-country-updated { font-size: 10.5px; color: var(--muted); }
-  .nt-story { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; }
-  .nt-story a { color: var(--text); text-decoration: none; font-size: 13px; font-weight: 500; }
-  .nt-story a:hover { color: var(--accent); }
-  .nt-badge { font-size: 10px; background: var(--blue-dim); color: var(--blue); border-radius: 6px; padding: 1px 6px; flex-shrink: 0; }
-  .nt-story-meta { font-size: 11px; color: var(--muted); margin-left: 6px; }
-  .nt-quiet { font-size: 12px; color: var(--muted); font-style: italic; padding: 4px 0; }
-
-  .nt-suggestions { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
-  .nt-suggest-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .nt-suggest-cat { font-size: 11px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+  .nt-suggestions { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
+  .nt-suggest-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .nt-suggest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .nt-suggest-cat { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 5px; }
   .nt-suggest-cat.nt-weekend { color: var(--accent); }
-  .nt-suggest-item { font-size: 12.5px; color: var(--text); line-height: 1.6; margin-bottom: 2px; }
-  .nt-suggest-block { margin-bottom: 10px; }
-  .nt-more-btn { width: 100%; background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 10px; font-size: 12.5px; cursor: pointer; margin-bottom: 16px; }
-  .nt-more-btn:hover { color: var(--text); border-color: var(--muted); }
-  /* Slack proxy: /api/send-brief.js keeps SLACK_WEBHOOK_URL server-side */
+  .nt-suggest-item { font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 3px; }
+  .nt-suggest-block { margin-bottom: 4px; }
 
+  .nt-region { margin-bottom: 26px; }
+  .nt-region-head { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 12px; }
+  .nt-region-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .nt-region-map { flex-shrink: 0; }
+  .nt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+  .nt-country { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .nt-country-name { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .nt-story { margin-bottom: 8px; }
+  .nt-story:last-child { margin-bottom: 0; }
+  .nt-story a { font-family: var(--serif); color: var(--text); text-decoration: none; font-size: 14.5px; line-height: 1.35; display: block; }
+  .nt-story a:hover { color: var(--accent); }
+
+  .nt-quiet-line { font-size: 11.5px; color: var(--muted); font-style: italic; margin-bottom: 8px; line-height: 1.6; }
 </style>
 
 <script>
@@ -87,16 +106,40 @@
   const BRIEF_URL = 'https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/africa_brief.json';
   const SLACK_PROXY_URL = '/api/send-brief';
 
-  const COUNTRIES = [
-    ['Nigeria','NG'],['South Africa','ZA'],['Kenya','KE'],['Ghana','GH'],['Ethiopia','ET'],
-    ['Tanzania','TZ'],['Uganda','UG'],['Egypt','EG'],['Morocco','MA'],['Senegal','SN'],
-    ['Rwanda','RW'],['Zimbabwe','ZW'],['Algeria','DZ'],['Ivory Coast','CI'],['Tunisia','TN'],
-    ['DR Congo','CD'],['Angola','AO'],['Sudan','SD'],['South Sudan','SS'],['Somalia','SO'],
-    ['Libya','LY'],['Zambia','ZM'],['Mozambique','MZ'],['Cameroon','CM'],['Mali','ML']
+  // Rough locator dots on a simplified Africa silhouette — not literal
+  // cartography, just enough to visually place each region at a glance.
+  const REGION_DOTS = {
+    'North Africa': [40, 20],
+    'West Africa': [20, 55],
+    'Central Africa': [48, 65],
+    'East Africa & the Horn': [65, 50],
+    'Southern Africa': [45, 95],
+  };
+  const AFRICA_PATH = "M25 5 L55 8 L60 20 L78 45 L65 55 L68 90 L45 118 L30 95 L38 65 L30 55 L8 50 L20 25 Z";
+
+  function regionMapSvg(activeRegion) {
+    const dots = Object.entries(REGION_DOTS).map(([name, [x, y]]) => {
+      const active = name === activeRegion;
+      const r = active ? 6 : 3;
+      const fill = active ? '#f7f5d7' : '#3a4552';
+      return `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`;
+    }).join('');
+    return `<svg class="nt-region-map" width="28" height="34" viewBox="0 0 100 120">
+      <path d="${AFRICA_PATH}" fill="none" stroke="#3a4552" stroke-width="2"/>
+      ${dots}
+    </svg>`;
+  }
+
+  const REGIONS = [
+    ['West Africa', ['Nigeria', 'Ghana', 'Senegal', 'Ivory Coast', 'Mali']],
+    ['North Africa', ['Egypt', 'Morocco', 'Algeria', 'Tunisia', 'Libya']],
+    ['East Africa & the Horn', ['Kenya', 'Ethiopia', 'Tanzania', 'Uganda', 'Rwanda', 'Somalia', 'Sudan', 'South Sudan']],
+    ['Southern Africa', ['South Africa', 'Zimbabwe', 'Zambia', 'Mozambique', 'Angola']],
+    ['Central Africa', ['DR Congo', 'Cameroon']],
   ];
 
-  const root = document.getElementById('nt-countries');
-  const moreBtn = document.getElementById('nt-more-btn');
+  const regionBox = document.getElementById('nt-regions');
+  const quietLine = document.getElementById('nt-quiet-line');
   const statusEl = document.getElementById('nt-status');
   const dateEl = document.getElementById('nt-date');
   const fetchBtn = document.getElementById('nt-fetch');
@@ -107,10 +150,8 @@
   const slackBtn = document.getElementById('nt-slack-btn');
 
   let lastBrief = null;
-  const VISIBLE_COUNT = 6;
-  let expanded = false;
 
-  dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
   function escapeHtml(str) {
     if (!str) return '';
@@ -134,62 +175,47 @@
     execList.innerHTML = items.map(s => {
       const headline = escapeHtml(s.headline || s);
       const url = s.url ? escapeHtml(s.url) : '#';
-      return `<a href="${url}" target="_blank" rel="noopener">${headline}</a>`;
+      return `<li><a href="${url}" target="_blank" rel="noopener">${headline}</a></li>`;
     }).join('');
     execBox.style.display = 'block';
   }
 
-  function countryCardHtml(country, stories, checked, curated) {
-    let html = `<div class="nt-country-head">
-      <span class="nt-country-name">${escapeHtml(country)}</span>
-      <span class="nt-country-updated">${checked ? 'checked ' + timeAgo(checked) : ''}</span>
-    </div>`;
-    if (!stories.length) {
-      html += `<div class="nt-quiet">No significant coverage today.</div>`;
-    } else {
-      stories.forEach(s => {
-        const badge = (!curated && s.count > 1) ? `<span class="nt-badge">${s.count} sources</span>` : '';
-        html += `<div class="nt-story">
-          <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.title || s.headline)}</a>
-          ${badge}
-          <span class="nt-story-meta">${escapeHtml(s.time || '')}</span>
-        </div>`;
-      });
-    }
-    return html;
-  }
-
-  function renderCountries(data, brief) {
-    root.innerHTML = '';
-    const topStories = data.top_stories || {};
+  function renderRegions(data, brief) {
+    regionBox.innerHTML = '';
+    const curated = (brief && brief.country_highlights) || {};
     const lastChecked = data.last_checked || {};
-    const curatedHighlights = (brief && brief.country_highlights) || null;
+    const quiet = [];
 
-    // Countries with real coverage first, quiet ones pushed to the end —
-    // so the visible-by-default slice is never wasted on empty cards.
-    const hasCoverage = (country) => curatedHighlights
-      ? (curatedHighlights[country] || []).length > 0
-      : (topStories[country] || []).length > 0;
+    REGIONS.forEach(([regionName, countries]) => {
+      const activeCountries = countries.filter(c => (curated[c] || []).length > 0);
+      countries.forEach(c => { if (!(curated[c] || []).length) quiet.push(c); });
+      if (!activeCountries.length) return;
 
-    const ordered = COUNTRIES.slice().sort((a, b) => (hasCoverage(a[0]) ? 0 : 1) - (hasCoverage(b[0]) ? 0 : 1));
-
-    const visible = expanded ? ordered : ordered.slice(0, VISIBLE_COUNT);
-    visible.forEach(([country]) => {
-      const div = document.createElement('div');
-      div.className = 'nt-country';
-      const curated = curatedHighlights ? curatedHighlights[country] : null;
-      const stories = curated !== null ? (curated || []) : (topStories[country] || []);
-      div.innerHTML = countryCardHtml(country, stories, lastChecked[country], curated !== null);
-      root.appendChild(div);
+      const section = document.createElement('div');
+      section.className = 'nt-region';
+      let html = `<div class="nt-region-head">${regionMapSvg(regionName)}<div class="nt-region-label">${escapeHtml(regionName)}</div></div><div class="nt-grid">`;
+      activeCountries.forEach(country => {
+        const stories = curated[country] || [];
+        const checked = lastChecked[country];
+        html += `<div class="nt-country">
+          <div class="nt-country-name">${escapeHtml(country)}${checked ? ' · ' + timeAgo(checked) : ''}</div>`;
+        stories.forEach(s => {
+          html += `<div class="nt-story">
+            <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.headline || s.title)}</a>
+          </div>`;
+        });
+        html += `</div>`;
+      });
+      html += `</div>`;
+      section.innerHTML = html;
+      regionBox.appendChild(section);
     });
 
-    const hiddenCount = ordered.length - visible.length;
-    if (hiddenCount > 0 || expanded) {
-      moreBtn.style.display = 'block';
-      moreBtn.textContent = expanded ? 'Show fewer countries' : `+${hiddenCount} more countries`;
-      moreBtn.onclick = () => { expanded = !expanded; renderCountries(data, brief); };
+    if (quiet.length) {
+      quietLine.textContent = 'Also checked today, nothing significant: ' + quiet.join(', ') + '.';
+      quietLine.style.display = 'block';
     } else {
-      moreBtn.style.display = 'none';
+      quietLine.style.display = 'none';
     }
   }
 
@@ -203,20 +229,21 @@
         ${items.map(i => `<div class="nt-suggest-item">${escapeHtml(i)}</div>`).join('')}
       </div>`;
     };
-    suggestBody.innerHTML =
+    suggestBody.innerHTML = `<div class="nt-suggest-grid">` +
       section('Business & macro', cb.business_macro) +
       section('Climate & energy', cb.climate_energy) +
       section('Geopolitics & politics', cb.geopolitics_politics) +
       section('Tech & deals', cb.tech_deals) +
-      section('Political story pitches', brief.political_story_suggestions) +
-      section('Business/tech story pitches', brief.business_tech_story_suggestions) +
-      section('Weekend read', brief.weekend_read_suggestion ? [brief.weekend_read_suggestion] : null, 'nt-weekend');
+      section('Political pitches', brief.political_story_suggestions) +
+      section('Business/tech pitches', brief.business_tech_story_suggestions) +
+      section('Weekend read', brief.weekend_read_suggestion ? [brief.weekend_read_suggestion] : null, 'nt-weekend') +
+      `</div>`;
     suggestBox.style.display = 'block';
   }
 
   async function load() {
     statusEl.textContent = 'Loading latest headlines…';
-    statusEl.className = 'nt-status';
+    statusEl.className = 'nt-subtitle';
     fetchBtn.disabled = true;
 
     let data = null;
@@ -225,10 +252,10 @@
       if (!res.ok) throw new Error('HTTP ' + res.status);
       data = await res.json();
       statusEl.textContent = 'Headlines loaded.';
-      statusEl.className = 'nt-status nt-ok';
+      statusEl.className = 'nt-subtitle nt-ok';
     } catch (err) {
       statusEl.textContent = 'Could not load headlines (' + err.message + ').';
-      statusEl.className = 'nt-status nt-error';
+      statusEl.className = 'nt-subtitle nt-error';
     } finally {
       fetchBtn.disabled = false;
     }
@@ -237,12 +264,12 @@
     try {
       const briefRes = await fetch(BRIEF_URL + '?t=' + Date.now());
       if (briefRes.ok) brief = await briefRes.json();
-    } catch (e) { /* brief stays null — page still works without it */ }
+    } catch (e) { /* brief stays null */ }
 
     lastBrief = brief;
     renderExec(brief);
     renderSuggestions(brief);
-    if (data) renderCountries(data, brief);
+    if (data) renderRegions(data, brief);
   }
 
   slackBtn.addEventListener('click', async () => {
@@ -267,3 +294,5 @@
   load();
 })();
 </script>
+</body>
+</html>
