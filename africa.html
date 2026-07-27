@@ -25,7 +25,10 @@
   </div>
 
   <div class="nt-exec" id="nt-exec" style="display:none;">
-    <div class="nt-section-label">In today's edition</div>
+    <div class="nt-exec-header">
+      <div class="nt-section-label">In today's edition</div>
+      <span class="nt-generated" id="nt-generated"></span>
+    </div>
     <ol id="nt-exec-list"></ol>
   </div>
 
@@ -71,6 +74,9 @@
   .nt-section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 
   .nt-exec { background: var(--accent-dim); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
+  .nt-exec-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .nt-generated { font-size: 10.5px; color: var(--muted); }
+  .nt-generated.nt-stale { color: var(--red); font-weight: 600; }
   .nt-exec ol { margin: 0; padding-left: 20px; }
   .nt-exec li { margin-bottom: 8px; }
   .nt-exec a { font-family: var(--serif); font-size: 16px; color: var(--accent); text-decoration: none; line-height: 1.4; }
@@ -175,6 +181,15 @@
 
   function renderExec(brief) {
     const items = (brief && brief.executive_summary) || [];
+    const generatedEl = document.getElementById('nt-generated');
+    if (brief && brief.generated_at) {
+      const ago = timeAgo(brief.generated_at);
+      const hrs = (Date.now() - new Date(brief.generated_at).getTime()) / 3600000;
+      generatedEl.textContent = 'generated ' + ago;
+      generatedEl.className = 'nt-generated' + (hrs > 24 ? ' nt-stale' : '');
+    } else {
+      generatedEl.textContent = '';
+    }
     if (!items.length) { execBox.style.display = 'none'; return; }
     execList.innerHTML = items.map(s => {
       const headline = escapeHtml(s.headline || s);
@@ -290,7 +305,7 @@
       const res = await fetch(SLACK_PROXY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lastBrief),
+        body: JSON.stringify({ ...lastBrief, region_label: 'Africa' }),
       });
       slackBtn.textContent = res.ok ? 'Sent' : 'Failed';
     } catch (e) {
