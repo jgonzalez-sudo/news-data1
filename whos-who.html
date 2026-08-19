@@ -137,6 +137,17 @@
   }
   .day-card li:last-child { border-bottom: none; }
   .day-card li .nl-name { font-weight: 600; }
+  .nl-link {
+    cursor: pointer;
+    color: var(--orange-deep);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--orange-deep);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nl-link:hover {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
   .day-card li .nl-time {
     color: var(--ink-soft);
     white-space: nowrap;
@@ -418,6 +429,24 @@ const SCHEDULE_RAW = [
 
 const DAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
+// Map newsletter names (as shown in the schedule) to the matching team chip
+// in the directory. A few newsletters (e.g. Americana) don't have a clean
+// one-to-one team yet, so they're left unmapped and render as plain text.
+const NL_TO_TEAM = {
+  "DC AM": "DC",
+  "Flagship AM": "Flagship",
+  "CEO": "Business",
+  "China": "China",
+  "Africa": "Africa",
+  "Energy": "Energy",
+  "Gulf": "Gulf",
+  "Business": "Business",
+  "Tech": "Tech",
+  "DC PM": "DC",
+  "Flagship PM": "Flagship",
+  "Media": "Media",
+};
+
 function timeToMinutes(t) {
   const m = t.match(/(\d+):(\d+)(am|pm)/i);
   let h = parseInt(m[1], 10);
@@ -431,7 +460,7 @@ function timeToMinutes(t) {
 function renderSchedule() {
   const view = document.getElementById('scheduleView');
   let html = `<div class="schedule-wrap">
-    <p class="schedule-note">All times Eastern (ET) &mdash; standard time, no daylight-saving adjustment.</p>
+    <p class="schedule-note">All times Eastern (ET) &mdash; standard time, no daylight-saving adjustment. Click a newsletter name to see who's on that team.</p>
     <div class="schedule-grid">`;
 
   for (let d = 0; d < 7; d++) {
@@ -443,9 +472,13 @@ function renderSchedule() {
     if (items.length === 0) {
       html += `<div class="empty">No scheduled sends</div>`;
     } else {
-      html += `<ul>` + items.map(nl =>
-        `<li><span class="nl-name">${nl.name}</span><span class="nl-time">${nl.time} ET</span></li>`
-      ).join("") + `</ul>`;
+      html += `<ul>` + items.map(nl => {
+        const team = NL_TO_TEAM[nl.name];
+        const nameHTML = team
+          ? `<span class="nl-name nl-link" onclick="goToTeam('${team}')">${nl.name}</span>`
+          : `<span class="nl-name">${nl.name}</span>`;
+        return `<li>${nameHTML}<span class="nl-time">${nl.time} ET</span></li>`;
+      }).join("") + `</ul>`;
     }
     html += `</div>`;
   }
@@ -454,18 +487,30 @@ function renderSchedule() {
   view.innerHTML = html;
 }
 
-document.getElementById('tabDirectory').addEventListener('click', () => {
+function showDirectory() {
   document.getElementById('tabDirectory').classList.add('active');
   document.getElementById('tabSchedule').classList.remove('active');
   document.getElementById('directoryView').style.display = '';
   document.getElementById('scheduleView').style.display = 'none';
-});
-document.getElementById('tabSchedule').addEventListener('click', () => {
+}
+function showSchedule() {
   document.getElementById('tabSchedule').classList.add('active');
   document.getElementById('tabDirectory').classList.remove('active');
   document.getElementById('directoryView').style.display = 'none';
   document.getElementById('scheduleView').style.display = '';
-});
+}
+function goToTeam(team) {
+  activeTeam = team;
+  query = "";
+  const searchBox = document.getElementById('search');
+  if (searchBox) searchBox.value = "";
+  showDirectory();
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById('tabDirectory').addEventListener('click', showDirectory);
+document.getElementById('tabSchedule').addEventListener('click', showSchedule);
 renderSchedule();
 
 function initials(name) {
