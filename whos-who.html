@@ -55,6 +55,78 @@
     margin-top: 10px;
     letter-spacing: 0.05em;
   }
+  .ask-box {
+    background: linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
+    padding: 18px 24px 22px;
+    border-bottom: 1px solid #3a352e;
+  }
+  .ask-row {
+    display: flex;
+    gap: 8px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  #askInput {
+    flex: 1;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--orange);
+    border-radius: 3px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  #askInput::placeholder { color: #8a8072; }
+  #askBtn {
+    background: var(--orange);
+    color: #1c1a17;
+    border: none;
+    border-radius: 3px;
+    padding: 0 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: background 0.15s ease;
+  }
+  #askBtn:hover { background: #d97540; }
+  #askBtn:disabled { background: #8a7360; cursor: default; }
+  #askResult {
+    max-width: 720px;
+    margin: 14px auto 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .ask-status {
+    color: #cfc7b7;
+    font-size: 13px;
+    padding: 4px 2px;
+  }
+  .ask-status.error { color: #e0937a; }
+  .ask-answer {
+    background: var(--paper);
+    border-radius: 6px;
+    border-left: 4px solid var(--orange);
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+  }
+  .ask-answer:hover { transform: translateX(2px); }
+  .ask-answer img, .ask-answer .initials {
+    width: 52px; height: 52px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #e6dcc3;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: var(--orange-deep); font-size: 16px;
+  }
+  .ask-answer .ask-name { font-weight: 700; color: var(--ink); font-size: 15px; margin: 0 0 2px; }
+  .ask-answer .ask-title { color: var(--ink-soft); font-size: 12.5px; margin: 0 0 6px; }
+  .ask-answer .ask-reason { color: var(--ink); font-size: 13px; margin: 0; line-height: 1.4; }
+  .ask-answer + .ask-answer { margin-top: 8px; }
   .controls {
     position: sticky;
     top: 0;
@@ -412,6 +484,13 @@
 </div>
 
 <div id="directoryView">
+<div class="ask-box">
+  <div class="ask-row">
+    <input type="text" id="askInput" placeholder="Ask in plain English — e.g. “Who do I go to for expenses?”">
+    <button id="askBtn">Ask</button>
+  </div>
+  <div id="askResult"></div>
+</div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search by name, title, or team…">
   <div class="chip-row" id="chipRow"></div>
@@ -667,6 +746,77 @@ document.getElementById('search').addEventListener('input', (e) => {
 });
 
 document.getElementById('refreshBtn').addEventListener('click', () => loadData(true));
+
+function askInitials(name) {
+  return name.split(" ").filter(Boolean).slice(0,2).map(w => w[0]).join("").toUpperCase();
+}
+
+function renderAskAnswer(matches, reason) {
+  const box = document.getElementById('askResult');
+  if (!matches || matches.length === 0) {
+    box.innerHTML = `<div class="ask-status">${reason || "Couldn't find a clear match for that — try rephrasing, or browse the directory below."}</div>`;
+    return;
+  }
+  const cardsHTML = matches.map(name => {
+    const idx = people.findIndex(p => p.name === name);
+    if (idx === -1) return "";
+    const p = people[idx];
+    const photoBlock = p.photo
+      ? `<img src="${p.photo}" alt="${p.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'initials',textContent:'${askInitials(p.name)}'}))">`
+      : `<div class="initials">${askInitials(p.name)}</div>`;
+    return `<div class="ask-answer" onclick="openModal(${idx})">
+      ${photoBlock}
+      <div>
+        <p class="ask-name">${p.name}</p>
+        <p class="ask-title">${p.title || ''}</p>
+        <p class="ask-reason">${reason || ''}</p>
+      </div>
+    </div>`;
+  }).join("");
+  box.innerHTML = cardsHTML;
+}
+
+function askQuestion() {
+  const input = document.getElementById('askInput');
+  const btn = document.getElementById('askBtn');
+  const box = document.getElementById('askResult');
+  const q = input.value.trim();
+  if (!q) return;
+  if (!dataLoaded || !people.length) {
+    box.innerHTML = `<div class="ask-status error">Directory is still loading — try again in a moment.</div>`;
+    return;
+  }
+
+  btn.disabled = true;
+  box.innerHTML = `<div class="ask-status">Asking Claude…</div>`;
+
+  const compactPeople = people.map(p => ({
+    name: p.name, title: p.title, teams: p.teams, go_to_for: p.go_to_for
+  }));
+
+  fetch('/api/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: q, people: compactPeople })
+  })
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) {
+        box.innerHTML = `<div class="ask-status error">${data.error}</div>`;
+        return;
+      }
+      renderAskAnswer(data.matches, data.reason);
+    })
+    .catch(() => {
+      box.innerHTML = `<div class="ask-status error">Couldn't reach the search service. Try again shortly.</div>`;
+    })
+    .finally(() => { btn.disabled = false; });
+}
+
+document.getElementById('askBtn').addEventListener('click', askQuestion);
+document.getElementById('askInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') askQuestion();
+});
 
 function parseRow(row) {
   const teamsList = (row.teams || "")
