@@ -751,14 +751,14 @@ function askInitials(name) {
   return name.split(" ").filter(Boolean).slice(0,2).map(w => w[0]).join("").toUpperCase();
 }
 
-function renderAskAnswer(matches, reason) {
+function renderAskAnswer(matches) {
   const box = document.getElementById('askResult');
   if (!matches || matches.length === 0) {
-    box.innerHTML = `<div class="ask-status">${reason || "Couldn't find a clear match for that — try rephrasing, or browse the directory below."}</div>`;
+    box.innerHTML = `<div class="ask-status">Couldn't find a clear match for that — try rephrasing, or browse the directory below.</div>`;
     return;
   }
-  const cardsHTML = matches.map(name => {
-    const idx = people.findIndex(p => p.name === name);
+  const cardsHTML = matches.map(match => {
+    const idx = people.findIndex(p => p.name === match.name);
     if (idx === -1) return "";
     const p = people[idx];
     const photoBlock = p.photo
@@ -769,7 +769,7 @@ function renderAskAnswer(matches, reason) {
       <div>
         <p class="ask-name">${p.name}</p>
         <p class="ask-title">${p.title || ''}</p>
-        <p class="ask-reason">${reason || ''}</p>
+        <p class="ask-reason">${match.reason || ''}</p>
       </div>
     </div>`;
   }).join("");
@@ -805,7 +805,7 @@ function askQuestion() {
         box.innerHTML = `<div class="ask-status error">${data.error}</div>`;
         return;
       }
-      renderAskAnswer(data.matches, data.reason);
+      renderAskAnswer(data.matches);
     })
     .catch(() => {
       box.innerHTML = `<div class="ask-status error">Couldn't reach the search service. Try again shortly.</div>`;
