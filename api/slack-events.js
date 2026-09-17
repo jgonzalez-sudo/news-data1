@@ -1,35 +1,24 @@
 // /api/slack-events.js
 //
 // Lets people DM the Slack app directly (e.g. "who can help me build a chart")
-// instead of typing a slash command. Same underlying lookup as /api/whoshelp,
+// instead of typing a slash command. Same matching logic as /api/whoshelp,
 // just triggered by a direct message instead of "/help ...".
 //
-// Reads the roster from the published Sheet CSV directly (SHEET_CSV_URL
-// below) — this runs server-side, so it skips the Google-login step your
-// site's UI added for browser visitors.
+// Fully self-contained — does NOT depend on any other file in this repo.
 //
 // ---- one-time setup (in addition to what /help already needed) ----
 // 1. Deploy this file to news-data1 at api/slack-events.js.
 // 2. In the Slack app settings, left sidebar -> "OAuth & Permissions":
-//    - Under "Scopes" -> "Bot Token Scopes", add:
-//        chat:write   (so the app can send DM replies)
-//        im:history   (so the app receives DM messages)
-//    - Click "Reinstall to Semafor" at the top of that page (adding scopes
-//      requires reinstalling). After reinstalling, copy the new
-//      "Bot User OAuth Token" (starts with xoxb-) and add it to Vercel as
-//      SLACK_BOT_TOKEN, then redeploy.
-// 3. Left sidebar -> "App Home": turn on "Messages Tab", and check
+//    - Under "Scopes" -> "Bot Token Scopes", add: chat:write, im:history
+//    - Click "Reinstall to Semafor". Copy the new Bot User OAuth Token
+//      (starts with xoxb-) and add it to Vercel as SLACK_BOT_TOKEN, redeploy.
+// 3. Left sidebar -> "App Home": turn on "Messages Tab" + check
 //    "Allow users to send Slash commands and messages from the messages tab".
-//    This is what makes the app show up as a chat you can open, like the
-//    screenshot.
 // 4. Left sidebar -> "Event Subscriptions": turn Events on. Request URL:
 //      https://news-data1.vercel.app/api/slack-events
-//    Slack will immediately send a verification ping — this file answers it
-//    automatically, so the URL should show "Verified" within a second or two.
-// 5. Still on that page, under "Subscribe to bot events", add: message.im
-//    Save, then reinstall the app again if prompted.
-//
-// That's the whole setup — no separate server, still just Vercel functions.
+// 5. Under "Subscribe to bot events", add: message.im. Save + reinstall.
+// 6. Uses the ANTHROPIC_API_KEY already set in this Vercel project as a
+//    fallback for queries that don't directly match anyone's "go to for" text.
 
 export const config = {
   api: { bodyParser: false },
@@ -37,13 +26,14 @@ export const config = {
 
 const WORK_START_HOUR = 8;
 const WORK_END_HOUR = 19;
-const ASK_ENDPOINT = process.env.ASK_ENDPOINT_URL || 'https://news-data1.vercel.app/api/ask';
+const CLAUDE_MODEL = 'claude-haiku-4-5-20251001';
 
-// Published Google Sheet, CSV output — same one the whos-who site was built
-// from, and the same constant used in api/whoshelp.js. An env var of the same
-// name overrides this if you ever set one.
 const SHEET_CSV_URL = process.env.SHEET_CSV_URL ||
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrtWiQmcJfaEE0W1NAyauZNLiDBttCP2Jk9jJGLJP0_K_YNcCAM-3zqUZWvZkzqFXSKHND3e_fP9pW/pub?gid=1852591954&single=true&output=csv';
+
+const STOPWORDS = new Set(['who', 'can', 'help', 'me', 'i', 'a', 'an', 'the', 'with',
+  'for', 'to', 'now', 'today', 'on', 'is', 'are', 'do', 'does', 'need', 'needs',
+  'my', 'our', 'we', 'us', 'please', 'and', 'or', 'of', 'in', 'get', 'got']);
 
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
@@ -56,7 +46,7 @@ function readRawBody(req) {
 
 async function verifySlackSignature(req, rawBody) {
   const secret = process.env.SLACK_SIGNING_SECRET;
-  if (!secret) return true; // same caveat as whoshelp.js — add this before relying on it
+  if (!secret) return true;
 
   const crypto = await import('crypto');
   const timestamp = req.headers['x-slack-request-timestamp'];
@@ -70,10 +60,6 @@ async function verifySlackSignature(req, rawBody) {
   if (computedSig.length !== slackSig.length) return false;
   return crypto.timingSafeEqual(Buffer.from(computedSig), Buffer.from(slackSig));
 }
-
-// ---- same CSV/roster/time helpers as whoshelp.js (kept duplicated on purpose —
-//      these two files are meant to be droppable independently; if you tweak the
-//      matching or time logic, update both) ----
 
 function parseCSV(text) {
   const rows = [];
@@ -147,19 +133,79 @@ function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
+function tokenize(text) {
+  return (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => w.length > 2 && !STOPWORDS.has(w));
+}
+
+function keywordMatch(query, people) {
+  const tokens = tokenize(query);
+  if (!tokens.length) return [];
+  const scored = people.map((p) => {
+    const haystack = `${p.go_to_for} ${p.teams.join(' ')} ${p.bio}`.toLowerCase();
+    const score = tokens.reduce((s, t) => s + (haystack.includes(t) ? 1 : 0), 0);
+    return { p, score };
+  }).filter((x) => x.score > 0);
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 5).map((x) => ({ name: x.p.name, reason: x.p.go_to_for || x.p.bio || '' }));
+}
+
+async function claudeMatch(query, people) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return [];
+
+  const rosterText = people
+    .map((p) => `${p.name} | Teams: ${p.teams.join(', ')} | Go to for: ${p.go_to_for || p.bio || 'n/a'}`)
+    .join('\n');
+
+  const systemPrompt = `You are a lookup assistant for Semafor's internal staff directory. ` +
+    `A colleague will ask a plain-English question about who can help with something. ` +
+    `Using ONLY the roster below, pick up to 3 people who could plausibly help. ` +
+    `Respond with ONLY a JSON array like [{"name":"Full Name","reason":"short reason"}] and nothing else. ` +
+    `If truly nobody fits, respond with [].\n\nRoster:\n${rosterText}`;
+
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: 500,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: query }],
+    }),
+  });
+  if (!resp.ok) throw new Error(`Claude API failed: ${resp.status}`);
+  const data = await resp.json();
+  const textBlock = (data.content || []).find((b) => b.type === 'text');
+  if (!textBlock) return [];
+  try {
+    const cleaned = textBlock.text.replace(/```json|```/g, '').trim();
+    return JSON.parse(cleaned);
+  } catch {
+    return [];
+  }
+}
+
+async function findMatches(query, people) {
+  const direct = keywordMatch(query, people);
+  if (direct.length) return direct;
+  try {
+    return await claudeMatch(query, people);
+  } catch {
+    return [];
+  }
+}
+
 async function buildAnswer(query) {
   const csvResp = await fetch(`${SHEET_CSV_URL}${SHEET_CSV_URL.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
   if (!csvResp.ok) throw new Error(`Sheet fetch failed: ${csvResp.status}`);
   const csvText = await csvResp.text();
   const people = parseRoster(csvText);
 
-  const askResp = await fetch(ASK_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, people }),
-  });
-  if (!askResp.ok) throw new Error(`/api/ask failed: ${askResp.status}`);
-  const { matches } = await askResp.json();
+  const matches = await findMatches(query, people);
 
   if (!matches || !matches.length) {
     return `Couldn't find anyone in the directory for "${query}". Try rephrasing?`;
@@ -228,7 +274,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Slack's one-time handshake when you first save the Request URL.
   if (body.type === 'url_verification') {
     res.status(200).json({ challenge: body.challenge });
     return;
@@ -240,8 +285,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Slack retries events that don't get a fast-enough ack — ignore retries
-  // so we don't send the same answer twice into someone's DM.
   if (req.headers['x-slack-retry-num']) {
     res.status(200).send('ok');
     return;
