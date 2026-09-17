@@ -35,6 +35,20 @@ const STOPWORDS = new Set(['who', 'can', 'help', 'me', 'i', 'a', 'an', 'the', 'w
   'for', 'to', 'now', 'today', 'on', 'is', 'are', 'do', 'does', 'need', 'needs',
   'my', 'our', 'we', 'us', 'please', 'and', 'or', 'of', 'in', 'get', 'got']);
 
+const DESIGN_KEYWORDS = ['chart', 'graphic', 'figma', 'design', 'visual',
+  'mockup', 'mock-up', 'illustration', 'infographic', 'dataviz', 'viz', 'diagram'];
+
+function isDesignQuery(query) {
+  const q = query.toLowerCase();
+  return DESIGN_KEYWORDS.some((k) => q.includes(k));
+}
+
+function fellowsMatch(people) {
+  return people
+    .filter((p) => /fellow/i.test(p.title))
+    .map((p) => ({ name: p.name, reason: 'Fellow — go-to for charts/Figma/design work' }));
+}
+
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
@@ -159,7 +173,7 @@ async function claudeMatch(query, people) {
 
   const systemPrompt = `You are a lookup assistant for Semafor's internal staff directory. ` +
     `A colleague will ask a plain-English question about who can help with something. ` +
-    `Using ONLY the roster below, pick up to 3 people who could plausibly help. ` +
+    `Using ONLY the roster below, pick up to 5 people who could plausibly help. ` +
     `Respond with ONLY a JSON array like [{"name":"Full Name","reason":"short reason"}] and nothing else. ` +
     `If truly nobody fits, respond with [].\n\nRoster:\n${rosterText}`;
 
@@ -190,13 +204,26 @@ async function claudeMatch(query, people) {
 }
 
 async function findMatches(query, people) {
+  const isDesign = isDesignQuery(query);
+  const fellows = isDesign ? fellowsMatch(people) : [];
   const direct = keywordMatch(query, people);
-  if (direct.length) return direct;
+
+  let fromClaude = [];
   try {
-    return await claudeMatch(query, people);
+    fromClaude = await claudeMatch(query, people);
   } catch {
-    return [];
+    fromClaude = [];
   }
+
+  const seen = new Set();
+  const merged = [];
+  for (const m of [...fellows, ...direct, ...fromClaude]) {
+    if (!seen.has(m.name)) {
+      merged.push(m);
+      seen.add(m.name);
+    }
+  }
+  return merged.slice(0, isDesign ? 8 : 5);
 }
 
 async function buildAnswer(query) {
