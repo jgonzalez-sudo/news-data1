@@ -1,39 +1,50 @@
-// /api/slack-events.js
+// /api/whoshelp.js
 //
-// Lets people DM the Slack app directly (e.g. "who can help me build a chart")
-// instead of typing a slash command. Same underlying lookup as /api/whoshelp,
-// just triggered by a direct message instead of "/help ...".
+// Slack slash-command handler: "/help who can help me build a chart"
 //
-// ---- one-time setup (in addition to what /help already needed) ----
-// 1. Deploy this file to news-data1 at api/slack-events.js.
-// 2. In the Slack app settings, left sidebar -> "OAuth & Permissions":
-//    - Under "Scopes" -> "Bot Token Scopes", add:
-//        chat:write   (so the app can send DM replies)
-//        im:history   (so the app receives DM messages)
-//    - Click "Reinstall to Semafor" at the top of that page (adding scopes
-//      requires reinstalling). After reinstalling, copy the new
-//      "Bot User OAuth Token" (starts with xoxb-) and add it to Vercel as
-//      SLACK_BOT_TOKEN, then redeploy.
-// 3. Left sidebar -> "App Home": turn on "Messages Tab", and check
-//    "Allow users to send Slash commands and messages from the messages tab".
-//    This is what makes the app show up as a chat you can open, like the
-//    screenshot.
-// 4. Left sidebar -> "Event Subscriptions": turn Events on. Request URL:
-//      https://news-data1.vercel.app/api/slack-events
-//    Slack will immediately send a verification ping — this file answers it
-//    automatically, so the URL should show "Verified" within a second or two.
-// 5. Still on that page, under "Subscribe to bot events", add: message.im
-//    Save, then reinstall the app again if prompted.
+// Flow:
+//   1. Verify the request actually came from Slack (if SLACK_SIGNING_SECRET is set).
+//   2. Fetch the published roster CSV directly (same source the whos-who site
+//      was originally built from — this runs server-side, so it doesn't need
+//      the Google-login step your site's UI added for browser visitors).
+//   3. Call your existing /api/ask with { query, people } to get name matches
+//      (reuses the KNOWN_ANSWERS rules + Claude fallback you already built).
+//   4. For each match, work out their current local time from the "City · ET+N"
+//      offset stored in their location field, and flag whether it's inside
+//      normal working hours right now.
+//   5. Reply directly in the HTTP response Slack is waiting on — no bot token,
+//      no Events API, nothing async.
 //
-// That's the whole setup — no separate server, still just Vercel functions.
+// If your published Sheet URL ever changes, update SHEET_CSV_URL below (or set
+// it as a Vercel env var of the same name — that takes priority if present).
+//
+// ---- one-time setup ----
+// 1. Deploy this file to the news-data1 repo at api/whoshelp.js.
+// 2. Create a Slack app at https://api.slack.com/apps -> From scratch.
+// 4. Under "Slash Commands", create /help with Request URL:
+//      https://news-data1.vercel.app/api/whoshelp
+//    (Note: /help is a common name — Slack allows it, but if another app in
+//    your workspace already registers /help, Slack routes to whichever was
+//    installed most recently. Test it after install to confirm it hits this
+//    endpoint and not something else. If it collides, /whoshelp is the safer
+//    fallback name.)
+// 5. Install the app to your workspace.
+// 6. Under "Basic Information" -> "App Credentials", copy the Signing Secret
+//    and add it to Vercel as SLACK_SIGNING_SECRET, then redeploy.
+//    (Without it the endpoint still works, it just can't verify the caller.)
 
 export const config = {
   api: { bodyParser: false },
 };
 
-const WORK_START_HOUR = 8;
-const WORK_END_HOUR = 19;
+const WORK_START_HOUR = 8;   // 8am local
+const WORK_END_HOUR = 19;    // 7pm local
 const ASK_ENDPOINT = process.env.ASK_ENDPOINT_URL || 'https://news-data1.vercel.app/api/ask';
+
+// Published Google Sheet, CSV output — same one the whos-who site was built
+// from. An env var of the same name overrides this if you ever set one.
+const SHEET_CSV_URL = process.env.SHEET_CSV_URL ||
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrtWiQmcJfaEE0W1NAyauZNLiDBttCP2Jk9jJGLJP0_K_YNcCAM-3zqUZWvZkzqFXSKHND3e_fP9pW/pub?gid=1852591954&single=true&output=csv';
 
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
@@ -46,37 +57,40 @@ function readRawBody(req) {
 
 async function verifySlackSignature(req, rawBody) {
   const secret = process.env.SLACK_SIGNING_SECRET;
-  if (!secret) return true; // same caveat as whoshelp.js — add this before relying on it
+  if (!secret) return true; // not configured yet — allow through, but see setup step 6
 
   const crypto = await import('crypto');
   const timestamp = req.headers['x-slack-request-timestamp'];
   const slackSig = req.headers['x-slack-signature'];
   if (!timestamp || !slackSig) return false;
+
+  // Reject requests older than 5 minutes (replay protection)
   if (Math.abs(Date.now() / 1000 - Number(timestamp)) > 60 * 5) return false;
 
   const baseString = `v0:${timestamp}:${rawBody}`;
   const hmac = crypto.createHmac('sha256', secret).update(baseString).digest('hex');
   const computedSig = `v0=${hmac}`;
+
   if (computedSig.length !== slackSig.length) return false;
   return crypto.timingSafeEqual(Buffer.from(computedSig), Buffer.from(slackSig));
 }
 
-// ---- same CSV/roster/time helpers as whoshelp.js (kept duplicated on purpose —
-//      these two files are meant to be droppable independently; if you tweak the
-//      matching or time logic, update both) ----
-
+// ---- minimal RFC4180 CSV parser (handles quoted fields with commas/newlines) ----
 function parseCSV(text) {
   const rows = [];
   let field = '';
   let row = [];
   let inQuotes = false;
+
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
     if (inQuotes) {
       if (c === '"') {
         if (text[i + 1] === '"') { field += '"'; i++; }
         else inQuotes = false;
-      } else field += c;
+      } else {
+        field += c;
+      }
     } else if (c === '"') {
       inQuotes = true;
     } else if (c === ',') {
@@ -111,6 +125,7 @@ function parseRoster(csvText) {
   }).filter((p) => p.name);
 }
 
+// "New York · ET" -> 0, "London · ET+5" -> 5, "San Francisco · ET-3" -> -3
 function parseEtOffset(location) {
   const m = /ET\s*([+-]\d+)?/.exec(location || '');
   if (!m) return null;
@@ -128,84 +143,13 @@ function localTimeFor(offset) {
 }
 
 function isWorkingHours(localDate) {
-  const day = localDate.getDay();
+  const day = localDate.getDay(); // 0 = Sun, 6 = Sat
   const hour = localDate.getHours();
   return day >= 1 && day <= 5 && hour >= WORK_START_HOUR && hour < WORK_END_HOUR;
 }
 
 function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-}
-
-async function buildAnswer(query) {
-  const sheetUrl = process.env.SHEET_CSV_URL;
-  if (!sheetUrl) {
-    return 'Server is missing SHEET_CSV_URL — add it in Vercel project settings, then redeploy.';
-  }
-
-  const csvResp = await fetch(`${sheetUrl}${sheetUrl.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
-  if (!csvResp.ok) throw new Error(`Sheet fetch failed: ${csvResp.status}`);
-  const csvText = await csvResp.text();
-  const people = parseRoster(csvText);
-
-  const askResp = await fetch(ASK_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, people }),
-  });
-  if (!askResp.ok) throw new Error(`/api/ask failed: ${askResp.status}`);
-  const { matches } = await askResp.json();
-
-  if (!matches || !matches.length) {
-    return `Couldn't find anyone in the directory for "${query}". Try rephrasing?`;
-  }
-
-  const byName = Object.fromEntries(people.map((p) => [p.name, p]));
-  const annotated = matches.map((m) => {
-    const person = byName[m.name];
-    const offset = person ? parseEtOffset(person.location) : null;
-    const local = offset !== null ? localTimeFor(offset) : null;
-    const available = local ? isWorkingHours(local) : null;
-    return {
-      name: m.name,
-      location: person ? person.location : '',
-      localTime: local ? fmtTime(local) : null,
-      available,
-    };
-  });
-  annotated.sort((a, b) => (b.available === true) - (a.available === true));
-
-  const etNow = fmtTime(nowEtParts());
-  const available = annotated.filter((a) => a.available === true);
-  const others = annotated.filter((a) => a.available !== true);
-
-  let text = `*Who can help — "${query}"*  _(as of ${etNow} ET)_\n\n`;
-  if (available.length) {
-    text += '*🟢 Available now:*\n';
-    text += available.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-    text += '\n\n';
-  }
-  if (others.length) {
-    text += available.length ? '*Also can help (outside typical hours or unknown location):*\n' : '*Can help:*\n';
-    text += others.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-  }
-  return text;
-}
-
-async function postToSlack(channel, text) {
-  const token = process.env.SLACK_BOT_TOKEN;
-  if (!token) {
-    console.error('SLACK_BOT_TOKEN is not set — cannot post the reply.');
-    return;
-  }
-  await fetch('https://slack.com/api/chat.postMessage', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ channel, text }),
-  });
 }
 
 export default async function handler(req, res) {
@@ -215,47 +159,83 @@ export default async function handler(req, res) {
   }
 
   const rawBody = await readRawBody(req);
-  let body;
-  try {
-    body = JSON.parse(rawBody);
-  } catch {
-    res.status(400).send('Bad request');
-    return;
-  }
-
-  // Slack's one-time handshake when you first save the Request URL.
-  if (body.type === 'url_verification') {
-    res.status(200).json({ challenge: body.challenge });
-    return;
-  }
-
   const ok = await verifySlackSignature(req, rawBody);
   if (!ok) {
     res.status(401).send('Invalid Slack signature');
     return;
   }
 
-  // Slack retries events that don't get a fast-enough ack — ignore retries
-  // so we don't send the same answer twice into someone's DM.
-  if (req.headers['x-slack-retry-num']) {
-    res.status(200).send('ok');
+  const params = new URLSearchParams(rawBody);
+  const query = (params.get('text') || '').trim();
+
+  if (!query) {
+    res.status(200).json({
+      response_type: 'ephemeral',
+      text: 'Ask me something like `/help who can help me build a chart`.',
+    });
     return;
   }
 
-  if (body.type === 'event_callback') {
-    const event = body.event || {};
-    const isDirectMessage = event.type === 'message' && event.channel_type === 'im';
-    const isRealUserMessage = !event.bot_id && !event.subtype;
+  try {
+    const csvResp = await fetch(`${SHEET_CSV_URL}${SHEET_CSV_URL.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
+    if (!csvResp.ok) throw new Error(`Sheet fetch failed: ${csvResp.status}`);
+    const csvText = await csvResp.text();
+    const people = parseRoster(csvText);
 
-    if (isDirectMessage && isRealUserMessage && event.text) {
-      try {
-        const answer = await buildAnswer(event.text.trim());
-        await postToSlack(event.channel, answer);
-      } catch (err) {
-        await postToSlack(event.channel, `Something went wrong looking that up: ${err.message}`);
-      }
+    const askResp = await fetch(ASK_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, people }),
+    });
+    if (!askResp.ok) throw new Error(`/api/ask failed: ${askResp.status}`);
+    const { matches } = await askResp.json();
+
+    if (!matches || !matches.length) {
+      res.status(200).json({
+        response_type: 'ephemeral',
+        text: `Couldn't find anyone in the directory for "${query}". Try rephrasing, or it may need a new rule in api/ask.js.`,
+      });
+      return;
     }
-  }
 
-  res.status(200).send('ok');
+    const byName = Object.fromEntries(people.map((p) => [p.name, p]));
+    const annotated = matches.map((m) => {
+      const person = byName[m.name];
+      const offset = person ? parseEtOffset(person.location) : null;
+      const local = offset !== null ? localTimeFor(offset) : null;
+      const available = local ? isWorkingHours(local) : null;
+      return {
+        name: m.name,
+        reason: m.reason,
+        location: person ? person.location : '',
+        localTime: local ? fmtTime(local) : null,
+        available,
+      };
+    });
+
+    annotated.sort((a, b) => (b.available === true) - (a.available === true));
+
+    const etNow = fmtTime(nowEtParts());
+    const available = annotated.filter((a) => a.available === true);
+    const others = annotated.filter((a) => a.available !== true);
+
+    let text = `*Who can help — "${query}"*  _(as of ${etNow} ET)_\n\n`;
+
+    if (available.length) {
+      text += '*🟢 Available now:*\n';
+      text += available.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
+      text += '\n\n';
+    }
+    if (others.length) {
+      text += available.length ? '*Also can help (outside typical hours or unknown location):*\n' : '*Can help:*\n';
+      text += others.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
+    }
+
+    res.status(200).json({ response_type: 'ephemeral', text });
+  } catch (err) {
+    res.status(200).json({
+      response_type: 'ephemeral',
+      text: `Something went wrong looking that up: ${err.message}`,
+    });
+  }
 }
