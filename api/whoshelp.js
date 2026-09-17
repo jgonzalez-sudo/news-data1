@@ -2,13 +2,13 @@
 //
 // Slack slash-command handler: "/help who can help me build a chart"
 //
+// Fully self-contained — does NOT depend on any other file in this repo.
+//
 // Flow:
 //   1. Verify the request actually came from Slack (if SLACK_SIGNING_SECRET is set).
-//   2. Fetch the published roster CSV directly (same source the whos-who site
-//      was originally built from — this runs server-side, so it doesn't need
-//      the Google-login step your site's UI added for browser visitors).
-//   3. Call your existing /api/ask with { query, people } to get name matches
-//      (reuses the KNOWN_ANSWERS rules + Claude fallback you already built).
+//   2. Fetch the published roster CSV directly.
+//   3. Try to match the query against each person's "go_to_for" / teams text.
+//      If nothing matches directly, ask Claude to pick from the roster instead.
 //   4. For each match, work out their current local time from the "City · ET+N"
 //      offset stored in their location field, and flag whether it's inside
 //      normal working hours right now.
@@ -21,17 +21,14 @@
 // ---- one-time setup ----
 // 1. Deploy this file to the news-data1 repo at api/whoshelp.js.
 // 2. Create a Slack app at https://api.slack.com/apps -> From scratch.
-// 4. Under "Slash Commands", create /help with Request URL:
+// 3. Under "Slash Commands", create /help with Request URL:
 //      https://news-data1.vercel.app/api/whoshelp
-//    (Note: /help is a common name — Slack allows it, but if another app in
-//    your workspace already registers /help, Slack routes to whichever was
-//    installed most recently. Test it after install to confirm it hits this
-//    endpoint and not something else. If it collides, /whoshelp is the safer
-//    fallback name.)
-// 5. Install the app to your workspace.
-// 6. Under "Basic Information" -> "App Credentials", copy the Signing Secret
+// 4. Install the app to your workspace.
+// 5. Under "Basic Information" -> "App Credentials", copy the Signing Secret
 //    and add it to Vercel as SLACK_SIGNING_SECRET, then redeploy.
 //    (Without it the endpoint still works, it just can't verify the caller.)
+// 6. Uses the ANTHROPIC_API_KEY already set in this Vercel project as a
+//    fallback for queries that don't directly match anyone's "go to for" text.
 
 export const config = {
   api: { bodyParser: false },
@@ -39,12 +36,16 @@ export const config = {
 
 const WORK_START_HOUR = 8;   // 8am local
 const WORK_END_HOUR = 19;    // 7pm local
-const ASK_ENDPOINT = process.env.ASK_ENDPOINT_URL || 'https://news-data1.vercel.app/api/ask';
+const CLAUDE_MODEL = 'claude-haiku-4-5-20251001';
 
 // Published Google Sheet, CSV output — same one the whos-who site was built
 // from. An env var of the same name overrides this if you ever set one.
 const SHEET_CSV_URL = process.env.SHEET_CSV_URL ||
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrtWiQmcJfaEE0W1NAyauZNLiDBttCP2Jk9jJGLJP0_K_YNcCAM-3zqUZWvZkzqFXSKHND3e_fP9pW/pub?gid=1852591954&single=true&output=csv';
+
+const STOPWORDS = new Set(['who', 'can', 'help', 'me', 'i', 'a', 'an', 'the', 'with',
+  'for', 'to', 'now', 'today', 'on', 'is', 'are', 'do', 'does', 'need', 'needs',
+  'my', 'our', 'we', 'us', 'please', 'and', 'or', 'of', 'in', 'get', 'got']);
 
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
@@ -57,20 +58,17 @@ function readRawBody(req) {
 
 async function verifySlackSignature(req, rawBody) {
   const secret = process.env.SLACK_SIGNING_SECRET;
-  if (!secret) return true; // not configured yet — allow through, but see setup step 6
+  if (!secret) return true;
 
   const crypto = await import('crypto');
   const timestamp = req.headers['x-slack-request-timestamp'];
   const slackSig = req.headers['x-slack-signature'];
   if (!timestamp || !slackSig) return false;
-
-  // Reject requests older than 5 minutes (replay protection)
   if (Math.abs(Date.now() / 1000 - Number(timestamp)) > 60 * 5) return false;
 
   const baseString = `v0:${timestamp}:${rawBody}`;
   const hmac = crypto.createHmac('sha256', secret).update(baseString).digest('hex');
   const computedSig = `v0=${hmac}`;
-
   if (computedSig.length !== slackSig.length) return false;
   return crypto.timingSafeEqual(Buffer.from(computedSig), Buffer.from(slackSig));
 }
@@ -81,16 +79,13 @@ function parseCSV(text) {
   let field = '';
   let row = [];
   let inQuotes = false;
-
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
     if (inQuotes) {
       if (c === '"') {
         if (text[i + 1] === '"') { field += '"'; i++; }
         else inQuotes = false;
-      } else {
-        field += c;
-      }
+      } else field += c;
     } else if (c === '"') {
       inQuotes = true;
     } else if (c === ',') {
@@ -125,7 +120,6 @@ function parseRoster(csvText) {
   }).filter((p) => p.name);
 }
 
-// "New York · ET" -> 0, "London · ET+5" -> 5, "San Francisco · ET-3" -> -3
 function parseEtOffset(location) {
   const m = /ET\s*([+-]\d+)?/.exec(location || '');
   if (!m) return null;
@@ -143,13 +137,83 @@ function localTimeFor(offset) {
 }
 
 function isWorkingHours(localDate) {
-  const day = localDate.getDay(); // 0 = Sun, 6 = Sat
+  const day = localDate.getDay();
   const hour = localDate.getHours();
   return day >= 1 && day <= 5 && hour >= WORK_START_HOUR && hour < WORK_END_HOUR;
 }
 
 function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+function tokenize(text) {
+  return (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => w.length > 2 && !STOPWORDS.has(w));
+}
+
+// First pass: keyword overlap against each person's go_to_for/teams/bio text.
+function keywordMatch(query, people) {
+  const tokens = tokenize(query);
+  if (!tokens.length) return [];
+
+  const scored = people.map((p) => {
+    const haystack = `${p.go_to_for} ${p.teams.join(' ')} ${p.bio}`.toLowerCase();
+    const score = tokens.reduce((s, t) => s + (haystack.includes(t) ? 1 : 0), 0);
+    return { p, score };
+  }).filter((x) => x.score > 0);
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 5).map((x) => ({ name: x.p.name, reason: x.p.go_to_for || x.p.bio || '' }));
+}
+
+// Fallback: ask Claude to pick from the roster when keyword matching finds nothing.
+async function claudeMatch(query, people) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return [];
+
+  const rosterText = people
+    .map((p) => `${p.name} | Teams: ${p.teams.join(', ')} | Go to for: ${p.go_to_for || p.bio || 'n/a'}`)
+    .join('\n');
+
+  const systemPrompt = `You are a lookup assistant for Semafor's internal staff directory. ` +
+    `A colleague will ask a plain-English question about who can help with something. ` +
+    `Using ONLY the roster below, pick up to 3 people who could plausibly help. ` +
+    `Respond with ONLY a JSON array like [{"name":"Full Name","reason":"short reason"}] and nothing else. ` +
+    `If truly nobody fits, respond with [].\n\nRoster:\n${rosterText}`;
+
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: 500,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: query }],
+    }),
+  });
+  if (!resp.ok) throw new Error(`Claude API failed: ${resp.status}`);
+  const data = await resp.json();
+  const textBlock = (data.content || []).find((b) => b.type === 'text');
+  if (!textBlock) return [];
+  try {
+    const cleaned = textBlock.text.replace(/```json|```/g, '').trim();
+    return JSON.parse(cleaned);
+  } catch {
+    return [];
+  }
+}
+
+async function findMatches(query, people) {
+  const direct = keywordMatch(query, people);
+  if (direct.length) return direct;
+  try {
+    return await claudeMatch(query, people);
+  } catch {
+    return [];
+  }
 }
 
 export default async function handler(req, res) {
@@ -182,18 +246,12 @@ export default async function handler(req, res) {
     const csvText = await csvResp.text();
     const people = parseRoster(csvText);
 
-    const askResp = await fetch(ASK_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, people }),
-    });
-    if (!askResp.ok) throw new Error(`/api/ask failed: ${askResp.status}`);
-    const { matches } = await askResp.json();
+    const matches = await findMatches(query, people);
 
     if (!matches || !matches.length) {
       res.status(200).json({
         response_type: 'ephemeral',
-        text: `Couldn't find anyone in the directory for "${query}". Try rephrasing, or it may need a new rule in api/ask.js.`,
+        text: `Couldn't find anyone in the directory for "${query}". Try rephrasing?`,
       });
       return;
     }
@@ -206,7 +264,6 @@ export default async function handler(req, res) {
       const available = local ? isWorkingHours(local) : null;
       return {
         name: m.name,
-        reason: m.reason,
         location: person ? person.location : '',
         localTime: local ? fmtTime(local) : null,
         available,
@@ -220,7 +277,6 @@ export default async function handler(req, res) {
     const others = annotated.filter((a) => a.available !== true);
 
     let text = `*Who can help — "${query}"*  _(as of ${etNow} ET)_\n\n`;
-
     if (available.length) {
       text += '*🟢 Available now:*\n';
       text += available.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
