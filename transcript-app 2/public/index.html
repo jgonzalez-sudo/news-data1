@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Transcript — speaker-labeled transcription</title>
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#12161C">
+<link rel="icon" href="/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Transcript">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12161C;
+    --panel: #1B212A;
+    --panel-2: #202834;
+    --line: #2A323E;
+    --text: #E9E4D8;
+    --muted: #8A93A0;
+    --muted-2: #5B6472;
+    --amber: #E8A33D;
+    --amber-dim: #6b5326;
+    --danger: #C77B7B;
+    --radius: 3px;
+    --speaker-0: #E8A33D;
+    --speaker-1: #5FA8A0;
+    --speaker-2: #C77B93;
+    --speaker-3: #8B9E5F;
+    --speaker-4: #7E93C7;
+    --speaker-5: #B98BCF;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:14px;
+    line-height:1.5;
+    overflow:hidden;
+  }
+  .serif{ font-family:'Fraunces', Georgia, serif; }
+
+  .app{
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    height:100vh;
+  }
+
+  /* ---- Sidebar ---- */
+  .sidebar{
+    background:var(--panel);
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+  }
+  .brand{
+    padding:22px 20px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand h1{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:22px;
+    margin:0 0 2px;
+    letter-spacing:0.2px;
+  }
+  .brand p{
+    margin:0;
+    color:var(--muted-2);
+    font-size:11.5px;
+  }
+
+  .capture{
+    padding:16px 20px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .btn{
+    appearance:none;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    color:var(--text);
+    font-family:inherit;
+    font-size:13px;
+    padding:9px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{ border-color:var(--muted-2); }
+  .btn:active{ transform:translateY(0.5px); }
+  .btn.primary{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:#1A1305;
+    font-weight:600;
+    justify-content:center;
+  }
+  .btn.primary:hover{ background:#f0ad4a; }
+  .btn.record{
+    justify-content:center;
+    border-color:var(--danger);
+    color:var(--danger);
+    background:transparent;
+  }
+  .btn.record.active{
+    background:var(--danger);
+    color:#1A1305;
+    border-color:var(--danger);
+  }
+  .btn.small{ padding:6px 10px; font-size:12px; }
+  .btn[disabled]{ opacity:.45; cursor:not-allowed; }
+  .btn svg{ width:14px; height:14px; flex-shrink:0; }
+
+  .dropzone{
+    border:1px dashed var(--line);
+    border-radius:var(--radius);
+    padding:14px 10px;
+    text-align:center;
+    color:var(--muted-2);
+    font-size:11.5px;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .dropzone:hover, .dropzone.drag{
+    border-color:var(--amber);
+    color:var(--muted);
+  }
+
+  .rec-timer{
+    text-align:center;
+    color:var(--danger);
+    font-size:12px;
+    letter-spacing:0.5px;
+  }
+
+  .sessions{
+    flex:1;
+    overflow-y:auto;
+    padding:6px 0;
+  }
+  .sessions-label{
+    padding:12px 20px 6px;
+    color:var(--muted-2);
+    font-size:10.5px;
+    letter-spacing:0.4px;
+  }
+  .session{
+    padding:10px 20px;
+    cursor:pointer;
+    border-left:2px solid transparent;
+    color:var(--muted);
+  }
+  .session:hover{ background:var(--panel-2); }
+  .session.active{
+    border-left-color:var(--amber);
+    background:var(--panel-2);
+    color:var(--text);
+  }
+  .session-title{
+    font-size:13px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom:2px;
+  }
+  .session-meta{
+    font-size:10.5px;
+    color:var(--muted-2);
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .status-dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--muted-2);
+    display:inline-block;
+  }
+  .status-dot.uploading, .status-dot.processing{ background:var(--amber); animation:pulse 1.2s ease-in-out infinite; }
+  .status-dot.done{ background:#7fae7f; }
+  .status-dot.error{ background:var(--danger); }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  .sidebar-foot{
+    border-top:1px solid var(--line);
+    padding:12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ---- Main ---- */
+  .main{
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    height:100vh;
+  }
+  .topbar{
+    padding:calc(16px + env(safe-area-inset-top, 0px)) 28px 16px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .session-name{
+    font-family:'Fraunces', Georgia, serif;
+    font-size:19px;
+    font-weight:500;
+    background:transparent;
+    border:none;
+    color:var(--text);
+    outline:none;
+    min-width:0;
+    flex:1;
+  }
+  .session-name::placeholder{ color:var(--muted-2); }
+  .topbar-actions{ display:flex; gap:8px; align-items:center; }
+
+  .search-wrap{ position:relative; }
+  .search-wrap input{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:inherit;
+    font-size:12.5px;
+    padding:7px 10px 7px 28px;
+    border-radius:var(--radius);
+    width:160px;
+    outline:none;
+  }
+  .search-wrap input:focus{ border-color:var(--muted-2); }
+  .search-wrap svg{
+    position:absolute; left:9px; top:50%; transform:translateY(-50%);
+    width:12px; height:12px; color:var(--muted-2);
+  }
+
+  .player-bar{
+    padding:12px 28px;
+    border-bottom:1px solid var(--line);
+    display:none;
+    align-items:center;
+    gap:14px;
+    background:var(--panel);
+  }
+  .player-bar.show{ display:flex; }
+  .player-bar audio{ display:none; }
+  .play-toggle{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    background:transparent;
+    color:var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .play-toggle:hover{ background:var(--amber-dim); }
+  .play-toggle svg{ width:13px; height:13px; }
+  .scrub{
+    flex:1;
+    height:3px;
+    background:var(--line);
+    border-radius:2px;
+    position:relative;
+    cursor:pointer;
+  }
+  .scrub-fill{
+    position:absolute; left:0; top:0; bottom:0;
+    background:var(--amber);
+    border-radius:2px;
+    width:0%;
+  }
+  .time-label{
+    font-size:11.5px;
+    color:var(--muted-2);
+    flex-shrink:0;
+    min-width:80px;
+    text-align:right;
+  }
+
+  .content{
+    flex:1;
+    overflow-y:auto;
+    padding:8px 28px 60px;
+  }
+
+  .empty-state{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--muted-2);
+    gap:10px;
+    padding:0 40px;
+  }
+  .empty-state h2{
+    font-family:'Fraunces', Georgia, serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--muted);
+    font-size:20px;
+    margin:0;
+  }
+  .empty-state p{ margin:0; font-size:13px; max-width:360px; line-height:1.6; }
+
+  .status-banner{
+    margin:18px 0;
+    padding:14px 16px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--muted);
+    font-size:12.5px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .status-banner.error{ border-color:var(--danger); color:var(--danger); }
+  .spinner{
+    width:12px; height:12px;
+    border:2px solid var(--muted-2);
+    border-top-color:var(--amber);
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+    flex-shrink:0;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .turn{
+    display:grid;
+    grid-template-columns: 150px 1fr;
+    gap:18px;
+    padding:14px 10px;
+    border-bottom:1px solid var(--line);
+    border-radius:var(--radius);
+    transition:background .2s ease;
+  }
+  .turn:last-child{ border-bottom:none; }
+  .turn.dim .turn-text{ opacity:.3; }
+  .turn.active{ background:var(--panel); }
+  .turn.active .turn-time{ color:var(--amber); }
+
+  .turn-meta{ padding-top:2px; }
+  .speaker-name{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    font-size:14.5px;
+    cursor:text;
+    border-bottom:1px dotted transparent;
+    outline:none;
+    display:inline-block;
+  }
+  .speaker-name:hover, .speaker-name:focus{ border-bottom-color: currentColor; }
+  .turn-time{
+    display:block;
+    color:var(--muted-2);
+    font-size:11px;
+    margin-top:3px;
+    cursor:pointer;
+  }
+  .turn-time:hover{ color:var(--amber); }
+
+  .turn-text{
+    font-size:14px;
+    line-height:1.7;
+    color:var(--text);
+  }
+  .turn-text mark{
+    background:var(--amber);
+    color:#1A1305;
+    border-radius:2px;
+    padding:0 1px;
+  }
+  .word{
+    cursor:pointer;
+    border-radius:2px;
+    padding:0 1px;
+    transition:background .1s ease;
+  }
+  .word:hover{
+    background:var(--panel-2);
+  }
+  .word.current-word{
+    background:var(--amber);
+    color:#1A1305;
+  }
+  .word.search-hit{
+    background:var(--amber-dim);
+    color:var(--text);
+  }
+  .word.current-word.search-hit{
+    background:var(--amber);
+    color:#1A1305;
+  }
+
+  .settings-modal{
+    position:fixed; inset:0;
+    background:rgba(10,12,15,0.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .settings-modal.show{ display:flex; }
+  .settings-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px;
+    width:380px;
+    max-width:90vw;
+  }
+  .settings-card h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    font-style:italic;
+    margin:0 0 6px;
+    font-size:18px;
+  }
+  .settings-card p{
+    color:var(--muted);
+    font-size:12.5px;
+    line-height:1.6;
+    margin:0 0 16px;
+  }
+  .settings-card a{ color:var(--amber); }
+  .settings-card input{
+    width:100%;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:inherit;
+    font-size:13px;
+    padding:9px 10px;
+    border-radius:var(--radius);
+    outline:none;
+    margin-bottom:14px;
+  }
+  .settings-card input:focus{ border-color:var(--amber); }
+  .settings-actions{ display:flex; gap:8px; justify-content:flex-end; }
+  .settings-close{
+    position:fixed; inset:0; z-index:-1;
+  }
+
+  .icon-btn{
+    background:none; border:none; color:var(--muted); cursor:pointer;
+    padding:6px; border-radius:var(--radius); display:flex;
+  }
+  .icon-btn:hover{ color:var(--text); background:var(--panel-2); }
+  .icon-btn svg{ width:16px; height:16px; }
+
+  .download-btn{
+    display:flex; align-items:center; gap:6px; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    font-family:inherit; font-size:12.5px; padding:7px 12px; border-radius:var(--radius); cursor:pointer;
+  }
+  .download-btn:hover{ border-color:var(--muted-2); }
+  .download-btn svg{ width:13px; height:13px; }
+  .download-btn[disabled]{ opacity:.45; cursor:not-allowed; }
+
+  .export-menu{
+    position:relative;
+  }
+  .export-dropdown{
+    position:absolute;
+    right:0; top:calc(100% + 6px);
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    min-width:140px;
+    display:none;
+    z-index:10;
+    overflow:hidden;
+  }
+  .export-dropdown.show{ display:block; }
+  .export-dropdown button{
+    display:block; width:100%; text-align:left;
+    background:none; border:none; color:var(--text);
+    font-family:inherit; font-size:12.5px;
+    padding:9px 12px; cursor:pointer;
+  }
+  .export-dropdown button:hover{ background:var(--panel); }
+
+  ::-webkit-scrollbar{ width:9px; height:9px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:5px; }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--muted-2); }
+
+  .drop-overlay{
+    position:fixed; inset:0; z-index:40;
+    display:none;
+    align-items:center; justify-content:center;
+    background:rgba(18,22,28,0.85);
+    pointer-events:none;
+  }
+  .drop-overlay.show{ display:flex; }
+  .drop-overlay-inner{
+    margin:24px;
+    width:calc(100% - 48px); height:calc(100% - 48px);
+    border:2px dashed var(--amber);
+    border-radius:8px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px;
+    color:var(--amber);
+  }
+  .drop-overlay-inner svg{ width:32px; height:32px; }
+  .drop-overlay-inner span{
+    font-family:'Fraunces', Georgia, serif;
+    font-style:italic;
+    font-size:20px;
+  }
+
+  /* ---- Sign-in ---- */
+  .signin-gate{
+    position:fixed; inset:0; z-index:100;
+    background:var(--bg);
+    display:none;
+    align-items:center; justify-content:center;
+    padding-top:env(safe-area-inset-top, 0px);
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
+  .signin-gate.show{ display:flex; }
+  .signin-card{
+    text-align:center;
+    max-width:340px;
+    padding:36px;
+  }
+  .signin-card h1{
+    font-size:26px;
+    font-style:italic;
+    font-weight:500;
+    margin:0 0 10px;
+  }
+  .signin-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin:0 0 22px;
+  }
+  #googleButton{ display:flex; justify-content:center; }
+
+  .user-chip{
+    display:flex; align-items:center; gap:10px;
+  }
+  .user-avatar{
+    width:30px; height:30px; border-radius:50%;
+    flex-shrink:0; background:var(--panel-2);
+  }
+  .user-info{ min-width:0; flex:1; }
+  .user-name{
+    font-size:12px; color:var(--muted);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .user-signout{
+    background:none; border:none; color:var(--muted-2); cursor:pointer;
+    font-family:inherit; font-size:11px; padding:0; text-decoration:underline;
+  }
+  .user-signout:hover{ color:var(--text); }
+
+  .menu-btn{
+    display:none;
+    background:none; border:none; color:var(--text); cursor:pointer;
+    padding:6px; margin-right:4px; flex-shrink:0;
+  }
+  .menu-btn svg{ width:20px; height:20px; }
+
+  .sidebar-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(10,12,15,0.6);
+    z-index:29;
+  }
+  .sidebar-backdrop.show{ display:block; }
+
+  @media (max-width: 720px){
+    .app{ grid-template-columns: 1fr; }
+    .menu-btn{ display:flex; }
+    .sidebar{
+      position:fixed; top:0; bottom:0; left:0;
+      width:82%; max-width:300px;
+      z-index:30;
+      transform:translateX(-100%);
+      transition:transform .2s ease;
+      display:flex; /* override the old display:none */
+    }
+    .sidebar.open{ transform:translateX(0); }
+    .content{ padding:8px 16px 60px; }
+    .topbar{ padding:calc(14px + env(safe-area-inset-top, 0px)) 16px 14px; }
+    .turn{ grid-template-columns: 1fr; gap:4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="drop-overlay" id="dropOverlay">
+  <div class="drop-overlay-inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5M5 21h14"/></svg>
+    <span>Drop to transcribe</span>
+  </div>
+</div>
+
+<div class="app">
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>Transcript</h1>
+      <p>speaker-labeled recordings, via AssemblyAI</p>
+    </div>
+
+    <div class="capture">
+      <button class="btn primary" id="uploadBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5M5 21h14"/></svg>
+        Upload audio or video
+      </button>
+      <input type="file" id="fileInput" accept="audio/*,video/*" style="display:none">
+
+      <button class="btn record" id="recordBtn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg>
+        Record from microphone
+      </button>
+      <div class="rec-timer" id="recTimer" style="display:none">00:00</div>
+
+      <div class="dropzone" id="dropzone">or drop a file here</div>
+    </div>
+
+    <div class="sessions" id="sessions">
+      <div class="sessions-label">SESSIONS</div>
+      <!-- populated by JS -->
+    </div>
+
+    <div class="sidebar-foot" id="sidebarFoot">
+      <div class="user-chip" id="userChip" style="display:none;">
+        <img id="userAvatar" class="user-avatar" alt="">
+        <div class="user-info">
+          <div class="user-name" id="userName"></div>
+          <button class="user-signout" id="signOutBtn">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <input type="text" class="session-name" id="sessionName" placeholder="Untitled session" disabled>
+      <div class="topbar-actions">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="searchInput" placeholder="Search transcript" disabled>
+        </div>
+        <div class="export-menu">
+          <button class="download-btn" id="exportBtn" disabled title="Download transcript">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 21h14"/></svg>
+            Download
+          </button>
+          <div class="export-dropdown" id="exportDropdown">
+            <button data-fmt="txt">Plain text (.txt)</button>
+            <button data-fmt="srt">Subtitles (.srt)</button>
+            <button data-fmt="copy">Copy to clipboard</button>
+          </div>
+        </div>
+        <button class="icon-btn" id="deleteAudioBtn" disabled title="Delete audio from server (keeps transcript)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0l-1 14a2 2 0 01-2 2H7a2 2 0 01-2-2L4 6h16z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="player-bar" id="playerBar">
+      <button class="play-toggle" id="playToggle">
+        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="scrub" id="scrub"><div class="scrub-fill" id="scrubFill"></div></div>
+      <div class="time-label" id="timeLabel">00:00 / 00:00</div>
+      <audio id="audioEl"></audio>
+    </div>
+
+    <div class="content" id="content">
+      <div class="empty-state">
+        <h2>Nothing playing yet</h2>
+        <p>Upload a recording or capture one from your microphone. Each speaker gets identified and labeled automatically — rename them once and the labels stick.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="signin-gate" id="signinGate">
+  <div class="signin-card">
+    <h1 class="serif">Transcript</h1>
+    <p id="signinMessage">Sign in with your work Google account to get started.</p>
+    <div id="googleButton"></div>
+  </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script type="module">
+  import { upload } from 'https://cdn.jsdelivr.net/npm/@vercel/blob@2.8.0/+esm';
+  window.__vercelBlobUpload = upload;
+</script>
+<script>
+(function(){
+  'use strict';
+
+  // Replace with your OAuth Client ID from Google Cloud Console (see README).
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+
+  const SPEAKER_COLORS = ['--speaker-0','--speaker-1','--speaker-2','--speaker-3','--speaker-4','--speaker-5'];
+
+  // ---------- storage ----------
+  const store = {
+    getAuth(){
+      try{ return JSON.parse(localStorage.getItem('auth_user') || 'null'); }
+      catch(e){ return null; }
+    },
+    setAuth(user){ localStorage.setItem('auth_user', JSON.stringify(user)); },
+    clearAuth(){ localStorage.removeItem('auth_user'); },
+    getSessions(){
+      try{ return JSON.parse(localStorage.getItem('aai_sessions') || '[]'); }
+      catch(e){ return []; }
+    },
+    saveSessions(list){ localStorage.setItem('aai_sessions', JSON.stringify(list)); },
+  };
+
+  let sessions = store.getSessions(); // {id, title, createdAt, status, utterances, speakerNames, error, audioUrl}
+  let activeId = null;
+  let currentWordIndex = -1;
+  let wordEls = [];
+  let currentUser = store.getAuth(); // {credential, email, name, picture}
+
+  // ---------- DOM ----------
+  const $ = (id) => document.getElementById(id);
+  const uploadBtn = $('uploadBtn'), fileInput = $('fileInput'), recordBtn = $('recordBtn'),
+        recTimer = $('recTimer'), dropzone = $('dropzone'), sessionsEl = $('sessions'),
+        signinGate = $('signinGate'), signinMessage = $('signinMessage'), googleButtonEl = $('googleButton'),
+        userChip = $('userChip'), userAvatar = $('userAvatar'), userName = $('userName'), signOutBtn = $('signOutBtn'),
+        sessionName = $('sessionName'), searchInput = $('searchInput'), exportBtn = $('exportBtn'),
+        exportDropdown = $('exportDropdown'), deleteAudioBtn = $('deleteAudioBtn'),
+        playerBar = $('playerBar'), audioEl = $('audioEl'),
+        playToggle = $('playToggle'), playIcon = $('playIcon'), scrub = $('scrub'), scrubFill = $('scrubFill'),
+        timeLabel = $('timeLabel'), content = $('content'),
+        menuBtn = $('menuBtn'), sidebar = $('sidebar'), sidebarBackdrop = $('sidebarBackdrop');
+
+  function openSidebar(){ sidebar.classList.add('open'); sidebarBackdrop.classList.add('show'); }
+  function closeSidebar(){ sidebar.classList.remove('open'); sidebarBackdrop.classList.remove('show'); }
+  menuBtn.addEventListener('click', openSidebar);
+  sidebarBackdrop.addEventListener('click', closeSidebar);
+
+  function fmtTime(sec){
+    sec = Math.max(0, Math.floor(sec||0));
+    const m = Math.floor(sec/60), s = sec%60;
+    return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  function fmtMs(ms){ return fmtTime(ms/1000); }
+
+  // ---------- sessions list rendering ----------
+  function renderSessions(){
+    sessionsEl.innerHTML = '<div class="sessions-label">SESSIONS</div>';
+    if(sessions.length === 0){
+      const p = document.createElement('div');
+      p.style.cssText = 'padding:10px 20px;color:var(--muted-2);font-size:12px;';
+      p.textContent = 'No sessions yet.';
+      sessionsEl.appendChild(p);
+      return;
+    }
+    sessions.slice().reverse().forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'session' + (s.id === activeId ? ' active' : '');
+      const dotClass = ['uploading','processing','done','error'].includes(s.status) ? s.status : '';
+      el.innerHTML = `
+        <div class="session-title">${escapeHTML(s.title || 'Untitled session')}</div>
+        <div class="session-meta"><span class="status-dot ${dotClass}"></span>${new Date(s.createdAt).toLocaleDateString()} · ${s.status}</div>
+      `;
+      el.addEventListener('click', () => openSession(s.id));
+      sessionsEl.appendChild(el);
+    });
+  }
+
+  function escapeHTML(str){
+    const d = document.createElement('div');
+    d.textContent = str == null ? '' : str;
+    return d.innerHTML;
+  }
+
+  function getSession(id){ return sessions.find(s => s.id === id); }
+  function persist(){ store.saveSessions(sessions); renderSessions(); }
+
+  // ---------- opening / rendering a session ----------
+  function openSession(id){
+    activeId = id;
+    currentWordIndex = -1;
+    closeSidebar(); // no-op on desktop, tucks the drawer away on mobile
+    const s = getSession(id);
+    if(!s) return;
+    sessionName.disabled = false;
+    sessionName.value = s.title || '';
+    searchInput.disabled = s.status !== 'done';
+    searchInput.value = '';
+    exportBtn.disabled = s.status !== 'done';
+    deleteAudioBtn.disabled = !s.audioUrl;
+
+    if(s.audioUrl){
+      audioEl.src = s.audioUrl;
+      playerBar.classList.add('show');
+    } else {
+      playerBar.classList.remove('show');
+      audioEl.removeAttribute('src');
+    }
+
+    renderTranscript(s);
+    renderSessions();
+  }
+
+  function renderTranscript(s){
+    wordEls = [];
+    if(s.status === 'uploading'){
+      content.innerHTML = `<div class="status-banner"><span class="spinner"></span>Uploading to the server…</div>`;
+      return;
+    }
+    if(s.status === 'processing'){
+      content.innerHTML = `<div class="status-banner"><span class="spinner"></span>Transcribing and identifying speakers — this usually takes about as long as the recording itself.</div>`;
+      return;
+    }
+    if(s.status === 'error'){
+      content.innerHTML = `<div class="status-banner error">Something went wrong: ${escapeHTML(s.error || 'unknown error')}</div>`;
+      return;
+    }
+    if(!s.utterances || s.utterances.length === 0){
+      content.innerHTML = `<div class="empty-state"><h2>No speech detected</h2><p>The file came back empty — try a different recording.</p></div>`;
+      return;
+    }
+    content.innerHTML = '';
+    s.utterances.forEach((u, idx) => {
+      const speakerKey = u.speaker;
+      const displayName = (s.speakerNames && s.speakerNames[speakerKey]) || ('Speaker ' + speakerKey);
+      const colorVar = SPEAKER_COLORS[hashSpeaker(speakerKey) % SPEAKER_COLORS.length];
+      const turn = document.createElement('div');
+      turn.className = 'turn';
+      turn.dataset.idx = idx;
+      turn.dataset.start = u.start;
+      turn.dataset.end = u.end;
+
+      let textHTML;
+      if(u.words && u.words.length){
+        textHTML = u.words.map(w =>
+          `<span class="word" data-start="${w.start}" data-end="${w.end}">${escapeHTML(w.text)}</span>`
+        ).join(' ');
+      } else {
+        // older saved sessions without word-level timestamps
+        textHTML = escapeHTML(u.text);
+      }
+
+      turn.innerHTML = `
+        <div class="turn-meta">
+          <span class="speaker-name" style="color:var(${colorVar})" contenteditable="true" data-speaker="${escapeHTML(speakerKey)}">${escapeHTML(displayName)}</span>
+          <span class="turn-time" data-start="${u.start}">${fmtMs(u.start)}</span>
+        </div>
+        <div class="turn-text">${textHTML}</div>
+      `;
+      content.appendChild(turn);
+    });
+
+    // speaker rename handlers
+    content.querySelectorAll('.speaker-name').forEach(el => {
+      el.addEventListener('blur', () => {
+        const s2 = getSession(activeId);
+        if(!s2) return;
+        s2.speakerNames = s2.speakerNames || {};
+        s2.speakerNames[el.dataset.speaker] = el.textContent.trim() || ('Speaker ' + el.dataset.speaker);
+        persist();
+        renderTranscript(s2);
+      });
+      el.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); el.blur(); } });
+    });
+
+    // click a timestamp to jump to the start of that turn
+    content.querySelectorAll('.turn-time').forEach(el => {
+      el.addEventListener('click', () => {
+        const startSec = parseFloat(el.dataset.start) / 1000;
+        if(audioEl.src){ audioEl.currentTime = startSec; audioEl.play(); highlightWordAtMs(parseFloat(el.dataset.start)); }
+      });
+    });
+
+    // click an individual word to jump to exactly that word
+    wordEls = Array.from(content.querySelectorAll('.word'));
+    wordEls.forEach(el => {
+      el.addEventListener('click', () => {
+        const startSec = parseFloat(el.dataset.start) / 1000;
+        if(audioEl.src){ audioEl.currentTime = startSec; audioEl.play(); highlightWordAtMs(parseFloat(el.dataset.start)); }
+      });
+    });
+    currentWordIndex = -1;
+  }
+
+  function hashSpeaker(key){
+    let h = 0;
+    const str = String(key);
+    for(let i=0;i<str.length;i++) h = (h*31 + str.charCodeAt(i)) >>> 0;
+    return h;
+  }
+
+  // click/seek on the timeline jumps to & highlights the exact word, and shades its turn
+  function highlightWordAtMs(ms){
+    if(wordEls.length === 0) return;
+    let idx = -1;
+    for(let i=0;i<wordEls.length;i++){
+      const start = parseFloat(wordEls[i].dataset.start);
+      if(start <= ms) idx = i; else break; // words are chronological, safe to stop early
+    }
+    if(idx === currentWordIndex || idx === -1) return;
+
+    if(currentWordIndex >= 0 && wordEls[currentWordIndex]){
+      wordEls[currentWordIndex].classList.remove('current-word');
+      const prevTurn = wordEls[currentWordIndex].closest('.turn');
+      if(prevTurn) prevTurn.classList.remove('active');
+    }
+
+    currentWordIndex = idx;
+    const el = wordEls[idx];
+    el.classList.add('current-word');
+    const turn = el.closest('.turn');
+    if(turn) turn.classList.add('active');
+
+    const rect = el.getBoundingClientRect();
+    const contentRect = content.getBoundingClientRect();
+    if(rect.top < contentRect.top + 40 || rect.bottom > contentRect.bottom - 40){
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  // ---------- search ----------
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    const turns = content.querySelectorAll('.turn');
+    turns.forEach(turn => {
+      const words = turn.querySelectorAll('.word');
+      if(!q){
+        turn.classList.remove('dim');
+        words.forEach(w => w.classList.remove('search-hit'));
+        return;
+      }
+      let hasMatch = false;
+      if(words.length){
+        words.forEach(w => {
+          const isHit = w.textContent.toLowerCase().includes(q);
+          w.classList.toggle('search-hit', isHit);
+          if(isHit) hasMatch = true;
+        });
+      } else {
+        // older sessions without word-level data — fall back to whole-turn matching
+        hasMatch = turn.querySelector('.turn-text').textContent.toLowerCase().includes(q);
+      }
+      turn.classList.toggle('dim', !hasMatch);
+    });
+  });
+
+  // ---------- session title editing ----------
+  sessionName.addEventListener('input', () => {
+    const s = getSession(activeId);
+    if(!s) return;
+    s.title = sessionName.value;
+    persist();
+  });
+
+  // ---------- Google sign-in ----------
+  function decodeJwt(token){
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
+    const json = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    return JSON.parse(json);
+  }
+
+  function applyAuthUI(){
+    if(currentUser){
+      signinGate.classList.remove('show');
+      userChip.style.display = 'flex';
+      userAvatar.src = currentUser.picture || '';
+      userName.textContent = currentUser.name || currentUser.email || '';
+    } else {
+      signinGate.classList.add('show');
+      userChip.style.display = 'none';
+    }
+  }
+
+  function handleGoogleCredential(response){
+    const token = response.credential;
+    let payload;
+    try{ payload = decodeJwt(token); } catch(e){ return; }
+    currentUser = { credential: token, email: payload.email, name: payload.name, picture: payload.picture };
+    store.setAuth(currentUser);
+    applyAuthUI();
+  }
+
+  function waitForGoogle(cb){
+    if(window.google && window.google.accounts && window.google.accounts.id) cb();
+    else setTimeout(() => waitForGoogle(cb), 100);
+  }
+
+  function initGoogleAuth(){
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+      auto_select: true,
+    });
+    google.accounts.id.renderButton(googleButtonEl, { theme: 'filled_black', size: 'large', shape: 'pill', text: 'signin_with' });
+    if(!currentUser){
+      google.accounts.id.prompt(); // attempt silent One Tap sign-in for returning users
+    }
+  }
+
+  signOutBtn.addEventListener('click', () => {
+    currentUser = null;
+    store.clearAuth();
+    if(window.google && window.google.accounts && window.google.accounts.id){
+      google.accounts.id.disableAutoSelect();
+    }
+    applyAuthUI();
+  });
+
+  // wraps fetch with the signed-in user's token; on auth failure, re-shows the sign-in gate
+  async function authFetch(url, opts){
+    if(!currentUser) throw new Error('Not signed in');
+    opts = opts || {};
+    opts.headers = Object.assign({}, opts.headers, { authorization: 'Bearer ' + currentUser.credential });
+    const res = await fetch(url, opts);
+    if(res.status === 401){
+      currentUser = null;
+      store.clearAuth();
+      signinMessage.textContent = 'Your session expired — please sign in again.';
+      applyAuthUI();
+      throw new Error('Session expired — please sign in again and retry');
+    }
+    return res;
+  }
+
+  // ---------- export ----------
+  exportBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    exportDropdown.classList.toggle('show');
+  });
+  document.addEventListener('click', () => exportDropdown.classList.remove('show'));
+  exportDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+  exportDropdown.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const s = getSession(activeId);
+      if(!s || !s.utterances) return;
+      const fmt = btn.dataset.fmt;
+      if(fmt === 'txt'){
+        const lines = s.utterances.map(u => {
+          const name = (s.speakerNames && s.speakerNames[u.speaker]) || ('Speaker ' + u.speaker);
+          return `[${fmtMs(u.start)}] ${name}: ${u.text}`;
+        });
+        downloadFile((s.title || 'transcript') + '.txt', lines.join('\n\n'));
+      } else if(fmt === 'srt'){
+        const srt = s.utterances.map((u, i) => {
+          const name = (s.speakerNames && s.speakerNames[u.speaker]) || ('Speaker ' + u.speaker);
+          return `${i+1}\n${srtTime(u.start)} --> ${srtTime(u.end)}\n${name}: ${u.text}\n`;
+        }).join('\n');
+        downloadFile((s.title || 'transcript') + '.srt', srt);
+      } else if(fmt === 'copy'){
+        const lines = s.utterances.map(u => {
+          const name = (s.speakerNames && s.speakerNames[u.speaker]) || ('Speaker ' + u.speaker);
+          return `${name}: ${u.text}`;
+        });
+        navigator.clipboard.writeText(lines.join('\n\n')).catch(()=>{});
+      }
+      exportDropdown.classList.remove('show');
+    });
+  });
+
+  function srtTime(ms){
+    const h = String(Math.floor(ms/3600000)).padStart(2,'0');
+    const m = String(Math.floor((ms%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((ms%60000)/1000)).padStart(2,'0');
+    const msPart = String(Math.floor(ms%1000)).padStart(3,'0');
+    return `${h}:${m}:${s},${msPart}`;
+  }
+
+  function downloadFile(filename, text){
+    const blob = new Blob([text], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
+  // ---------- delete audio from server (keep transcript) ----------
+  deleteAudioBtn.addEventListener('click', async () => {
+    const s = getSession(activeId);
+    if(!s || !s.audioUrl) return;
+    if(!confirm('Delete the audio file from the server? The transcript text will stay.')) return;
+    try{
+      await authFetch('/api/cleanup', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ url: s.audioUrl })
+      });
+    } catch(e){ /* best effort */ }
+    s.audioUrl = null;
+    persist();
+    openSession(activeId);
+  });
+
+  // ---------- audio player ----------
+  playToggle.addEventListener('click', () => {
+    if(audioEl.paused){ audioEl.play(); } else { audioEl.pause(); }
+  });
+  audioEl.addEventListener('play', () => { playIcon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; });
+  audioEl.addEventListener('pause', () => { playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; });
+  audioEl.addEventListener('timeupdate', () => {
+    if(!audioEl.duration) return;
+    const pct = (audioEl.currentTime / audioEl.duration) * 100;
+    scrubFill.style.width = pct + '%';
+    timeLabel.textContent = fmtTime(audioEl.currentTime) + ' / ' + fmtTime(audioEl.duration);
+    highlightWordAtMs(audioEl.currentTime * 1000);
+  });
+  scrub.addEventListener('click', (e) => {
+    const rect = scrub.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    if(audioEl.duration){
+      const newTime = pct * audioEl.duration;
+      audioEl.currentTime = newTime;
+      highlightWordAtMs(newTime * 1000); // immediate feedback, don't wait for timeupdate
+    }
+  });
+
+  // ---------- file intake ----------
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', () => {
+    if(fileInput.files[0]) handleFile(fileInput.files[0]);
+    fileInput.value = '';
+  });
+  dropzone.addEventListener('click', () => fileInput.click());
+  ['dragover','dragenter'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('drag'); }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag'); }));
+  dropzone.addEventListener('drop', (e) => {
+    if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  // ---------- drop a file anywhere in the window ----------
+  const dropOverlay = $('dropOverlay');
+  let dragCounter = 0;
+
+  function isFileDrag(e){
+    return e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
+  }
+
+  window.addEventListener('dragenter', (e) => {
+    if(!isFileDrag(e)) return;
+    e.preventDefault();
+    dragCounter++;
+    dropOverlay.classList.add('show');
+  });
+  window.addEventListener('dragover', (e) => {
+    if(!isFileDrag(e)) return;
+    e.preventDefault(); // required to allow dropping
+  });
+  window.addEventListener('dragleave', (e) => {
+    if(!isFileDrag(e)) return;
+    dragCounter--;
+    if(dragCounter <= 0){
+      dragCounter = 0;
+      dropOverlay.classList.remove('show');
+    }
+  });
+  window.addEventListener('drop', (e) => {
+    if(!isFileDrag(e)) return;
+    e.preventDefault();
+    dragCounter = 0;
+    dropOverlay.classList.remove('show');
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(file) handleFile(file);
+  });
+
+  function handleFile(file){
+    if(!currentUser){
+      applyAuthUI();
+      return;
+    }
+    const id = 's_' + Date.now();
+    const title = file.name.replace(/\.[^.]+$/, '') || 'Untitled session';
+    const session = { id, title, createdAt: Date.now(), status: 'uploading', utterances: null, speakerNames: {}, error: null, audioUrl: null };
+    sessions.push(session);
+    persist();
+    openSession(id);
+    runPipeline(file, id);
+  }
+
+  // ---------- microphone recording ----------
+  let mediaRecorder = null, recordedChunks = [], recTimerInterval = null, recSeconds = 0;
+
+  recordBtn.addEventListener('click', async () => {
+    if(mediaRecorder && mediaRecorder.state === 'recording'){
+      mediaRecorder.stop();
+      return;
+    }
+    if(!currentUser){ applyAuthUI(); return; }
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = (e) => { if(e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        clearInterval(recTimerInterval);
+        recTimer.style.display = 'none';
+        recordBtn.classList.remove('active');
+        recordBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg> Record from microphone`;
+        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+        const file = new File([blob], 'Recording ' + new Date().toLocaleString() + '.webm', { type: 'audio/webm' });
+        handleFile(file);
+      };
+      mediaRecorder.start();
+      recSeconds = 0;
+      recTimer.style.display = 'block';
+      recTimer.textContent = '00:00';
+      recTimerInterval = setInterval(() => {
+        recSeconds++;
+        recTimer.textContent = fmtTime(recSeconds);
+      }, 1000);
+      recordBtn.classList.add('active');
+      recordBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg> Stop recording`;
+    } catch(err){
+      alert('Could not access the microphone: ' + err.message);
+    }
+  });
+
+  // ---------- AssemblyAI integration ----------
+  async function runPipeline(file, sessionId){
+    try{
+      // 1. upload direct-to-storage — the raw bytes never touch our server
+      const blob = await window.__vercelBlobUpload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/blob-upload',
+        clientPayload: JSON.stringify({}),
+        headers: { authorization: 'Bearer ' + currentUser.credential },
+      });
+
+      const s0 = getSession(sessionId);
+      if(!s0) return;
+      s0.audioUrl = blob.url;
+      s0.status = 'processing';
+      persist();
+      if(sessionId === activeId) openSession(sessionId);
+
+      // 2. ask our backend to start transcription
+      const startRes = await authFetch('/api/transcribe', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ audioUrl: blob.url }),
+      });
+      const startData = await startRes.json();
+      if(!startRes.ok) throw new Error(startData.error || 'Failed to start transcription');
+      const transcriptId = startData.id;
+
+      // 3. poll until done
+      let result = null;
+      while(true){
+        await new Promise(r => setTimeout(r, 3000));
+        const pollRes = await authFetch(`/api/transcript?id=${encodeURIComponent(transcriptId)}`);
+        const pollData = await pollRes.json();
+        if(!pollRes.ok) throw new Error(pollData.error || 'Polling failed');
+        if(pollData.status === 'completed'){ result = pollData; break; }
+        if(pollData.status === 'error'){ throw new Error(pollData.error || 'Transcription failed'); }
+      }
+
+      const s = getSession(sessionId);
+      if(!s) return;
+      s.status = 'done';
+      s.utterances = (result.utterances || []).map(u => ({
+        speaker: u.speaker, text: u.text, start: u.start, end: u.end,
+        words: (u.words || []).map(w => ({ text: w.text, start: w.start, end: w.end }))
+      }));
+      persist();
+      if(sessionId === activeId) openSession(sessionId);
+
+    } catch(err){
+      const s = getSession(sessionId);
+      if(!s) return;
+      s.status = 'error';
+      s.error = err.message;
+      persist();
+      if(sessionId === activeId) openSession(sessionId);
+    }
+  }
+
+  // ---------- init ----------
+  renderSessions();
+  applyAuthUI();
+  waitForGoogle(initGoogleAuth);
+
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(() => { /* non-critical */ });
+  }
+})();
+</script>
+</body>
+</html>

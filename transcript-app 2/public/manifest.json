@@ -1,0 +1,17 @@
+{
+  "name": "Transcript",
+  "short_name": "Transcript",
+  "description": "Speaker-labeled transcription for the newsroom",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#12161C",
+  "theme_color": "#12161C",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
