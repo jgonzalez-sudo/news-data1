@@ -208,6 +208,18 @@ function buildResponse(query, annotated, byName, slackUserMap) {
     others.forEach((a) => blocks.push(personBlock(a, byName, slackUserMap)));
   }
 
+  blocks.push({
+    type: 'actions',
+    elements: [
+      {
+        type: 'button',
+        text: { type: 'plain_text', text: '🗑️ Delete this', emoji: true },
+        action_id: 'delete_response',
+        style: 'danger',
+      },
+    ],
+  });
+
   const fallbackText = `Who can help — "${query}" (as of ${etNow} ET): ` +
     [...available, ...others].map((a) => a.name).join(', ');
 
