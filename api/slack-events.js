@@ -150,26 +150,48 @@ function fmtTime(d) {
 
 async function fetchSlackUserMap() {
   const token = process.env.SLACK_BOT_TOKEN;
-  if (!token) return {};
+  if (!token) return { byFullName: {}, bySurname: {} };
   try {
     const resp = await fetch('https://slack.com/api/users.list?limit=200', {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await resp.json();
-    if (!data.ok) return {};
-    const map = {};
+    if (!data.ok) return { byFullName: {}, bySurname: {} };
+
+    const byFullName = {};
+    const surnameCounts = {};
+    const surnameId = {};
     (data.members || []).forEach((m) => {
       const real = (m.profile && (m.profile.real_name || m.profile.display_name)) || m.real_name || '';
-      if (real) map[real.trim().toLowerCase()] = m.id;
+      if (!real) return;
+      const norm = real.trim().toLowerCase();
+      byFullName[norm] = m.id;
+      const parts = norm.split(/\s+/);
+      const surname = parts[parts.length - 1];
+      surnameCounts[surname] = (surnameCounts[surname] || 0) + 1;
+      surnameId[surname] = m.id;
     });
-    return map;
+    const bySurname = {};
+    Object.keys(surnameCounts).forEach((s) => {
+      if (surnameCounts[s] === 1) bySurname[s] = surnameId[s];
+    });
+
+    return { byFullName, bySurname };
   } catch {
-    return {};
+    return { byFullName: {}, bySurname: {} };
   }
 }
 
+function lookupSlackId(name, slackUserMap) {
+  const full = name.trim().toLowerCase();
+  if (slackUserMap.byFullName[full]) return slackUserMap.byFullName[full];
+  const parts = full.split(/\s+/);
+  const surname = parts[parts.length - 1];
+  return slackUserMap.bySurname[surname] || null;
+}
+
 function personLine(a, slackUserMap) {
-  const id = slackUserMap[a.name.trim().toLowerCase()];
+  const id = lookupSlackId(a.name, slackUserMap);
   const namePart = id ? `<@${id}>` : `*${a.name}*`;
   return `${namePart} — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`;
 }
