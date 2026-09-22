@@ -132,6 +132,7 @@ function parseRoster(csvText) {
       location: obj.location || '',
       go_to_for: obj.go_to_for || '',
       bio: obj.bio || '',
+      photo_url: obj.photo_url || '',
     };
   }).filter((p) => p.name);
 }
@@ -160,6 +161,50 @@ function isWorkingHours(localDate) {
 
 function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+function personLine(a) {
+  return `*${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`;
+}
+
+function personBlock(a, byName) {
+  const person = byName[a.name];
+  const block = {
+    type: 'section',
+    text: { type: 'mrkdwn', text: personLine(a) },
+  };
+  if (person && person.photo_url) {
+    block.accessory = { type: 'image', image_url: person.photo_url, alt_text: a.name };
+  }
+  return block;
+}
+
+function buildResponse(query, annotated, byName) {
+  const etNow = fmtTime(nowEtParts());
+  const available = annotated.filter((a) => a.available === true);
+  const others = annotated.filter((a) => a.available !== true);
+
+  const blocks = [
+    { type: 'section', text: { type: 'mrkdwn', text: `*Who can help — "${query}"*  _(as of ${etNow} ET)_` } },
+  ];
+
+  if (available.length) {
+    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '*🟢 Available now:*' } });
+    available.forEach((a) => blocks.push(personBlock(a, byName)));
+  }
+  if (others.length) {
+    blocks.push({ type: 'divider' });
+    blocks.push({
+      type: 'section',
+      text: { type: 'mrkdwn', text: available.length ? '*Also can help (outside typical hours or unknown location):*' : '*Can help:*' },
+    });
+    others.forEach((a) => blocks.push(personBlock(a, byName)));
+  }
+
+  const fallbackText = `Who can help — "${query}" (as of ${etNow} ET): ` +
+    [...available, ...others].map((a) => a.name).join(', ');
+
+  return { text: fallbackText, blocks };
 }
 
 function tokenize(text) {
@@ -301,22 +346,9 @@ export default async function handler(req, res) {
 
     annotated.sort((a, b) => (b.available === true) - (a.available === true));
 
-    const etNow = fmtTime(nowEtParts());
-    const available = annotated.filter((a) => a.available === true);
-    const others = annotated.filter((a) => a.available !== true);
+    const { text, blocks } = buildResponse(query, annotated, byName);
 
-    let text = `*Who can help — "${query}"*  _(as of ${etNow} ET)_\n\n`;
-    if (available.length) {
-      text += '*🟢 Available now:*\n';
-      text += available.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-      text += '\n\n';
-    }
-    if (others.length) {
-      text += available.length ? '*Also can help (outside typical hours or unknown location):*\n' : '*Can help:*\n';
-      text += others.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-    }
-
-    res.status(200).json({ response_type: 'ephemeral', text });
+    res.status(200).json({ response_type: 'ephemeral', text, blocks });
   } catch (err) {
     res.status(200).json({
       response_type: 'ephemeral',
