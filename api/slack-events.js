@@ -117,6 +117,7 @@ function parseRoster(csvText) {
       location: obj.location || '',
       go_to_for: obj.go_to_for || '',
       bio: obj.bio || '',
+      photo_url: obj.photo_url || '',
     };
   }).filter((p) => p.name);
 }
@@ -145,6 +146,50 @@ function isWorkingHours(localDate) {
 
 function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+function personLine(a) {
+  return `*${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`;
+}
+
+function personBlock(a, byName) {
+  const person = byName[a.name];
+  const block = {
+    type: 'section',
+    text: { type: 'mrkdwn', text: personLine(a) },
+  };
+  if (person && person.photo_url) {
+    block.accessory = { type: 'image', image_url: person.photo_url, alt_text: a.name };
+  }
+  return block;
+}
+
+function buildResponse(query, annotated, byName) {
+  const etNow = fmtTime(nowEtParts());
+  const available = annotated.filter((a) => a.available === true);
+  const others = annotated.filter((a) => a.available !== true);
+
+  const blocks = [
+    { type: 'section', text: { type: 'mrkdwn', text: `*Who can help — "${query}"*  _(as of ${etNow} ET)_` } },
+  ];
+
+  if (available.length) {
+    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '*🟢 Available now:*' } });
+    available.forEach((a) => blocks.push(personBlock(a, byName)));
+  }
+  if (others.length) {
+    blocks.push({ type: 'divider' });
+    blocks.push({
+      type: 'section',
+      text: { type: 'mrkdwn', text: available.length ? '*Also can help (outside typical hours or unknown location):*' : '*Can help:*' },
+    });
+    others.forEach((a) => blocks.push(personBlock(a, byName)));
+  }
+
+  const fallbackText = `Who can help — "${query}" (as of ${etNow} ET): ` +
+    [...available, ...others].map((a) => a.name).join(', ');
+
+  return { text: fallbackText, blocks };
 }
 
 function tokenize(text) {
@@ -235,7 +280,7 @@ async function buildAnswer(query) {
   const matches = await findMatches(query, people);
 
   if (!matches || !matches.length) {
-    return `Couldn't find anyone in the directory for "${query}". Try rephrasing?`;
+    return { text: `Couldn't find anyone in the directory for "${query}". Try rephrasing?` };
   }
 
   const byName = Object.fromEntries(people.map((p) => [p.name, p]));
@@ -253,36 +298,24 @@ async function buildAnswer(query) {
   });
   annotated.sort((a, b) => (b.available === true) - (a.available === true));
 
-  const etNow = fmtTime(nowEtParts());
-  const available = annotated.filter((a) => a.available === true);
-  const others = annotated.filter((a) => a.available !== true);
-
-  let text = `*Who can help — "${query}"*  _(as of ${etNow} ET)_\n\n`;
-  if (available.length) {
-    text += '*🟢 Available now:*\n';
-    text += available.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-    text += '\n\n';
-  }
-  if (others.length) {
-    text += available.length ? '*Also can help (outside typical hours or unknown location):*\n' : '*Can help:*\n';
-    text += others.map((a) => `• *${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`).join('\n');
-  }
-  return text;
+  return buildResponse(query, annotated, byName);
 }
 
-async function postToSlack(channel, text) {
+async function postToSlack(channel, text, blocks) {
   const token = process.env.SLACK_BOT_TOKEN;
   if (!token) {
     console.error('SLACK_BOT_TOKEN is not set — cannot post the reply.');
     return;
   }
+  const payload = { channel, text };
+  if (blocks) payload.blocks = blocks;
   await fetch('https://slack.com/api/chat.postMessage', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ channel, text }),
+    body: JSON.stringify(payload),
   });
 }
 
@@ -325,7 +358,7 @@ export default async function handler(req, res) {
     if (isDirectMessage && isRealUserMessage && event.text) {
       try {
         const answer = await buildAnswer(event.text.trim());
-        await postToSlack(event.channel, answer);
+        await postToSlack(event.channel, answer.text, answer.blocks);
       } catch (err) {
         await postToSlack(event.channel, `Something went wrong looking that up: ${err.message}`);
       }
