@@ -24,8 +24,8 @@ export const config = {
   api: { bodyParser: false },
 };
 
-const WORK_START_HOUR = 8;
-const WORK_END_HOUR = 19;
+const WORK_START_HOUR = 9;   // 9am local
+const WORK_END_HOUR = 17;    // 5pm local
 const CLAUDE_MODEL = 'claude-haiku-4-5-20251001';
 
 const SHEET_CSV_URL = process.env.SHEET_CSV_URL ||
@@ -176,12 +176,14 @@ function personLine(a, slackUserMap) {
 
 function personBlock(a, byName, slackUserMap) {
   const person = byName[a.name];
-  const elements = [];
+  const block = {
+    type: 'section',
+    text: { type: 'mrkdwn', text: personLine(a, slackUserMap) },
+  };
   if (person && person.photo_url) {
-    elements.push({ type: 'image', image_url: person.photo_url, alt_text: a.name });
+    block.accessory = { type: 'image', image_url: person.photo_url, alt_text: a.name };
   }
-  elements.push({ type: 'mrkdwn', text: personLine(a, slackUserMap) });
-  return { type: 'context', elements };
+  return block;
 }
 
 function buildResponse(query, annotated, byName, slackUserMap) {
@@ -194,7 +196,7 @@ function buildResponse(query, annotated, byName, slackUserMap) {
   ];
 
   if (available.length) {
-    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '*🟢 Available now:*' } });
+    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '*Available now:*' } });
     available.forEach((a) => blocks.push(personBlock(a, byName, slackUserMap)));
   }
   if (others.length) {
