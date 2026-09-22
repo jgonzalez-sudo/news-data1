@@ -148,23 +148,43 @@ function fmtTime(d) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
-function personLine(a) {
-  return `*${a.name}* — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`;
-}
-
-function personBlock(a, byName) {
-  const person = byName[a.name];
-  const block = {
-    type: 'section',
-    text: { type: 'mrkdwn', text: personLine(a) },
-  };
-  if (person && person.photo_url) {
-    block.accessory = { type: 'image', image_url: person.photo_url, alt_text: a.name };
+async function fetchSlackUserMap() {
+  const token = process.env.SLACK_BOT_TOKEN;
+  if (!token) return {};
+  try {
+    const resp = await fetch('https://slack.com/api/users.list?limit=200', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await resp.json();
+    if (!data.ok) return {};
+    const map = {};
+    (data.members || []).forEach((m) => {
+      const real = (m.profile && (m.profile.real_name || m.profile.display_name)) || m.real_name || '';
+      if (real) map[real.trim().toLowerCase()] = m.id;
+    });
+    return map;
+  } catch {
+    return {};
   }
-  return block;
 }
 
-function buildResponse(query, annotated, byName) {
+function personLine(a, slackUserMap) {
+  const id = slackUserMap[a.name.trim().toLowerCase()];
+  const namePart = id ? `<@${id}>` : `*${a.name}*`;
+  return `${namePart} — ${a.location || 'location unknown'}${a.localTime ? ` — ${a.localTime}` : ''}`;
+}
+
+function personBlock(a, byName, slackUserMap) {
+  const person = byName[a.name];
+  const elements = [];
+  if (person && person.photo_url) {
+    elements.push({ type: 'image', image_url: person.photo_url, alt_text: a.name });
+  }
+  elements.push({ type: 'mrkdwn', text: personLine(a, slackUserMap) });
+  return { type: 'context', elements };
+}
+
+function buildResponse(query, annotated, byName, slackUserMap) {
   const etNow = fmtTime(nowEtParts());
   const available = annotated.filter((a) => a.available === true);
   const others = annotated.filter((a) => a.available !== true);
@@ -175,7 +195,7 @@ function buildResponse(query, annotated, byName) {
 
   if (available.length) {
     blocks.push({ type: 'section', text: { type: 'mrkdwn', text: '*🟢 Available now:*' } });
-    available.forEach((a) => blocks.push(personBlock(a, byName)));
+    available.forEach((a) => blocks.push(personBlock(a, byName, slackUserMap)));
   }
   if (others.length) {
     blocks.push({ type: 'divider' });
@@ -183,7 +203,7 @@ function buildResponse(query, annotated, byName) {
       type: 'section',
       text: { type: 'mrkdwn', text: available.length ? '*Also can help (outside typical hours or unknown location):*' : '*Can help:*' },
     });
-    others.forEach((a) => blocks.push(personBlock(a, byName)));
+    others.forEach((a) => blocks.push(personBlock(a, byName, slackUserMap)));
   }
 
   const fallbackText = `Who can help — "${query}" (as of ${etNow} ET): ` +
@@ -298,7 +318,8 @@ async function buildAnswer(query) {
   });
   annotated.sort((a, b) => (b.available === true) - (a.available === true));
 
-  return buildResponse(query, annotated, byName);
+  const slackUserMap = await fetchSlackUserMap();
+  return buildResponse(query, annotated, byName, slackUserMap);
 }
 
 async function postToSlack(channel, text, blocks) {
