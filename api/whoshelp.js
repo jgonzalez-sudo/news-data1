@@ -344,9 +344,16 @@ function personLine(a, slackUserMap) {
 
 function personBlock(a, byName, slackUserMap) {
   const person = byName[a.name];
+  let text = personLine(a, slackUserMap);
+
+  const subline = person && (person.title || person.go_to_for)
+    ? [person.title, person.go_to_for].filter(Boolean).join(' · ')
+    : null;
+  if (subline) text += `\n_${subline}_`;
+
   const block = {
     type: 'section',
-    text: { type: 'mrkdwn', text: personLine(a, slackUserMap) },
+    text: { type: 'mrkdwn', text },
   };
   if (person && person.photo_url) {
     block.accessory = { type: 'image', image_url: person.photo_url, alt_text: a.name };
