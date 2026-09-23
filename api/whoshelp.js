@@ -167,50 +167,173 @@ function fmtTime(d) {
 // (clickable, opens their profile card with a Message button). Requires the
 // users:read scope — if that's not granted yet, this just returns {} and
 // names render as plain bold text instead of failing the whole request.
+// Common nicknames — lets "Victoria Kuhr" in the sheet resolve to a Slack
+// profile literally named "Tori Kuhr". Grouped so any two names in the same
+// group are treated as equivalent.
+const NICKNAME_GROUPS = [
+  ['victoria', 'tori', 'vicky', 'vicki'],
+  ['robert', 'rob', 'bob', 'bobby'],
+  ['william', 'will', 'bill', 'billy'],
+  ['elizabeth', 'liz', 'beth', 'lizzie', 'eliza', 'betsy'],
+  ['michael', 'mike', 'mikey'],
+  ['jennifer', 'jen', 'jenny'],
+  ['alexander', 'alex'],
+  ['alexandra', 'alex', 'lexi', 'sasha'],
+  ['nicholas', 'nick'],
+  ['christopher', 'chris'],
+  ['daniel', 'dan', 'danny'],
+  ['matthew', 'matt'],
+  ['andrew', 'andy', 'drew'],
+  ['jonathan', 'jon', 'jonny'],
+  ['samuel', 'sam'],
+  ['benjamin', 'ben', 'benji'],
+  ['katherine', 'kate', 'katie', 'kathy'],
+  ['catherine', 'kate', 'katie', 'cathy'],
+  ['jessica', 'jess', 'jessie'],
+  ['amanda', 'mandy'],
+  ['timothy', 'tim'],
+  ['anthony', 'tony'],
+  ['patricia', 'pat', 'patty', 'tricia'],
+  ['margaret', 'maggie', 'meg', 'peggy'],
+  ['joseph', 'joe', 'joey'],
+  ['charles', 'charlie', 'chuck'],
+  ['richard', 'rick', 'ricky'],
+  ['thomas', 'tom', 'tommy'],
+  ['james', 'jim', 'jimmy'],
+  ['edward', 'ed', 'eddie', 'ted'],
+  ['susan', 'sue', 'susie'],
+  ['deborah', 'deb', 'debbie'],
+  ['rebecca', 'becky', 'becca'],
+  ['stephanie', 'steph'],
+  ['gabriel', 'gabe'],
+  ['nathaniel', 'nate'],
+  ['zachary', 'zach'],
+  ['jacqueline', 'jackie'],
+  ['cynthia', 'cindy'],
+  ['joshua', 'josh'],
+  ['jacob', 'jake'],
+  ['peter', 'pete'],
+  ['patrick', 'pat'],
+  ['gregory', 'greg'],
+  ['kenneth', 'ken', 'kenny'],
+  ['ronald', 'ron', 'ronnie'],
+  ['raymond', 'ray'],
+  ['lawrence', 'larry'],
+  ['frederick', 'fred', 'freddie'],
+  ['theodore', 'ted', 'teddy'],
+  ['douglas', 'doug'],
+];
+const NICKNAME_GROUP_ID = {};
+NICKNAME_GROUPS.forEach((group, i) => group.forEach((n) => { NICKNAME_GROUP_ID[n] = i; }));
+function firstNamesEquivalent(a, b) {
+  if (a === b) return true;
+  return NICKNAME_GROUP_ID[a] !== undefined && NICKNAME_GROUP_ID[a] === NICKNAME_GROUP_ID[b];
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (m === 0) return n;
+  if (n === 0) return m;
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1]
+        ? dp[i - 1][j - 1]
+        : 1 + Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+    }
+  }
+  return dp[m][n];
+}
+
 async function fetchSlackUserMap() {
   const token = process.env.SLACK_BOT_TOKEN;
-  if (!token) return { byFullName: {}, bySurname: {} };
+  const empty = { byFullName: {}, bySurname: {}, members: [] };
+  if (!token) return empty;
+
   try {
-    const resp = await fetch('https://slack.com/api/users.list?limit=200', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await resp.json();
-    if (!data.ok) return { byFullName: {}, bySurname: {} };
+    // Paginate through the full workspace directory — a single 200-person
+    // page silently missed anyone past it, which is why some exact-name
+    // matches (not just nickname cases) were failing.
+    let rawMembers = [];
+    let cursor = '';
+    let pages = 0;
+    do {
+      const url = `https://slack.com/api/users.list?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`;
+      const resp = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+      const data = await resp.json();
+      if (!data.ok) break;
+      rawMembers = rawMembers.concat(data.members || []);
+      cursor = (data.response_metadata && data.response_metadata.next_cursor) || '';
+      pages++;
+    } while (cursor && pages < 10);
 
     const byFullName = {};
     const surnameCounts = {};
     const surnameId = {};
-    (data.members || []).forEach((m) => {
+    const members = [];
+
+    rawMembers.forEach((m) => {
       const real = (m.profile && (m.profile.real_name || m.profile.display_name)) || m.real_name || '';
       if (!real) return;
-      const norm = real.trim().toLowerCase();
+      const norm = real.trim().toLowerCase().replace(/\s+/g, ' ');
+      const parts = norm.split(' ');
+      const first = parts[0];
+      const last = parts[parts.length - 1];
       byFullName[norm] = m.id;
-      const parts = norm.split(/\s+/);
-      const surname = parts[parts.length - 1];
-      surnameCounts[surname] = (surnameCounts[surname] || 0) + 1;
-      surnameId[surname] = m.id;
+      surnameCounts[last] = (surnameCounts[last] || 0) + 1;
+      surnameId[last] = m.id;
+      members.push({ norm, first, last, id: m.id });
     });
-    // Only keep surnames that belong to exactly one person workspace-wide —
-    // this is what lets "Victoria Kuhr" in the sheet resolve to a Slack
-    // profile actually named "Tori Kuhr" (a nickname mismatch), without
-    // risking a wrong match when a surname is shared by multiple people.
+
     const bySurname = {};
     Object.keys(surnameCounts).forEach((s) => {
       if (surnameCounts[s] === 1) bySurname[s] = surnameId[s];
     });
 
-    return { byFullName, bySurname };
+    return { byFullName, bySurname, members };
   } catch {
-    return { byFullName: {}, bySurname: {} };
+    return empty;
   }
 }
 
 function lookupSlackId(name, slackUserMap) {
-  const full = name.trim().toLowerCase();
+  const full = name.trim().toLowerCase().replace(/\s+/g, ' ');
   if (slackUserMap.byFullName[full]) return slackUserMap.byFullName[full];
-  const parts = full.split(/\s+/);
-  const surname = parts[parts.length - 1];
-  return slackUserMap.bySurname[surname] || null;
+
+  const parts = full.split(' ');
+  const first = parts[0];
+  const last = parts[parts.length - 1];
+
+  // Same surname + matching or nickname-equivalent first name — safer than
+  // a bare surname match since it still works when a surname isn't unique.
+  const sameSurname = slackUserMap.members.filter((m) => m.last === last);
+  const nicknameMatches = sameSurname.filter((m) => firstNamesEquivalent(m.first, first));
+  if (nicknameMatches.length === 1) return nicknameMatches[0].id;
+
+  // Surname alone, only when it belongs to exactly one person company-wide.
+  if (slackUserMap.bySurname[last]) return slackUserMap.bySurname[last];
+
+  // Last resort: closest full-name spelling match — only accepted if it's a
+  // clear, unambiguous winner (small distance, and meaningfully closer than
+  // the next-best candidate), so a genuine uncertainty never guesses wrong.
+  let best = null;
+  let bestDist = Infinity;
+  let secondDist = Infinity;
+  slackUserMap.members.forEach((m) => {
+    const d = levenshtein(full, m.norm);
+    if (d < bestDist) {
+      secondDist = bestDist;
+      bestDist = d;
+      best = m;
+    } else if (d < secondDist) {
+      secondDist = d;
+    }
+  });
+  if (best && bestDist <= 2 && secondDist - bestDist >= 2) return best.id;
+
+  return null;
 }
 
 function personLine(a, slackUserMap) {
@@ -259,18 +382,40 @@ function buildResponse(query, annotated, byName, slackUserMap) {
   return { text: fallbackText, blocks };
 }
 
+// Common short-form terms that would otherwise get lost — "T&E" splits into
+// single letters and gets discarded by the length filter below, leaving the
+// query with nothing to search on.
+const ABBREVIATION_EXPANSIONS = [
+  [/\bt\s*&\s*e\b/g, 'travel expense expenses reimbursement'],
+  [/\bhr\b/g, 'human resources hr'],
+  [/\bit\b/g, 'information technology it tech support'],
+  [/\bpr\b/g, 'public relations pr'],
+];
+
+function expandAbbreviations(text) {
+  let t = text.toLowerCase();
+  ABBREVIATION_EXPANSIONS.forEach(([pattern, expansion]) => {
+    t = t.replace(pattern, expansion);
+  });
+  return t;
+}
+
 function tokenize(text) {
-  return (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter((w) => w.length > 2 && !STOPWORDS.has(w));
+  const expanded = expandAbbreviations(text);
+  return (expanded.match(/[a-z0-9]+/g) || []).filter((w) => w.length > 1 && !STOPWORDS.has(w));
 }
 
 // First pass: keyword overlap against each person's go_to_for/teams/bio text.
+// Matches on whole tokens (not substrings) so short words like "hr" or "it"
+// don't false-positive match inside unrelated longer words.
 function keywordMatch(query, people) {
   const tokens = tokenize(query);
   if (!tokens.length) return [];
 
   const scored = people.map((p) => {
-    const haystack = `${p.go_to_for} ${p.teams.join(' ')} ${p.bio}`.toLowerCase();
-    const score = tokens.reduce((s, t) => s + (haystack.includes(t) ? 1 : 0), 0);
+    const haystackText = `${p.go_to_for} ${p.teams.join(' ')} ${p.bio}`;
+    const haystackTokens = new Set(tokenize(haystackText));
+    const score = tokens.reduce((s, t) => s + (haystackTokens.has(t) ? 1 : 0), 0);
     return { p, score };
   }).filter((x) => x.score > 0);
 
@@ -319,7 +464,57 @@ async function claudeMatch(query, people) {
   }
 }
 
+// Detects "who's on the X team" style questions and pulls the answer
+// directly from each person's structured `teams` tags, rather than the
+// fuzzy text search — which was wrongly sweeping in anyone whose go_to_for
+// text happened to *mention* a team name (e.g. a business-side person doing
+// Gulf-market sponsorships) alongside the actual Gulf editorial team.
+function extractTeamQuery(query) {
+  const q = query.toLowerCase();
+  const patterns = [
+    /\bwho\s+(?:works?|is|are)\s+(?:in|on)\s+(?:the\s+)?([a-z0-9&,\s]+?)\s*team\b/,
+    /\bwho(?:'s| is| are)\s+on\s+(?:the\s+)?([a-z0-9&,\s]+?)\s*team\b/,
+    /\b(?:members?|people)\s+(?:of|in|on)\s+(?:the\s+)?([a-z0-9&,\s]+?)\s*team\b/,
+    /\bwho\s+is\s+on\s+([a-z0-9&,\s]+?)\s*$/,
+  ];
+  for (const p of patterns) {
+    const m = q.match(p);
+    if (m && m[1] && m[1].trim()) return m[1].trim();
+  }
+  return null;
+}
+
+function matchByTeam(query, people) {
+  const teamQuery = extractTeamQuery(query);
+  if (!teamQuery) return null;
+
+  const allTeams = new Set();
+  people.forEach((p) => p.teams.forEach((t) => allTeams.add(t)));
+
+  let matchedTeam = null;
+  for (const t of allTeams) {
+    if (t.toLowerCase() === teamQuery) { matchedTeam = t; break; }
+  }
+  if (!matchedTeam) {
+    for (const t of allTeams) {
+      if (t.toLowerCase().includes(teamQuery) || teamQuery.includes(t.toLowerCase())) {
+        matchedTeam = t;
+        break;
+      }
+    }
+  }
+  if (!matchedTeam) return null;
+
+  const members = people.filter((p) => p.teams.some((t) => t.toLowerCase() === matchedTeam.toLowerCase()));
+  if (!members.length) return null;
+
+  return members.map((p) => ({ name: p.name, reason: `${matchedTeam} team` }));
+}
+
 async function findMatches(query, people) {
+  const teamMatches = matchByTeam(query, people);
+  if (teamMatches && teamMatches.length) return teamMatches.slice(0, 15);
+
   const isDesign = isDesignQuery(query);
   const fellows = isDesign ? fellowsMatch(people) : [];
   const direct = keywordMatch(query, people);
