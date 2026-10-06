@@ -1,0 +1,33 @@
+name: Run news tracker
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC. Adjust the cron expression to change timing —
+    # e.g. '0 6,14 * * *' would run twice a day (06:00 and 14:00 UTC).
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab, no Colab needed
+
+permissions:
+  contents: write  # needed so the script can commit updated JSON files back to this repo
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install feedparser deep-translator requests
+
+      - name: Run tracker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python news_tracker_optimized.py
