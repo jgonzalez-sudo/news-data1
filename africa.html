@@ -91,6 +91,8 @@
   .nt-suggest-link { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--muted); }
   .nt-suggest-link:hover { color: #D97757; border-bottom-color: #D97757; }
   .nt-suggest-block { margin-bottom: 4px; }
+  .nt-src { font-family: var(--sans); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .nt-exec .nt-src { color: #c9c7a6; }
 
   .nt-region { margin-bottom: 26px; }
   .nt-region-head { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 12px; }
@@ -168,6 +170,30 @@
     return str.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
   }
 
+  const SOURCE_NAMES = {
+    'reuters.com': 'Reuters', 'apnews.com': 'AP', 'afp.com': 'AFP', 'bloomberg.com': 'Bloomberg',
+    'bbc.com': 'BBC', 'bbc.co.uk': 'BBC', 'theguardian.com': 'The Guardian', 'guardian.ng': 'Guardian Nigeria',
+    'mg.co.za': 'Mail & Guardian', 'allafrica.com': 'AllAfrica', 'africanews.com': 'Africanews',
+    'ft.com': 'FT', 'nytimes.com': 'NYT', 'wsj.com': 'WSJ', 'economist.com': 'The Economist',
+    'aljazeera.com': 'Al Jazeera', 'dw.com': 'DW', 'france24.com': 'France24',
+    'theafricareport.com': 'The Africa Report', 'jeuneafrique.com': 'Jeune Afrique',
+  };
+  function sourceFromUrl(url) {
+    try {
+      const host = new URL(url).hostname.toLowerCase();
+      for (const d in SOURCE_NAMES) { if (host === d || host.endsWith('.' + d)) return SOURCE_NAMES[d]; }
+      const parts = host.split('.');
+      const base = (parts.length >= 3 && ['co', 'com', 'org', 'gov', 'ac'].includes(parts[parts.length - 2]))
+        ? parts[parts.length - 3] : (parts[parts.length - 2] || host);
+      return base.charAt(0).toUpperCase() + base.slice(1);
+    } catch (e) { return ''; }
+  }
+  function srcHtml(item) {
+    if (!item || typeof item !== 'object') return '';
+    const label = item.source || (item.url ? sourceFromUrl(item.url) : '');
+    return label ? ` <span class="nt-src">· ${escapeHtml(label)}</span>` : '';
+  }
+
   function timeAgo(iso) {
     try {
       const diffMs = Date.now() - new Date(iso).getTime();
@@ -194,7 +220,7 @@
     execList.innerHTML = items.map(s => {
       const headline = escapeHtml(s.headline || s);
       const url = s.url ? escapeHtml(s.url) : '#';
-      return `<li><a href="${url}" target="_blank" rel="noopener">${headline}</a></li>`;
+      return `<li><a href="${url}" target="_blank" rel="noopener">${headline}</a>${srcHtml(s)}</li>`;
     }).join('');
     execBox.style.display = 'block';
   }
@@ -220,7 +246,7 @@
           <div class="nt-country-name">${escapeHtml(country)}${checked ? ' · ' + timeAgo(checked) : ''}</div>`;
         stories.forEach(s => {
           html += `<div class="nt-story">
-            <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.headline || s.title)}</a>
+            <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.headline || s.title)}</a>${srcHtml(s)}
           </div>`;
         });
         html += `</div>`;
@@ -243,7 +269,7 @@
     const cb = brief.continental_briefing || {};
     const itemHtml = (i) => {
       if (i && typeof i === 'object' && i.url) {
-        return `<a href="${escapeHtml(i.url)}" target="_blank" rel="noopener" class="nt-suggest-link">${escapeHtml(i.text || 'Untitled')}</a>`;
+        return `<a href="${escapeHtml(i.url)}" target="_blank" rel="noopener" class="nt-suggest-link">${escapeHtml(i.text || 'Untitled')}</a>${srcHtml(i)}`;
       }
       return escapeHtml((i && i.text) || i);
     };
