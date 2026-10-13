@@ -193,7 +193,11 @@ function buildReply(text, radar, isPublic) {
 }
 
 // ---------- handler ----------
-async function statusPage(res) {
+const STARTED_AT = new Date().toISOString();
+const RECENT = [];              // last few /news attempts seen by THIS server instance (shown at ?debug=1)
+const SLACK_DEADLINE_MS = 2600; // Slack gives up at 3s, so answer with something readable before then
+
+async function statusPage(req, res) {
   const info = {
     ok: true,
     signing_secret_configured: Boolean(process.env.NEWS_RADAR_SIGNING_SECRET),
@@ -208,47 +212,61 @@ async function statusPage(res) {
   } catch (e) {
     info.radar = { reachable: false, error: String(e && e.message) };
   }
+  let debug = false;
+  try { debug = new URL(req.url || '', 'http://x').searchParams.get('debug') === '1'; } catch (e) { /* no url */ }
+  if (debug) {
+    info.instance_started_at = STARTED_AT;
+    info.recent_attempts = RECENT;
+    info.note = 'Each server instance keeps its own list. If it is empty right after you ran /news, the request did not reach this instance.';
+  }
   res.setHeader('Cache-Control', 'no-store');
   return res.status(200).json(info);
 }
 
-async function handler(req, res) {
-  if (req.method === 'GET') return statusPage(res);
-  if (req.method !== 'POST') return res.status(405).send('Method not allowed');
-
+async function handle(req, attempt) {
   const secret = process.env.NEWS_RADAR_SIGNING_SECRET;
   if (!secret) {
+    attempt.outcome = 'signing secret missing';
     console.error('slack-news: NEWS_RADAR_SIGNING_SECRET is not set on the Vercel project that serves this address');
-    return res.status(500).send('NEWS_RADAR_SIGNING_SECRET is not configured');
+    return { status: 500, text: 'NEWS_RADAR_SIGNING_SECRET is not configured' };
   }
 
+  attempt.stage = 'reading-body';
   const { candidates, source } = await readBody(req);
+  attempt.body_source = source;
+
+  attempt.stage = 'verifying-signature';
   const ts = req.headers['x-slack-request-timestamp'];
   if (!ts || !req.headers['x-slack-signature']) {
+    attempt.outcome = 'no Slack signature headers';
     console.error('slack-news: request has no Slack signature headers');
-    return res.status(401).send('Invalid signature');
+    return { status: 401, text: 'Invalid signature' };
   }
   if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
+    attempt.outcome = 'timestamp more than 5 minutes off';
     console.error('slack-news: request timestamp is more than 5 minutes off');
-    return res.status(401).send('Invalid signature');
+    return { status: 401, text: 'Invalid signature' };
   }
   const raw = verifyCandidates(candidates, req.headers, secret);
   if (!raw) {
+    attempt.outcome = `signature did not match (${candidates.length} candidate(s) tried)`;
     console.error(`slack-news: signature did not match (body source: ${source}, ${candidates.length} candidate(s)). Check NEWS_RADAR_SIGNING_SECRET is the one from THIS Slack app.`);
-    return res.status(401).send('Invalid signature');
+    return { status: 401, text: 'Invalid signature' };
   }
   console.log(`slack-news: verified (body source: ${source})`);
 
   const params = new URLSearchParams(raw);
   const expectedTeam = process.env.NEWS_RADAR_TEAM_ID;
   if (expectedTeam && params.get('team_id') !== expectedTeam) {
-    return res.status(200).json(reply('This command is only available to Semafor workspace members.', null, false));
+    attempt.outcome = 'wrong workspace';
+    return { status: 200, json: reply('This command is only available to Semafor workspace members.', null, false) };
   }
 
   let text = params.get('text') || '';
   const isPublic = /\bpublic\b/i.test(text);
   text = text.replace(/\bpublic\b/gi, ' ');
 
+  attempt.stage = 'loading-radar';
   try {
     const botToken = process.env.NEWS_RADAR_BOT_TOKEN;
     const [radarRes, member] = await Promise.all([
@@ -256,17 +274,62 @@ async function handler(req, res) {
       botToken ? isFullMember(params.get('user_id'), botToken) : Promise.resolve(true),
     ]);
     if (!member) {
-      return res.status(200).json(reply('This command is only available to full Semafor workspace members.', null, false));
+      attempt.outcome = 'guest or bot refused';
+      return { status: 200, json: reply('This command is only available to full Semafor workspace members.', null, false) };
     }
     if (!radarRes.ok) throw new Error('radar.json HTTP ' + radarRes.status);
     const radar = await radarRes.json();
-    return res.status(200).json(buildReply(text, radar, isPublic));
+    attempt.outcome = 'answered';
+    return { status: 200, json: buildReply(text, radar, isPublic) };
   } catch (err) {
+    attempt.outcome = 'radar or membership check failed: ' + (err && err.message);
     console.error('slack-news error:', err && err.message);
-    return res.status(200).json(reply("Sorry, I couldn't load the news radar just now. Try again in a minute.", null, false));
+    return { status: 200, json: reply("Sorry, I couldn't load the news radar just now. Try again in a minute.", null, false) };
   }
+}
+
+async function handler(req, res) {
+  if (req.method === 'GET') return statusPage(req, res);
+  if (req.method !== 'POST') return res.status(405).send('Method not allowed');
+
+  const attempt = {
+    at: new Date().toISOString(), stage: 'start', outcome: 'pending',
+    content_type: req.headers['content-type'] || null,
+    content_length: req.headers['content-length'] || null,
+    has_signature: Boolean(req.headers['x-slack-signature']),
+  };
+  RECENT.unshift(attempt);
+  if (RECENT.length > 10) RECENT.length = 10;
+
+  const t0 = Date.now();
+  let timer;
+  const deadline = new Promise((resolve) => {
+    timer = setTimeout(() => resolve({
+      status: 200, timedOut: true,
+      json: reply(`The News Radar got stuck at the step "${attempt.stage}". Please tell whoever built this app.`, null, false),
+    }), SLACK_DEADLINE_MS);
+  });
+
+  let result;
+  try {
+    result = await Promise.race([handle(req, attempt), deadline]);
+  } catch (err) {
+    attempt.outcome = 'crashed: ' + (err && err.message);
+    console.error('slack-news crashed:', err && err.stack);
+    result = { status: 200, json: reply(`Sorry, something went wrong on my side (step "${attempt.stage}").`, null, false) };
+  }
+  clearTimeout(timer);
+  if (result.timedOut) {
+    attempt.outcome = `timed out at step ${attempt.stage}`;
+    console.error(`slack-news: timed out at step "${attempt.stage}"`);
+  } else {
+    attempt.stage = 'done';
+  }
+  attempt.status = result.status;
+  attempt.ms = Date.now() - t0;
+  return result.json ? res.status(result.status).json(result.json) : res.status(result.status).send(result.text);
 }
 
 module.exports = handler;
 module.exports.config = { api: { bodyParser: false } }; // we need the raw body to verify Slack's signature
-module.exports._internal = { matchGroups, verifySlack, buildReply, helpReply, candidateBodies, readBody };
+module.exports._internal = { matchGroups, verifySlack, verifyCandidates, buildReply, helpReply, candidateBodies, readBody, isFullMember, RADAR_URL };
