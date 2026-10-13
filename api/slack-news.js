@@ -69,18 +69,48 @@ function verifySlack(rawBody, headers, secret) {
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
-async function readRaw(req) {
-  if (typeof req.body === 'string' && req.body) return req.body;
+// Slack signs the exact bytes it sent. Different form encoders disagree on a few
+// characters (space as + or %20, and whether * ~ ! ' ( ) are escaped), so if we
+// only get a parsed body we try each variant. A forged request still can't pass:
+// every candidate has to match the HMAC, which needs the signing secret.
+function encodeVariant(value, o) {
+  let e = encodeURIComponent(String(value));
+  if (o.punct) e = e.replace(/[!'()]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+  if (o.star) e = e.replace(/\*/g, '%2A');
+  if (o.tilde) e = e.replace(/~/g, '%7E');
+  if (o.plus) e = e.replace(/%20/g, '+');
+  return e;
+}
+
+function candidateBodies(parsed) {
+  const pairs = Object.entries(parsed).flatMap(([k, v]) => (Array.isArray(v) ? v.map((x) => [k, x]) : [[k, v]]));
+  const out = new Set();
+  for (const plus of [true, false]) for (const star of [false, true]) for (const tilde of [false, true]) for (const punct of [true, false]) {
+    const o = { plus, star, tilde, punct };
+    out.add(pairs.map(([k, v]) => `${encodeVariant(k, o)}=${encodeVariant(v, o)}`).join('&'));
+  }
+  return [...out];
+}
+
+async function readBody(req) {
+  // Read the raw stream BEFORE touching req.body: on some platforms reading
+  // req.body parses and consumes the stream, losing the exact bytes.
   const chunks = [];
   try {
     for await (const c of req) chunks.push(Buffer.isBuffer(c) ? c : Buffer.from(c));
   } catch (e) { /* stream already consumed */ }
   const raw = Buffer.concat(chunks).toString('utf8');
-  if (raw) return raw;
-  // If the platform pre-parsed the form body, rebuild it. The signature check
-  // still has to pass, so this can't let a forged request through.
-  if (req.body && typeof req.body === 'object') return new URLSearchParams(req.body).toString();
-  return '';
+  if (raw) return { candidates: [raw], source: 'stream' };
+  const b = req.body;
+  if (typeof b === 'string' && b) return { candidates: [b], source: 'body-string' };
+  if (Buffer.isBuffer(b) && b.length) return { candidates: [b.toString('utf8')], source: 'body-buffer' };
+  if (b && typeof b === 'object') return { candidates: candidateBodies(b), source: 'body-parsed' };
+  return { candidates: [], source: 'empty' };
+}
+
+function verifyCandidates(candidates, headers, secret) {
+  for (const c of candidates) if (verifySlack(c, headers, secret)) return c;
+  return null;
 }
 
 async function isFullMember(userId, token) {
@@ -162,14 +192,51 @@ function buildReply(text, radar, isPublic) {
 }
 
 // ---------- handler ----------
+async function statusPage(res) {
+  const info = {
+    ok: true,
+    signing_secret_configured: Boolean(process.env.SLACK_SIGNING_SECRET),
+    team_id_configured: Boolean(process.env.SLACK_TEAM_ID),
+    bot_token_configured: Boolean(process.env.SLACK_BOT_TOKEN),
+    radar: null,
+  };
+  try {
+    const r = await fetch(RADAR_URL + '?t=' + Date.now(), { signal: AbortSignal.timeout(2500) });
+    const j = r.ok ? await r.json() : {};
+    info.radar = { reachable: r.ok, generated_at: j.generated_at || null, groups: Object.keys(j.groups || {}) };
+  } catch (e) {
+    info.radar = { reachable: false, error: String(e && e.message) };
+  }
+  res.setHeader('Cache-Control', 'no-store');
+  return res.status(200).json(info);
+}
+
 async function handler(req, res) {
+  if (req.method === 'GET') return statusPage(res);
   if (req.method !== 'POST') return res.status(405).send('Method not allowed');
 
   const secret = process.env.SLACK_SIGNING_SECRET;
-  if (!secret) return res.status(500).send('SLACK_SIGNING_SECRET is not configured');
+  if (!secret) {
+    console.error('slack-news: SLACK_SIGNING_SECRET is not set on the Vercel project that serves this address');
+    return res.status(500).send('SLACK_SIGNING_SECRET is not configured');
+  }
 
-  const raw = await readRaw(req);
-  if (!verifySlack(raw, req.headers, secret)) return res.status(401).send('Invalid signature');
+  const { candidates, source } = await readBody(req);
+  const ts = req.headers['x-slack-request-timestamp'];
+  if (!ts || !req.headers['x-slack-signature']) {
+    console.error('slack-news: request has no Slack signature headers');
+    return res.status(401).send('Invalid signature');
+  }
+  if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
+    console.error('slack-news: request timestamp is more than 5 minutes off');
+    return res.status(401).send('Invalid signature');
+  }
+  const raw = verifyCandidates(candidates, req.headers, secret);
+  if (!raw) {
+    console.error(`slack-news: signature did not match (body source: ${source}, ${candidates.length} candidate(s)). Check SLACK_SIGNING_SECRET is the one from THIS Slack app.`);
+    return res.status(401).send('Invalid signature');
+  }
+  console.log(`slack-news: verified (body source: ${source})`);
 
   const params = new URLSearchParams(raw);
   const expectedTeam = process.env.SLACK_TEAM_ID;
@@ -201,4 +268,4 @@ async function handler(req, res) {
 
 module.exports = handler;
 module.exports.config = { api: { bodyParser: false } }; // we need the raw body to verify Slack's signature
-module.exports._internal = { matchGroups, verifySlack, buildReply, helpReply };
+module.exports._internal = { matchGroups, verifySlack, buildReply, helpReply, candidateBodies, readBody };
