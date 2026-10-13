@@ -1,8 +1,9 @@
 // Slack /news slash command: answers from the saved radar.json, no AI call.
 // Env vars (set on the Vercel project that serves the site):
-//   SLACK_SIGNING_SECRET  required. Slack app > Basic Information > Signing Secret
-//   SLACK_TEAM_ID         optional. Only allow this workspace (blocks Slack Connect users)
-//   SLACK_BOT_TOKEN       optional. If set, guests and bots are rejected (needs users:read)
+// Names are prefixed NEWS_RADAR_ so they can't clash with other Slack tools on the same Vercel project.
+//   NEWS_RADAR_SIGNING_SECRET  required. Slack app > Basic Information > Signing Secret
+//   NEWS_RADAR_TEAM_ID         optional. Only allow this workspace (blocks Slack Connect users)
+//   NEWS_RADAR_BOT_TOKEN       optional. If set, guests and bots are rejected (needs users:read)
 const crypto = require('crypto');
 
 const RADAR_URL = 'https://raw.githubusercontent.com/jgonzalez-sudo/news-data1/main/radar.json';
@@ -195,9 +196,9 @@ function buildReply(text, radar, isPublic) {
 async function statusPage(res) {
   const info = {
     ok: true,
-    signing_secret_configured: Boolean(process.env.SLACK_SIGNING_SECRET),
-    team_id_configured: Boolean(process.env.SLACK_TEAM_ID),
-    bot_token_configured: Boolean(process.env.SLACK_BOT_TOKEN),
+    signing_secret_configured: Boolean(process.env.NEWS_RADAR_SIGNING_SECRET),
+    team_id_configured: Boolean(process.env.NEWS_RADAR_TEAM_ID),
+    bot_token_configured: Boolean(process.env.NEWS_RADAR_BOT_TOKEN),
     radar: null,
   };
   try {
@@ -215,10 +216,10 @@ async function handler(req, res) {
   if (req.method === 'GET') return statusPage(res);
   if (req.method !== 'POST') return res.status(405).send('Method not allowed');
 
-  const secret = process.env.SLACK_SIGNING_SECRET;
+  const secret = process.env.NEWS_RADAR_SIGNING_SECRET;
   if (!secret) {
-    console.error('slack-news: SLACK_SIGNING_SECRET is not set on the Vercel project that serves this address');
-    return res.status(500).send('SLACK_SIGNING_SECRET is not configured');
+    console.error('slack-news: NEWS_RADAR_SIGNING_SECRET is not set on the Vercel project that serves this address');
+    return res.status(500).send('NEWS_RADAR_SIGNING_SECRET is not configured');
   }
 
   const { candidates, source } = await readBody(req);
@@ -233,13 +234,13 @@ async function handler(req, res) {
   }
   const raw = verifyCandidates(candidates, req.headers, secret);
   if (!raw) {
-    console.error(`slack-news: signature did not match (body source: ${source}, ${candidates.length} candidate(s)). Check SLACK_SIGNING_SECRET is the one from THIS Slack app.`);
+    console.error(`slack-news: signature did not match (body source: ${source}, ${candidates.length} candidate(s)). Check NEWS_RADAR_SIGNING_SECRET is the one from THIS Slack app.`);
     return res.status(401).send('Invalid signature');
   }
   console.log(`slack-news: verified (body source: ${source})`);
 
   const params = new URLSearchParams(raw);
-  const expectedTeam = process.env.SLACK_TEAM_ID;
+  const expectedTeam = process.env.NEWS_RADAR_TEAM_ID;
   if (expectedTeam && params.get('team_id') !== expectedTeam) {
     return res.status(200).json(reply('This command is only available to Semafor workspace members.', null, false));
   }
@@ -249,7 +250,7 @@ async function handler(req, res) {
   text = text.replace(/\bpublic\b/gi, ' ');
 
   try {
-    const botToken = process.env.SLACK_BOT_TOKEN;
+    const botToken = process.env.NEWS_RADAR_BOT_TOKEN;
     const [radarRes, member] = await Promise.all([
       fetch(RADAR_URL + '?t=' + Date.now(), { signal: AbortSignal.timeout(2000) }),
       botToken ? isFullMember(params.get('user_id'), botToken) : Promise.resolve(true),
