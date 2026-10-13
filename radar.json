@@ -2,14 +2,27 @@
   "groups": {
     "Business": {
       "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-10-13T16:00:40.780687+00:00",
-      "overview": "Business coverage is dominated by the start of Wall Street's Q3 earnings season, with major banks posting mixed results against a backdrop of a deepening chip-stock selloff tied to AI investment fears. Geopolitical risk is also weighing heavily, from fallout over Trump's Russian diesel deal and Kimberly Guilfoyle's ouster as ambassador to Greece, to new worries about French banks amid sovereign bond stress and riots.",
+      "generated_at": "2026-10-13T16:17:21.892233+00:00",
+      "overview": "Markets coverage dominates the business press right now: a deepening AI-chip stock selloff collided with the start of big bank earnings season, while bond yields climbed to multi-decade highs on deficit and inflation worries. Geopolitical shocks — Houthi attacks disrupting Saudi Arabia, a contested US-Russia diesel deal, and simmering Iran tensions — are also rippling through energy markets and corporate travel plans.",
       "stories": [
         {
-          "headline": "Wall Street banks post mixed Q3 results as rates and AI concerns loom",
+          "headline": "AI-chip selloff deepens as Broadcom CEO warns of 'casino' mentality",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-12/stock-market-today-dow-s-p-live-updates",
+          "summary": "A selloff in chipmakers intensified on fears about the sustainability of the AI trade just as Wall Street banks kicked off earnings season, pulling major indexes lower even as some other sectors gained. A selloff in chipmakers deepened on concerns about the sustainability of the artificial-intelligence trade, putting pressure on equity markets as Wall Street banks kicked off the earnings season. Asian markets bore the brunt, with shares of South Korean memory chip makers SK Hynix and Samsung dropping 10.1% and 7.4%, respectively, on Tuesday, pulling the country's benchmark Kospi index down more than 5.4%.",
+          "also_covered_by": [
+            "WSJ",
+            "NYT",
+            "FT",
+            "Forbes",
+            "CNBC"
+          ]
+        },
+        {
+          "headline": "Big banks report mixed Q3 earnings as JPMorgan misses, Goldman beats",
           "outlet": "NYT",
           "url": "https://www.nytimes.com/2026/10/13/business/bank-earnings-jpmorgan-chase-interest-rates.html",
-          "summary": "JPMorgan posted surprisingly spotty results as higher interest rates ate into profits, while Goldman Sachs beat expectations on a surge in equities trading revenue.",
+          "summary": "JPMorgan posted surprisingly weak third-quarter results while Goldman Sachs and Citigroup beat expectations, reflecting a choppy trading environment and the bite of rising interest rates. Forbes reported that JPMorgan Chase posted roughly $27.04 billion in net interest income, though it missed analyst expectations for revenues and net income, while Goldman Sachs recorded a 72% year-over-year surge in equities revenue, reaching $6.44 billion, with investment banking fees also climbing.",
           "also_covered_by": [
             "WSJ",
             "Bloomberg",
@@ -19,64 +32,44 @@
           ]
         },
         {
-          "headline": "Chip stocks tumble further as AI spending fears mount",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/e16f0422-cf75-4cc9-962d-4605e421dc63?syn-25a6b1a6=1",
-          "summary": "A warning from Broadcom's CEO about a 'casino' mentality in AI investing helped send Samsung and SK Hynix sharply lower and drag down the Kospi, as the chipmaker selloff extended into a second day.",
+          "headline": "Rising bond yields signal deepening deficit anxiety",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/13/business/term-premium-bond-yields.html",
+          "summary": "Analysts say investors are demanding a bigger premium to hold government debt, a shift some see as a troubling signal about mounting US debt and deficits. FT separately reported that bond funds are seeing unusually strong demand even amid the rout, as yields hit multi-decade highs.",
           "also_covered_by": [
-            "NYT",
-            "Bloomberg",
-            "CNBC",
-            "WSJ"
+            "FT"
           ]
         },
         {
-          "headline": "White House pushes out Kimberly Guilfoyle as Greece ambassador",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/87a1a5a1-4942-47dd-856a-d9a694f7d2fd?syn-25a6b1a6=1",
-          "summary": "Trump's team asked Guilfoyle to resign after reports she accepted improper gifts and used political connections for financial favors, which she has denied.",
+          "headline": "Houthi pressure on Saudi Arabia disrupts airlines and rattles oil markets",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/world/middle-east/iran-backed-militants-are-tightening-the-screws-on-saudi-arabias-crown-prince-e7b9e789?mod=rss_worldnews",
+          "summary": "Attacks tied to Iran-backed militants are squeezing Crown Prince Mohammed bin Salman's economy, forcing Delta to delay its planned first-ever nonstop US-Saudi route until March and prompting an FAA safety warning for airlines flying over the kingdom.",
           "also_covered_by": [
-            "Axios",
-            "WSJ"
+            "NYT",
+            "CNBC"
           ]
         },
         {
           "headline": "Trump's Russian diesel deal draws bipartisan fire in Congress",
           "outlet": "Washington Post",
           "url": "https://www.washingtonpost.com/business/2026/10/12/administration-agreed-temporarily-roll-back-sanctions-russian-diesel-an-effort-bring-down-fuel-prices/",
-          "summary": "Moderate Republicans joined Democrats in criticizing Trump's agreement with Putin to temporarily roll back sanctions and release Russian diesel to the global market amid a fuel price spike.",
+          "summary": "Moderate Republicans joined Democrats in criticizing the administration's agreement with Putin to temporarily ease sanctions and release Russian diesel to global markets to curb fuel prices.",
           "also_covered_by": [
             "WSJ"
           ]
         },
         {
-          "headline": "Analysts warn widening French riots could spark bank deposit flight",
-          "outlet": "Fortune",
-          "url": "https://fortune.com/2026/10/13/bank-run-france-widening-riots-can-cause-deposit-flight",
-          "summary": "Macquarie analysts cautioned that rising French government bond yields combined with ongoing riots could trigger foreign depositors to pull money from French banks, drawing comparisons to the 2023 Silicon Valley Bank collapse.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Hackers trigger fires and food spoilage in French supermarket cyberattack",
+          "headline": "White House pushes ambassador Kimberly Guilfoyle to resign over gift allegations",
           "outlet": "FT",
-          "url": "https://www.ft.com/content/6908a0ce-ffdd-4ea9-b376-d35d362639f3?syn-25a6b1a6=1",
-          "summary": "A cyberattack on refrigeration systems at hundreds of French supermarkets sent fridge temperatures as high as 80°C, melting equipment and destroying food, raising alarm over food-supply security.",
+          "url": "https://www.ft.com/content/87a1a5a1-4942-47dd-856a-d9a694f7d2fd?syn-25a6b1a6=1",
+          "summary": "Trump had floated firing the US ambassador to Greece after reports she accepted improper gifts, and the White House has now asked her to step down.",
           "also_covered_by": [
-            "CNBC",
-            "Fortune"
-          ]
-        },
-        {
-          "headline": "Rising bond yields reflect growing worries over government debt levels",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/13/business/term-premium-bond-yields.html",
-          "summary": "Some analysts say investors are demanding a higher 'term premium' to hold government debt as borrowing costs climb to multidecade highs, reflecting deepening concern about deficits.",
-          "also_covered_by": [
-            "FT"
+            "WSJ"
           ]
         }
       ],
-      "gaps": "The Information and Puck's news feed focused mainly on media/Hollywood/politics topics rather than core business stories in this window, so little directly relevant business content was found from them beyond general midterm and media-industry coverage.",
+      "gaps": "Puck had no business-relevant items in the feed or search; The Information's search results on AI chip deals were all older than the 48-hour window and not current news.",
       "outlets": [
         "WSJ",
         "Bloomberg",
@@ -174,7 +167,94 @@
         "The Economist"
       ],
       "searches_used": 4
+    },
+    "Africa": {
+      "description": "Africa politics, economy and business coverage.",
+      "generated_at": "2026-10-13T16:18:53.745376+00:00",
+      "overview": "Africa-focused outlets are converging heavily on the Ethiopia-Eritrea/Tigray conflict escalation, alongside major business stories like Dangote's oversubscribed refinery IPO, Microsoft's retreat from its Nairobi engineering hub, and a swirl of debt, mining and governance stories from Zimbabwe, DRC, Morocco and Niger.",
+      "stories": [
+        {
+          "headline": "Ethiopia-Eritrea tensions escalate into open war fears over Tigray",
+          "outlet": "The Africa Report",
+          "url": "https://www.theafricareport.com/433139/as-war-with-ethiopia-looms-how-much-weaponry-does-eritrea-have/",
+          "summary": "With Ethiopian federal forces having retaken Mekelle from the TPLF, analysts are now scrutinizing Eritrea's military capacity amid fears of a broader war, as Asmara and Addis Ababa openly accuse each other of launching hostilities.",
+          "also_covered_by": [
+            "Africa Confidential",
+            "Al Jazeera"
+          ]
+        },
+        {
+          "headline": "Former DRC president Kabila joins forces with Rwanda-backed M23",
+          "outlet": "The Africa Report",
+          "url": "https://www.theafricareport.com/433160/former-drc-president-kabila-forms-new-force-with-m23-armed-group/",
+          "summary": "Joseph Kabila has taken a more direct role in the conflict by joining with the M23 armed group to head a new political-military outfit, deepening the crisis in eastern DRC.",
+          "also_covered_by": [
+            "Africa Confidential"
+          ]
+        },
+        {
+          "headline": "Dangote keeps $49bn refinery IPO open past deadline",
+          "outlet": "The Africa Report",
+          "url": "https://www.theafricareport.com/433163/nigeria-why-dangote-is-keeping-an-oversubscribed-ipo-open/",
+          "summary": "Although just over 3% of the Nigerian refinery is up for sale and already oversubscribed, the offer is being extended to 27 October to build a broader pan-African shareholder base rather than raise more cash.",
+          "also_covered_by": [
+            "TechCabal"
+          ]
+        },
+        {
+          "headline": "Microsoft to close Nairobi engineering centre, hundreds of jobs at risk",
+          "outlet": "TechCabal",
+          "url": "https://techcabal.com/2026/10/13/mircosoft-close-adc-nairobi-kenya/",
+          "summary": "The closure would unwind a flagship project premised on African engineers building globally competitive products without leaving the continent, a blow to Kenya's tech ambitions.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Sanctioned tycoon Tagwirei put in charge of Zimbabwe's investment push",
+          "outlet": "The Africa Report",
+          "url": "https://www.theafricareport.com/433099/zimbabwes-portfolio-problem-can-sanctioned-tycoon-tagwirei-still-woo-investors/",
+          "summary": "President Mnangagwa's appointment of the US-sanctioned businessman Kudakwashe Tagwirei as economic development minister puts him in charge of selling Zimbabwe's investment case, raising questions about how foreign investors will respond.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Niger declares 'exceptional severity' environmental incident after oil blowout",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/13/severe-environmental-incident-declared-in-niger-after-oil-blowout/",
+          "summary": "Authorities confirmed a massive blowout of oil and gas in the country's eastern desert last month has caused a severe environmental crisis.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Morocco's PAM forms governing coalition after election win",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/13/moroccos-pam-party-forms-governing-coalition-with-three-other-parties/",
+          "summary": "New Prime Minister Fatima Ezzahra El Mansouri has announced a coalition bringing together PAM, Istiqlal and other parties to form Morocco's next government.",
+          "also_covered_by": [
+            "Africa Confidential"
+          ]
+        },
+        {
+          "headline": "African debt crisis deepens as IMF prepares World Economic Outlook",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/13/african-debt-crisis-deepens-ahead-of-imf-economic-outlook-report/",
+          "summary": "Ahead of the IMF's flagship outlook release in Bangkok, reporting suggests that behind a headline message of stability lies a sharper fight over mounting African debt burdens.",
+          "also_covered_by": []
+        }
+      ],
+      "gaps": "Mining Weekly and African Business block direct outlet-specific search confirmation of a single lead story for the latest 24-48 hours beyond general site listings (Anglo American's South Africa investment comments and the Top 100 Banks report are the most recent items found, dated slightly earlier than 24-48h). Reuters, AP, FT, NYT, WSJ, BBC provided no Africa-specific feed items in the supplied batch, so their Africa coverage could not be assessed this cycle.",
+      "outlets": [
+        "The Africa Report",
+        "Africanews",
+        "Africa Confidential",
+        "The Continent",
+        "TechCabal",
+        "African Business",
+        "Mining Weekly"
+      ],
+      "not_visible": [
+        "Reuters",
+        "AP"
+      ],
+      "searches_used": 4
     }
   },
-  "generated_at": "2026-10-13T16:03:03.394966+00:00"
+  "generated_at": "2026-10-13T16:18:53.745415+00:00"
 }
