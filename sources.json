@@ -12,7 +12,9 @@
     "bloomberg": {
       "name": "Bloomberg",
       "domain": "bloomberg.com",
-      "feeds": []
+      "feeds": [
+        "https://feeds.bloomberg.com/markets/news.rss"
+      ]
     },
     "nyt": {
       "name": "NYT",
@@ -53,7 +55,11 @@
     "economist": {
       "name": "The Economist",
       "domain": "economist.com",
-      "feeds": []
+      "feeds": [
+        "https://www.economist.com/latest/rss.xml",
+        "https://www.economist.com/business/rss.xml",
+        "https://www.economist.com/finance-and-economics/rss.xml"
+      ]
     },
     "axios": {
       "name": "Axios",
