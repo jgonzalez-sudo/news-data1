@@ -1,14 +1,13 @@
-name: Run news tracker
+name: Run Africa tracker
 
 on:
   schedule:
-    # Runs daily at 06:00 UTC. Adjust the cron expression to change timing —
-    # e.g. '0 6,14 * * *' would run twice a day (06:00 and 14:00 UTC).
+    # Daily at 06:00 UTC. Adjust the cron expression to change the time.
     - cron: '0 6 * * *'
-  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab, no Colab needed
+  workflow_dispatch: {}  # lets you run it by hand from the Actions tab
 
 permissions:
-  contents: write  # needed so the script can commit updated JSON files back to this repo
+  contents: write  # lets the script commit the updated JSON files back to this repo
 
 jobs:
   run-tracker:
@@ -25,9 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install feedparser deep-translator requests
 
-      - name: Run tracker
+      - name: Run Africa tracker
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Your own webhook (the DM you've been testing with)
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: python news_tracker_optimized.py
+          # The Africa team channel. Leave this secret unset until you're happy with the product.
+          SLACK_WEBHOOK_URL_AFRICA_TEAM: ${{ secrets.SLACK_WEBHOOK_URL_AFRICA_TEAM }}
+        run: python news_tracker_optimized.py africa
