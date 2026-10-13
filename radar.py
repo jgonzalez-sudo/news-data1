@@ -30,7 +30,7 @@ MODEL = "claude-sonnet-5"
 API_URL = "https://api.anthropic.com/v1/messages"
 WEB_SEARCH_TOOL = "web_search_20250305"
 MAX_SEARCHES_PER_GROUP = 4
-MAX_TOKENS = 4000
+MAX_TOKENS = 10000
 FEED_WINDOW_HOURS = 48
 MAX_FEED_ITEMS_PER_OUTLET = 8
 
@@ -44,6 +44,8 @@ SYSTEM_PROMPT = """You are a research assistant for newsroom editors at Semafor.
 Rules:
 - Use web search restricted to the allowed outlets, plus the feed items provided. Look for what each outlet is leading with in the last 24-48 hours. Skip anything older.
 - Some outlets block web search. For those, report only what appears in the feed items provided, and never claim to have checked them any other way.
+- Stay on the group's topic. Feed items from general outlets include unrelated stories; ignore those.
+- Use at most 4 searches. Write no commentary before the answer: your final message must be only the JSON object.
 - Rank by newsworthiness for a global news audience: human stakes, major economic or policy moves, cross-border significance, and stories several outlets are converging on. Skip routine items, opinion columns, listicles and lifestyle.
 - Many outlets are paywalled, so you will usually see only headlines and snippets. Write each summary in your own words (one sentence, two at most), based only on what you actually saw. If you only saw a headline, keep the summary modest. Never quote more than a few words.
 - Every url must be copied exactly from a search result or feed item. Never invent or guess URLs, headlines or details.
@@ -84,6 +86,9 @@ def entries_from_parsed(parsed, outlet_name, hours=FEED_WINDOW_HOURS, limit=MAX_
     return items
 
 
+_FEED_CACHE = {}  # url -> items, so a feed shared by several groups is downloaded once per run
+
+
 def collect_feed_items(outlets, timeout=15):
     """Returns (items, report). report maps outlet name -> item count or 'failed'."""
     items, report = [], {}
@@ -96,7 +101,9 @@ def collect_feed_items(outlets, timeout=15):
             got = []
             for url in o["feeds"]:
                 try:
-                    got.extend(entries_from_parsed(feedparser.parse(url), o["name"]))
+                    if url not in _FEED_CACHE:
+                        _FEED_CACHE[url] = entries_from_parsed(feedparser.parse(url), o["name"])
+                    got.extend(_FEED_CACHE[url])
                 except Exception:
                     pass
             report[o["name"]] = len(got) if got else "failed"
@@ -249,7 +256,7 @@ def run_group(registry, group, api_key):
     outlets = own + extra
     all_domains = sorted({o["domain"] for o in outlets})
 
-    feed_items, feed_report = collect_feed_items(own)
+    feed_items, feed_report = collect_feed_items(outlets)
     covered = {i["outlet"] for i in feed_items}
 
     blocks = None
