@@ -45,6 +45,7 @@ Rules:
 - Use web search restricted to the allowed outlets, plus the feed items provided. Look for what each outlet is leading with in the last 24-48 hours. Skip anything older.
 - Some outlets block web search. For those, report only what appears in the feed items provided, and never claim to have checked them any other way.
 - Stay on the group's topic. Feed items from general outlets include unrelated stories; ignore those.
+- Outlets marked state-run or company announcements publish official positions. When you cite one, say so in the summary (for example 'state-run Global Times says...').
 - Use at most 4 searches. Write no commentary before the answer: your final message must be only the JSON object.
 - Rank by newsworthiness for a global news audience: human stakes, major economic or policy moves, cross-border significance, and stories several outlets are converging on. Skip routine items, opinion columns, listicles and lifestyle.
 - Many outlets are paywalled, so you will usually see only headlines and snippets. Write each summary in your own words (one sentence, two at most), based only on what you actually saw. If you only saw a headline, keep the summary modest. Never quote more than a few words.
@@ -140,6 +141,10 @@ def collect_urls(blocks):
 BLOCKED = set()  # domains the search tool told us it can't access (learned during this run)
 
 
+class TruncatedResponse(Exception):
+    pass
+
+
 class BlockedDomains(Exception):
     def __init__(self, domains):
         super().__init__(f"search can't access: {domains}")
@@ -151,8 +156,8 @@ def parse_blocked(message):
     return re.findall(r"""['"]([^'"]+)['"]""", m.group(1)) if m else []
 
 
-def call_claude(api_key, user_msg, domains):
-    payload = {"model": MODEL, "max_tokens": MAX_TOKENS, "system": SYSTEM_PROMPT}
+def call_claude(api_key, user_msg, domains, max_tokens=MAX_TOKENS):
+    payload = {"model": MODEL, "max_tokens": max_tokens, "system": SYSTEM_PROMPT}
     if domains:  # with no searchable domains left, answer from the feed items alone
         payload["tools"] = [{"type": WEB_SEARCH_TOOL, "name": "web_search",
                              "max_uses": MAX_SEARCHES_PER_GROUP, "allowed_domains": domains}]
@@ -192,7 +197,7 @@ def call_claude(api_key, user_msg, domains):
             messages.append({"role": "assistant", "content": blocks})
             continue
         if stop == "max_tokens":
-            raise RuntimeError("Response cut off (hit max_tokens)")
+            raise TruncatedResponse()
         break
     return all_blocks, searches
 
@@ -239,15 +244,27 @@ def filter_stories(stories, seen_urls, domains):
 
 
 # ── one group ───────────────────────────────────────────────────────────────
-def build_user_message(group, outlets, feed_items, to_search, blocked_names):
+def describe(o):
+    return f"{o['name']} ({o['domain']}" + (f", {o['note']}" if o.get("note") else "") + ")"
+
+
+def build_user_message(group, outlets, feed_items, to_search, blocked_names, concise=False):
     lines = [f"Group: {group['name']} - {group['description']}",
-             "Allowed outlets: " + ", ".join(f"{o['name']} ({o['domain']})" for o in outlets),
+             "Allowed outlets: " + ", ".join(describe(o) for o in outlets),
              "", "Feed items already collected (last 48h):"]
     lines += [f"[{i['outlet']}] {i['title']} - {i['snippet']} (URL: {i['url']})" for i in feed_items] or ["(none)"]
     lines += ["", "Outlets with no feed items, so search for them: " + (", ".join(to_search) or "(none)")]
     if blocked_names:
         lines += ["Outlets that block web search (use their feed items only, if any): " + ", ".join(blocked_names)]
+    if concise:
+        lines += ["", "Your previous answer was cut off. Be much shorter: at most 5 stories, one short sentence per summary, omit also_covered_by."]
     return "\n".join(lines)
+
+
+def keyword_pattern(keywords):
+    if not keywords:
+        return None
+    return re.compile(r"\b(?:" + "|".join(re.escape(k) for k in keywords) + r")\b", re.I)
 
 
 def run_group(registry, group, api_key):
@@ -256,17 +273,23 @@ def run_group(registry, group, api_key):
     outlets = own + extra
     all_domains = sorted({o["domain"] for o in outlets})
 
-    feed_items, feed_report = collect_feed_items(outlets)
-    covered = {i["outlet"] for i in feed_items}
+    raw_items, feed_report = collect_feed_items(outlets)
+    seen_feeds = {i["outlet"] for i in raw_items}      # outlets whose feed returned something
+    own_names = {o["name"] for o in own}
+    pattern = keyword_pattern(group.get("keywords"))
+    # An outlet that belongs to the group keeps all its items. The big general outlets
+    # (extras) only contribute items that match the group's topic keywords.
+    feed_items = [i for i in raw_items
+                  if i["outlet"] in own_names or pattern is None or pattern.search(f"{i['title']} {i['snippet']}")]
 
-    blocks = None
-    for _ in range(4):
+    blocks, concise = None, False
+    for _ in range(5):
         search_domains = [d for d in all_domains if d not in BLOCKED]
         blocked_names = [o["name"] for o in outlets if o["domain"] in BLOCKED]
-        to_search = [o["name"] for o in own if o["name"] not in covered and o["domain"] not in BLOCKED]
-        msg = build_user_message(group, outlets, feed_items, to_search, blocked_names)
+        to_search = [o["name"] for o in own if o["name"] not in seen_feeds and o["domain"] not in BLOCKED]
+        msg = build_user_message(group, outlets, feed_items, to_search, blocked_names, concise)
         try:
-            blocks, searches = call_claude(api_key, msg, search_domains)
+            blocks, searches = call_claude(api_key, msg, search_domains, max_tokens=14000 if concise else MAX_TOKENS)
             break
         except BlockedDomains as b:
             new = [d for d in b.domains if d in all_domains and d not in BLOCKED]
@@ -274,6 +297,11 @@ def run_group(registry, group, api_key):
                 raise RuntimeError(f"Search rejected domains we couldn't match: {b.domains}")
             BLOCKED.update(new)
             print(f"  search can't access {', '.join(new)}; using their feeds only")
+        except TruncatedResponse:
+            if concise:
+                raise RuntimeError("Response cut off even in short mode")
+            concise = True
+            print("  response was cut off; retrying in short mode")
     if blocks is None:
         raise RuntimeError("Could not find a searchable set of outlets")
 
@@ -281,9 +309,10 @@ def run_group(registry, group, api_key):
     seen_urls |= {i["url"] for i in feed_items}
     parsed = extract_json(blocks_text(blocks))
     stories, dropped = filter_stories(parsed.get("stories", []), seen_urls, all_domains)
-    not_visible = [o["name"] for o in outlets if o["domain"] in BLOCKED and o["name"] not in covered]
+    not_visible = [o["name"] for o in outlets if o["domain"] in BLOCKED and o["name"] not in seen_feeds]
 
     print(f"  feeds: {feed_report or 'none configured'}")
+    print(f"  feed items kept after topic filter: {len(feed_items)} of {len(raw_items)}")
     print(f"  searches used: {searches}; stories kept: {len(stories)}, dropped (untraceable link): {dropped}")
     if not_visible:
         print(f"  not visible (blocked from search, no feed items): {', '.join(not_visible)}")
