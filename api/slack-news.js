@@ -28,6 +28,15 @@ const ALIASES = {
   'ukraine': 'Europe & Ukraine', 'ukrainian': 'Europe & Ukraine',
   'asia': 'Asia', 'asian': 'Asia',
   'media': 'Media', 'journalism': 'Media',
+  // topical words people use for their beat
+  'iran': 'Gulf & Middle East', 'iranian': 'Gulf & Middle East', 'israel': 'Gulf & Middle East', 'gaza': 'Gulf & Middle East',
+  'saudi': 'Gulf & Middle East', 'saudi arabia': 'Gulf & Middle East', 'uae': 'Gulf & Middle East', 'emirates': 'Gulf & Middle East',
+  'qatar': 'Gulf & Middle East', 'hormuz': 'Gulf & Middle East',
+  'taiwan': 'China', 'xi jinping': 'China', 'hong kong': 'China',
+  'nvidia': 'Tech & AI', 'openai': 'Tech & AI', 'anthropic': 'Tech & AI', 'chips': 'Tech & AI', 'semiconductors': 'Tech & AI', 'chatgpt': 'Tech & AI',
+  'trump': 'US politics', 'senate': 'US politics', 'election': 'US politics', 'elections': 'US politics', 'midterms': 'US politics',
+  'supreme court': 'US politics', 'republicans': 'US politics', 'democrats': 'US politics',
+  'hollywood': 'Media', 'streaming': 'Media', 'newsroom': 'Media', 'newsrooms': 'Media', 'publishers': 'Media',
 };
 const ALL_GROUPS = [...new Set(Object.values(ALIASES))];
 
