@@ -1,678 +1,532 @@
-{
-  "groups": {
-    "Business": {
-      "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-10-14T10:58:11.011758+00:00",
-      "overview": "Business and general-news outlets are dominated by Tuesday's twin bank storylines — a record Treasury penalty against Bank of America and a cautious bank-earnings season — alongside escalating Middle East violence hitting Saudi Arabia's oil and aviation sectors, Starlink's disruption of Ukraine's war effort, and mounting signs that the AI investment boom may be cresting. China's blockbuster export data and Trump's renewed push to oust a Fed governor round out the macro picture.",
-      "stories": [
-        {
-          "headline": "Bank of America hit with $1.2 billion fine for money-laundering failures",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/13/business/bank-of-america-money-laundering-fine.html",
-          "summary": "Federal regulators penalized Bank of America more than $1.2 billion, with Treasury's financial-crimes unit saying the bank had waved through billions in suspicious transactions without proper care; Bank of America admitted it willfully violated the Bank Secrecy Act by failing to report over $5 billion in suspicious activity, much of it tied to Chinese money-laundering networks and border-area risk.",
-          "also_covered_by": [
-            "CNBC",
-            "BBC",
-            "Bloomberg",
-            "Washington Post",
-            "WSJ"
-          ]
-        },
-        {
-          "headline": "Houthi strike hits Saudi Aramco headquarters as conflict with Riyadh escalates",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/middle-east/houthi-strike-hits-building-at-saudi-aramco-headquarters-a436de59?mod=rss_worldnews",
-          "summary": "An Iran-backed Houthi strike hit a building at Saudi Aramco's headquarters, following earlier strikes on Riyadh's international airport, in what the Journal describes as an expansion of the conflict between Saudi Arabia and the militants; FT's military briefing notes the kingdom has struggled to keep pace with the rebels' tactics despite being one of the world's largest arms buyers, while CNBC reports the airport attacks are disrupting airlines and forcing carriers like Delta to delay new Saudi routes.",
-          "also_covered_by": [
-            "FT",
-            "CNBC",
-            "The Economist"
-          ]
-        },
-        {
-          "headline": "Starlink speed limits are disrupting Ukraine's military operations",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/europe/ukraine-says-new-starlink-speed-limit-is-disrupting-its-attacks-79225e19?mod=rss_worldnews",
-          "summary": "Ukrainian officials say new speed limits imposed on Starlink terminals have blunted Kyiv's ability to strike Russian targets and intercept drones; FT reports Kyiv was \"blindsided\" by the restrictions, which come as Moscow ignores Trump's proposed energy ceasefire.",
-          "also_covered_by": [
-            "FT"
-          ]
-        },
-        {
-          "headline": "Rising rates cloud mood on Wall Street despite strong bank profits",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/banking/rising-interest-rates-threaten-to-spoil-the-party-for-big-banks-0ef3e7c0?mod=rss_markets_main",
-          "summary": "Goldman Sachs and JPMorgan posted higher quarterly profit, but the Journal notes the mood on Wall Street is turning more cautious as rising interest rates threaten to dampen momentum; CNBC's live coverage tracked JPMorgan, Goldman, Wells Fargo and Citigroup results, while Axios reported that consumer spending remained resilient in the banks' earnings despite higher costs.",
-          "also_covered_by": [
-            "CNBC",
-            "Axios"
-          ]
-        },
-        {
-          "headline": "China's exports surge, putting trade surplus on track for a record",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/14/business/china-exports-trade-surplus.html",
-          "summary": "China's exports grew last month at the fastest pace in almost any month since the end of the global financial crisis, putting the country's trade surplus on track for a record.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Cracks appear in the AI boom as a major IPO collapses and spending plateaus",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/firmus-ipo-ai-trade-f490c240?mod=rss_markets_main",
-          "summary": "The failure of what would have been Australia's largest IPO in decades is sending tremors through the AI trade, with high rates and political uncertainty prompting data-center startups to rethink going public; The Information reported the Nvidia-backed company scrapped its $5 billion Australian IPO as markets wobble, while Fortune noted plateauing AI token costs as a sign the boom may be nearing its top and Forbes reported an AI chip stock selloff tied to Chinese competition that wiped billions off SoftBank founder Masayoshi Son's fortune.",
-          "also_covered_by": [
-            "The Information",
-            "Fortune",
-            "Forbes"
-          ]
-        },
-        {
-          "headline": "Trump's renewed push to fire Fed Governor Lisa Cook underscores political motives",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/14/business/trump-lisa-cook-federal-reserve-hearing.html",
-          "summary": "President Trump tapped his political appointees to determine whether he could oust Fed Governor Lisa Cook, a renewed attempt after an earlier effort to remove her.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "Puck had no business/markets coverage in the window searched (only political/media newsletter items); Washington Post and Axios were only found via general web search rather than dedicated feeds, so coverage beyond the Bank of America story could not be confirmed.",
-      "outlets": [
-        "WSJ",
-        "Bloomberg",
-        "NYT",
-        "FT",
-        "The Information",
-        "Fortune",
-        "Washington Post",
-        "Forbes",
-        "The Economist",
-        "Axios",
-        "Politico",
-        "Puck",
-        "Business Insider",
-        "CNBC",
-        "BBC"
-      ],
-      "not_visible": [
-        "Business Insider"
-      ],
-      "searches_used": 4
-    },
-    "Energy": {
-      "description": "Energy and climate coverage.",
-      "generated_at": "2026-10-14T10:59:50.592042+00:00",
-      "overview": "Energy and climate outlets are converging on the Trump administration's intensifying legal assault on offshore wind, high-stakes FERC rulings reshaping how data centers interconnect to the grid, and wildfire-driven power shutoffs in California. Trade press (Utility Dive, Canary Media) is also tracking utility mega-mergers, solar manufacturing innovation, and grid-reliability pressures from AI data center demand, while Wall Street-focused outlets flag oil price volatility tied to Middle East risk and Russian diesel flows.",
-      "stories": [
-        {
-          "headline": "Trump administration moves to reevaluate permit for nearly-finished Revolution Wind farm",
-          "outlet": "Canary Media",
-          "url": "https://canarymedia.com/articles/offshore-wind/trump-reevaluate-permit-revolution-wind-orsted",
-          "summary": "The Interior Department asked a federal court to let it reconsider a key approval for the $6.2 billion Revolution Wind project off Connecticut and Rhode Island, which Ørsted finished installing in September and which is already generating power; advocates warn the move injects fresh uncertainty into a nearly complete project. The filing stems from a long-running suit by anti-wind group Green Oceans, and the case is before Judge Royce Lamberth in D.C.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "FERC rejects most of PJM's large-load interconnection plan",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-          "summary": "Federal regulators ruled that PJM's plan to curtail large loads lacking matching new generation intrudes on state jurisdiction and appears discriminatory, a setback for grid operators trying to manage surging data-center demand.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "PG&E warns of more preemptive shutoffs as California wildfire risk persists",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/california-iso-planned-shutoffs-heat-wave-wind/832865/",
-          "summary": "Potential outages could hit more than two dozen counties, mostly in northern and central California, with shutoffs possibly continuing through Saturday as fire-weather conditions persist.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "FERC approves Duke's large-load transmission tariff despite cost-shift concerns",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/ferc-duke-energy-large-load-tariff-nitsa/832847/",
-          "summary": "A FERC commissioner said Duke Energy Carolinas' proposal offers \"meaningful, if imperfect, new protections\" for ratepayers amid debate over how utilities should price service to massive new data-center loads.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Dominion-NextEra merger hearing centers on rates and data centers",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/local-hearing-dominion-nextera-merger-rates-data-centers/832739/",
-          "summary": "At a Virginia hearing, regulators and advocates grilled the companies over affordability and accountability provisions in the proposed tie-up, with one commissioner recalling Dominion's past comment that it remains customers' \"throat to choke\" on clean-energy commitments.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Qcells races to commercialize next-generation tandem solar panels",
-          "outlet": "Canary Media",
-          "url": "https://www.canarymedia.com/articles/solar/qcells-aims-to-build-worlds-first-big-factory-for-next-gen-tandem-solar",
-          "summary": "Qcells is testing full-size tandem perovskite-silicon panels in the field and plans a gigawatt-scale factory by 2029, aiming to beat venture-backed rivals like Tandem PV and Oxford PV to market with higher-efficiency solar technology.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Battery storage system failures plunge 98% over seven years, but older units need care",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/battery-system-failures-fell-98-in-7-years-but-older-systems-need-special/832882/",
-          "summary": "An Electric Power Research Institute analysis found a dramatic drop in energy storage failures from 2018 to 2025 thanks to technology and project improvements, though \"early-vintage\" systems still warrant special attention.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Oil prices mixed as traders weigh Middle East risk against Russian diesel supply",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-weigh-middle-east-risks-russian-diesel-supplies-53840a01?mod=rss_worldnews",
-          "summary": "Crude markets were volatile as persistent Middle East supply risks were weighed against the prospect of additional Russian diesel exports reaching global markets.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "Argus Media had no recent, allowed-outlet coverage found (search budget exhausted before a dedicated query could be run). Reuters, FT, NYT, and The Economist block web search, so only feed items from FT and WSJ (unrelated to this energy roundup's top stories) were available and not used beyond the oil-price item.",
-      "outlets": [
-        "Heatmap",
-        "Latitude Media",
-        "Canary Media",
-        "E&E News",
-        "Carbon Brief",
-        "Utility Dive",
-        "Argus Media"
-      ],
-      "not_visible": [
-        "Reuters"
-      ],
-      "searches_used": 4
-    },
-    "Africa": {
-      "description": "Africa politics, economy and business coverage.",
-      "generated_at": "2026-10-14T11:01:41.201841+00:00",
-      "overview": "Coverage this week centers on Ethiopia's escalating Tigray conflict following the fall of Mekelle, alongside major African business and finance moves including Dangote's record-breaking IPO, Chinese-African banking integration, and corporate upheaval at Microsoft and Kenya Airways. Several outlets also flagged instability stories, including Mauritius's protest curfew, Niger's diplomatic row with France, and worsening hunger in Somalia.",
-      "stories": [
-        {
-          "headline": "TPLF loses Mekelle as Ethiopia's federal forces push into Tigray highlands",
-          "outlet": "Africa Confidential",
-          "url": "https://www.africa-confidential.com/article-preview/id/16202/tplf-loses-mekelle--mountain-war-begins",
-          "summary": "Africa Confidential reports that Ethiopia's federal army has captured Tigray's regional capital Mekelle after a rapid military turnaround, though TPLF and allied Eritrean forces may still turn the advance into a costly highland campaign. African Business separately flagged Eritrean troops now seen inside Tigray as conflict fears grow.",
-          "also_covered_by": [
-            "African Business"
-          ]
-        },
-        {
-          "headline": "Dangote extends $1.6bn refinery IPO to widen African investor access",
-          "outlet": "African Business",
-          "url": "https://african.business/2026/10/quick-reads/dangote-extends-refinery-ipo-to-drive-african-participation",
-          "summary": "Dangote Petroleum Refinery and Petrochemicals is extending its IPO offer by two weeks to 27 October, in what is billed as the largest IPO in African history, after strong investor interest across the continent.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Mauritius imposes curfew after police shooting sparks violent unrest",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/14/mauritius-imposes-curfew-after-police-shooting-sparks-violent-protests/",
-          "summary": "Mauritius placed residents under curfew after rare violent protests erupted when a police officer shot and seriously injured a woman.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Microsoft shuts down its Nairobi hub",
-          "outlet": "TechCabal",
-          "url": "https://techcabal.com/2026/10/14/techcabal-daily-microsoft-closes-a-window-in-nairobi/",
-          "summary": "TechCabal's daily briefing leads with Microsoft closing its Nairobi hub, a notable retreat by a major tech player from East Africa's tech scene.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Somalia faces deepening child malnutrition crisis as aid dwindles",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/14/mothers-journey-with-sick-child-highlights-somalias-malnutrition-emergency/",
-          "summary": "Africanews reports analysts project almost 2 million Somali children under five will suffer acute malnutrition by June, worsened by an intensifying El Niño cycle and shrinking aid, with many of the affected internally displaced.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Niger condemns France's expulsion of its security agents as 'ingratitude'",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/14/act-of-ingratitude-niger-condemns-expulsion-of-security-agents-from-france/",
-          "summary": "Niger's government denounced France's expulsion of two of its security agents as a serious and unacceptable act, deepening tensions between Niamey and Paris.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Ecobank deepens China ties with Beijing office and yuan clearing deal",
-          "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/433438/ecobank-partners-with-chinas-cips-to-deepen-yuan-trade-settlements-across-34-african-markets/",
-          "summary": "Ecobank is plugging its pan-African network into China's CIPS clearing system and opening expanded Beijing offices, joining Standard Bank and Afreximbank in deepening yuan settlement as China-Africa trade hits record levels; African Business noted the deal was signed alongside Togo's president's state visit to China.",
-          "also_covered_by": [
-            "African Business"
-          ]
-        },
-        {
-          "headline": "Kenya's government bails out Kenya Airways again with $350m loan",
-          "outlet": "African Business",
-          "url": "https://african.business/2026/10/trade-investment/state-bails-out-kenya-airways-again-with350m-loan",
-          "summary": "Kenya's government, the airline's largest shareholder, extended a new $350m shareholder loan to help Kenya Airways meet obligations as its turnaround plan falters amid renewed losses.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "The Continent's archive and search results returned only older/undated weekly issues with no clear last-48h lead story; Reuters, AP, BBC, FT, NYT and WSJ block web search so no verified recent Africa coverage from them could be confirmed beyond what appeared as citations within other outlets' pieces.",
-      "outlets": [
-        "The Africa Report",
-        "Africanews",
-        "Africa Confidential",
-        "The Continent",
-        "TechCabal",
-        "African Business",
-        "Mining Weekly"
-      ],
-      "not_visible": [
-        "Reuters",
-        "AP"
-      ],
-      "searches_used": 4
-    },
-    "China": {
-      "description": "China politics, economy and business coverage.",
-      "generated_at": "2026-10-14T11:00:40.872788+00:00",
-      "overview": "Coverage is dominated by China's blockbuster September trade data showing exports surging 36% and the current nine-month surplus nearing $940 billion, alongside heavy diplomatic reporting on preparations for Trump's upcoming Shenzhen APEC trip following the Xi-Trump Washington summit. Tech and EV trade outlets are tracking Nvidia losing China AI-chip market share to Huawei and a slowdown in NEV retail sales, while Hong Kong and Taiwan-focused outlets cover national security prosecutions, cross-border crime sentencing, and regional security incidents.",
-      "stories": [
-        {
-          "headline": "China's exports surge 36% in September, trade surplus nears $1 trillion mark again",
-          "outlet": "Nikkei Asia",
-          "url": "https://asia.nikkei.com/economy/trade/china-s-export-engine-steams-ahead-with-september-shipments-up-36",
-          "summary": "Nikkei Asia reports that <cite index=\"22-4\">China's export machine continued to fire on all cylinders in September, buoyed by strong semiconductor and automobile shipments, as Beijing moved to ease friction with key trade partners.</cite> The nine-month trade surplus has ballooned to $938 billion, keeping China on pace to exceed last year's record.",
-          "also_covered_by": [
-            "NYT",
-            "Bloomberg"
-          ]
-        },
-        {
-          "headline": "US Treasury chief may skip Hong Kong APEC to focus on Trump's Shenzhen visit",
-          "outlet": "SCMP",
-          "url": "https://www.scmp.com/news/china/diplomacy/article/3370295/bessent-may-skip-apec-hong-kong-focus-trumps-shenzhen-visit-sources-say",
-          "summary": "SCMP's exclusive reporting says <cite index=\"17-6\">Bessent is expected to meet Chinese Vice-Premier He Lifeng in Shenzhen ahead of Trump's visit – when Trump will again hold talks with President Xi Jinping – as the two sides look to secure a longer extension of the bilateral trade truce, which is due to expire on January 10.</cite> Washington will instead send a deputy to the Hong Kong APEC finance ministers' gathering.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Nvidia's China AI-chip market share falls to 34% as Huawei climbs to 28%",
-          "outlet": "TechNode",
-          "url": "https://technode.com/2026/10/14/nvidias-china-ai-chip-share-falls-to-34-as-huawei-reaches-28/",
-          "summary": "TechNode reports that Nvidia's share of China's data-center AI accelerator market fell to 34% in the first half of 2026, while Huawei reached 28%, citing an IDC report.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China's NEV retail sales fall 13% in early October as BYD and Tesla reshuffle rankings",
-          "outlet": "CnEVPost",
-          "url": "https://cnevpost.com/2026/10/14/china-nev-retail-sales-fall-oct-1-11/",
-          "summary": "CnEVPost's data roundup shows NEV retail penetration slipping to 61.2% in October 1-11, down from September's 67.0%, while wholesale penetration rose to 78.1%, alongside separate figures showing BYD leading September retail share at 22.8% and Tesla's share rising to fourth place.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Hong Kong commentator charged in national security probe says police gave no confidentiality warning",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/10/14/political-commentator-charged-with-revealing-nat-security-probe-says-police-gave-no-confidentiality-warning/",
-          "summary": "A Hong Kong political commentator charged with revealing details of a national security investigation told the court that police did not caution him about confidentiality, per HKFP's court report.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China-linked hackers compromised regional organization in Fiji, US embassy says",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/10/13/china-linked-hackers-hit-fiji-us-embassy/",
-          "summary": "Hackers with links to China compromised a regional organisation in Fiji, the Pacific nation's US embassy said, warning that governments and telecoms networks in the region face similar threats.",
-          "also_covered_by": [
-            "Taipei Times"
-          ]
-        },
-        {
-          "headline": "New China-North Korea bridge to open, state media says",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/10/14/new-china-north-korea-bridge-to-open-on-thursday-chinese-state-media/",
-          "summary": "A new bridge linking China and North Korea will open this week, 12 years after construction began, in what HKFP frames as another sign of deepening China-DPRK economic relations, citing Chinese state media.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Chinese graduates escalate labor dispute up Volkswagen's supply chain",
-          "outlet": "ChinaTalk",
-          "url": "https://www.chinatalk.media/p/workers-of-the-world-email-volkswagen",
-          "summary": "ChinaTalk examines a case of Chinese graduate workers pressing a labor grievance up the supply chain to reach Volkswagen directly, highlighting friction inside China's manufacturing sector.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "Could not find recent China-specific coverage from Caixin Global, Global Times, Xinhua, CGTN, China Daily, Yicai Global, Sixth Tone, China Media Project, or Focus Taiwan beyond older Trump-Xi summit background pieces; Reuters, AP, FT, WSJ, and The Economist block search so only feed items (if any) were used for them.",
-      "outlets": [
-        "SCMP",
-        "Nikkei Asia",
-        "The Wire China",
-        "Caixin Global",
-        "Sixth Tone",
-        "China Media Project",
-        "Rest of World",
-        "Global Times",
-        "China Daily",
-        "Xinhua",
-        "CGTN",
-        "Yicai Global",
-        "TechNode",
-        "Pandaily",
-        "CnEVPost",
-        "Hong Kong Free Press",
-        "Taipei Times",
-        "Focus Taiwan",
-        "ChinaTalk"
-      ],
-      "not_visible": [
-        "Reuters",
-        "AP"
-      ],
-      "searches_used": 4
-    },
-    "US politics": {
-      "description": "US politics and policy coverage.",
-      "generated_at": "2026-10-14T10:58:41.894406+00:00",
-      "overview": "US political coverage across outlets is dominated by bipartisan uproar over Trump's Russian diesel deal, the fallout from Ambassador Kimberly Guilfoyle's resignation, and the fast-shifting midterm battlefield just three weeks from Election Day, including Cook Political Report's House and Senate rating shifts toward Democrats and a politically fraught DOJ search of Rep. Ilhan Omar's home.",
-      "stories": [
-        {
-          "headline": "Bipartisan senators demand Trump rescind Russia diesel deal",
-          "outlet": "Axios",
-          "url": "https://www.axios.com/2026/10/13/trump-russian-diesel-deal-betrayal-bipartisan-letter",
-          "summary": "A bipartisan coalition of a dozen senators, including six Republicans, wrote that Trump's deal to import millions of tons of Russian diesel \"is a betrayal of the people of Ukraine\" and urged him to withdraw from it, warning it would mainly finance Putin's war machine rather than lower U.S. prices. The deal has split the GOP just weeks before the midterms, with figures from Mitch McConnell to Rep. Brian Fitzpatrick breaking with Trump over it.",
-          "also_covered_by": [
-            "The Hill",
-            "Roll Call",
-            "NPR",
-            "Punchbowl News",
-            "Fox News",
-            "NYT"
-          ]
-        },
-        {
-          "headline": "Federal search of Rep. Ilhan Omar's home raises election-timing alarms",
-          "outlet": "Roll Call",
-          "url": "https://rollcall.com/2026/10/13/omar-home-search-election-season-probes/",
-          "summary": "Legal experts told Roll Call that a Homeland Security search of Rep. Ilhan Omar's Washington home, conducted roughly three weeks before the midterms, appeared to defy longstanding Justice Department norms against politically sensitive investigative steps so close to an election. Omar and Democratic leaders called it political intimidation, while a federal prosecutor suggested on Fox News there are \"several investigations\" into her.",
-          "also_covered_by": [
-            "Courthouse News",
-            "NPR",
-            "Fox News",
-            "Washington Post",
-            "The Dispatch"
-          ]
-        },
-        {
-          "headline": "Guilfoyle resigns as ambassador to Greece amid corruption allegations",
-          "outlet": "NPR",
-          "url": "https://www.npr.org/2026/10/14/g-s1-148027/trump-ambassador-greece-resignation",
-          "summary": "The White House publicly asked Ambassador to Greece Kimberly Guilfoyle to resign after she faced mounting accusations of improper conduct, including allegations she solicited payment from a Trump donor for access to administration officials. The scandal has rattled Republicans just weeks before the midterms, with National Review and The Hill both noting the political damage.",
-          "also_covered_by": [
-            "WSJ",
-            "National Review",
-            "The Dispatch",
-            "The Hill"
-          ]
-        },
-        {
-          "headline": "Cook Political Report keeps shifting House and Senate ratings toward Democrats",
-          "outlet": "Cook Political Report",
-          "url": "https://www.cookpolitical.com/analysis/national/national-politics/stick-fork-these-races",
-          "summary": "With less than a month before Election Day, Cook Political Report says the House is now clearly set to flip to Democrats, with the main question being the size of the new majority, after moving 18 House seats and three Senate races (Kansas, New Hampshire, North Carolina) in Democrats' direction. The nonpartisan analysts say Democrats now need just 20% of Senate and House toss-ups to break their way to win control.",
-          "also_covered_by": [
-            "The Hill",
-            "Washington Post"
-          ]
-        },
-        {
-          "headline": "Top Republicans privately believe they've lost the House",
-          "outlet": "Politico",
-          "url": "https://www.politico.com/news/2026/10/14/house-republicans-private-lost-cause-01117673",
-          "summary": "Politico reports that Republican groups are now focused on limiting their losses because few in the party believe they have a real chance of keeping control of Congress heading into the midterms.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Trump breaks two-decade tradition, rejects international election monitors",
-          "outlet": "The Hill",
-          "url": "https://thehill.com/policy/international/6145244-trump-breaks-election-observer-tradition/",
-          "summary": "President Trump is ending a more than two-decade tradition of welcoming a key group of international election observers ahead of the midterms, a move critics say discourages democratic transparency.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Omar home search raid prompts Hatch Act complaint",
-          "outlet": "The Hill",
-          "url": "https://thehill.com/regulation/court-battles/6146880-hatch-act-complaint-omar-raid/",
-          "summary": "A watchdog group filed a Hatch Act complaint against DHS and DOJ officials over the timing of the search of Rep. Ilhan Omar's home, calling it \"outrageous\" given it came just days before early voting begins in Minnesota.",
-          "also_covered_by": [
-            "Courthouse News"
-          ]
-        },
-        {
-          "headline": "Supreme Court to weigh 1980s video privacy law in digital-tracking case",
-          "outlet": "SCOTUSblog",
-          "url": "https://www.scotusblog.com/2026/10/court-to-hear-argument-on-how-a-video-privacy-law-applies-in-the-internet-age/",
-          "summary": "The Supreme Court is set to hear arguments on how a decades-old video rental privacy law applies to modern digital tracking, a case that could reshape lawsuits over online data practices.",
-          "also_covered_by": [
-            "The Hill"
-          ]
-        }
-      ],
-      "gaps": "NOTUS had no clearly recent (last 48h) items surfaced beyond an older Omar/Mace story; WSJ, NYT, The Guardian, and Politico were represented only through the provided feed items and search-indexed snippets since they block direct search verification.",
-      "outlets": [
-        "Politico",
-        "Axios",
-        "Punchbowl News",
-        "NOTUS",
-        "The Hill",
-        "Roll Call",
-        "Cook Political Report",
-        "RealClearPolitics",
-        "SCOTUSblog",
-        "Courthouse News",
-        "The Dispatch",
-        "Washington Examiner",
-        "National Review",
-        "Fox News",
-        "NPR",
-        "Stateline"
-      ],
-      "not_visible": [],
-      "searches_used": 4
-    },
-    "Tech & AI": {
-      "description": "Technology and AI coverage.",
-      "generated_at": "2026-10-14T10:59:20.009578+00:00",
-      "overview": "AI industry coverage over the past 24-48 hours centers on security and safety controversies rolling through OpenAI and Anthropic, deepening cracks in the AI funding boom (CoreWeave, Character.ai, Australian IPO failure), and a fast-moving model release cycle (Google's Gemini 4 Argon, Meta's Muse Wonder). Geopolitical tech stories — Ukraine's drone strikes on Yandex and Starlink restrictions in the war — also drew significant cross-outlet attention.",
-      "stories": [
-        {
-          "headline": "OpenAI engineer arrested for allegedly planting hidden recording device in office",
-          "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/10/13/fbi-arrests-openai-employee-accused-of-planting-hidden-recording-device-in-conference-room/",
-          "summary": "FBI Director Kash Patel said engineer Abdulrahman Alfozan planted a covert recorder, described by The Register as wrapped in toilet paper and plugged into a TV, allegedly to capture sensitive talks about OpenAI's superintelligence work; The Information's briefing noted he was an engineering lead on OpenAI's agents product.",
-          "also_covered_by": [
-            "The Verge",
-            "The Register",
-            "The Information",
-            "WSJ"
-          ]
-        },
-        {
-          "headline": "Character.AI's bankruptcy exposes shaky AI economics as Disney circles its chatbot tech",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/character-ai-will-shut-down-if-no-buyer-emerges-capping-a-fall-from-2-7-billion-google-deal-to-bankruptcy/",
-          "summary": "The Decoder reports Character.ai has filed for bankruptcy and is looking for a buyer, and if none steps up, the platform shuts down, a stunning collapse from its earlier $2.7 billion Google-linked valuation; 404 Media's review of the filings argues the episode shows the broader economics of consumer AI don't work, while Ars Technica reports Disney has offered $20 million for the scandal-plagued chatbot technology.",
-          "also_covered_by": [
-            "404 Media",
-            "Ars Technica"
-          ]
-        },
-        {
-          "headline": "CoreWeave eyes insurers' 'unlimited' capital to fund its AI data-center spending",
-          "outlet": "Financial Times (via Techmeme)",
-          "url": "https://www.techmeme.com/261014/p8#a261014p9",
-          "summary": "CoreWeave is pitching insurance companies as a new source of financing for the tens of billions of dollars it needs for AI chip and data-center buildout, as the Nvidia-backed cloud provider looks beyond traditional debt markets.",
-          "also_covered_by": [
-            "FT"
-          ]
-        },
-        {
-          "headline": "Ukraine's drone strikes knocked out Yandex data centers, rattling Russia's tech backbone",
-          "outlet": "The Verge",
-          "url": "https://www.theverge.com/news/1010424/yandex-drone-strike-outage-disinformation-zelenskyy",
-          "summary": "The Verge reports that days after Ukrainian drones took down several Russian data centers, Zelenskyy claimed the strikes dented Russia's disinformation machine, though the piece finds the damage mainly disrupted Yandex's web crawlers rather than bot-farm operations; the Financial Times (via Techmeme) separately reports three of Yandex's six data centers were severely damaged, exposing the fragility of Russia's state-aligned tech ecosystem.",
-          "also_covered_by": [
-            "Techmeme/FT"
-          ]
-        },
-        {
-          "headline": "406 scientists, including Hinton and Bengio, demand AI models be cut off from the internet",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/406-scientists-demand-ai-models-be-cut-off-from-the-internet-immediately/",
-          "summary": "406 scientists, including Geoffrey Hinton, Yoshua Bengio, and Stuart Russell, are demanding that companies immediately disconnect AI models from the internet, an open letter responding to recent incidents of AI systems behaving in unintended ways online.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Google rolls out Gemini 4 Argon worldwide as new flagship, undercutting rivals on price",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/gemini-4-argon-is-now-available-worldwide-as-googles-most-capable-frontier-model/",
-          "summary": "Google is making Gemini 4 Argon available worldwide through its API, the Gemini app, and Google Antigravity, aggressively priced but trailing Anthropic's Claude Opus 5.5 on some benchmarks; VentureBeat adds that Google is offering limited-time API pricing of $2/$10 per million tokens as it pushes the model across its ecosystem.",
-          "also_covered_by": [
-            "VentureBeat"
-          ]
-        },
-        {
-          "headline": "Nvidia pledges $250 million to fund UK AI safety and security research",
-          "outlet": "Reuters (via Techmeme)",
-          "url": "https://www.techmeme.com/261014/p9#a261014p9",
-          "summary": "Jensen Huang announced Nvidia is committing $250 million in accelerated computing resources over five years to back UK research into AI security and agentic safety.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Justice Department says North Korean operatives have infiltrated dozens of U.S. companies",
-          "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/10/13/justice-department-says-north-koreans-have-infiltrated-dozens-of-u-s-companies/",
-          "summary": "U.S. authorities warned that sanctioned North Korean hackers are increasingly recruiting Americans to act as facilitators funneling access from breached U.S. companies back to Pyongyang.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "Wired, Ars Technica, NYT, FT, The Economist, and The Guardian block web search, so coverage from them is limited to the feed items provided; no distinct AI/tech lead story was found in the NYT, The Economist, or The Guardian feed items for this period. Rest of World's feed items (EV shipping, UAE AI education) were lower priority and not newsroom-leading.",
-      "outlets": [
-        "The Information",
-        "TechCrunch",
-        "The Verge",
-        "Wired",
-        "MIT Technology Review",
-        "Platformer",
-        "Ars Technica",
-        "VentureBeat",
-        "The Decoder",
-        "Techmeme",
-        "The Register",
-        "404 Media",
-        "IEEE Spectrum",
-        "Rest of World",
-        "OpenAI",
-        "Anthropic",
-        "Google DeepMind"
-      ],
-      "not_visible": [],
-      "searches_used": 4
-    },
-    "Gulf & Middle East": {
-      "description": "Gulf and Middle East coverage.",
-      "generated_at": "2026-10-14T11:01:11.427847+00:00",
-      "overview": "Gulf and Middle East outlets are overwhelmingly focused on the dramatic escalation between Saudi Arabia and Yemen's Houthis, following missile and drone strikes that hit Saudi Aramco's Dhahran headquarters and threats of more attacks on airports and oil facilities. Secondary clusters of coverage include the deepening Yemen humanitarian crisis, Gaza/West Bank violence, Iran's tightening standoff with the US over Hormuz and nuclear talks, and diplomatic shifts like Colombia's new embassy in Jerusalem.",
-      "stories": [
-        {
-          "headline": "Houthis vow more attacks after striking Saudi Aramco headquarters",
-          "outlet": "Al-Monitor",
-          "url": "https://www.al-monitor.com/originals/2026/10/yemens-houthis-vow-more-attacks-saudi-airports-oil-facilities-after-aramco-hq-hit",
-          "summary": "Yemen's Houthis said they struck Aramco's Dhahran headquarters, King Khalid airport and a Riyadh refinery with missiles and drones, and vowed on Wednesday to press on with attacks on Saudi airports and oil facilities, in a campaign that has already dealt a blow to Riyadh's economic diversification plans.",
-          "also_covered_by": [
-            "Middle East Eye",
-            "The National",
-            "Gulf News",
-            "Khaleej Times",
-            "Times of Israel",
-            "The Jerusalem Post",
-            "FT",
-            "WSJ",
-            "Iran International",
-            "Al Jazeera",
-            "The New Arab"
-          ]
-        },
-        {
-          "headline": "Yemen's hospitals overwhelmed as fighting cuts aid to 800,000 people",
-          "outlet": "Al-Monitor",
-          "url": "https://www.al-monitor.com/originals/2026/10/yemen-fighting-overwhelms-hospitals-cuts-aid-800000-people-relief-agencies-say",
-          "summary": "Relief agencies say hospitals across Yemen are struggling to cope with a sharp rise in war casualties as intensified fighting along multiple front lines has cut off aid to hundreds of thousands, with more than 200,000 people displaced since fighting resumed.",
-          "also_covered_by": [
-            "Middle East Eye",
-            "The Jerusalem Post"
-          ]
-        },
-        {
-          "headline": "Colombia opens embassy in Jerusalem, restores Israel trade deal",
-          "outlet": "Al-Monitor",
-          "url": "https://www.al-monitor.com/originals/2026/10/colombia-opens-embassy-jerusalem-restores-free-trade-deal-israel",
-          "summary": "Colombia opened its embassy in Jerusalem, becoming the 10th country to do so, as new President Abelardo de la Espriella reversed his predecessor's policy and restored a free trade agreement with Israel.",
-          "also_covered_by": [
-            "Middle East Eye",
-            "Asharq Al-Awsat"
-          ]
-        },
-        {
-          "headline": "Israeli settlers set fire to West Bank mosque amid army raids",
-          "outlet": "Al Jazeera",
-          "url": "https://www.aljazeera.com/news/2026/10/14/settlers-set-fire-to-mosque-in-west-bank-as-israeli-forces-raid-villages?traffic_source=rss",
-          "summary": "Settlers set fire to a mosque in the West Bank as Israeli forces raided several villages, with settlers also attacking a boy in a separate incident near Nablus.",
-          "also_covered_by": [
-            "Times of Israel"
-          ]
-        },
-        {
-          "headline": "Palestinian faction leaders meet in Cairo for reconciliation push",
-          "outlet": "The National",
-          "url": "https://www.thenationalnews.com/news/mena/2026/10/14/palestinian-faction-leaders-gather-in-cairo-to-renew-bid-for-long-elusive-reconciliation/",
-          "summary": "Palestinian faction leaders gathered in Cairo in a fresh attempt at long-elusive reconciliation, as separate talks saw Gaza's recovery committee sign an assistance deal with Germany's GIZ.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Container ship sinks near Strait of Hormuz after hitting naval mine",
-          "outlet": "Iran International",
-          "url": "https://www.iranintl.com/en/liveblog/202610105959",
-          "summary": "Iran's Revolutionary Guards said a container ship carrying more than 2,500 containers sank south of the Strait of Hormuz after striking a naval mine and catching fire, amid continuing clashes and an IRGC spokesman's warning that a new US-Iran war remains possible before the midterms.",
-          "also_covered_by": [
-            "Asharq Al-Awsat"
-          ]
-        },
-        {
-          "headline": "Saudi Arabia to offer remote option for FII 'Davos in the Desert' after attacks",
-          "outlet": "Middle East Eye",
-          "url": "https://www.middleeasteye.net/live-blog/live-blog-update/saudi-arabia-offer-remote-option-fii-conference-after-attacks-reuters",
-          "summary": "Saudi Arabia plans to make its flagship Future Investment Initiative a hybrid event, letting executives attend remotely as the kingdom tries to keep attracting international investors despite the escalating Houthi conflict.",
-          "also_covered_by": [
-            "The Jerusalem Post"
-          ]
-        },
-        {
-          "headline": "Ronen Bar sues Netanyahu over shifting October 7 blame",
-          "outlet": "The Jerusalem Post",
-          "url": "https://www.jpost.com/israel-news/politics-and-diplomacy/article-911668",
-          "summary": "Former Shin Bet chief Ronen Bar filed a NIS 3 million defamation lawsuit against Netanyahu, alleging the PM received repeated pre-October 7 warnings about escalation risks on multiple fronts, especially Gaza.",
-          "also_covered_by": []
-        }
-      ],
-      "gaps": "Arab News, Arabian Business, AGBI, Zawya, Saudi Gazette, Al Arabiya English, Ynetnews, and Haaretz did not return distinct recent results beyond the shared wire coverage of the Houthi-Aramco story already captured above.",
-      "outlets": [
-        "The National",
-        "Arab News",
-        "Gulf News",
-        "Khaleej Times",
-        "Arabian Business",
-        "AGBI",
-        "Zawya",
-        "Saudi Gazette",
-        "Al Arabiya English",
-        "Al-Monitor",
-        "Middle East Eye",
-        "The New Arab",
-        "Al Jazeera",
-        "Asharq Al-Awsat",
-        "Times of Israel",
-        "The Jerusalem Post",
-        "Ynetnews",
-        "Haaretz",
-        "Iran International"
-      ],
-      "not_visible": [
-        "Reuters",
-        "AP"
-      ],
-      "searches_used": 4
+"""News radar: what competitor and reference outlets are covering, by group.
+
+For each active group in sources.json it:
+  1. pulls RSS items from outlets that have feeds (last 48h),
+  2. asks Claude, with web search restricted to the group's outlet domains,
+     what those outlets are leading with (filling gaps for outlets without feeds),
+  3. drops any story whose link can't be traced to a real feed item or search
+     result, and
+  4. publishes everything to radar.json in the repo.
+
+Usage:
+  python radar.py                    # all active groups
+  python radar.py Business Africa    # only these groups (names from sources.json)
+  python radar.py --dry-run          # write radar.json locally, don't upload
+Groups can also be passed comma-separated in the RADAR_GROUPS env var.
+"""
+import base64
+import json
+import os
+import re
+import socket
+import sys
+from datetime import datetime, timedelta, timezone
+from urllib.parse import urlparse
+
+import feedparser
+import requests
+
+MODEL = "claude-sonnet-5"
+API_URL = "https://api.anthropic.com/v1/messages"
+WEB_SEARCH_TOOL = "web_search_20250305"
+MAX_SEARCHES_PER_GROUP = 4
+MAX_TOKENS = 10000
+FEED_WINDOW_HOURS = 48
+MAX_FEED_ITEMS_PER_OUTLET = 8
+
+GITHUB_USERNAME = "jgonzalez-sudo"
+GITHUB_REPO = "news-data1"
+RADAR_FILE = "radar.json"
+RAW_URL = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{GITHUB_REPO}/main/{RADAR_FILE}"
+
+SYSTEM_PROMPT = """You are a research assistant for newsroom editors at Semafor. Report what the listed outlets are covering right now, so journalists can decide what to consider for coverage.
+
+Rules:
+- Use web search restricted to the allowed outlets, plus the feed items provided. Look for what each outlet is leading with in the last 24-48 hours. Skip anything older.
+- Some outlets block web search. For those, report only what appears in the feed items provided, and never claim to have checked them any other way.
+- Stay on the group's topic. Feed items from general outlets include unrelated stories; ignore those.
+- Outlets marked state-run or company announcements publish official positions. When you cite one, say so in the summary (for example 'state-run Global Times says...').
+- Use at most 4 searches. Write no commentary before the answer: your final message must be only the JSON object.
+- Rank by newsworthiness for a global news audience: human stakes, major economic or policy moves, cross-border significance, and stories several outlets are converging on. Skip routine items, opinion columns, listicles and lifestyle.
+- Many outlets are paywalled, so you will usually see only headlines and snippets. Write each summary in your own words (one sentence, two at most), based only on what you actually saw. If you only saw a headline, keep the summary modest. Never quote more than a few words.
+- Every url must be copied exactly from a search result or feed item. Never invent or guess URLs, headlines or details.
+- If several outlets cover the same story, list it once and name the others in also_covered_by (only outlets where you actually saw it).
+- Give 5-8 stories, most important first.
+
+Respond with ONLY valid JSON, no preamble and no markdown:
+{"overview": "2-3 sentences on what these outlets are collectively focused on", "stories": [{"headline": "...", "outlet": "...", "url": "...", "summary": "...", "also_covered_by": ["..."]}], "gaps": "outlets you could find nothing recent from, or an empty string"}"""
+
+
+# ── registry ────────────────────────────────────────────────────────────────
+def load_registry(path="sources.json"):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def resolve_outlets(registry, ids):
+    return [dict(registry["outlets"][i], id=i) for i in ids]
+
+
+# ── feeds ───────────────────────────────────────────────────────────────────
+def entries_from_parsed(parsed, outlet_name, hours=FEED_WINDOW_HOURS, limit=MAX_FEED_ITEMS_PER_OUTLET):
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    items = []
+    for e in parsed.entries:
+        t = e.get("published_parsed") or e.get("updated_parsed")
+        if t and datetime(*t[:6], tzinfo=timezone.utc) < cutoff:
+            continue
+        link = e.get("link")
+        title = e.get("title")
+        if not link or not title:
+            continue
+        summary = re.sub(r"<[^<]+?>", "", e.get("summary", "") or "")
+        items.append({"outlet": outlet_name, "title": title.strip(), "url": link,
+                      "snippet": " ".join(summary.split()[:30])})
+        if len(items) >= limit:
+            break
+    return items
+
+
+_FEED_CACHE = {}  # url -> items, so a feed shared by several groups is downloaded once per run
+
+
+def collect_feed_items(outlets, timeout=15):
+    """Returns (items, report). report maps outlet name -> item count or 'failed'."""
+    items, report = [], {}
+    old_timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(timeout)
+    try:
+        for o in outlets:
+            if not o.get("feeds"):
+                continue
+            got = []
+            for url in o["feeds"]:
+                try:
+                    if url not in _FEED_CACHE:
+                        _FEED_CACHE[url] = entries_from_parsed(feedparser.parse(url), o["name"])
+                    got.extend(_FEED_CACHE[url])
+                except Exception:
+                    pass
+            report[o["name"]] = len(got) if got else "failed"
+            items.extend(got)
+    finally:
+        socket.setdefaulttimeout(old_timeout)
+    return items, report
+
+
+# ── Claude call ─────────────────────────────────────────────────────────────
+def blocks_text(blocks):
+    return "".join(b.get("text", "") for b in blocks if b.get("type") == "text")
+
+
+def collect_urls(blocks):
+    """Every URL the model could legitimately cite: search results and citations."""
+    urls, errors = set(), []
+    for b in blocks:
+        if b.get("type") == "web_search_tool_result":
+            content = b.get("content")
+            if isinstance(content, list):
+                for r in content:
+                    if r.get("url"):
+                        urls.add(r["url"])
+            elif isinstance(content, dict) and content.get("error_code"):
+                errors.append(content["error_code"])
+        if b.get("type") == "text":
+            for c in b.get("citations") or []:
+                if c.get("url"):
+                    urls.add(c["url"])
+    return urls, errors
+
+
+BLOCKED = set()  # domains the search tool told us it can't access (learned during this run)
+
+
+class TruncatedResponse(Exception):
+    pass
+
+
+class BlockedDomains(Exception):
+    def __init__(self, domains):
+        super().__init__(f"search can't access: {domains}")
+        self.domains = domains
+
+
+def parse_blocked(message):
+    m = re.search(r"not accessible to our user agent:\s*\[(.*?)\]", message or "", re.S)
+    return re.findall(r"""['"]([^'"]+)['"]""", m.group(1)) if m else []
+
+
+def call_claude(api_key, user_msg, domains, max_tokens=MAX_TOKENS):
+    payload = {"model": MODEL, "max_tokens": max_tokens, "system": SYSTEM_PROMPT}
+    if domains:  # with no searchable domains left, answer from the feed items alone
+        payload["tools"] = [{"type": WEB_SEARCH_TOOL, "name": "web_search",
+                             "max_uses": MAX_SEARCHES_PER_GROUP, "allowed_domains": domains}]
+    messages = [{"role": "user", "content": user_msg}]
+    all_blocks, searches = [], 0
+    for _ in range(4):  # the server-side search loop can pause; continue if so
+        data, last_err = None, None
+        for _attempt in range(2):
+            try:
+                r = requests.post(
+                    API_URL,
+                    headers={"x-api-key": api_key, "anthropic-version": "2023-06-01",
+                             "content-type": "application/json"},
+                    json={**payload, "messages": messages},
+                    timeout=300,
+                )
+                if r.status_code >= 400:
+                    try:
+                        message = r.json().get("error", {}).get("message", "")
+                    except Exception:
+                        message = r.text
+                    blocked = parse_blocked(message)
+                    if r.status_code == 400 and blocked:
+                        raise BlockedDomains(blocked)
+                    raise RuntimeError(f"API {r.status_code}: {r.text[:500]}")
+                data = r.json()
+                break
+            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+                last_err = e
+        if data is None:
+            raise last_err
+        blocks = data.get("content", [])
+        all_blocks.extend(blocks)
+        searches += (data.get("usage", {}).get("server_tool_use") or {}).get("web_search_requests", 0)
+        stop = data.get("stop_reason")
+        if stop == "pause_turn":
+            messages.append({"role": "assistant", "content": blocks})
+            continue
+        if stop == "max_tokens":
+            raise TruncatedResponse()
+        break
+    return all_blocks, searches
+
+
+def extract_json(text):
+    text = re.sub(r"```(?:json)?", "", text)
+    start, end = text.find("{"), text.rfind("}")
+    if start == -1 or end <= start:
+        raise ValueError("No JSON object in model response")
+    return json.loads(text[start:end + 1])
+
+
+# ── validation ──────────────────────────────────────────────────────────────
+def normalize_url(u):
+    p = urlparse(u.strip())
+    return f"{p.scheme.lower()}://{p.netloc.lower()}{p.path.rstrip('/')}" + (f"?{p.query}" if p.query else "")
+
+
+def host_allowed(url, domains):
+    host = (urlparse(url).hostname or "").lower()
+    return any(host == d or host.endswith("." + d) for d in domains)
+
+
+def filter_stories(stories, seen_urls, domains):
+    """Keep only stories whose link traces to a real feed item or search result
+    and sits on an allowed domain. Returns (kept, dropped_count)."""
+    seen = {normalize_url(u) for u in seen_urls}
+    kept, used, dropped = [], set(), 0
+    for s in stories:
+        url = s.get("url") or ""
+        key = normalize_url(url) if url else ""
+        if not (s.get("headline") and url and key in seen and host_allowed(url, domains)) or key in used:
+            dropped += 1
+            continue
+        used.add(key)
+        kept.append({
+            "headline": s["headline"],
+            "outlet": s.get("outlet", ""),
+            "url": url,
+            "summary": s.get("summary", ""),
+            "also_covered_by": [x for x in (s.get("also_covered_by") or []) if isinstance(x, str)],
+        })
+    return kept, dropped
+
+
+# ── one group ───────────────────────────────────────────────────────────────
+def describe(o):
+    return f"{o['name']} ({o['domain']}" + (f", {o['note']}" if o.get("note") else "") + ")"
+
+
+def build_user_message(group, outlets, feed_items, to_search, blocked_names, concise=False):
+    lines = [f"Group: {group['name']} - {group['description']}",
+             "Allowed outlets: " + ", ".join(describe(o) for o in outlets),
+             "", "Feed items already collected (last 48h):"]
+    lines += [f"[{i['outlet']}] {i['title']} - {i['snippet']} (URL: {i['url']})" for i in feed_items] or ["(none)"]
+    lines += ["", "Outlets with no feed items, so search for them: " + (", ".join(to_search) or "(none)")]
+    if blocked_names:
+        lines += ["Outlets that block web search (use their feed items only, if any): " + ", ".join(blocked_names)]
+    if concise:
+        lines += ["", "Your previous answer was cut off. Be much shorter: at most 5 stories, one short sentence per summary, omit also_covered_by."]
+    return "\n".join(lines)
+
+
+def keyword_pattern(keywords):
+    if not keywords:
+        return None
+    return re.compile(r"\b(?:" + "|".join(re.escape(k) for k in keywords) + r")\b", re.I)
+
+
+def run_group(registry, group, api_key):
+    own = resolve_outlets(registry, group["outlets"])
+    extra = resolve_outlets(registry, group.get("extra_outlets", []))
+    outlets = own + extra
+    all_domains = sorted({o["domain"] for o in outlets})
+
+    raw_items, feed_report = collect_feed_items(outlets)
+    seen_feeds = {i["outlet"] for i in raw_items}      # outlets whose feed returned something
+    own_names = {o["name"] for o in own}
+    pattern = keyword_pattern(group.get("keywords"))
+    # An outlet that belongs to the group keeps all its items. The big general outlets
+    # (extras) only contribute items that match the group's topic keywords.
+    feed_items = [i for i in raw_items
+                  if i["outlet"] in own_names or pattern is None or pattern.search(f"{i['title']} {i['snippet']}")]
+
+    blocks, concise = None, False
+    for _ in range(5):
+        search_domains = [d for d in all_domains if d not in BLOCKED]
+        blocked_names = [o["name"] for o in outlets if o["domain"] in BLOCKED]
+        to_search = [o["name"] for o in own if o["name"] not in seen_feeds and o["domain"] not in BLOCKED]
+        msg = build_user_message(group, outlets, feed_items, to_search, blocked_names, concise)
+        try:
+            blocks, searches = call_claude(api_key, msg, search_domains, max_tokens=14000 if concise else MAX_TOKENS)
+            break
+        except BlockedDomains as b:
+            new = [d for d in b.domains if d in all_domains and d not in BLOCKED]
+            if not new:
+                raise RuntimeError(f"Search rejected domains we couldn't match: {b.domains}")
+            BLOCKED.update(new)
+            print(f"  search can't access {', '.join(new)}; using their feeds only")
+        except TruncatedResponse:
+            if concise:
+                raise RuntimeError("Response cut off even in short mode")
+            concise = True
+            print("  response was cut off; retrying in short mode")
+    if blocks is None:
+        raise RuntimeError("Could not find a searchable set of outlets")
+
+    search_urls, search_errors = collect_urls(blocks)
+    feed_urls = {i["url"] for i in feed_items}
+    parsed = extract_json(blocks_text(blocks))
+    stories, dropped = filter_stories(parsed.get("stories", []), search_urls | feed_urls, all_domains)
+
+    # Where did each published story come from: an RSS feed item, a web search result, or both?
+    feed_keys = {normalize_url(u) for u in feed_urls}
+    search_keys = {normalize_url(u) for u in search_urls}
+    mix = {"feed": 0, "search": 0, "both": 0}
+    for st in stories:
+        k = normalize_url(st["url"])
+        in_feed, in_search = k in feed_keys, k in search_keys
+        st["via"] = "both" if (in_feed and in_search) else ("feed" if in_feed else "search")
+        mix[st["via"]] += 1
+    not_visible = [o["name"] for o in outlets if o["domain"] in BLOCKED and o["name"] not in seen_feeds]
+
+    print(f"  feeds: {feed_report or 'none configured'}")
+    print(f"  feed items kept after topic filter: {len(feed_items)} of {len(raw_items)}")
+    print(f"  searches used: {searches}; stories kept: {len(stories)}, dropped (untraceable link): {dropped}")
+    print(f"  stories by origin: {mix['feed']} from feeds, {mix['search']} from web search, {mix['both']} found in both")
+    if not_visible:
+        print(f"  not visible (blocked from search, no feed items): {', '.join(not_visible)}")
+    if search_errors:
+        print(f"  search errors: {sorted(set(search_errors))}")
+    if not stories:
+        raise RuntimeError("No verifiable stories returned")
+
+    return {
+        "description": group["description"],
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "overview": parsed.get("overview", ""),
+        "stories": stories,
+        "gaps": parsed.get("gaps", ""),
+        "outlets": [o["name"] for o in own],
+        "not_visible": not_visible,
+        "searches_used": searches,
+        "sources_mix": mix,
     }
-  },
-  "generated_at": "2026-10-14T11:02:08.735640+00:00"
-}
+
+
+# ── publish ─────────────────────────────────────────────────────────────────
+def upload_to_github(filename, content, token):
+    url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{GITHUB_REPO}/contents/{filename}"
+    headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
+    existing = requests.get(url, headers=headers, timeout=30)
+    data = {"message": f"Update {filename}",
+            "content": base64.b64encode(content.encode("utf-8")).decode("utf-8")}
+    if existing.status_code == 200:
+        data["sha"] = existing.json()["sha"]
+    return requests.put(url, headers=headers, json=data, timeout=60).status_code in (200, 201)
+
+
+def load_existing():
+    try:
+        r = requests.get(RAW_URL, timeout=15)
+        return r.json() if r.status_code == 200 else {}
+    except Exception:
+        return {}
+
+
+# ── Newsletter picks ────────────────────────────────────────────────────────
+NEWSLETTERS_FILE = "newsletters.json"
+PICKS_MAX = 7
+
+PICKS_SYSTEM = """You help Semafor editors choose which stories to consider for one specific newsletter. You get the newsletter's editorial guide and a numbered list of candidate stories that other outlets ran in the last day or two.
+Choose the 5-7 best fits, ranked, and say in one short sentence (under 25 words) why each fits THIS newsletter's habits.
+Rules:
+- Let the editorial guide decide. Prefer stories where several outlets converge, or that a top-tier source ran, but only when they fit the guide.
+- Do not pick the same story twice. If fewer than 5 genuinely fit, return fewer.
+- Use only the numbers shown in the list. Never invent a story.
+- Give an intro: one sentence on what today's candidates suggest for this newsletter.
+Respond with ONLY valid JSON, no preamble: {"intro": "...", "picks": [{"id": 12, "why": "..."}]}"""
+
+
+def load_newsletters(path=NEWSLETTERS_FILE):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f).get("newsletters", {})
+    except FileNotFoundError:
+        return {}
+
+
+def ask_claude(api_key, system, user, max_tokens=3000):
+    """Plain Claude call (no web search) that returns the text of the answer."""
+    last_err = None
+    for _ in range(2):
+        try:
+            r = requests.post(
+                API_URL,
+                headers={"x-api-key": api_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+                json={"model": MODEL, "max_tokens": max_tokens, "system": system,
+                      "messages": [{"role": "user", "content": user}]},
+                timeout=180,
+            )
+            if r.status_code >= 400:
+                raise RuntimeError(f"API {r.status_code}: {r.text[:300]}")
+            data = r.json()
+            if data.get("stop_reason") == "max_tokens":
+                raise RuntimeError("Response cut off (hit max_tokens)")
+            return blocks_text(data.get("content", []))
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            last_err = e
+    raise last_err
+
+
+def newsletter_candidates(output_groups, group_names):
+    """Stories from the beats a newsletter draws on, de-duplicated by link and numbered."""
+    seen, cands = set(), []
+    for gname in group_names:
+        for st in (output_groups.get(gname) or {}).get("stories", []):
+            key = normalize_url(st["url"])
+            if key in seen:
+                continue
+            seen.add(key)
+            cands.append({"id": len(cands) + 1, "group": gname, "headline": st["headline"], "url": st["url"],
+                          "outlet": st.get("outlet", ""), "summary": st.get("summary", ""),
+                          "also_covered_by": st.get("also_covered_by", [])})
+    return cands
+
+
+def build_newsletter_picks(name, cfg, output_groups, api_key):
+    cands = newsletter_candidates(output_groups, cfg.get("groups", []))
+    if len(cands) < 3:
+        raise RuntimeError(f"only {len(cands)} candidate stories available")
+    lines = []
+    for c in cands:
+        also = f" (also: {', '.join(c['also_covered_by'][:3])})" if c["also_covered_by"] else ""
+        lines.append(f"[{c['id']}] ({c['group']}) {c['outlet']}: {c['headline']} - {c['summary'][:160]}{also}")
+    user = (f"Newsletter: {name} ({cfg.get('cadence', '')})\n\nEditorial guide:\n{cfg['guide']}\n\n"
+            "Candidate stories:\n" + "\n".join(lines))
+    parsed = extract_json(ask_claude(api_key, PICKS_SYSTEM, user))
+    by_id = {c["id"]: c for c in cands}
+    picks, used = [], set()
+    for p in parsed.get("picks", []):
+        try:
+            i = int(p.get("id"))
+        except (TypeError, ValueError):
+            continue
+        c = by_id.get(i)
+        if c is None or i in used:
+            continue  # ignore numbers that weren't in the list, and repeats
+        used.add(i)
+        # the link comes from our own list, never from the model
+        picks.append({"headline": c["headline"], "url": c["url"], "outlet": c["outlet"],
+                      "group": c["group"], "why": str(p.get("why", "")).strip()})
+        if len(picks) >= PICKS_MAX:
+            break
+    if not picks:
+        raise RuntimeError("no valid picks returned")
+    return {"generated_at": datetime.now(timezone.utc).isoformat(), "intro": str(parsed.get("intro", "")).strip(),
+            "picks": picks, "confidence": cfg.get("confidence", "draft"), "candidates": len(cands)}
+
+
+def main(argv):
+    dry_run = "--dry-run" in argv
+    wanted = [a for a in argv if not a.startswith("--")]
+    if not wanted and os.environ.get("RADAR_GROUPS", "").strip():
+        wanted = [g.strip() for g in os.environ["RADAR_GROUPS"].split(",") if g.strip()]
+
+    registry = load_registry()
+    groups = [g for g in registry["groups"] if (g["name"] in wanted if wanted else g.get("active"))]
+    if wanted and len(groups) != len(wanted):
+        known = {g["name"] for g in registry["groups"]}
+        print("Unknown group name(s):", [w for w in wanted if w not in known], "- known:", sorted(known))
+        sys.exit(2)
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if not api_key:
+        print("No ANTHROPIC_API_KEY set.")
+        sys.exit(2)
+
+    output = load_existing() or {}
+    output.setdefault("groups", {})
+    succeeded = 0
+    overall = {"feed": 0, "search": 0, "both": 0}
+    for g in groups:
+        print(f"\n📡 {g['name']}")
+        try:
+            result = run_group(registry, g, api_key)
+            output["groups"][g["name"]] = result
+            for k, v in result.get("sources_mix", {}).items():
+                overall[k] += v
+            succeeded += 1
+            print("  ✓ done")
+        except Exception as e:
+            print(f"  ✗ failed: {e}  (keeping previous data for this group, if any)")
+    output["generated_at"] = datetime.now(timezone.utc).isoformat()
+    total = sum(overall.values())
+    if total:
+        pct = lambda n: round(100 * n / total)
+        print(f"\nOVERALL: {total} stories published this run: {pct(overall['feed'])}% from RSS feeds, "
+              f"{pct(overall['search'])}% from web search, {pct(overall['both'])}% found by both")
+
+    if succeeded == 0:
+        print("\nNo group succeeded; nothing published.")
+        sys.exit(1)
+
+    newsletters = load_newsletters()
+    if newsletters:
+        print("\n📰 Newsletter picks")
+        output.setdefault("newsletters", {})
+        for nl_name, cfg in newsletters.items():
+            if cfg.get("active", True) is False:
+                continue
+            try:
+                output["newsletters"][nl_name] = build_newsletter_picks(nl_name, cfg, output["groups"], api_key)
+                print(f"  ✓ {nl_name}: {len(output['newsletters'][nl_name]['picks'])} picks")
+            except Exception as e:
+                print(f"  ✗ {nl_name} failed: {e}  (keeping previous picks, if any)")
+
+    payload = json.dumps(output, ensure_ascii=False, indent=2)
+    if dry_run or not token:
+        with open(RADAR_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+        print(f"\nWrote {RADAR_FILE} locally ({'dry run' if dry_run else 'no GITHUB_TOKEN'}).")
+    else:
+        ok = upload_to_github(RADAR_FILE, payload, token)
+        print("\n✅ radar.json uploaded" if ok else "\n⚠️ Upload to GitHub failed")
+        if not ok:
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
