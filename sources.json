@@ -1,5 +1,5 @@
 {
-  "_readme": "Edit this file to change what the radar covers. To add an outlet: add it under 'outlets' (name, domain, optional feeds), then list its id in a group. Set a group's 'active' to true to include it in scheduled runs. 'extra_outlets' are searched but have no feeds pulled.",
+  "_readme": "Edit this file to change what the radar covers. To add an outlet: add it under 'outlets' (name, domain, optional feeds, optional note), then list its id in a group. A group's 'active' flag switches it on or off for scheduled runs. 'extra_outlets' are big general outlets: they are searched, and their feed items are only used when they match the group's 'keywords'. A 'note' like 'state-run' is shown to the AI so summaries say so.",
   "outlets": {
     "wsj": {
       "name": "WSJ",
@@ -125,7 +125,9 @@
     "thehill": {
       "name": "The Hill",
       "domain": "thehill.com",
-      "feeds": []
+      "feeds": [
+        "https://thehill.com/feed/"
+      ]
     },
     "techcrunch": {
       "name": "TechCrunch",
@@ -214,12 +216,16 @@
     "wirechina": {
       "name": "The Wire China",
       "domain": "thewirechina.com",
-      "feeds": []
+      "feeds": [
+        "https://www.thewirechina.com/feed/"
+      ]
     },
     "caixin": {
       "name": "Caixin Global",
       "domain": "caixinglobal.com",
-      "feeds": []
+      "feeds": [
+        "https://gateway.caixin.com/api/data/global/feedlyRss.xml"
+      ]
     },
     "sixthtone": {
       "name": "Sixth Tone",
@@ -243,22 +249,30 @@
     "thenational": {
       "name": "The National",
       "domain": "thenationalnews.com",
-      "feeds": []
+      "feeds": [
+        "https://www.thenationalnews.com/arc/outboundfeeds/rss/?outputType=xml"
+      ]
     },
     "arabnews": {
       "name": "Arab News",
       "domain": "arabnews.com",
-      "feeds": []
+      "feeds": [
+        "https://www.arabnews.com/rss.xml"
+      ]
     },
     "almonitor": {
       "name": "Al-Monitor",
       "domain": "al-monitor.com",
-      "feeds": []
+      "feeds": [
+        "https://www.al-monitor.com/rss"
+      ]
     },
     "mee": {
       "name": "Middle East Eye",
       "domain": "middleeasteye.net",
-      "feeds": []
+      "feeds": [
+        "https://www.middleeasteye.net/rss"
+      ]
     },
     "aljazeera": {
       "name": "Al Jazeera",
@@ -270,7 +284,9 @@
     "aawsat": {
       "name": "Asharq Al-Awsat",
       "domain": "aawsat.com",
-      "feeds": []
+      "feeds": [
+        "https://english.aawsat.com/feed"
+      ]
     },
     "toi": {
       "name": "Times of Israel",
@@ -431,17 +447,373 @@
     "niemanlab": {
       "name": "Nieman Lab",
       "domain": "niemanlab.org",
-      "feeds": []
+      "feeds": [
+        "https://www.niemanlab.org/feed/"
+      ]
     },
     "pressgazette": {
       "name": "Press Gazette",
       "domain": "pressgazette.co.uk",
-      "feeds": []
+      "feeds": [
+        "https://pressgazette.co.uk/feed/"
+      ]
     },
     "cjr": {
       "name": "Columbia Journalism Review",
       "domain": "cjr.org",
+      "feeds": [
+        "https://www.cjr.org/feed"
+      ]
+    },
+    "gulfnews": {
+      "name": "Gulf News",
+      "domain": "gulfnews.com",
       "feeds": []
+    },
+    "khaleejtimes": {
+      "name": "Khaleej Times",
+      "domain": "khaleejtimes.com",
+      "feeds": []
+    },
+    "arabianbusiness": {
+      "name": "Arabian Business",
+      "domain": "arabianbusiness.com",
+      "feeds": []
+    },
+    "agbi": {
+      "name": "AGBI",
+      "domain": "agbi.com",
+      "feeds": [
+        "https://www.agbi.com/feed/"
+      ]
+    },
+    "zawya": {
+      "name": "Zawya",
+      "domain": "zawya.com",
+      "feeds": []
+    },
+    "saudigazette": {
+      "name": "Saudi Gazette",
+      "domain": "saudigazette.com.sa",
+      "feeds": []
+    },
+    "alarabiya": {
+      "name": "Al Arabiya English",
+      "domain": "english.alarabiya.net",
+      "feeds": []
+    },
+    "newarab": {
+      "name": "The New Arab",
+      "domain": "newarab.com",
+      "feeds": []
+    },
+    "jpost": {
+      "name": "The Jerusalem Post",
+      "domain": "jpost.com",
+      "feeds": [
+        "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"
+      ]
+    },
+    "ynet": {
+      "name": "Ynetnews",
+      "domain": "ynetnews.com",
+      "feeds": []
+    },
+    "haaretz": {
+      "name": "Haaretz",
+      "domain": "haaretz.com",
+      "feeds": []
+    },
+    "iranintl": {
+      "name": "Iran International",
+      "domain": "iranintl.com",
+      "feeds": []
+    },
+    "globaltimes": {
+      "name": "Global Times",
+      "domain": "globaltimes.cn",
+      "feeds": [],
+      "note": "state-run"
+    },
+    "chinadaily": {
+      "name": "China Daily",
+      "domain": "chinadaily.com.cn",
+      "feeds": [
+        "https://www.chinadaily.com.cn/rss/china_rss.xml",
+        "https://www.chinadaily.com.cn/rss/bizchina_rss.xml"
+      ],
+      "note": "state-run"
+    },
+    "xinhua": {
+      "name": "Xinhua",
+      "domain": "news.cn",
+      "feeds": [],
+      "note": "state-run"
+    },
+    "cgtn": {
+      "name": "CGTN",
+      "domain": "cgtn.com",
+      "feeds": [],
+      "note": "state-run"
+    },
+    "yicai": {
+      "name": "Yicai Global",
+      "domain": "yicaiglobal.com",
+      "feeds": []
+    },
+    "technode": {
+      "name": "TechNode",
+      "domain": "technode.com",
+      "feeds": [
+        "https://technode.com/feed/"
+      ]
+    },
+    "pandaily": {
+      "name": "Pandaily",
+      "domain": "pandaily.com",
+      "feeds": [
+        "https://pandaily.com/feed/"
+      ]
+    },
+    "cnevpost": {
+      "name": "CnEVPost",
+      "domain": "cnevpost.com",
+      "feeds": [
+        "https://cnevpost.com/feed/"
+      ]
+    },
+    "hkfp": {
+      "name": "Hong Kong Free Press",
+      "domain": "hongkongfp.com",
+      "feeds": [
+        "https://hongkongfp.com/feed/"
+      ]
+    },
+    "taipeitimes": {
+      "name": "Taipei Times",
+      "domain": "taipeitimes.com",
+      "feeds": [
+        "https://www.taipeitimes.com/xml/index.rss"
+      ]
+    },
+    "focustaiwan": {
+      "name": "Focus Taiwan",
+      "domain": "focustaiwan.tw",
+      "feeds": []
+    },
+    "chinatalk": {
+      "name": "ChinaTalk",
+      "domain": "chinatalk.media",
+      "feeds": [
+        "https://www.chinatalk.media/feed"
+      ]
+    },
+    "arstechnica": {
+      "name": "Ars Technica",
+      "domain": "arstechnica.com",
+      "feeds": [
+        "https://feeds.arstechnica.com/arstechnica/index"
+      ]
+    },
+    "venturebeat": {
+      "name": "VentureBeat",
+      "domain": "venturebeat.com",
+      "feeds": [
+        "https://venturebeat.com/feed/"
+      ]
+    },
+    "decoder": {
+      "name": "The Decoder",
+      "domain": "the-decoder.com",
+      "feeds": [
+        "https://the-decoder.com/feed/"
+      ]
+    },
+    "techmeme": {
+      "name": "Techmeme",
+      "domain": "techmeme.com",
+      "feeds": [
+        "https://www.techmeme.com/feed.xml"
+      ]
+    },
+    "theregister": {
+      "name": "The Register",
+      "domain": "theregister.com",
+      "feeds": [
+        "https://www.theregister.com/headlines.atom"
+      ]
+    },
+    "m404": {
+      "name": "404 Media",
+      "domain": "404media.co",
+      "feeds": [
+        "https://www.404media.co/rss/"
+      ]
+    },
+    "ieeespectrum": {
+      "name": "IEEE Spectrum",
+      "domain": "spectrum.ieee.org",
+      "feeds": [
+        "https://spectrum.ieee.org/feeds/feed.rss"
+      ]
+    },
+    "openai": {
+      "name": "OpenAI",
+      "domain": "openai.com",
+      "feeds": [
+        "https://openai.com/news/rss.xml"
+      ],
+      "note": "company announcements"
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "domain": "anthropic.com",
+      "feeds": [],
+      "note": "company announcements"
+    },
+    "deepmind": {
+      "name": "Google DeepMind",
+      "domain": "deepmind.google",
+      "feeds": [],
+      "note": "company announcements"
+    },
+    "rollcall": {
+      "name": "Roll Call",
+      "domain": "rollcall.com",
+      "feeds": [
+        "https://rollcall.com/feed/"
+      ]
+    },
+    "cook": {
+      "name": "Cook Political Report",
+      "domain": "cookpolitical.com",
+      "feeds": []
+    },
+    "rcp": {
+      "name": "RealClearPolitics",
+      "domain": "realclearpolitics.com",
+      "feeds": [
+        "https://www.realclearpolitics.com/index.xml"
+      ]
+    },
+    "scotusblog": {
+      "name": "SCOTUSblog",
+      "domain": "scotusblog.com",
+      "feeds": [
+        "https://www.scotusblog.com/feed/"
+      ]
+    },
+    "courthousenews": {
+      "name": "Courthouse News",
+      "domain": "courthousenews.com",
+      "feeds": [
+        "https://www.courthousenews.com/feed/"
+      ]
+    },
+    "dispatch": {
+      "name": "The Dispatch",
+      "domain": "thedispatch.com",
+      "feeds": [
+        "https://thedispatch.com/feed/"
+      ]
+    },
+    "wex": {
+      "name": "Washington Examiner",
+      "domain": "washingtonexaminer.com",
+      "feeds": [
+        "https://www.washingtonexaminer.com/feed"
+      ]
+    },
+    "natreview": {
+      "name": "National Review",
+      "domain": "nationalreview.com",
+      "feeds": [
+        "https://www.nationalreview.com/feed/"
+      ]
+    },
+    "foxnews": {
+      "name": "Fox News",
+      "domain": "foxnews.com",
+      "feeds": [
+        "https://moxie.foxnews.com/google-publisher/politics.xml"
+      ]
+    },
+    "npr": {
+      "name": "NPR",
+      "domain": "npr.org",
+      "feeds": [
+        "https://feeds.npr.org/1014/rss.xml"
+      ]
+    },
+    "stateline": {
+      "name": "Stateline",
+      "domain": "stateline.org",
+      "feeds": [
+        "https://stateline.org/feed/"
+      ]
+    },
+    "poynter": {
+      "name": "Poynter",
+      "domain": "poynter.org",
+      "feeds": [
+        "https://www.poynter.org/feed/"
+      ]
+    },
+    "thewrap": {
+      "name": "TheWrap",
+      "domain": "thewrap.com",
+      "feeds": [
+        "https://www.thewrap.com/feed/"
+      ]
+    },
+    "variety": {
+      "name": "Variety",
+      "domain": "variety.com",
+      "feeds": [
+        "https://variety.com/feed/"
+      ]
+    },
+    "thr": {
+      "name": "The Hollywood Reporter",
+      "domain": "hollywoodreporter.com",
+      "feeds": [
+        "https://www.hollywoodreporter.com/feed/"
+      ]
+    },
+    "deadline": {
+      "name": "Deadline",
+      "domain": "deadline.com",
+      "feeds": [
+        "https://deadline.com/feed/"
+      ]
+    },
+    "adweek": {
+      "name": "Adweek",
+      "domain": "adweek.com",
+      "feeds": [
+        "https://www.adweek.com/feed/"
+      ]
+    },
+    "digiday": {
+      "name": "Digiday",
+      "domain": "digiday.com",
+      "feeds": [
+        "https://digiday.com/feed/"
+      ]
+    },
+    "mediaite": {
+      "name": "Mediaite",
+      "domain": "mediaite.com",
+      "feeds": [
+        "https://www.mediaite.com/feed/"
+      ]
+    },
+    "guardian": {
+      "name": "The Guardian",
+      "domain": "theguardian.com",
+      "feeds": [
+        "https://www.theguardian.com/world/rss"
+      ]
     }
   },
   "groups": [
@@ -482,37 +854,127 @@
     {
       "name": "US politics",
       "description": "US politics and policy coverage.",
-      "active": false,
+      "active": true,
       "outlets": [
         "politico",
         "axios",
         "punchbowl",
         "notus",
-        "thehill"
+        "thehill",
+        "rollcall",
+        "cook",
+        "rcp",
+        "scotusblog",
+        "courthousenews",
+        "dispatch",
+        "wex",
+        "natreview",
+        "foxnews",
+        "npr",
+        "stateline"
       ],
       "extra_outlets": [
         "nyt",
         "wapo",
-        "wsj"
+        "wsj",
+        "guardian"
+      ],
+      "keywords": [
+        "congress",
+        "senate",
+        "senator",
+        "senators",
+        "house",
+        "white house",
+        "trump",
+        "republican",
+        "republicans",
+        "democrat",
+        "democrats",
+        "election",
+        "elections",
+        "supreme court",
+        "governor",
+        "campaign",
+        "midterm",
+        "midterms",
+        "gop",
+        "vance",
+        "speaker",
+        "filibuster",
+        "shutdown",
+        "tariff",
+        "tariffs",
+        "executive order",
+        "justice department"
       ]
     },
     {
       "name": "Tech & AI",
       "description": "Technology and AI coverage.",
-      "active": false,
+      "active": true,
       "outlets": [
         "theinformation",
         "techcrunch",
         "theverge",
         "wired",
         "mittr",
-        "platformer"
+        "platformer",
+        "arstechnica",
+        "venturebeat",
+        "decoder",
+        "techmeme",
+        "theregister",
+        "m404",
+        "ieeespectrum",
+        "restofworld",
+        "openai",
+        "anthropic",
+        "deepmind"
       ],
       "extra_outlets": [
         "nyt",
         "wsj",
         "ft",
-        "bloomberg"
+        "bloomberg",
+        "economist",
+        "guardian"
+      ],
+      "keywords": [
+        "ai",
+        "artificial intelligence",
+        "openai",
+        "anthropic",
+        "nvidia",
+        "chip",
+        "chips",
+        "semiconductor",
+        "semiconductors",
+        "software",
+        "google",
+        "microsoft",
+        "meta",
+        "apple",
+        "amazon",
+        "tesla",
+        "startup",
+        "startups",
+        "cybersecurity",
+        "data center",
+        "data centers",
+        "robot",
+        "robots",
+        "robotics",
+        "quantum",
+        "llm",
+        "model",
+        "models",
+        "tech",
+        "technology",
+        "algorithm",
+        "cloud",
+        "tsmc",
+        "antitrust"
       ]
     },
     {
@@ -535,6 +997,40 @@
         "wsj",
         "nyt",
         "economist"
+      ],
+      "keywords": [
+        "energy",
+        "oil",
+        "gas",
+        "lng",
+        "crude",
+        "opec",
+        "power",
+        "grid",
+        "solar",
+        "wind",
+        "nuclear",
+        "uranium",
+        "coal",
+        "battery",
+        "batteries",
+        "renewable",
+        "renewables",
+        "climate",
+        "emissions",
+        "carbon",
+        "hydrogen",
+        "electricity",
+        "utility",
+        "utilities",
+        "pipeline",
+        "refinery",
+        "drilling",
+        "fracking",
+        "ev",
+        "evs",
+        "electric vehicles",
+        "geothermal"
       ]
     },
     {
@@ -548,7 +1044,19 @@
         "caixin",
         "sixthtone",
         "cmp",
-        "restofworld"
+        "restofworld",
+        "globaltimes",
+        "chinadaily",
+        "xinhua",
+        "cgtn",
+        "yicai",
+        "technode",
+        "pandaily",
+        "cnevpost",
+        "hkfp",
+        "taipeitimes",
+        "focustaiwan",
+        "chinatalk"
       ],
       "extra_outlets": [
         "reuters",
@@ -558,27 +1066,104 @@
         "wsj",
         "bloomberg",
         "economist"
+      ],
+      "keywords": [
+        "china",
+        "chinese",
+        "beijing",
+        "xi jinping",
+        "xi",
+        "taiwan",
+        "taipei",
+        "hong kong",
+        "shanghai",
+        "shenzhen",
+        "yuan",
+        "renminbi",
+        "huawei",
+        "byd",
+        "alibaba",
+        "tencent",
+        "bytedance",
+        "tiktok",
+        "pla",
+        "south china sea",
+        "politburo",
+        "ccp"
       ]
     },
     {
       "name": "Gulf & Middle East",
       "description": "Gulf and Middle East coverage.",
-      "active": false,
+      "active": true,
       "outlets": [
         "thenational",
         "arabnews",
+        "gulfnews",
+        "khaleejtimes",
+        "arabianbusiness",
+        "agbi",
+        "zawya",
+        "saudigazette",
+        "alarabiya",
         "almonitor",
         "mee",
+        "newarab",
         "aljazeera",
         "aawsat",
-        "toi"
+        "toi",
+        "jpost",
+        "ynet",
+        "haaretz",
+        "iranintl"
       ],
       "extra_outlets": [
         "reuters",
         "ap",
         "ft",
         "nyt",
-        "bloomberg"
+        "bloomberg",
+        "wsj",
+        "economist",
+        "bbc"
+      ],
+      "keywords": [
+        "saudi",
+        "saudi arabia",
+        "uae",
+        "emirates",
+        "emirati",
+        "abu dhabi",
+        "dubai",
+        "qatar",
+        "qatari",
+        "doha",
+        "kuwait",
+        "bahrain",
+        "oman",
+        "gulf",
+        "iran",
+        "iranian",
+        "tehran",
+        "israel",
+        "israeli",
+        "gaza",
+        "hamas",
+        "hezbollah",
+        "lebanon",
+        "syria",
+        "iraq",
+        "yemen",
+        "houthi",
+        "houthis",
+        "hormuz",
+        "opec",
+        "riyadh",
+        "middle east",
+        "red sea",
+        "aramco",
+        "adnoc",
+        "neom"
       ]
     },
     {
@@ -603,6 +1188,58 @@
         "nyt",
         "wsj",
         "bloomberg"
+      ],
+      "keywords": [
+        "africa",
+        "african",
+        "nigeria",
+        "kenya",
+        "ghana",
+        "ethiopia",
+        "tanzania",
+        "uganda",
+        "egypt",
+        "morocco",
+        "senegal",
+        "rwanda",
+        "zimbabwe",
+        "algeria",
+        "ivory coast",
+        "cote d'ivoire",
+        "tunisia",
+        "congo",
+        "drc",
+        "angola",
+        "sudan",
+        "south sudan",
+        "somalia",
+        "libya",
+        "zambia",
+        "mozambique",
+        "cameroon",
+        "mali",
+        "namibia",
+        "botswana",
+        "lesotho",
+        "eswatini",
+        "malawi",
+        "south africa",
+        "sahel",
+        "lagos",
+        "nairobi",
+        "abuja",
+        "johannesburg",
+        "cape town",
+        "addis ababa",
+        "cairo",
+        "dakar",
+        "kigali",
+        "accra",
+        "kinshasa",
+        "luanda",
+        "khartoum",
+        "ecowas",
+        "african union"
       ]
     },
     {
@@ -625,6 +1262,35 @@
         "nyt",
         "wsj",
         "bloomberg"
+      ],
+      "keywords": [
+        "latin america",
+        "latam",
+        "brazil",
+        "brazilian",
+        "mexico",
+        "mexican",
+        "argentina",
+        "colombia",
+        "chile",
+        "peru",
+        "venezuela",
+        "ecuador",
+        "bolivia",
+        "uruguay",
+        "paraguay",
+        "panama",
+        "guatemala",
+        "honduras",
+        "el salvador",
+        "nicaragua",
+        "costa rica",
+        "dominican republic",
+        "cuba",
+        "haiti",
+        "milei",
+        "lula",
+        "sheinbaum"
       ]
     },
     {
@@ -639,7 +1305,28 @@
         "foreignaffairs",
         "foreignpolicy"
       ],
-      "extra_outlets": []
+      "extra_outlets": [],
+      "keywords": [
+        "defense",
+        "defence",
+        "military",
+        "pentagon",
+        "nato",
+        "missile",
+        "missiles",
+        "drone",
+        "drones",
+        "war",
+        "army",
+        "navy",
+        "air force",
+        "weapons",
+        "nuclear",
+        "intelligence",
+        "cyberattack",
+        "sanctions",
+        "ceasefire"
+      ]
     },
     {
       "name": "Europe & Ukraine",
@@ -656,6 +1343,26 @@
         "ap",
         "ft",
         "bbc"
+      ],
+      "keywords": [
+        "europe",
+        "european",
+        "eu",
+        "ukraine",
+        "ukrainian",
+        "kyiv",
+        "russia",
+        "russian",
+        "moscow",
+        "putin",
+        "zelensky",
+        "nato",
+        "brussels",
+        "germany",
+        "france",
+        "britain",
+        "uk",
+        "poland"
       ]
     },
     {
@@ -673,20 +1380,83 @@
         "reuters",
         "ft",
         "nyt"
+      ],
+      "keywords": [
+        "asia",
+        "asian",
+        "india",
+        "indian",
+        "japan",
+        "japanese",
+        "korea",
+        "korean",
+        "indonesia",
+        "vietnam",
+        "philippines",
+        "singapore",
+        "thailand",
+        "pakistan",
+        "bangladesh",
+        "modi",
+        "asean"
       ]
     },
     {
       "name": "Media",
       "description": "Media-industry coverage.",
-      "active": false,
+      "active": true,
       "outlets": [
         "status",
         "puck",
         "niemanlab",
         "pressgazette",
-        "cjr"
+        "cjr",
+        "poynter",
+        "thewrap",
+        "variety",
+        "thr",
+        "deadline",
+        "adweek",
+        "digiday",
+        "mediaite"
       ],
-      "extra_outlets": []
+      "extra_outlets": [
+        "nyt",
+        "wsj",
+        "ft",
+        "bloomberg",
+        "guardian"
+      ],
+      "keywords": [
+        "media",
+        "journalism",
+        "journalist",
+        "journalists",
+        "newsroom",
+        "publisher",
+        "publishers",
+        "newspaper",
+        "newspapers",
+        "press",
+        "broadcast",
+        "broadcaster",
+        "streaming",
+        "netflix",
+        "disney",
+        "paramount",
+        "warner",
+        "comcast",
+        "nbc",
+        "cnn",
+        "fox",
+        "podcast",
+        "advertising",
+        "advertisers",
+        "subscription",
+        "layoffs",
+        "tiktok",
+        "youtube"
+      ]
     }
   ]
 }
