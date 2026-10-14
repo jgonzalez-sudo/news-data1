@@ -305,15 +305,26 @@ def run_group(registry, group, api_key):
     if blocks is None:
         raise RuntimeError("Could not find a searchable set of outlets")
 
-    seen_urls, search_errors = collect_urls(blocks)
-    seen_urls |= {i["url"] for i in feed_items}
+    search_urls, search_errors = collect_urls(blocks)
+    feed_urls = {i["url"] for i in feed_items}
     parsed = extract_json(blocks_text(blocks))
-    stories, dropped = filter_stories(parsed.get("stories", []), seen_urls, all_domains)
+    stories, dropped = filter_stories(parsed.get("stories", []), search_urls | feed_urls, all_domains)
+
+    # Where did each published story come from: an RSS feed item, a web search result, or both?
+    feed_keys = {normalize_url(u) for u in feed_urls}
+    search_keys = {normalize_url(u) for u in search_urls}
+    mix = {"feed": 0, "search": 0, "both": 0}
+    for st in stories:
+        k = normalize_url(st["url"])
+        in_feed, in_search = k in feed_keys, k in search_keys
+        st["via"] = "both" if (in_feed and in_search) else ("feed" if in_feed else "search")
+        mix[st["via"]] += 1
     not_visible = [o["name"] for o in outlets if o["domain"] in BLOCKED and o["name"] not in seen_feeds]
 
     print(f"  feeds: {feed_report or 'none configured'}")
     print(f"  feed items kept after topic filter: {len(feed_items)} of {len(raw_items)}")
     print(f"  searches used: {searches}; stories kept: {len(stories)}, dropped (untraceable link): {dropped}")
+    print(f"  stories by origin: {mix['feed']} from feeds, {mix['search']} from web search, {mix['both']} found in both")
     if not_visible:
         print(f"  not visible (blocked from search, no feed items): {', '.join(not_visible)}")
     if search_errors:
@@ -330,6 +341,7 @@ def run_group(registry, group, api_key):
         "outlets": [o["name"] for o in own],
         "not_visible": not_visible,
         "searches_used": searches,
+        "sources_mix": mix,
     }
 
 
@@ -351,6 +363,99 @@ def load_existing():
         return r.json() if r.status_code == 200 else {}
     except Exception:
         return {}
+
+
+# ── Newsletter picks ────────────────────────────────────────────────────────
+NEWSLETTERS_FILE = "newsletters.json"
+PICKS_MAX = 7
+
+PICKS_SYSTEM = """You help Semafor editors choose which stories to consider for one specific newsletter. You get the newsletter's editorial guide and a numbered list of candidate stories that other outlets ran in the last day or two.
+Choose the 5-7 best fits, ranked, and say in one short sentence (under 25 words) why each fits THIS newsletter's habits.
+Rules:
+- Let the editorial guide decide. Prefer stories where several outlets converge, or that a top-tier source ran, but only when they fit the guide.
+- Do not pick the same story twice. If fewer than 5 genuinely fit, return fewer.
+- Use only the numbers shown in the list. Never invent a story.
+- Give an intro: one sentence on what today's candidates suggest for this newsletter.
+Respond with ONLY valid JSON, no preamble: {"intro": "...", "picks": [{"id": 12, "why": "..."}]}"""
+
+
+def load_newsletters(path=NEWSLETTERS_FILE):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f).get("newsletters", {})
+    except FileNotFoundError:
+        return {}
+
+
+def ask_claude(api_key, system, user, max_tokens=3000):
+    """Plain Claude call (no web search) that returns the text of the answer."""
+    last_err = None
+    for _ in range(2):
+        try:
+            r = requests.post(
+                API_URL,
+                headers={"x-api-key": api_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+                json={"model": MODEL, "max_tokens": max_tokens, "system": system,
+                      "messages": [{"role": "user", "content": user}]},
+                timeout=180,
+            )
+            if r.status_code >= 400:
+                raise RuntimeError(f"API {r.status_code}: {r.text[:300]}")
+            data = r.json()
+            if data.get("stop_reason") == "max_tokens":
+                raise RuntimeError("Response cut off (hit max_tokens)")
+            return blocks_text(data.get("content", []))
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            last_err = e
+    raise last_err
+
+
+def newsletter_candidates(output_groups, group_names):
+    """Stories from the beats a newsletter draws on, de-duplicated by link and numbered."""
+    seen, cands = set(), []
+    for gname in group_names:
+        for st in (output_groups.get(gname) or {}).get("stories", []):
+            key = normalize_url(st["url"])
+            if key in seen:
+                continue
+            seen.add(key)
+            cands.append({"id": len(cands) + 1, "group": gname, "headline": st["headline"], "url": st["url"],
+                          "outlet": st.get("outlet", ""), "summary": st.get("summary", ""),
+                          "also_covered_by": st.get("also_covered_by", [])})
+    return cands
+
+
+def build_newsletter_picks(name, cfg, output_groups, api_key):
+    cands = newsletter_candidates(output_groups, cfg.get("groups", []))
+    if len(cands) < 3:
+        raise RuntimeError(f"only {len(cands)} candidate stories available")
+    lines = []
+    for c in cands:
+        also = f" (also: {', '.join(c['also_covered_by'][:3])})" if c["also_covered_by"] else ""
+        lines.append(f"[{c['id']}] ({c['group']}) {c['outlet']}: {c['headline']} - {c['summary'][:160]}{also}")
+    user = (f"Newsletter: {name} ({cfg.get('cadence', '')})\n\nEditorial guide:\n{cfg['guide']}\n\n"
+            "Candidate stories:\n" + "\n".join(lines))
+    parsed = extract_json(ask_claude(api_key, PICKS_SYSTEM, user))
+    by_id = {c["id"]: c for c in cands}
+    picks, used = [], set()
+    for p in parsed.get("picks", []):
+        try:
+            i = int(p.get("id"))
+        except (TypeError, ValueError):
+            continue
+        c = by_id.get(i)
+        if c is None or i in used:
+            continue  # ignore numbers that weren't in the list, and repeats
+        used.add(i)
+        # the link comes from our own list, never from the model
+        picks.append({"headline": c["headline"], "url": c["url"], "outlet": c["outlet"],
+                      "group": c["group"], "why": str(p.get("why", "")).strip()})
+        if len(picks) >= PICKS_MAX:
+            break
+    if not picks:
+        raise RuntimeError("no valid picks returned")
+    return {"generated_at": datetime.now(timezone.utc).isoformat(), "intro": str(parsed.get("intro", "")).strip(),
+            "picks": picks, "confidence": cfg.get("confidence", "draft"), "candidates": len(cands)}
 
 
 def main(argv):
@@ -375,19 +480,41 @@ def main(argv):
     output = load_existing() or {}
     output.setdefault("groups", {})
     succeeded = 0
+    overall = {"feed": 0, "search": 0, "both": 0}
     for g in groups:
         print(f"\n📡 {g['name']}")
         try:
-            output["groups"][g["name"]] = run_group(registry, g, api_key)
+            result = run_group(registry, g, api_key)
+            output["groups"][g["name"]] = result
+            for k, v in result.get("sources_mix", {}).items():
+                overall[k] += v
             succeeded += 1
             print("  ✓ done")
         except Exception as e:
             print(f"  ✗ failed: {e}  (keeping previous data for this group, if any)")
     output["generated_at"] = datetime.now(timezone.utc).isoformat()
+    total = sum(overall.values())
+    if total:
+        pct = lambda n: round(100 * n / total)
+        print(f"\nOVERALL: {total} stories published this run: {pct(overall['feed'])}% from RSS feeds, "
+              f"{pct(overall['search'])}% from web search, {pct(overall['both'])}% found by both")
 
     if succeeded == 0:
         print("\nNo group succeeded; nothing published.")
         sys.exit(1)
+
+    newsletters = load_newsletters()
+    if newsletters:
+        print("\n📰 Newsletter picks")
+        output.setdefault("newsletters", {})
+        for nl_name, cfg in newsletters.items():
+            if cfg.get("active", True) is False:
+                continue
+            try:
+                output["newsletters"][nl_name] = build_newsletter_picks(nl_name, cfg, output["groups"], api_key)
+                print(f"  ✓ {nl_name}: {len(output['newsletters'][nl_name]['picks'])} picks")
+            except Exception as e:
+                print(f"  ✗ {nl_name} failed: {e}  (keeping previous picks, if any)")
 
     payload = json.dumps(output, ensure_ascii=False, indent=2)
     if dry_run or not token:
