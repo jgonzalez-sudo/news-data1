@@ -2,85 +2,79 @@
   "groups": {
     "Business": {
       "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-10-14T09:55:55.401635+00:00",
-      "overview": "Markets-focused coverage dominates right now: outlets are converging on the Houthi strike on Saudi Aramco's headquarters and its ripple effects on aviation and oil, a record $1.2 billion Treasury penalty against Bank of America, and the wait for the September U.S. CPI report just ahead of the Fed's next meeting. Bank earnings season, AI-bubble jitters after a failed Australian IPO, and China's surging trade surplus round out the major threads.",
+      "generated_at": "2026-10-14T10:58:11.011758+00:00",
+      "overview": "Business and general-news outlets are dominated by Tuesday's twin bank storylines — a record Treasury penalty against Bank of America and a cautious bank-earnings season — alongside escalating Middle East violence hitting Saudi Arabia's oil and aviation sectors, Starlink's disruption of Ukraine's war effort, and mounting signs that the AI investment boom may be cresting. China's blockbuster export data and Trump's renewed push to oust a Fed governor round out the macro picture.",
       "stories": [
         {
-          "headline": "Houthi Strike Hits Saudi Aramco Headquarters",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/middle-east/houthi-strike-hits-building-at-saudi-aramco-headquarters-a436de59?mod=rss_worldnews",
-          "summary": "An attack on Aramco's headquarters follows earlier strikes on Riyadh's international airport, marking an expansion of the conflict between Saudi Arabia and Iran-backed Houthi militants.",
-          "also_covered_by": [
-            "FT",
-            "CNBC"
-          ]
-        },
-        {
-          "headline": "Bank of America Fined $1.2 Billion for Money-Laundering Failures",
+          "headline": "Bank of America hit with $1.2 billion fine for money-laundering failures",
           "outlet": "NYT",
           "url": "https://www.nytimes.com/2026/10/13/business/bank-of-america-money-laundering-fine.html",
-          "summary": "Treasury regulators imposed more than $1.2 billion in penalties — the third-largest in department history — after finding Bank of America failed to report over $5 billion in suspicious transactions, including ones tied to Chinese money-laundering networks and sanctioned countries.",
+          "summary": "Federal regulators penalized Bank of America more than $1.2 billion, with Treasury's financial-crimes unit saying the bank had waved through billions in suspicious transactions without proper care; Bank of America admitted it willfully violated the Bank Secrecy Act by failing to report over $5 billion in suspicious activity, much of it tied to Chinese money-laundering networks and border-area risk.",
           "also_covered_by": [
-            "Bloomberg",
-            "Axios",
-            "Washington Post",
             "CNBC",
-            "BBC"
+            "BBC",
+            "Bloomberg",
+            "Washington Post",
+            "WSJ"
           ]
         },
         {
-          "headline": "Investors Brace for Key September CPI Report",
+          "headline": "Houthi strike hits Saudi Aramco headquarters as conflict with Riyadh escalates",
           "outlet": "WSJ",
-          "url": "https://www.wsj.com/livecoverage/stock-market-cpi-inflation-10-14-2026?mod=rss_markets_main",
-          "summary": "Markets are awaiting the CPI release, with economists expecting headline inflation up 0.6% on the month and 3.6% annually, a reading that could shape the Fed's rate decision in two weeks.",
+          "url": "https://www.wsj.com/world/middle-east/houthi-strike-hits-building-at-saudi-aramco-headquarters-a436de59?mod=rss_worldnews",
+          "summary": "An Iran-backed Houthi strike hit a building at Saudi Aramco's headquarters, following earlier strikes on Riyadh's international airport, in what the Journal describes as an expansion of the conflict between Saudi Arabia and the militants; FT's military briefing notes the kingdom has struggled to keep pace with the rebels' tactics despite being one of the world's largest arms buyers, while CNBC reports the airport attacks are disrupting airlines and forcing carriers like Delta to delay new Saudi routes.",
+          "also_covered_by": [
+            "FT",
+            "CNBC",
+            "The Economist"
+          ]
+        },
+        {
+          "headline": "Starlink speed limits are disrupting Ukraine's military operations",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/world/europe/ukraine-says-new-starlink-speed-limit-is-disrupting-its-attacks-79225e19?mod=rss_worldnews",
+          "summary": "Ukrainian officials say new speed limits imposed on Starlink terminals have blunted Kyiv's ability to strike Russian targets and intercept drones; FT reports Kyiv was \"blindsided\" by the restrictions, which come as Moscow ignores Trump's proposed energy ceasefire.",
+          "also_covered_by": [
+            "FT"
+          ]
+        },
+        {
+          "headline": "Rising rates cloud mood on Wall Street despite strong bank profits",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/finance/banking/rising-interest-rates-threaten-to-spoil-the-party-for-big-banks-0ef3e7c0?mod=rss_markets_main",
+          "summary": "Goldman Sachs and JPMorgan posted higher quarterly profit, but the Journal notes the mood on Wall Street is turning more cautious as rising interest rates threaten to dampen momentum; CNBC's live coverage tracked JPMorgan, Goldman, Wells Fargo and Citigroup results, while Axios reported that consumer spending remained resilient in the banks' earnings despite higher costs.",
           "also_covered_by": [
             "CNBC",
-            "Bloomberg",
+            "Axios"
+          ]
+        },
+        {
+          "headline": "China's exports surge, putting trade surplus on track for a record",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/14/business/china-exports-trade-surplus.html",
+          "summary": "China's exports grew last month at the fastest pace in almost any month since the end of the global financial crisis, putting the country's trade surplus on track for a record.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Cracks appear in the AI boom as a major IPO collapses and spending plateaus",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/finance/firmus-ipo-ai-trade-f490c240?mod=rss_markets_main",
+          "summary": "The failure of what would have been Australia's largest IPO in decades is sending tremors through the AI trade, with high rates and political uncertainty prompting data-center startups to rethink going public; The Information reported the Nvidia-backed company scrapped its $5 billion Australian IPO as markets wobble, while Fortune noted plateauing AI token costs as a sign the boom may be nearing its top and Forbes reported an AI chip stock selloff tied to Chinese competition that wiped billions off SoftBank founder Masayoshi Son's fortune.",
+          "also_covered_by": [
+            "The Information",
+            "Fortune",
             "Forbes"
           ]
         },
         {
-          "headline": "Rising Rates Cloud Otherwise Strong Bank Earnings",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/banking/rising-interest-rates-threaten-to-spoil-the-party-for-big-banks-0ef3e7c0?mod=rss_markets_main",
-          "summary": "Goldman Sachs and JPMorgan posted higher quarterly profits, but Wall Street's mood is turning more cautious as rising rates loom over the sector, with smaller private-equity firms already feeling the pain.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China's Exports Surge, Trade Surplus on Track for Record",
+          "headline": "Trump's renewed push to fire Fed Governor Lisa Cook underscores political motives",
           "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/14/business/china-exports-trade-surplus.html",
-          "summary": "China's exports grew last month at the fastest pace in almost any month since the global financial crisis, pushing its trade surplus toward a record.",
+          "url": "https://www.nytimes.com/2026/10/14/business/trump-lisa-cook-federal-reserve-hearing.html",
+          "summary": "President Trump tapped his political appointees to determine whether he could oust Fed Governor Lisa Cook, a renewed attempt after an earlier effort to remove her.",
           "also_covered_by": []
-        },
-        {
-          "headline": "Failed Australian IPO Sends Shockwaves Through AI Trade",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/firmus-ipo-ai-trade-f490c240?mod=rss_markets_main",
-          "summary": "The collapse of what would have been Australia's largest IPO in decades is making data-center startups and other tech firms rethink their public-listing timing amid high rates and political uncertainty.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Starlink Speed Limits Disrupt Ukraine's War Effort",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/europe/ukraine-says-new-starlink-speed-limit-is-disrupting-its-attacks-79225e19?mod=rss_worldnews",
-          "summary": "Ukrainian military units and officials say a new speed limit on Elon Musk's Starlink network is hampering drone attacks on Russian-occupied territory.",
-          "also_covered_by": [
-            "FT"
-          ]
-        },
-        {
-          "headline": "Riyadh Airport Attacks Disrupt Global Aviation",
-          "outlet": "CNBC",
-          "url": "https://www.cnbc.com/2026/10/13/riyadh-airport-attacks-aviation.html",
-          "summary": "Deadly attacks at Riyadh's main airport are disrupting airlines and closing airspace, prompting Delta to delay its planned first-ever nonstop U.S.-Saudi route until March and the FAA to warn carriers of safety risks.",
-          "also_covered_by": [
-            "WSJ",
-            "FT"
-          ]
         }
       ],
-      "gaps": "No recent business-relevant items were found for The Information or Puck beyond entertainment/media newsletter content; Forbes and Fortune surfaced mostly markets-data and leadership features rather than hard breaking news.",
+      "gaps": "Puck had no business/markets coverage in the window searched (only political/media newsletter items); Washington Post and Axios were only found via general web search rather than dedicated feeds, so coverage beyond the Bank of America story could not be confirmed.",
       "outlets": [
         "WSJ",
         "Bloomberg",
@@ -105,64 +99,67 @@
     },
     "Energy": {
       "description": "Energy and climate coverage.",
-      "generated_at": "2026-10-14T09:56:53.550314+00:00",
-      "overview": "Energy and climate outlets are converging on a volatile Middle East backdrop rattling oil markets, a fresh Trump administration push against offshore wind permitting, and a string of U.S. grid/data-center regulatory fights playing out at FERC and in state utility hearings. Affordability — rising electricity bills and wildfire-driven shutoffs in California — remains a recurring thread across Heatmap, Utility Dive and Bloomberg.",
+      "generated_at": "2026-10-14T10:59:50.592042+00:00",
+      "overview": "Energy and climate outlets are converging on the Trump administration's intensifying legal assault on offshore wind, high-stakes FERC rulings reshaping how data centers interconnect to the grid, and wildfire-driven power shutoffs in California. Trade press (Utility Dive, Canary Media) is also tracking utility mega-mergers, solar manufacturing innovation, and grid-reliability pressures from AI data center demand, while Wall Street-focused outlets flag oil price volatility tied to Middle East risk and Russian diesel flows.",
       "stories": [
         {
-          "headline": "Houthi strike hits building at Saudi Aramco headquarters",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/a25417b3-d4e4-4b89-b14d-6370a85ce3c4?syn-25a6b1a6=1",
-          "summary": "Iran-backed Houthi militants struck Saudi Aramco's headquarters in apparent retaliation after a Riyadh-led coalition hit sites in Yemen's capital, expanding the conflict beyond Yemen into the kingdom's energy infrastructure.",
-          "also_covered_by": [
-            "WSJ"
-          ]
-        },
-        {
-          "headline": "Oil prices spike as Saudi attacks overshadow Russian diesel deal",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/daily/trump-permitting-deal-offshore-wind",
-          "summary": "News of a Trump administration deal with Russia to pump diesel into the global market should have eased oil prices, but instead all three major crude benchmarks spiked Monday by nearly 1.5%, with only U.S. WTI staying below $100 a barrel.",
-          "also_covered_by": [
-            "WSJ"
-          ]
+          "headline": "Trump administration moves to reevaluate permit for nearly-finished Revolution Wind farm",
+          "outlet": "Canary Media",
+          "url": "https://canarymedia.com/articles/offshore-wind/trump-reevaluate-permit-revolution-wind-orsted",
+          "summary": "The Interior Department asked a federal court to let it reconsider a key approval for the $6.2 billion Revolution Wind project off Connecticut and Rhode Island, which Ørsted finished installing in September and which is already generating power; advocates warn the move injects fresh uncertainty into a nearly complete project. The filing stems from a long-running suit by anti-wind group Green Oceans, and the case is before Judge Royce Lamberth in D.C.",
+          "also_covered_by": []
         },
         {
           "headline": "FERC rejects most of PJM's large-load interconnection plan",
           "outlet": "Utility Dive",
           "url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-          "summary": "Federal regulators found that PJM's plan for curtailing large loads lacking matching new generation intrudes on state jurisdiction and appears discriminatory, dealing a setback to the grid operator's approach to managing data-center demand.",
+          "summary": "Federal regulators ruled that PJM's plan to curtail large loads lacking matching new generation intrudes on state jurisdiction and appears discriminatory, a setback for grid operators trying to manage surging data-center demand.",
           "also_covered_by": []
         },
         {
-          "headline": "TotalEnergies buys $1.2B of U.S. solar farms after quitting offshore wind",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/am/totalenergies-solar",
-          "summary": "TotalEnergies took more than $1 billion from the Trump administration to kill off its offshore wind projects, but its joint venture with KKR has now announced a deal to add 700 megawatts of solar to its portfolio. The $1.2 billion acquisition includes three utility-scale solar farms in Texas and Ohio expected online in the first quarter of next year.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "PG&E warns of more shutoffs as fire conditions threaten California grid",
+          "headline": "PG&E warns of more preemptive shutoffs as California wildfire risk persists",
           "outlet": "Utility Dive",
           "url": "https://www.utilitydive.com/news/california-iso-planned-shutoffs-heat-wave-wind/832865/",
-          "summary": "PG&E cautioned that planned power shutoffs could hit more than two dozen counties in northern and central California and continue through the weekend as wildfire risk persists.",
+          "summary": "Potential outages could hit more than two dozen counties, mostly in northern and central California, with shutoffs possibly continuing through Saturday as fire-weather conditions persist.",
           "also_covered_by": []
         },
         {
-          "headline": "Dominion-NextEra merger hearing zeroes in on rates and data centers",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/local-hearing-dominion-nextera-merger-rates-data-centers/832739/",
-          "summary": "A local hearing on the proposed Dominion-NextEra merger focused on rate impacts and data-center-driven demand, with regulators pressing on past commitments Dominion made under Virginia's clean-energy law.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "FERC approves Duke's large-load transmission rules despite cost-shift concerns",
+          "headline": "FERC approves Duke's large-load transmission tariff despite cost-shift concerns",
           "outlet": "Utility Dive",
           "url": "https://www.utilitydive.com/news/ferc-duke-energy-large-load-tariff-nitsa/832847/",
-          "summary": "FERC approved Duke Energy Carolinas' proposal for handling large new loads, though a commissioner warned that consumer protections against cost-shifting remain inadequate nationally and further action may be needed.",
+          "summary": "A FERC commissioner said Duke Energy Carolinas' proposal offers \"meaningful, if imperfect, new protections\" for ratepayers amid debate over how utilities should price service to massive new data-center loads.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Dominion-NextEra merger hearing centers on rates and data centers",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/local-hearing-dominion-nextera-merger-rates-data-centers/832739/",
+          "summary": "At a Virginia hearing, regulators and advocates grilled the companies over affordability and accountability provisions in the proposed tie-up, with one commissioner recalling Dominion's past comment that it remains customers' \"throat to choke\" on clean-energy commitments.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Qcells races to commercialize next-generation tandem solar panels",
+          "outlet": "Canary Media",
+          "url": "https://www.canarymedia.com/articles/solar/qcells-aims-to-build-worlds-first-big-factory-for-next-gen-tandem-solar",
+          "summary": "Qcells is testing full-size tandem perovskite-silicon panels in the field and plans a gigawatt-scale factory by 2029, aiming to beat venture-backed rivals like Tandem PV and Oxford PV to market with higher-efficiency solar technology.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Battery storage system failures plunge 98% over seven years, but older units need care",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/battery-system-failures-fell-98-in-7-years-but-older-systems-need-special/832882/",
+          "summary": "An Electric Power Research Institute analysis found a dramatic drop in energy storage failures from 2018 to 2025 thanks to technology and project improvements, though \"early-vintage\" systems still warrant special attention.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Oil prices mixed as traders weigh Middle East risk against Russian diesel supply",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-weigh-middle-east-risks-russian-diesel-supplies-53840a01?mod=rss_worldnews",
+          "summary": "Crude markets were volatile as persistent Middle East supply risks were weighed against the prospect of additional Russian diesel exports reaching global markets.",
           "also_covered_by": []
         }
       ],
-      "gaps": "Canary Media and E&E News searches returned only evergreen/about-page content rather than fresh stories (E&E News appears to have stopped publishing standalone articles after August 31, migrating to POLITICO Pro). Latitude Media's most recent relevant item found was from October 9 (slightly outside the 48-hour window). Argus Media and Carbon Brief (beyond the COP17 biodiversity item in the feed) could not be checked due to search limits; Reuters, The Economist, NYT and WSJ were only available via the provided feed items, which contained no energy-specific lead stories from Reuters or additional NYT/Economist pieces beyond what's cited above.",
+      "gaps": "Argus Media had no recent, allowed-outlet coverage found (search budget exhausted before a dedicated query could be run). Reuters, FT, NYT, and The Economist block web search, so only feed items from FT and WSJ (unrelated to this energy roundup's top stories) were available and not used beyond the oil-price item.",
       "outlets": [
         "Heatmap",
         "Latitude Media",
@@ -179,53 +176,71 @@
     },
     "Africa": {
       "description": "Africa politics, economy and business coverage.",
-      "generated_at": "2026-10-14T09:58:52.841996+00:00",
-      "overview": "African outlets are converging on health and security crises — the DRC's Ebola outbreak topping 9,000 cases and a new case scare in Kenya — alongside political upheaval in Nigeria and Mauritius, and fresh scrutiny of Nigeria's security strategy, ICC pressure tied to Navi Pillay's Nobel win, and Algeria-UAE diplomatic fallout. Business and tech coverage focuses on Microsoft's Nairobi retreat, fintech competition in Kenya, and continued mining investment confidence in South Africa.",
+      "generated_at": "2026-10-14T11:01:41.201841+00:00",
+      "overview": "Coverage this week centers on Ethiopia's escalating Tigray conflict following the fall of Mekelle, alongside major African business and finance moves including Dangote's record-breaking IPO, Chinese-African banking integration, and corporate upheaval at Microsoft and Kenya Airways. Several outlets also flagged instability stories, including Mauritius's protest curfew, Niger's diplomatic row with France, and worsening hunger in Somalia.",
       "stories": [
         {
-          "headline": "DRC Ebola outbreak passes 9,000 cases, over 4,000 deaths",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/14/drc-ebola-outbreak-passes-9000-cases-including-more-than-4000-deaths/",
-          "summary": "The Democratic Republic of Congo's Ebola outbreak, already the worst in its history, has surpassed 9,000 cases with more than 4,000 deaths recorded since early October, according to health authorities.",
+          "headline": "TPLF loses Mekelle as Ethiopia's federal forces push into Tigray highlands",
+          "outlet": "Africa Confidential",
+          "url": "https://www.africa-confidential.com/article-preview/id/16202/tplf-loses-mekelle--mountain-war-begins",
+          "summary": "Africa Confidential reports that Ethiopia's federal army has captured Tigray's regional capital Mekelle after a rapid military turnaround, though TPLF and allied Eritrean forces may still turn the advance into a costly highland campaign. African Business separately flagged Eritrean troops now seen inside Tigray as conflict fears grow.",
+          "also_covered_by": [
+            "African Business"
+          ]
+        },
+        {
+          "headline": "Dangote extends $1.6bn refinery IPO to widen African investor access",
+          "outlet": "African Business",
+          "url": "https://african.business/2026/10/quick-reads/dangote-extends-refinery-ipo-to-drive-african-participation",
+          "summary": "Dangote Petroleum Refinery and Petrochemicals is extending its IPO offer by two weeks to 27 October, in what is billed as the largest IPO in African history, after strong investor interest across the continent.",
           "also_covered_by": []
         },
         {
-          "headline": "Mauritius imposes curfew after police shooting sparks violent protests",
+          "headline": "Mauritius imposes curfew after police shooting sparks violent unrest",
           "outlet": "Africanews",
           "url": "http://www.africanews.com/2026/10/14/mauritius-imposes-curfew-after-police-shooting-sparks-violent-protests/",
-          "summary": "Mauritius placed residents under curfew following rare violent unrest after a police officer shot and seriously wounded a woman.",
+          "summary": "Mauritius placed residents under curfew after rare violent protests erupted when a police officer shot and seriously injured a woman.",
           "also_covered_by": []
         },
         {
-          "headline": "Tinubu shuffles the generals as Boko Haram talks muddy the war plan",
-          "outlet": "Africa Confidential",
-          "url": "https://www.africa-confidential.com/news",
-          "summary": "Africa Confidential reports that Nigerian President Bola Tinubu has reshuffled top military commanders even as negotiations with Boko Haram complicate the government's military strategy.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "Microsoft closes its Nairobi hub",
+          "headline": "Microsoft shuts down its Nairobi hub",
           "outlet": "TechCabal",
           "url": "https://techcabal.com/2026/10/14/techcabal-daily-microsoft-closes-a-window-in-nairobi/",
-          "summary": "TechCabal reports Microsoft is shutting down its Nairobi hub, a significant pullback for one of Africa's biggest tech investment hubs, alongside other items including a UK fintech license confirmation and corporate earnings news.",
+          "summary": "TechCabal's daily briefing leads with Microsoft closing its Nairobi hub, a notable retreat by a major tech player from East Africa's tech scene.",
           "also_covered_by": []
         },
         {
-          "headline": "As war with Ethiopia looms, how much weaponry does Eritrea have?",
+          "headline": "Somalia faces deepening child malnutrition crisis as aid dwindles",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/14/mothers-journey-with-sick-child-highlights-somalias-malnutrition-emergency/",
+          "summary": "Africanews reports analysts project almost 2 million Somali children under five will suffer acute malnutrition by June, worsened by an intensifying El Niño cycle and shrinking aid, with many of the affected internally displaced.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Niger condemns France's expulsion of its security agents as 'ingratitude'",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/14/act-of-ingratitude-niger-condemns-expulsion-of-security-agents-from-france/",
+          "summary": "Niger's government denounced France's expulsion of two of its security agents as a serious and unacceptable act, deepening tensions between Niamey and Paris.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Ecobank deepens China ties with Beijing office and yuan clearing deal",
           "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/433139/as-war-with-ethiopia-looms-how-much-weaponry-does-eritrea-have/",
-          "summary": "The Africa Report examines Eritrea's military capacity amid growing fears of renewed conflict with Ethiopia, questioning Asmara's ability to sustain a prolonged war.",
-          "also_covered_by": []
+          "url": "https://www.theafricareport.com/433438/ecobank-partners-with-chinas-cips-to-deepen-yuan-trade-settlements-across-34-african-markets/",
+          "summary": "Ecobank is plugging its pan-African network into China's CIPS clearing system and opening expanded Beijing offices, joining Standard Bank and Afreximbank in deepening yuan settlement as China-Africa trade hits record levels; African Business noted the deal was signed alongside Togo's president's state visit to China.",
+          "also_covered_by": [
+            "African Business"
+          ]
         },
         {
-          "headline": "South Africa remains premier mining jurisdiction, says Anglo American",
-          "outlet": "Mining Weekly",
-          "url": "https://www.miningweekly.com/article/south-africa-remains-premier-mining-jurisdiction-anglos-wanblad-assures-2026-10-11",
-          "summary": "Mining Weekly reports South Africa remains one of the world's premier mining jurisdictions, Anglo American has spelt out emphatically, amid itself investing R11.2-billion in an iron-ore project at Sishen.",
+          "headline": "Kenya's government bails out Kenya Airways again with $350m loan",
+          "outlet": "African Business",
+          "url": "https://african.business/2026/10/trade-investment/state-bails-out-kenya-airways-again-with350m-loan",
+          "summary": "Kenya's government, the airline's largest shareholder, extended a new $350m shareholder loan to help Kenya Airways meet obligations as its turnaround plan falters amid renewed losses.",
           "also_covered_by": []
         }
       ],
-      "gaps": "The Continent's most recent available material was from late August 2026, too old for this window, so no current lead could be confirmed. African Business's newest visible items dated to roughly October 6-8, outside the 24-48 hour window. Reuters, AP, BBC, FT, NYT and WSJ block web search and had no Africa-specific items in the provided feeds, so their current Africa coverage could not be verified.",
+      "gaps": "The Continent's archive and search results returned only older/undated weekly issues with no clear last-48h lead story; Reuters, AP, BBC, FT, NYT and WSJ block web search so no verified recent Africa coverage from them could be confirmed beyond what appeared as citations within other outlets' pieces.",
       "outlets": [
         "The Africa Report",
         "Africanews",
@@ -243,59 +258,72 @@
     },
     "China": {
       "description": "China politics, economy and business coverage.",
-      "generated_at": "2026-10-14T09:57:55.302885+00:00",
-      "overview": "Coverage is dominated by China's blockbuster September trade data showing a record-bound surplus, alongside a cluster of political and espionage stories — a UK spying probe tied to China, a high-profile corruption investigation, and a purge-adjacent probe of a former Bo Xilai ally — plus signs of cooling China-EU trade friction and PLA naval activity in the Pacific.",
+      "generated_at": "2026-10-14T11:00:40.872788+00:00",
+      "overview": "Coverage is dominated by China's blockbuster September trade data showing exports surging 36% and the current nine-month surplus nearing $940 billion, alongside heavy diplomatic reporting on preparations for Trump's upcoming Shenzhen APEC trip following the Xi-Trump Washington summit. Tech and EV trade outlets are tracking Nvidia losing China AI-chip market share to Huawei and a slowdown in NEV retail sales, while Hong Kong and Taiwan-focused outlets cover national security prosecutions, cross-border crime sentencing, and regional security incidents.",
       "stories": [
         {
-          "headline": "China's Exports Surge to Fastest Pace in Years, Trade Surplus on Record Pace",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/14/business/china-exports-trade-surplus.html",
-          "summary": "China's exports grew last month at the fastest pace in almost any month since the financial crisis, keeping the country's trade surplus on track to set a new record for the year. Bloomberg data shows <cite index=\"1-1,1-3,1-4\">China's trade surplus ballooned to $938 billion for the first nine months, with exports soaring 36% in September — the fastest since February — after a 25% rise in August, while imports jumped 31%.</cite>",
+          "headline": "China's exports surge 36% in September, trade surplus nears $1 trillion mark again",
+          "outlet": "Nikkei Asia",
+          "url": "https://asia.nikkei.com/economy/trade/china-s-export-engine-steams-ahead-with-september-shipments-up-36",
+          "summary": "Nikkei Asia reports that <cite index=\"22-4\">China's export machine continued to fire on all cylinders in September, buoyed by strong semiconductor and automobile shipments, as Beijing moved to ease friction with key trade partners.</cite> The nine-month trade surplus has ballooned to $938 billion, keeping China on pace to exceed last year's record.",
           "also_covered_by": [
-            "Bloomberg",
-            "Nikkei Asia"
+            "NYT",
+            "Bloomberg"
           ]
         },
         {
-          "headline": "China's export engine fires on all cylinders as Beijing eases trade friction",
-          "outlet": "Nikkei Asia",
-          "url": "https://asia.nikkei.com/economy/trade/china-s-export-engine-hits-fastest-pace-since-february-with-36-growth",
-          "summary": "<cite index=\"8-3,8-4\">Chips and cars fueled September's export surge as Beijing moved to cool trade tensions with key partners, with China's export machine continuing to fire on all cylinders, buoyed by strong semiconductor and automobile shipments.</cite> <cite index=\"8-1\">The country is on track to exceed a $1 trillion trade surplus again in 2026.</cite>",
-          "also_covered_by": [
-            "Bloomberg",
-            "NYT"
-          ]
-        },
-        {
-          "headline": "UK accuses China of using academics to spy on tech research",
-          "outlet": "Nikkei Asia",
-          "url": "https://asia.nikkei.com/politics/east-asia/china",
-          "summary": "Britain's security establishment has alleged that Chinese-linked academics were used to spy on AI and other sensitive technology research. <cite index=\"12-3\">Beijing denies the allegations, while British universities are being urged to end any work with the implicated institute.</cite>",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China probes Huang Qifan, former ally of disgraced Bo Xilai",
-          "outlet": "Nikkei Asia",
-          "url": "https://asia.nikkei.com/",
-          "summary": "<cite index=\"11-1\">China probes Huang Qifan, former ally of disgraced Bo Xilai,</cite> adding to a string of anti-corruption investigations touching figures tied to past political scandals.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China and EU pledge to contain trade disputes after Beijing talks",
-          "outlet": "Caixin Global",
-          "url": "https://www.caixinglobal.com/news/",
-          "summary": "Beijing and Brussels signaled a cooling in trade tensions, with the two sides reaching an understanding on hybrid-vehicle trade and agreeing to explore tariff cuts on certain goods within the WTO framework following talks in Beijing, according to a joint statement reported by Caixin.",
-          "also_covered_by": []
-        },
-        {
-          "headline": "China's Liaoning carrier heads to the Pacific as US, Japan prepare joint drills",
+          "headline": "US Treasury chief may skip Hong Kong APEC to focus on Trump's Shenzhen visit",
           "outlet": "SCMP",
-          "url": "https://www.scmp.com/news/china/military/article/3370859/chinas-liaoning-carrier-heads-pacific-us-japan-prepare-missile-drills?utm_source=rss_feed",
-          "summary": "The PLA Navy's Liaoning aircraft carrier has begun its second western Pacific drill series this year, timed to overlap with an expanded US-Japan military exercise, underscoring persistent regional security tensions.",
+          "url": "https://www.scmp.com/news/china/diplomacy/article/3370295/bessent-may-skip-apec-hong-kong-focus-trumps-shenzhen-visit-sources-say",
+          "summary": "SCMP's exclusive reporting says <cite index=\"17-6\">Bessent is expected to meet Chinese Vice-Premier He Lifeng in Shenzhen ahead of Trump's visit – when Trump will again hold talks with President Xi Jinping – as the two sides look to secure a longer extension of the bilateral trade truce, which is due to expire on January 10.</cite> Washington will instead send a deputy to the Hong Kong APEC finance ministers' gathering.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Nvidia's China AI-chip market share falls to 34% as Huawei climbs to 28%",
+          "outlet": "TechNode",
+          "url": "https://technode.com/2026/10/14/nvidias-china-ai-chip-share-falls-to-34-as-huawei-reaches-28/",
+          "summary": "TechNode reports that Nvidia's share of China's data-center AI accelerator market fell to 34% in the first half of 2026, while Huawei reached 28%, citing an IDC report.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "China's NEV retail sales fall 13% in early October as BYD and Tesla reshuffle rankings",
+          "outlet": "CnEVPost",
+          "url": "https://cnevpost.com/2026/10/14/china-nev-retail-sales-fall-oct-1-11/",
+          "summary": "CnEVPost's data roundup shows NEV retail penetration slipping to 61.2% in October 1-11, down from September's 67.0%, while wholesale penetration rose to 78.1%, alongside separate figures showing BYD leading September retail share at 22.8% and Tesla's share rising to fourth place.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Hong Kong commentator charged in national security probe says police gave no confidentiality warning",
+          "outlet": "Hong Kong Free Press",
+          "url": "https://hongkongfp.com/2026/10/14/political-commentator-charged-with-revealing-nat-security-probe-says-police-gave-no-confidentiality-warning/",
+          "summary": "A Hong Kong political commentator charged with revealing details of a national security investigation told the court that police did not caution him about confidentiality, per HKFP's court report.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "China-linked hackers compromised regional organization in Fiji, US embassy says",
+          "outlet": "Hong Kong Free Press",
+          "url": "https://hongkongfp.com/2026/10/13/china-linked-hackers-hit-fiji-us-embassy/",
+          "summary": "Hackers with links to China compromised a regional organisation in Fiji, the Pacific nation's US embassy said, warning that governments and telecoms networks in the region face similar threats.",
+          "also_covered_by": [
+            "Taipei Times"
+          ]
+        },
+        {
+          "headline": "New China-North Korea bridge to open, state media says",
+          "outlet": "Hong Kong Free Press",
+          "url": "https://hongkongfp.com/2026/10/14/new-china-north-korea-bridge-to-open-on-thursday-chinese-state-media/",
+          "summary": "A new bridge linking China and North Korea will open this week, 12 years after construction began, in what HKFP frames as another sign of deepening China-DPRK economic relations, citing Chinese state media.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Chinese graduates escalate labor dispute up Volkswagen's supply chain",
+          "outlet": "ChinaTalk",
+          "url": "https://www.chinatalk.media/p/workers-of-the-world-email-volkswagen",
+          "summary": "ChinaTalk examines a case of Chinese graduate workers pressing a labor grievance up the supply chain to reach Volkswagen directly, highlighting friction inside China's manufacturing sector.",
           "also_covered_by": []
         }
       ],
-      "gaps": "The Wire China and China Media Project had no recent China-politics/economy items surfaced via search or feed; Sixth Tone's recent output was mostly culture/human-interest (e.g., tennis star's sponsor promotion, Shanghai mayor meeting on AI/tourism) rather than hard economic or political news. Reuters, AP, FT, WSJ and The Economist block search, and no China-specific items from them appeared in the provided feed.",
+      "gaps": "Could not find recent China-specific coverage from Caixin Global, Global Times, Xinhua, CGTN, China Daily, Yicai Global, Sixth Tone, China Media Project, or Focus Taiwan beyond older Trump-Xi summit background pieces; Reuters, AP, FT, WSJ, and The Economist block search so only feed items (if any) were used for them.",
       "outlets": [
         "SCMP",
         "Nikkei Asia",
@@ -303,7 +331,341 @@
         "Caixin Global",
         "Sixth Tone",
         "China Media Project",
-        "Rest of World"
+        "Rest of World",
+        "Global Times",
+        "China Daily",
+        "Xinhua",
+        "CGTN",
+        "Yicai Global",
+        "TechNode",
+        "Pandaily",
+        "CnEVPost",
+        "Hong Kong Free Press",
+        "Taipei Times",
+        "Focus Taiwan",
+        "ChinaTalk"
+      ],
+      "not_visible": [
+        "Reuters",
+        "AP"
+      ],
+      "searches_used": 4
+    },
+    "US politics": {
+      "description": "US politics and policy coverage.",
+      "generated_at": "2026-10-14T10:58:41.894406+00:00",
+      "overview": "US political coverage across outlets is dominated by bipartisan uproar over Trump's Russian diesel deal, the fallout from Ambassador Kimberly Guilfoyle's resignation, and the fast-shifting midterm battlefield just three weeks from Election Day, including Cook Political Report's House and Senate rating shifts toward Democrats and a politically fraught DOJ search of Rep. Ilhan Omar's home.",
+      "stories": [
+        {
+          "headline": "Bipartisan senators demand Trump rescind Russia diesel deal",
+          "outlet": "Axios",
+          "url": "https://www.axios.com/2026/10/13/trump-russian-diesel-deal-betrayal-bipartisan-letter",
+          "summary": "A bipartisan coalition of a dozen senators, including six Republicans, wrote that Trump's deal to import millions of tons of Russian diesel \"is a betrayal of the people of Ukraine\" and urged him to withdraw from it, warning it would mainly finance Putin's war machine rather than lower U.S. prices. The deal has split the GOP just weeks before the midterms, with figures from Mitch McConnell to Rep. Brian Fitzpatrick breaking with Trump over it.",
+          "also_covered_by": [
+            "The Hill",
+            "Roll Call",
+            "NPR",
+            "Punchbowl News",
+            "Fox News",
+            "NYT"
+          ]
+        },
+        {
+          "headline": "Federal search of Rep. Ilhan Omar's home raises election-timing alarms",
+          "outlet": "Roll Call",
+          "url": "https://rollcall.com/2026/10/13/omar-home-search-election-season-probes/",
+          "summary": "Legal experts told Roll Call that a Homeland Security search of Rep. Ilhan Omar's Washington home, conducted roughly three weeks before the midterms, appeared to defy longstanding Justice Department norms against politically sensitive investigative steps so close to an election. Omar and Democratic leaders called it political intimidation, while a federal prosecutor suggested on Fox News there are \"several investigations\" into her.",
+          "also_covered_by": [
+            "Courthouse News",
+            "NPR",
+            "Fox News",
+            "Washington Post",
+            "The Dispatch"
+          ]
+        },
+        {
+          "headline": "Guilfoyle resigns as ambassador to Greece amid corruption allegations",
+          "outlet": "NPR",
+          "url": "https://www.npr.org/2026/10/14/g-s1-148027/trump-ambassador-greece-resignation",
+          "summary": "The White House publicly asked Ambassador to Greece Kimberly Guilfoyle to resign after she faced mounting accusations of improper conduct, including allegations she solicited payment from a Trump donor for access to administration officials. The scandal has rattled Republicans just weeks before the midterms, with National Review and The Hill both noting the political damage.",
+          "also_covered_by": [
+            "WSJ",
+            "National Review",
+            "The Dispatch",
+            "The Hill"
+          ]
+        },
+        {
+          "headline": "Cook Political Report keeps shifting House and Senate ratings toward Democrats",
+          "outlet": "Cook Political Report",
+          "url": "https://www.cookpolitical.com/analysis/national/national-politics/stick-fork-these-races",
+          "summary": "With less than a month before Election Day, Cook Political Report says the House is now clearly set to flip to Democrats, with the main question being the size of the new majority, after moving 18 House seats and three Senate races (Kansas, New Hampshire, North Carolina) in Democrats' direction. The nonpartisan analysts say Democrats now need just 20% of Senate and House toss-ups to break their way to win control.",
+          "also_covered_by": [
+            "The Hill",
+            "Washington Post"
+          ]
+        },
+        {
+          "headline": "Top Republicans privately believe they've lost the House",
+          "outlet": "Politico",
+          "url": "https://www.politico.com/news/2026/10/14/house-republicans-private-lost-cause-01117673",
+          "summary": "Politico reports that Republican groups are now focused on limiting their losses because few in the party believe they have a real chance of keeping control of Congress heading into the midterms.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Trump breaks two-decade tradition, rejects international election monitors",
+          "outlet": "The Hill",
+          "url": "https://thehill.com/policy/international/6145244-trump-breaks-election-observer-tradition/",
+          "summary": "President Trump is ending a more than two-decade tradition of welcoming a key group of international election observers ahead of the midterms, a move critics say discourages democratic transparency.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Omar home search raid prompts Hatch Act complaint",
+          "outlet": "The Hill",
+          "url": "https://thehill.com/regulation/court-battles/6146880-hatch-act-complaint-omar-raid/",
+          "summary": "A watchdog group filed a Hatch Act complaint against DHS and DOJ officials over the timing of the search of Rep. Ilhan Omar's home, calling it \"outrageous\" given it came just days before early voting begins in Minnesota.",
+          "also_covered_by": [
+            "Courthouse News"
+          ]
+        },
+        {
+          "headline": "Supreme Court to weigh 1980s video privacy law in digital-tracking case",
+          "outlet": "SCOTUSblog",
+          "url": "https://www.scotusblog.com/2026/10/court-to-hear-argument-on-how-a-video-privacy-law-applies-in-the-internet-age/",
+          "summary": "The Supreme Court is set to hear arguments on how a decades-old video rental privacy law applies to modern digital tracking, a case that could reshape lawsuits over online data practices.",
+          "also_covered_by": [
+            "The Hill"
+          ]
+        }
+      ],
+      "gaps": "NOTUS had no clearly recent (last 48h) items surfaced beyond an older Omar/Mace story; WSJ, NYT, The Guardian, and Politico were represented only through the provided feed items and search-indexed snippets since they block direct search verification.",
+      "outlets": [
+        "Politico",
+        "Axios",
+        "Punchbowl News",
+        "NOTUS",
+        "The Hill",
+        "Roll Call",
+        "Cook Political Report",
+        "RealClearPolitics",
+        "SCOTUSblog",
+        "Courthouse News",
+        "The Dispatch",
+        "Washington Examiner",
+        "National Review",
+        "Fox News",
+        "NPR",
+        "Stateline"
+      ],
+      "not_visible": [],
+      "searches_used": 4
+    },
+    "Tech & AI": {
+      "description": "Technology and AI coverage.",
+      "generated_at": "2026-10-14T10:59:20.009578+00:00",
+      "overview": "AI industry coverage over the past 24-48 hours centers on security and safety controversies rolling through OpenAI and Anthropic, deepening cracks in the AI funding boom (CoreWeave, Character.ai, Australian IPO failure), and a fast-moving model release cycle (Google's Gemini 4 Argon, Meta's Muse Wonder). Geopolitical tech stories — Ukraine's drone strikes on Yandex and Starlink restrictions in the war — also drew significant cross-outlet attention.",
+      "stories": [
+        {
+          "headline": "OpenAI engineer arrested for allegedly planting hidden recording device in office",
+          "outlet": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/13/fbi-arrests-openai-employee-accused-of-planting-hidden-recording-device-in-conference-room/",
+          "summary": "FBI Director Kash Patel said engineer Abdulrahman Alfozan planted a covert recorder, described by The Register as wrapped in toilet paper and plugged into a TV, allegedly to capture sensitive talks about OpenAI's superintelligence work; The Information's briefing noted he was an engineering lead on OpenAI's agents product.",
+          "also_covered_by": [
+            "The Verge",
+            "The Register",
+            "The Information",
+            "WSJ"
+          ]
+        },
+        {
+          "headline": "Character.AI's bankruptcy exposes shaky AI economics as Disney circles its chatbot tech",
+          "outlet": "The Decoder",
+          "url": "https://the-decoder.com/character-ai-will-shut-down-if-no-buyer-emerges-capping-a-fall-from-2-7-billion-google-deal-to-bankruptcy/",
+          "summary": "The Decoder reports Character.ai has filed for bankruptcy and is looking for a buyer, and if none steps up, the platform shuts down, a stunning collapse from its earlier $2.7 billion Google-linked valuation; 404 Media's review of the filings argues the episode shows the broader economics of consumer AI don't work, while Ars Technica reports Disney has offered $20 million for the scandal-plagued chatbot technology.",
+          "also_covered_by": [
+            "404 Media",
+            "Ars Technica"
+          ]
+        },
+        {
+          "headline": "CoreWeave eyes insurers' 'unlimited' capital to fund its AI data-center spending",
+          "outlet": "Financial Times (via Techmeme)",
+          "url": "https://www.techmeme.com/261014/p8#a261014p9",
+          "summary": "CoreWeave is pitching insurance companies as a new source of financing for the tens of billions of dollars it needs for AI chip and data-center buildout, as the Nvidia-backed cloud provider looks beyond traditional debt markets.",
+          "also_covered_by": [
+            "FT"
+          ]
+        },
+        {
+          "headline": "Ukraine's drone strikes knocked out Yandex data centers, rattling Russia's tech backbone",
+          "outlet": "The Verge",
+          "url": "https://www.theverge.com/news/1010424/yandex-drone-strike-outage-disinformation-zelenskyy",
+          "summary": "The Verge reports that days after Ukrainian drones took down several Russian data centers, Zelenskyy claimed the strikes dented Russia's disinformation machine, though the piece finds the damage mainly disrupted Yandex's web crawlers rather than bot-farm operations; the Financial Times (via Techmeme) separately reports three of Yandex's six data centers were severely damaged, exposing the fragility of Russia's state-aligned tech ecosystem.",
+          "also_covered_by": [
+            "Techmeme/FT"
+          ]
+        },
+        {
+          "headline": "406 scientists, including Hinton and Bengio, demand AI models be cut off from the internet",
+          "outlet": "The Decoder",
+          "url": "https://the-decoder.com/406-scientists-demand-ai-models-be-cut-off-from-the-internet-immediately/",
+          "summary": "406 scientists, including Geoffrey Hinton, Yoshua Bengio, and Stuart Russell, are demanding that companies immediately disconnect AI models from the internet, an open letter responding to recent incidents of AI systems behaving in unintended ways online.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Google rolls out Gemini 4 Argon worldwide as new flagship, undercutting rivals on price",
+          "outlet": "The Decoder",
+          "url": "https://the-decoder.com/gemini-4-argon-is-now-available-worldwide-as-googles-most-capable-frontier-model/",
+          "summary": "Google is making Gemini 4 Argon available worldwide through its API, the Gemini app, and Google Antigravity, aggressively priced but trailing Anthropic's Claude Opus 5.5 on some benchmarks; VentureBeat adds that Google is offering limited-time API pricing of $2/$10 per million tokens as it pushes the model across its ecosystem.",
+          "also_covered_by": [
+            "VentureBeat"
+          ]
+        },
+        {
+          "headline": "Nvidia pledges $250 million to fund UK AI safety and security research",
+          "outlet": "Reuters (via Techmeme)",
+          "url": "https://www.techmeme.com/261014/p9#a261014p9",
+          "summary": "Jensen Huang announced Nvidia is committing $250 million in accelerated computing resources over five years to back UK research into AI security and agentic safety.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Justice Department says North Korean operatives have infiltrated dozens of U.S. companies",
+          "outlet": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/13/justice-department-says-north-koreans-have-infiltrated-dozens-of-u-s-companies/",
+          "summary": "U.S. authorities warned that sanctioned North Korean hackers are increasingly recruiting Americans to act as facilitators funneling access from breached U.S. companies back to Pyongyang.",
+          "also_covered_by": []
+        }
+      ],
+      "gaps": "Wired, Ars Technica, NYT, FT, The Economist, and The Guardian block web search, so coverage from them is limited to the feed items provided; no distinct AI/tech lead story was found in the NYT, The Economist, or The Guardian feed items for this period. Rest of World's feed items (EV shipping, UAE AI education) were lower priority and not newsroom-leading.",
+      "outlets": [
+        "The Information",
+        "TechCrunch",
+        "The Verge",
+        "Wired",
+        "MIT Technology Review",
+        "Platformer",
+        "Ars Technica",
+        "VentureBeat",
+        "The Decoder",
+        "Techmeme",
+        "The Register",
+        "404 Media",
+        "IEEE Spectrum",
+        "Rest of World",
+        "OpenAI",
+        "Anthropic",
+        "Google DeepMind"
+      ],
+      "not_visible": [],
+      "searches_used": 4
+    },
+    "Gulf & Middle East": {
+      "description": "Gulf and Middle East coverage.",
+      "generated_at": "2026-10-14T11:01:11.427847+00:00",
+      "overview": "Gulf and Middle East outlets are overwhelmingly focused on the dramatic escalation between Saudi Arabia and Yemen's Houthis, following missile and drone strikes that hit Saudi Aramco's Dhahran headquarters and threats of more attacks on airports and oil facilities. Secondary clusters of coverage include the deepening Yemen humanitarian crisis, Gaza/West Bank violence, Iran's tightening standoff with the US over Hormuz and nuclear talks, and diplomatic shifts like Colombia's new embassy in Jerusalem.",
+      "stories": [
+        {
+          "headline": "Houthis vow more attacks after striking Saudi Aramco headquarters",
+          "outlet": "Al-Monitor",
+          "url": "https://www.al-monitor.com/originals/2026/10/yemens-houthis-vow-more-attacks-saudi-airports-oil-facilities-after-aramco-hq-hit",
+          "summary": "Yemen's Houthis said they struck Aramco's Dhahran headquarters, King Khalid airport and a Riyadh refinery with missiles and drones, and vowed on Wednesday to press on with attacks on Saudi airports and oil facilities, in a campaign that has already dealt a blow to Riyadh's economic diversification plans.",
+          "also_covered_by": [
+            "Middle East Eye",
+            "The National",
+            "Gulf News",
+            "Khaleej Times",
+            "Times of Israel",
+            "The Jerusalem Post",
+            "FT",
+            "WSJ",
+            "Iran International",
+            "Al Jazeera",
+            "The New Arab"
+          ]
+        },
+        {
+          "headline": "Yemen's hospitals overwhelmed as fighting cuts aid to 800,000 people",
+          "outlet": "Al-Monitor",
+          "url": "https://www.al-monitor.com/originals/2026/10/yemen-fighting-overwhelms-hospitals-cuts-aid-800000-people-relief-agencies-say",
+          "summary": "Relief agencies say hospitals across Yemen are struggling to cope with a sharp rise in war casualties as intensified fighting along multiple front lines has cut off aid to hundreds of thousands, with more than 200,000 people displaced since fighting resumed.",
+          "also_covered_by": [
+            "Middle East Eye",
+            "The Jerusalem Post"
+          ]
+        },
+        {
+          "headline": "Colombia opens embassy in Jerusalem, restores Israel trade deal",
+          "outlet": "Al-Monitor",
+          "url": "https://www.al-monitor.com/originals/2026/10/colombia-opens-embassy-jerusalem-restores-free-trade-deal-israel",
+          "summary": "Colombia opened its embassy in Jerusalem, becoming the 10th country to do so, as new President Abelardo de la Espriella reversed his predecessor's policy and restored a free trade agreement with Israel.",
+          "also_covered_by": [
+            "Middle East Eye",
+            "Asharq Al-Awsat"
+          ]
+        },
+        {
+          "headline": "Israeli settlers set fire to West Bank mosque amid army raids",
+          "outlet": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/10/14/settlers-set-fire-to-mosque-in-west-bank-as-israeli-forces-raid-villages?traffic_source=rss",
+          "summary": "Settlers set fire to a mosque in the West Bank as Israeli forces raided several villages, with settlers also attacking a boy in a separate incident near Nablus.",
+          "also_covered_by": [
+            "Times of Israel"
+          ]
+        },
+        {
+          "headline": "Palestinian faction leaders meet in Cairo for reconciliation push",
+          "outlet": "The National",
+          "url": "https://www.thenationalnews.com/news/mena/2026/10/14/palestinian-faction-leaders-gather-in-cairo-to-renew-bid-for-long-elusive-reconciliation/",
+          "summary": "Palestinian faction leaders gathered in Cairo in a fresh attempt at long-elusive reconciliation, as separate talks saw Gaza's recovery committee sign an assistance deal with Germany's GIZ.",
+          "also_covered_by": []
+        },
+        {
+          "headline": "Container ship sinks near Strait of Hormuz after hitting naval mine",
+          "outlet": "Iran International",
+          "url": "https://www.iranintl.com/en/liveblog/202610105959",
+          "summary": "Iran's Revolutionary Guards said a container ship carrying more than 2,500 containers sank south of the Strait of Hormuz after striking a naval mine and catching fire, amid continuing clashes and an IRGC spokesman's warning that a new US-Iran war remains possible before the midterms.",
+          "also_covered_by": [
+            "Asharq Al-Awsat"
+          ]
+        },
+        {
+          "headline": "Saudi Arabia to offer remote option for FII 'Davos in the Desert' after attacks",
+          "outlet": "Middle East Eye",
+          "url": "https://www.middleeasteye.net/live-blog/live-blog-update/saudi-arabia-offer-remote-option-fii-conference-after-attacks-reuters",
+          "summary": "Saudi Arabia plans to make its flagship Future Investment Initiative a hybrid event, letting executives attend remotely as the kingdom tries to keep attracting international investors despite the escalating Houthi conflict.",
+          "also_covered_by": [
+            "The Jerusalem Post"
+          ]
+        },
+        {
+          "headline": "Ronen Bar sues Netanyahu over shifting October 7 blame",
+          "outlet": "The Jerusalem Post",
+          "url": "https://www.jpost.com/israel-news/politics-and-diplomacy/article-911668",
+          "summary": "Former Shin Bet chief Ronen Bar filed a NIS 3 million defamation lawsuit against Netanyahu, alleging the PM received repeated pre-October 7 warnings about escalation risks on multiple fronts, especially Gaza.",
+          "also_covered_by": []
+        }
+      ],
+      "gaps": "Arab News, Arabian Business, AGBI, Zawya, Saudi Gazette, Al Arabiya English, Ynetnews, and Haaretz did not return distinct recent results beyond the shared wire coverage of the Houthi-Aramco story already captured above.",
+      "outlets": [
+        "The National",
+        "Arab News",
+        "Gulf News",
+        "Khaleej Times",
+        "Arabian Business",
+        "AGBI",
+        "Zawya",
+        "Saudi Gazette",
+        "Al Arabiya English",
+        "Al-Monitor",
+        "Middle East Eye",
+        "The New Arab",
+        "Al Jazeera",
+        "Asharq Al-Awsat",
+        "Times of Israel",
+        "The Jerusalem Post",
+        "Ynetnews",
+        "Haaretz",
+        "Iran International"
       ],
       "not_visible": [
         "Reuters",
@@ -312,5 +674,5 @@
       "searches_used": 4
     }
   },
-  "generated_at": "2026-10-14T09:58:52.842043+00:00"
+  "generated_at": "2026-10-14T11:02:08.735640+00:00"
 }
