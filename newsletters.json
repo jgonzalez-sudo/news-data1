@@ -1,0 +1,137 @@
+{
+  "_readme": "Editorial guides used by the radar to recommend stories per Semafor newsletter. 'guide' is what the AI is told about each newsletter's habits. 'groups' says which beats it draws candidates from. 'confidence' is 'evidence-based' (built from recent issues) or 'draft' (starter text for the editors to review). Edit freely.",
+  "newsletters": {
+    "Flagship": {
+      "aliases": [
+        "flagship"
+      ],
+      "cadence": "daily",
+      "groups": [
+        "Business",
+        "Energy",
+        "China",
+        "Gulf & Middle East",
+        "Africa",
+        "Tech & AI",
+        "US politics",
+        "Media"
+      ],
+      "confidence": "evidence-based",
+      "guide": "Semafor Flagship is the daily global briefing: the biggest stories in the world, each told in about 100 words, usually with a chart or photo. Roughly ten items: the day's dominant story first, then a quick mix of geopolitics, economy and markets, AI and tech, politics, and a light or cultural closer.\nWhat earns a slot:\n1. The dominant global story and its second-order effects. Example from 2026 issues: the Iran war and the Hormuz disruption reaching oil supply, tanker orders, insurance rates, prices, central banks and IMF warnings.\n2. Where money meets power: tariffs hitting consumer spending, bond yields, inflation in Argentina or Turkey, big deals and IPOs, AI finances.\n3. AI as a global economic and political story: regulation fights between governments, cybersecurity risks, lab milestones, chip politics, China's AI race.\n4. Elections and policy shifts with cross-border consequences: US Congress, German state polls, Russia, Venezuela returning to capital markets.\n5. A number or chart that makes the story concrete.\n6. One lighter closer: science, culture, a curiosity.\nStyle: global, concrete numbers, cites Reuters, FT, WSJ and others as sources. Avoid purely local news, routine announcements and gossip with no wider consequence."
+    },
+    "Energy": {
+      "aliases": [
+        "energy",
+        "net zero"
+      ],
+      "cadence": "twice weekly",
+      "groups": [
+        "Energy",
+        "Gulf & Middle East",
+        "Business",
+        "China",
+        "Tech & AI",
+        "Africa",
+        "US politics"
+      ],
+      "confidence": "evidence-based",
+      "guide": "Semafor Energy covers the nexus of politics, tech and energy. It leads with the climate and energy editor's analysis ('Tim's view'), then numbered items and a 'Notable' list. Each item pairs a hard number with a market or policy implication.\nWhat earns a slot:\n1. Oil and gas supply shocks and their geopolitics: Hormuz and Bab al-Mandeb disruptions, price thresholds and bank forecasts, tanker insurance, who wins (Russia, US producers) and who loses.\n2. Electricity demand and prices, especially from AI data centers, and competition for scarce clean power.\n3. Permitting and grid politics in Washington and elsewhere.\n4. Records and investment totals for coal, hydrogen, nuclear and renewables (IEA, EIA, Hydrogen Council).\n5. How energy security is reshaping policy outside the US: Europe, Asia, Africa (South Africa tripling refining capacity), Latin America (Venezuela's oil opening).\n6. Exclusives and op-eds from industry heads and analysts (Kpler, JPMorgan, CREA).\nStyle: analytical and data-led, with a clear view on how countries and companies adapt. Avoid product launches and routine corporate news with no policy or market angle."
+    },
+    "Africa": {
+      "aliases": [
+        "africa"
+      ],
+      "cadence": "three times a week",
+      "groups": [
+        "Africa",
+        "Business",
+        "Energy",
+        "China"
+      ],
+      "confidence": "evidence-based",
+      "guide": "Semafor Africa leads with 'Today's Edition': about six numbered items, then a 'Week Ahead' list, a 'Continental Briefing' of short country-flagged items grouped as Business & Macro, Climate & Energy, Geopolitics & Politics, and Tech & Deals, and an 'Outro' on culture or a human story.\nWhat earns a slot:\n1. Business and finance with a number: central bank decisions (South Africa), oil output (Nigeria), mining and critical minerals (DRC), big deals and financing (LNG, ports, corridors), currency and debt moves.\n2. US and China engagement with Africa: envoys, trade, aid, minerals competition.\n3. Politics with economic consequences: elections, migration and xenophobia, Sahel juntas, deportations.\n4. Exclusives and 'View' columns from African business leaders and analysts.\n5. Tech and startup funding.\n6. Health and climate stories with market implications (Ebola, cocoa).\n7. One culture or human-interest outro.\nStyle: continental framing, concrete figures, one clear 'why it matters'. Avoid single-country crime and local politics with no wider relevance."
+    },
+    "Tech": {
+      "aliases": [
+        "tech",
+        "technology",
+        "ai"
+      ],
+      "cadence": "weekly",
+      "groups": [
+        "Tech & AI",
+        "Business",
+        "China"
+      ],
+      "confidence": "evidence-based",
+      "guide": "Semafor Technology (Reed Albergotti) opens with an opinion-led 'Reed's view' plus 'Room for disagreement', then notable items. Focus: the people, the money and the ideas in AI.\nWhat earns a slot:\n1. Power and liability in AI: regulation versus lawsuits, state and federal laws, antitrust and the future of Big Tech.\n2. Compute and money: pricing tiers, chip and memory shortages, data-center build-outs, funding rounds, IPOs, bubble talk.\n3. AI safety and security incidents, and lab-versus-lab competition.\n4. Silicon Valley as an economic and political force.\n5. Scoops about executives and company strategy.\n6. Forward-looking predictions and contrarian takes.\nStyle: argumentative with a clear thesis, skeptical of hype. Avoid gadget reviews and routine product launches with no strategic significance."
+    },
+    "Business": {
+      "aliases": [
+        "business"
+      ],
+      "cadence": "daily",
+      "groups": [
+        "Business",
+        "Energy",
+        "Tech & AI",
+        "China"
+      ],
+      "confidence": "draft",
+      "guide": "DRAFT, based on limited examples. Semafor Business covers the global economy and corporate power.\nWhat fits: tariffs and their effect on companies and consumers; central banks and inflation; big deals, IPOs and restructurings; AI finance (capex, valuations, financing worries); energy shocks reaching markets; leadership changes at major companies; scoops with numbers.\nAvoid routine earnings with no bigger story."
+    },
+    "Gulf": {
+      "aliases": [
+        "gulf"
+      ],
+      "cadence": "daily",
+      "groups": [
+        "Gulf & Middle East",
+        "Energy",
+        "Business"
+      ],
+      "confidence": "draft",
+      "guide": "DRAFT, based on limited examples. Semafor Gulf covers Gulf economies and geopolitics.\nWhat fits: Saudi, UAE and Qatar investment and deals; sovereign wealth funds; oil, gas and OPEC+; the Iran war's effect on shipping and security; Houthi strikes; Gulf-US relations (arms sales, nuclear talks); AI and data-center investment in the region.\nAvoid purely local society news."
+    },
+    "China": {
+      "aliases": [
+        "china"
+      ],
+      "cadence": "regular",
+      "groups": [
+        "China",
+        "Tech & AI",
+        "Business"
+      ],
+      "confidence": "draft",
+      "guide": "DRAFT, based on limited examples. Semafor China covers China's economy, technology and politics.\nWhat fits: stimulus and deflation; chips and the AI race; big IPOs; export controls; US-China talks; Chinese companies abroad; Taiwan; labor and automation (humanoid robots). Flag state-run outlets as such.\nAvoid routine local news with no wider economic or political significance."
+    },
+    "Politics": {
+      "aliases": [
+        "politics",
+        "principals",
+        "americana"
+      ],
+      "cadence": "daily",
+      "groups": [
+        "US politics",
+        "Business",
+        "Tech & AI"
+      ],
+      "confidence": "draft",
+      "guide": "DRAFT, based on limited examples. Semafor Principals and Americana cover US politics.\nWhat fits: reported scoops from Congress and the White House; policy fights (tariffs, permitting, AI regulation); midterms and primaries; who is up or down in the administration; the money behind politics.\nAvoid horse-race items with no new reporting."
+    },
+    "Media": {
+      "aliases": [
+        "media"
+      ],
+      "cadence": "weekly (Sunday evening)",
+      "groups": [
+        "Media",
+        "Tech & AI"
+      ],
+      "confidence": "draft",
+      "guide": "DRAFT, based on limited examples. Semafor Media is the news behind the news.\nWhat fits: newsroom moves and departures; ownership and strategy at big outlets; platform and AI deals with publishers; streaming and cable news economics; ad and subscription business.\nAvoid generic industry commentary with no news."
+    }
+  }
+}
