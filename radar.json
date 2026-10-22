@@ -2,70 +2,77 @@
   "groups": {
     "Business": {
       "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-10-22T12:40:42.598848+00:00",
-      "overview": "Coverage across business and general-news outlets is dominated by a global market selloff triggered by surging oil prices amid escalating Middle East tensions, alongside a wave of major tech earnings led by Meta's blockbuster quarter and a deal to keep Mark Zuckerberg in California. A separate global cybersecurity scramble over a critical PHP vulnerability is also drawing wide coverage, alongside signs of economic strain from fuel costs hitting airlines and workers.",
+      "generated_at": "2026-10-22T17:51:41.439989+00:00",
+      "overview": "Business outlets are dominated by a sharp global stock selloff tied to anxiety over AI capital spending, after disappointing reactions to Meta and Tesla earnings sent tech shares and bonds swinging, compounded by escalating Middle East tensions pushing oil prices higher. Secondary threads include a global PHP cybersecurity scramble, fallout from France's bond-market crisis, and AI-driven corporate cost-cutting (Barclays' layoffs).",
       "stories": [
         {
           "type": "Economy",
-          "headline": "Global stocks tumble and oil surges past $111 on Middle East escalation",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/6e318b81-a771-4842-9754-e265fef2852f?syn-25a6b1a6=1",
-          "summary": "World equity markets fell sharply as Brent crude jumped roughly 3% to above $111 a barrel following renewed Houthi attacks on Saudi Arabia and reports that the U.S. and Israel are weighing fresh strikes on Iran after the midterms.",
+          "headline": "Tech-led selloff deepens as AI spending fears and Mideast tensions rattle markets",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
+          "summary": "A selloff in technology giants and escalating Middle East hostilities drove stocks toward their worst session since July, with Meta sinking over 7% and chipmakers hit hard as investors questioned whether massive AI spending is paying off, while Treasuries rallied on haven demand.",
           "also_covered_by": [
             "WSJ",
-            "Bloomberg",
-            "NYT",
             "CNBC",
-            "Washington Post",
             "Fortune",
+            "Forbes",
+            "NYT",
+            "Washington Post",
+            "Axios"
+          ],
+          "via": "both"
+        },
+        {
+          "type": "Geopolitics",
+          "headline": "Oil surges, Saudi airport attacked as Iran-U.S. standoff escalates",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/business/energy-oil/oil-prices-rise-more-than-2-as-attacks-on-saudi-arabia-u-s-iran-risks-persist-5599ac83?mod=rss_worldnews",
+          "summary": "Oil prices jumped more than 2%, with Brent above $111 a barrel, as traders weighed renewed Houthi attacks on Saudi energy infrastructure and the risk of further U.S.-Iran hostilities, while the U.S. ordered some staff to leave Riyadh after an airport attack killed one person.",
+          "also_covered_by": [
+            "Fortune"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "Barclays to cut 5,000 jobs in AI-driven efficiency push",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/22/business/barclays-job-cuts-ai.html",
+          "summary": "Barclays plans to cut 5,000 jobs, with the bank saying it believes it can operate more efficiently with fewer workers because of artificial intelligence, the latest major employer to tie headcount reductions directly to AI adoption.",
+          "also_covered_by": [
+            "BBC"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Tech",
+          "headline": "Critical PHP flaw sparks global rush to patch websites",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/22/world/php-vulnerability-websites-cybersecurity-ai.html",
+          "summary": "Governments and businesses worldwide scrambled to patch a newly discovered, AI-uncovered security flaw in PHP, the programming language underpinning a large share of the internet, after it knocked sites offline.",
+          "also_covered_by": [
+            "BBC",
+            "Washington Post"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Economy",
+          "headline": "France's debt crisis deepens as foreign investors retreat",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/finance/investing/frances-debt-crisis-deepens-as-foreign-investors-look-for-the-exit-e6ef398c?mod=rss_markets_main",
+          "summary": "Foreign capital that finances France appears to be reversing course, investors say, worsening a fall selloff in French bonds that intensified after riots last weekend, with 10-year yields hitting a 24-year high.",
+          "also_covered_by": [
             "Axios"
           ],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "Meta strikes deal to keep Zuckerberg in California, creates new share class",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/business/dealbook/zuckerbergs-big-deal.html",
-          "summary": "Meta reached an agreement for CEO Mark Zuckerberg to remain a California resident for eight years by creating a new non-voting Class C stock that lets him raise cash to cover a potential state wealth-tax bill while preserving his voting control.",
-          "also_covered_by": [
-            "FT",
-            "Fortune",
-            "Forbes",
-            "The Information",
-            "CNBC",
-            "Bloomberg"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Tech",
-          "headline": "Global rush to patch critical PHP security flaw leaves websites offline",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/world/php-vulnerability-websites-cybersecurity-ai.html",
-          "summary": "Governments and companies in Kenya, the Netherlands and elsewhere scrambled to patch a newly discovered, AI-uncovered vulnerability in the widely used PHP programming language that knocked numerous websites offline.",
-          "also_covered_by": [
-            "FT",
-            "BBC",
-            "The Economist"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Airlines slash 2026 profit forecasts as fuel costs spike",
-          "outlet": "CNBC",
-          "url": "https://www.cnbc.com/2026/10/22/american-airlines-aal-q3-2026-earnings.html",
-          "summary": "American Airlines became the fourth major U.S. carrier this month to cut its 2026 profit forecast because of a jump in fuel costs tied to Middle East supply disruptions, following a similar warning from Southwest a day earlier.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Blackstone profit falls 9.2% as higher rates curb dealmaking",
-          "outlet": "Bloomberg",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-22/blackstone-profit-drops-9-2-as-rates-inflation-curb-dealmaking",
-          "summary": "Blackstone reported a third-quarter profit decline as elevated interest rates slowed dealmaking, with capital deployment falling to its lowest level this year; the firm also cut some property valuations as volatility stalled IPO-driven cash returns.",
+          "headline": "Blackstone cuts property valuations, core businesses squeezed by rates",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/finance/blackstones-core-businesses-hit-by-rising-rates-9a6a39cb?mod=rss_markets_main",
+          "summary": "Blackstone's private-equity asset-sale proceeds fell 49% as rising rates squeeze its core businesses, while the firm's president said rising market volatility has stalled a quick return of cash to investors through IPOs.",
           "also_covered_by": [
             "FT"
           ],
@@ -73,17 +80,26 @@
         },
         {
           "type": "Business",
-          "headline": "Musk says Tesla and SpaceX boards weighing a $3.5 trillion merger",
-          "outlet": "Fortune",
-          "url": "https://fortune.com/2026/10/20/elon-musk-tesla-and-spacex-weighing-merger/",
-          "summary": "Elon Musk said independent board members at Tesla and SpaceX have formed special committees to explore a potential merger of the two companies, with SpaceX posting a 161% revenue jump last quarter.",
+          "headline": "Zuckerberg's deal to keep Meta in California, new share class for AI fundraising",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/22/business/dealbook/zuckerbergs-big-deal.html",
+          "summary": "Mark Zuckerberg struck an agreement to keep Meta in California, underscoring business fears about a major state tax proposal, as Meta separately created a new non-voting share class that could let it raise AI-related funds while preserving his control.",
           "also_covered_by": [
-            "WSJ"
+            "The Information"
           ],
-          "via": "search"
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "Elon Musk invests roughly $1 billion in Skydance",
+          "outlet": "CNBC",
+          "url": "https://www.cnbc.com/2026/10/22/elon-musk-skydance-investment.html",
+          "summary": "Elon Musk is investing about $1 billion in Skydance, a deal with ties to Larry Ellison, whose son David Ellison runs the studio.",
+          "also_covered_by": [],
+          "via": "feed"
         }
       ],
-      "gaps": "No distinct recent coverage found for Puck or Business Insider beyond what overlapped with other outlets; The Information's items were largely from prior weeks aside from the Meta share-class story.",
+      "gaps": "Puck had no relevant business coverage found in the last 48 hours; Forbes, The Information, Fortune, Washington Post and Axios content was available via search, while WSJ, NYT, FT, The Economist, Politico, Business Insider and BBC were drawn only from the provided feed items since they block search.",
       "outlets": [
         "WSJ",
         "Bloomberg",
@@ -106,99 +122,105 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 5,
-        "search": 1,
-        "both": 0
+        "feed": 7,
+        "search": 0,
+        "both": 1
       },
       "balance_added": 0
     },
     "US politics": {
       "description": "US politics and policy coverage.",
-      "generated_at": "2026-10-22T12:41:20.319886+00:00",
-      "overview": "With under two weeks until the midterms, coverage is dominated by Republicans' eroding position: new polling and Cook Political Report rating shifts show Democrats gaining ground even in red states, while Trump's own party frets over his Ukraine/Russia diplomacy and a backlash-inducing attack ad in Ohio's governor race. Security concerns (suspicious letters to Congress and election offices) and late-stage financial maneuvers (farm payments, ethanol promises) round out a news cycle almost entirely focused on the fight for control of Congress.",
+      "generated_at": "2026-10-22T17:52:17.736234+00:00",
+      "overview": "With just under two weeks until the midterms, US political outlets are converging on a rapidly deteriorating environment for Republicans, as nonpartisan handicappers shift dozens of House and Senate races toward Democrats and Trump's approval sinks to record lows. Coverage also centers on a fake-pollster scandal roiling campaigns, DOJ voter-fraud crackdowns colliding with courts, and security concerns from threatening letters sent to lawmakers and election offices nationwide.",
       "stories": [
         {
-          "type": "Geopolitics",
-          "headline": "Trump's concessions to Putin spark bipartisan revolt as midterms near",
-          "outlet": "Axios",
-          "url": "https://www.axios.com/2026/10/14/trump-putin-diesel-deal-midterms-russia",
-          "summary": "Axios reports Trump has made a run of concessions to Moscow—including a diesel sanctions carve-out and a one-sided 'energy ceasefire'—even as GOP senators call it a 'betrayal' two weeks before Election Day; Roll Call and The Dispatch report Democrats and some Republicans are now pushing legislation to constrain him on Ukraine.",
-          "also_covered_by": [
-            "Roll Call",
-            "The Dispatch",
-            "The Hill"
-          ],
-          "via": "search"
-        },
-        {
           "type": "Politics",
-          "headline": "House Republicans privately bracing for a midterm 'blowout'",
-          "outlet": "Punchbowl News",
-          "url": "https://punchbowl.news/article/campaigns/republicans-brace-for-midterm-defeat/",
-          "summary": "Punchbowl News reports that despite Speaker Mike Johnson's public optimism, House Republicans are privately gripped by panic as Democratic-aligned groups find competitive polling even in districts Trump won by double digits, forcing GOP outside groups to retreat from several races.",
-          "also_covered_by": [
-            "Politico",
-            "Roll Call"
-          ],
-          "via": "search"
-        },
-        {
-          "type": "Politics",
-          "headline": "Cook Political Report keeps shifting Senate and House races toward Democrats",
+          "headline": "Cook Political Report keeps shifting races toward Democrats as GOP position erodes",
           "outlet": "Cook Political Report",
-          "url": "https://www.cookpolitical.com/ratings",
-          "summary": "Cook Political Report's latest ratings show the Senate and House maps tightening further, with South Carolina and Mississippi Senate races moving toward Democrats even as Minnesota's contest shifted back toward the GOP, reflecting a volatile final stretch.",
+          "url": "https://www.cookpolitical.com/analysis/senate/senate-overview/senate-south-carolina-mississippi-minnesota",
+          "summary": "Cook Political Report moved South Carolina and Mississippi Senate races toward Democrats while shifting Minnesota toward the GOP, part of a broader wave that has now moved 11 more House districts and several Senate races away from Republicans this month, with Decision Desk HQ putting the GOP's chance of holding the House at just 22%.",
           "also_covered_by": [
+            "The Hill",
+            "Washington Post",
+            "Axios",
             "Roll Call",
-            "The Hill"
+            "RealClearPolitics"
           ],
           "via": "search"
         },
         {
           "type": "Politics",
-          "headline": "Ramaswamy ad featuring opponent's estranged mother upends Ohio governor's race",
-          "outlet": "The Hill",
-          "url": "https://thehill.com/homenews/campaign/6164786-acton-responds-ramaswamy-ad-mother/",
-          "summary": "Democratic nominee Amy Acton called Vivek Ramaswamy's ad—which features her estranged mother calling her a liar—\"despicable,\" with NPR and National Review noting the spot has triggered bipartisan backlash and prompted debate about its political fallout.",
+          "headline": "How a fake pollster may have moved some 2026 elections",
+          "outlet": "Politico",
+          "url": "https://www.politico.com/news/2026/10/22/how-a-fake-pollster-may-have-moved-some-2026-elections-01131675",
+          "summary": "Politico reports that Wedgewood Polls admitted fabricating survey results, with some candidates saying the fake numbers damaged their campaigns just weeks before Election Day.",
+          "also_covered_by": [
+            "RealClearPolitics"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Law",
+          "headline": "DOJ's noncitizen voter crackdown collides with courts days before midterms",
+          "outlet": "Fox News",
+          "url": "https://www.foxnews.com/politics/biden-appointed-judge-blocks-voter-fraud-probes-battleground-states-days-before-midterms",
+          "summary": "A federal judge ordered DHS to halt noncitizen-voting probes in battleground states citing intimidation concerns, even as a federal prosecutor said DOJ had verified 20,000 flagged California voter-roll entries as noncitizens — a claim Los Angeles County election officials call unreliable.",
           "also_covered_by": [
             "NPR",
-            "National Review",
-            "The Dispatch"
+            "Stateline",
+            "Washington Examiner"
           ],
           "via": "feed"
         },
         {
           "type": "Politics",
-          "headline": "Trump unveils last-minute farm payments to shore up endangered rural Republicans",
-          "outlet": "Politico",
-          "url": "https://www.politico.com/news/2026/10/20/trump-farmers-payments-gop-midterms-01128165",
-          "summary": "Politico reports Trump's promise of new payments to farmers comes just two weeks before Election Day and could face a fight in Congress, while Roll Call notes Trump is separately tying an ethanol boost to a win for Kansas Sen. Roger Marshall and NPR reports farm country remains frustrated despite the administration's efforts.",
-          "also_covered_by": [
-            "Roll Call",
-            "NPR"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Politics",
-          "headline": "AIPAC halts direct campaign contributions and candidate endorsements",
+          "headline": "AIPAC halts endorsements and direct campaign contributions",
           "outlet": "NPR",
           "url": "https://www.npr.org/2026/10/21/nx-s1-6011531/aipac-campaign-contributions-israel-democrats",
-          "summary": "NPR reports the pro-Israel lobbying group AIPAC announced it would no longer endorse candidates or give directly to campaigns, though its affiliated super PAC will keep spending.",
+          "summary": "The pro-Israel lobbying group AIPAC announced it would stop endorsing candidates or giving directly to campaigns, though its affiliated super PAC will keep spending, a shift that follows the group's brand becoming a liability in several Democratic primaries this cycle.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Suspicious letters with white powder hit Congress and election offices nationwide",
+          "outlet": "Axios",
+          "url": "https://axios.com/2026/10/20/white-powder-letters-congress-election-offices",
+          "summary": "Axios reports that over three dozen lawmakers and election offices in at least 32 states have received suspicious letters, many containing a white powder, forcing evacuations and prompting an FBI investigation just weeks before the midterms.",
+          "also_covered_by": [],
+          "via": "search"
+        },
+        {
+          "type": "Law",
+          "headline": "Supreme Court weighs border wall construction and other Trump-era emergency appeals",
+          "outlet": "SCOTUSblog",
+          "url": "https://www.scotusblog.com/2026/10/trump-administration-asks-justices-to-allow-border-wall-construction-to-continue/",
+          "summary": "The Trump administration has asked the justices to let border wall construction continue, one of several high-stakes interim-docket disputes SCOTUSblog is tracking alongside cases on transgender inmate policy and third-country removals.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Law",
-          "headline": "Trump administration asks Supreme Court to let border wall construction continue",
-          "outlet": "SCOTUSblog",
-          "url": "https://www.scotusblog.com/2026/10/trump-administration-asks-justices-to-allow-border-wall-construction-to-continue/",
-          "summary": "SCOTUSblog reports the Trump administration has asked the justices to allow border wall construction to proceed, one of several pending emergency applications the Court is weighing this month alongside a transgender inmate policy dispute.",
-          "also_covered_by": [],
+          "headline": "Top Virginia Democrat indicted on cannabis enterprise conspiracy charges",
+          "outlet": "Courthouse News",
+          "url": "https://www.courthousenews.com/feds-indict-top-virginia-democrat-on-cannabis-enterprise-conspiracy/",
+          "summary": "The Justice Department indicted Virginia state Senate President Pro Tempore Louise Lucas and seven others, accusing the longtime Democratic leader of using her political clout to conceal an illegal cannabis sales operation.",
+          "also_covered_by": [
+            "Fox News"
+          ],
           "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "House Republicans quietly scale back redistricting hopes as climate sours",
+          "outlet": "Axios",
+          "url": "https://axios.com/2026/10/20/republicans-redistricting-boost-shrinking-midterms",
+          "summary": "Axios reports House Republicans privately worry their nationwide mid-decade redistricting push could net just one seat overall, down from hopes of a 10-seat boost, as GOP support erodes among Latino voters in Texas and Florida and Democrats' California countermap puts five seats in play.",
+          "also_covered_by": [],
+          "via": "search"
         }
       ],
-      "gaps": "NOTUS's feed/search results returned mostly older cached content rather than current 24-48 hour coverage, so its inclusion above is limited; NYT, WSJ and The Guardian block search and are represented only via the specific feed items provided (Iowa farm economy, Brad Lander detention in West Bank, and a Brazil election story respectively, the last outside this group's scope).",
+      "gaps": "Politico, NYT, WSJ and The Guardian block web search, so coverage from those outlets is limited to the feed items provided; no recent NOTUS items beyond older cached pages were found via search, and no distinct Punchbowl News scoop from the last 24-48 hours was located beyond its Arizona healthcare-messaging piece.",
       "outlets": [
         "Politico",
         "Axios",
@@ -220,7 +242,7 @@
       "not_visible": [],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 4,
+        "feed": 5,
         "search": 3,
         "both": 0
       },
@@ -943,7 +965,7 @@
       "balance_added": 0
     }
   },
-  "generated_at": "2026-10-22T12:46:59.255920+00:00",
+  "generated_at": "2026-10-22T17:52:49.103114+00:00",
   "newsletters": {
     "Flagship": {
       "generated_at": "2026-10-22T12:47:14.457871+00:00",
