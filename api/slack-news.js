@@ -52,7 +52,9 @@ function matchGroups(text) {
   return hits;
 }
 
-const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// Earlier radar runs saved stray <cite index="..."> markers inside some summaries. Drop them before display.
+const stripCite = (s) => String(s || '').replace(/<\/?(?:antml:)?cite\b[^>]*>/gi, '');
+const esc = (s) => stripCite(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const safeUrl = (u) => String(u).replace(/ /g, '%20').replace(/\|/g, '%7C').replace(/</g, '%3C').replace(/>/g, '%3E');
 const clip = (s, n) => (String(s || '').length > n ? String(s).slice(0, n - 1) + '…' : String(s || ''));
 
