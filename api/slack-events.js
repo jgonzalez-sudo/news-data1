@@ -27,6 +27,8 @@ export const config = {
 const WORK_START_HOUR = 9;   // 9am local
 const WORK_END_HOUR = 17;    // 5pm local
 const CLAUDE_MODEL = 'claude-haiku-4-5-20251001';
+// Max wait for Claude before falling back to keyword matching.
+const CLAUDE_TIMEOUT_MS = Number(process.env.CLAUDE_TIMEOUT_MS) || 9000;
 
 const SHEET_CSV_URL = process.env.SHEET_CSV_URL ||
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrtWiQmcJfaEE0W1NAyauZNLiDBttCP2Jk9jJGLJP0_K_YNcCAM-3zqUZWvZkzqFXSKHND3e_fP9pW/pub?gid=1852591954&single=true&output=csv';
@@ -405,43 +407,82 @@ function keywordMatch(query, people) {
   return scored.slice(0, 5).map((x) => ({ name: x.p.name, reason: x.p.go_to_for || x.p.bio || '' }));
 }
 
-async function claudeMatch(query, people) {
+const GUIDANCE_CSV_URL = process.env.GUIDANCE_CSV_URL || '';
+
+// Standing instructions given to Claude on every question. Add more from a
+// "Guidance" tab in the sheet (one note per row, header: guidance).
+const DEFAULT_GUIDANCE = [
+  'People whose title contains "Fellow" are the go-to for charts, Figma, graphics and other design or visual requests.',
+  '"Help with tech" or similar means technical support (CMS, Google access, accounts, crashes, hardware) - NOT the Tech newsletter or tech coverage - unless the person mentions the newsletter, the team or coverage.',
+  'Prefer people whose "go to for" directly addresses the request. Return fewer people rather than guessing; return [] if no one clearly fits.',
+  'Do not consider time zones or availability - that is handled separately.',
+  'Return up to 5 people (up to 8 for chart, graphics or design requests), best match first.',
+];
+
+async function fetchGuidance() {
+  if (!GUIDANCE_CSV_URL) return [];
+  try {
+    const resp = await fetch(`${GUIDANCE_CSV_URL}${GUIDANCE_CSV_URL.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
+    if (!resp.ok) return [];
+    const rows = parseCSV(await resp.text());
+    if (rows.length < 2) return [];
+    const idx = Math.max(0, rows[0].map((h) => h.trim().toLowerCase()).indexOf('guidance'));
+    return rows.slice(1).map((r) => (r[idx] || '').trim()).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+async function claudeMatch(query, people, opts = {}) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return [];
 
+  const guidance = [...DEFAULT_GUIDANCE, ...(opts.guidance || [])];
   const rosterText = people
-    .map((p) => `${p.name} | Teams: ${p.teams.join(', ')} | Go to for: ${p.go_to_for || p.bio || 'n/a'}`)
+    .map((p) => `${p.name} | ${p.title || 'n/a'} | Teams: ${p.teams.join(', ') || 'n/a'} | ${p.location || 'n/a'} | Go to for: ${p.go_to_for || p.bio || 'n/a'}`)
     .join('\n');
+  const hintText = opts.hints && opts.hints.length
+    ? `\n\nKeyword-search candidates (hints only - may be wrong, verify against the roster):\n${opts.hints.map((h) => `- ${h.name}`).join('\n')}`
+    : '';
+  const techNote = opts.techSupport
+    ? '\n\nNote: this question looks like a request for technical/IT support, not about the Tech newsletter.'
+    : '';
 
-  const systemPrompt = `You are a lookup assistant for Semafor's internal staff directory. ` +
-    `A colleague will ask a plain-English question about who can help with something. ` +
-    `Using ONLY the roster below, pick up to 5 people who could plausibly help. ` +
-    `Respond with ONLY a JSON array like [{"name":"Full Name","reason":"short reason"}] and nothing else. ` +
-    `If truly nobody fits, respond with [].\n\nRoster:\n${rosterText}`;
+  const systemPrompt = `You are the lookup assistant for Semafor's internal staff directory. A colleague asks who can help with something. ` +
+    `Work out what they actually need, then pick the best people using ONLY the roster below.\n\n` +
+    `Guidance (follow these):\n${guidance.map((g) => `- ${g}`).join('\n')}\n\n` +
+    `Respond with ONLY a JSON array like [{"name":"Full Name","reason":"short reason"}], best match first, ` +
+    `with names exactly as they appear in the roster. Return [] if nobody fits.\n\n` +
+    `Roster (name | title | teams | location | go to for):\n${rosterText}${hintText}${techNote}`;
 
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: CLAUDE_MODEL,
-      max_tokens: 500,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: query }],
-    }),
-  });
-  if (!resp.ok) throw new Error(`Claude API failed: ${resp.status}`);
-  const data = await resp.json();
-  const textBlock = (data.content || []).find((b) => b.type === 'text');
-  if (!textBlock) return [];
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), opts.timeoutMs || CLAUDE_TIMEOUT_MS);
   try {
-    const cleaned = textBlock.text.replace(/```json|```/g, '').trim();
-    return JSON.parse(cleaned);
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: CLAUDE_MODEL,
+        max_tokens: 600,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: query }],
+      }),
+    });
+    if (!resp.ok) throw new Error(`Claude API failed: ${resp.status}`);
+    const data = await resp.json();
+    const textBlock = (data.content || []).find((b) => b.type === 'text');
+    if (!textBlock) return [];
+    const parsed = JSON.parse(textBlock.text.replace(/```json|```/g, '').trim());
+    return Array.isArray(parsed) ? parsed.filter((m) => m && m.name) : [];
   } catch {
     return [];
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -570,10 +611,35 @@ function techSupportMatch(people) {
   return scored.slice(0, 5).map((x) => ({ name: x.p.name, reason: x.p.go_to_for || x.p.title || '' }));
 }
 
+
+// Claude is the primary judge. Order: curated Rules tab (override) ->
+// structured team lookup -> Claude (with guidance + keyword hints) -> the
+// older keyword logic as a fallback if Claude is slow, down or returns nothing.
 async function findMatches(query, people) {
+  const guidancePromise = fetchGuidance();
+
   const ruleMatches = await matchByRules(query, people);
   if (ruleMatches) return ruleMatches;
 
+  const teamMatches = matchByTeam(query, people);
+  if (teamMatches && teamMatches.length) return teamMatches.slice(0, 15);
+
+  const guidance = await guidancePromise;
+  const isDesign = isDesignQuery(query);
+  const picks = await claudeMatch(query, people, {
+    guidance,
+    hints: keywordMatch(query, people),
+    techSupport: isTechSupportQuery(query),
+    timeoutMs: CLAUDE_TIMEOUT_MS,
+  });
+  const known = new Set(people.map((p) => p.name));
+  const valid = picks.filter((m) => known.has(m.name));
+  if (valid.length) return valid.slice(0, isDesign ? 8 : 5);
+
+  return legacyMatches(query, people);
+}
+
+async function legacyMatches(query, people) {
   if (isTechSupportQuery(query)) {
     const direct = techSupportMatch(people);
     let fromClaude = [];
