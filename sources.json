@@ -1,5 +1,5 @@
 {
-  "_readme": "Edit this file to change what the radar covers. To add an outlet: add it under 'outlets' (name, domain, optional feeds, optional note), then list its id in a group. A group's 'active' flag switches it on or off for scheduled runs. 'extra_outlets' are big general outlets: they are searched, and their feed items are only used when they match the group's 'keywords'. A 'note' like 'state-run' is shown to the AI so summaries say so.",
+  "_readme": "Edit this file to change what the radar covers. To add an outlet: add it under 'outlets' (name, domain, optional feeds, optional note), then list its id in a group. A group's 'active' flag switches it on or off for scheduled runs. 'extra_outlets' are big general outlets: they are searched, and their feed items are only used when they match the group's 'keywords'. A 'note' like 'state-run' is shown to the AI so summaries say so. A group's 'balance' (regional beats only) asks for at least min_business business or economy stories and no more than max_same of any one type.",
   "outlets": {
     "wsj": {
       "name": "WSJ",
@@ -1090,7 +1090,11 @@
         "south china sea",
         "politburo",
         "ccp"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "Gulf & Middle East",
@@ -1164,7 +1168,11 @@
         "aramco",
         "adnoc",
         "neom"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "Africa",
@@ -1240,7 +1248,11 @@
         "khartoum",
         "ecowas",
         "african union"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "LatAm",
@@ -1291,7 +1303,11 @@
         "milei",
         "lula",
         "sheinbaum"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "Security",
@@ -1363,7 +1379,11 @@
         "britain",
         "uk",
         "poland"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "Asia",
@@ -1399,7 +1419,11 @@
         "bangladesh",
         "modi",
         "asean"
-      ]
+      ],
+      "balance": {
+        "min_business": 2,
+        "max_same": 3
+      }
     },
     {
       "name": "Media",
