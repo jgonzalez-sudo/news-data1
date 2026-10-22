@@ -56,6 +56,20 @@ function matchGroups(text) {
 const stripCite = (s) => String(s || '').replace(/<\/?(?:antml:)?cite\b[^>]*>/gi, '');
 const esc = (s) => stripCite(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const safeUrl = (u) => String(u).replace(/ /g, '%20').replace(/\|/g, '%7C').replace(/</g, '%3C').replace(/>/g, '%3E');
+// Stories saved before types existed have none. Until the next radar run saves real ones, guess from the text.
+const TYPE_HINTS = [
+  ['Health', /\b(ebola|outbreak|vaccines?|virus|disease|cholera|malaria|mpox|health|hospitals?|epidemic)\b/i],
+  ['Security', /\b(attacks?|militants?|terror\w*|insurgen\w*|troops|army|military|gunmen|coup|missiles?|drones?)\b/i],
+  ['Geopolitics', /\b(sanctions|summit|treaty|envoy|diplomat\w*|nato|alliance|ceasefire|war)\b/i],
+  ['Business', /\b(deal|acquisition|merger|ipo|compan\w*|shares|stock|earnings|profit|investment|startups?|funding|billion|million)\b|[$€£]\s?\d/i],
+  ['Energy', /\b(oil|gas|lng|electricity|grid|solar|coal|refiner\w*|pipeline)\b/i],
+  ['Economy', /\b(inflation|gdp|central bank|interest rates?|currency|debt|imf|world bank|budget|trade|tariffs?|economy|economic|growth|prices|exports?|imports?)\b/i],
+  ['Tech', /\b(ai|artificial intelligence|chips?|software|cyber\w*|data centers?)\b/i],
+  ['Politics', /\b(elections?|vote|president|parliament|minister|government|opposition|protests?)\b/i],
+];
+const inferType = (text) => { for (const [label, re] of TYPE_HINTS) if (re.test(text)) return label; return ''; };
+const typeOf = (st) => st.type || inferType(`${st.headline || ''} ${st.summary || ''}`);
+
 // A bold label such as *Health:* in front of each headline, so people scanning can see the kind of story at a glance
 const typeLabel = (t) => (t ? `*${esc(clip(t, 24))}:* ` : '');
 const clip = (s, n) => (String(s || '').length > n ? String(s).slice(0, n - 1) + '…' : String(s || ''));
@@ -176,7 +190,7 @@ function groupBlocks(name, g) {
   if (g.overview) blocks.push({ type: 'section', text: { type: 'mrkdwn', text: clip(esc(g.overview), 2900) } });
   blocks.push({ type: 'divider' });
   for (const s of (g.stories || []).slice(0, 8)) {
-    let line = `${typeLabel(s.type)}<${safeUrl(s.url)}|${esc(clip(s.headline, 200))}>`;
+    let line = `${typeLabel(typeOf(s))}<${safeUrl(s.url)}|${esc(clip(s.headline, 200))}>`;
     if (s.outlet) line += ` · _${esc(s.outlet)}_`;
     if (s.summary) line += `\n${esc(clip(s.summary, 500))}`;
     if (s.also_covered_by && s.also_covered_by.length) line += `\n_Also: ${esc(s.also_covered_by.join(', '))}_`;
@@ -211,7 +225,7 @@ function picksBlocks(name, n) {
   if (n.intro) blocks.push({ type: 'section', text: { type: 'mrkdwn', text: clip(esc(n.intro), 2900) } });
   blocks.push({ type: 'divider' });
   for (const p of (n.picks || []).slice(0, 7)) {
-    let line = `${typeLabel(p.type)}<${safeUrl(p.url)}|${esc(clip(p.headline, 200))}>`;
+    let line = `${typeLabel(typeOf(p))}<${safeUrl(p.url)}|${esc(clip(p.headline, 200))}>`;
     if (p.outlet) line += ` · _${esc(p.outlet)}_`;
     if (p.group) line += ` (${esc(p.group)})`;
     if (p.why) line += `\n${esc(clip(p.why, 300))}`;
