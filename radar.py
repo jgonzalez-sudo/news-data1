@@ -53,9 +53,10 @@ Rules:
 - Every url must be copied exactly from a search result or feed item. Never invent or guess URLs, headlines or details.
 - If several outlets cover the same story, list it once and name the others in also_covered_by (only outlets where you actually saw it).
 - Give 5-8 stories, most important first.
+- Give every story a type: exactly one of Politics, Geopolitics, Security, Economy, Business, Energy, Climate, Health, Tech, Society, Culture, Media, Law, whichever best describes what the story is about.
 
 Respond with ONLY valid JSON, no preamble and no markdown:
-{"overview": "2-3 sentences on what these outlets are collectively focused on", "stories": [{"headline": "...", "outlet": "...", "url": "...", "summary": "...", "also_covered_by": ["..."]}], "gaps": "outlets you could find nothing recent from, or an empty string"}"""
+{"overview": "2-3 sentences on what these outlets are collectively focused on", "stories": [{"type": "...", "headline": "...", "outlet": "...", "url": "...", "summary": "...", "also_covered_by": ["..."]}], "gaps": "outlets you could find nothing recent from, or an empty string"}"""
 
 
 # ── registry ────────────────────────────────────────────────────────────────
@@ -227,6 +228,97 @@ def clean_text_fields(obj):
     return obj
 
 
+# ── story types and balance ─────────────────────────────────────────────────
+STORY_TYPES = ["Politics", "Geopolitics", "Security", "Economy", "Business", "Energy", "Climate", "Health",
+               "Tech", "Society", "Culture", "Media", "Law"]
+_TYPE_LOOKUP = {t.lower(): t for t in STORY_TYPES}
+_TYPE_HINTS = [  # used only when the model gives a missing or unknown type
+    ("Health", r"\b(ebola|outbreak|vaccines?|virus|disease|cholera|malaria|mpox|health|hospitals?|epidemic)\b"),
+    ("Security", r"\b(attacks?|militants?|terror\w*|insurgen\w*|troops|army|military|gunmen|coup|missiles?|drones?)\b"),
+    ("Geopolitics", r"\b(sanctions|summit|treaty|envoy|diplomat\w*|nato|alliance|ceasefire|war)\b"),
+    ("Energy", r"\b(oil|gas|lng|electricity|grid|solar|coal|refiner\w*|pipeline)\b"),
+    ("Business", r"\b(deal|acquisition|merger|ipo|compan\w*|shares|stock|earnings|profit|investment|startups?|funding|billion)\b"),
+    ("Economy", r"\b(inflation|gdp|central bank|interest rates?|currency|debt|imf|world bank|budget|trade|tariffs?|economy|economic|growth|prices|exports?|imports?)\b"),
+    ("Tech", r"\b(ai|artificial intelligence|chips?|software|cyber\w*|data centers?)\b"),
+    ("Politics", r"\b(elections?|vote|president|parliament|minister|government|opposition|protests?)\b"),
+]
+BUSINESS_TERMS = re.compile(
+    r"\b(billion|million|bn|deal|investment|invest|investors?|loan|debt|imf|world bank|bond|budget|gdp|"
+    r"inflation|central bank|interest rate|currency|exchange rate|dollar|oil|gas|lng|pipeline|refinery|mining|mine|"
+    r"lithium|cobalt|copper|gold|port|railway|infrastructure|export|import|trade|tariff|revenue|profit|earnings|"
+    r"ipo|stock|bank|fintech|startup|funding|raises|acquisition|merger|tender|contract|power|solar|energy|"
+    r"project|economy|economic|growth|fund)\b", re.I)
+MONEY_PATTERN = re.compile(r"[$€£]\s?\d|\b\d[\d.,]*\s?(?:bn|billion|million|trillion)\b", re.I)
+
+
+def business_signal(text):
+    hits = len({m.lower() for m in BUSINESS_TERMS.findall(text)})
+    return hits + (2 if MONEY_PATTERN.search(text) else 0)
+
+
+def infer_type(text):
+    for label, pattern in _TYPE_HINTS:
+        if re.search(pattern, text, re.I):
+            return label
+    return ""
+
+
+def normalize_type(value, fallback_text=""):
+    """The model's type if it is one of the allowed labels, otherwise a best guess (or blank)."""
+    t = _TYPE_LOOKUP.get(str(value or "").strip().lower())
+    return t or infer_type(fallback_text)
+
+
+def is_business_type(t):
+    return t in ("Business", "Economy")
+
+
+def collect_search_titles(blocks):
+    """url -> title for every web search result, so headlines can be reused."""
+    titles = {}
+    for b in blocks:
+        if b.get("type") == "web_search_tool_result" and isinstance(b.get("content"), list):
+            for r in b["content"]:
+                if r.get("url") and r.get("title"):
+                    titles[r["url"]] = r["title"]
+    return titles
+
+
+def outlet_for_url(url, domain_names):
+    host = (urlparse(url).hostname or "").lower()
+    for d, name in domain_names.items():
+        if host == d or host.endswith("." + d):
+            return name
+    return host
+
+
+def ensure_business_balance(stories, pool, minimum, max_total=8):
+    """Make sure a regional beat shows at least `minimum` business or economy stories (when the
+    day's feed items and search results contain any), so it is not only politics and security.
+    Adds the strongest unused business headlines at the end of the list."""
+    have = sum(1 for s in stories if is_business_type(s.get("type")))
+    if minimum <= 0 or have >= minimum:
+        return stories, 0
+    used = {normalize_url(s["url"]) for s in stories}
+    cands = [(business_signal(f"{c['headline']} {c['summary']}"), c) for c in pool if normalize_url(c["url"]) not in used]
+    cands = sorted([x for x in cands if x[0] >= 2], key=lambda x: -x[0])
+    added = 0
+    for _, c in cands:
+        if have + added >= minimum:
+            break
+        new = {"type": "Business", "headline": c["headline"], "outlet": c["outlet"], "url": c["url"],
+               "summary": c["summary"], "also_covered_by": []}
+        if len(stories) < max_total:
+            stories.append(new)
+        else:
+            idx = next((i for i in range(len(stories) - 1, -1, -1) if not is_business_type(stories[i].get("type"))), None)
+            if idx is None:
+                break
+            stories[idx] = new
+        added += 1
+    return stories, added
+
+
 # ── validation ──────────────────────────────────────────────────────────────
 def normalize_url(u):
     p = urlparse(u.strip())
@@ -251,6 +343,7 @@ def filter_stories(stories, seen_urls, domains):
             continue
         used.add(key)
         kept.append({
+            "type": normalize_type(s.get("type"), f"{s['headline']} {s.get('summary', '')}"),
             "headline": s["headline"],
             "outlet": s.get("outlet", ""),
             "url": url,
@@ -273,6 +366,12 @@ def build_user_message(group, outlets, feed_items, to_search, blocked_names, con
     lines += ["", "Outlets with no feed items, so search for them: " + (", ".join(to_search) or "(none)")]
     if blocked_names:
         lines += ["Outlets that block web search (use their feed items only, if any): " + ", ".join(blocked_names)]
+    bal = group.get("balance")
+    if bal:
+        lines += ["", f"Balance for this beat: include at least {bal.get('min_business', 2)} business or economy stories "
+                      "(deals, investment, markets, trade, central banks, corporate news) whenever the candidates include any, "
+                      f"and no more than {bal.get('max_same', 3)} stories of the same type, so the beat is not only politics and security. "
+                      "Keep the most newsworthy first."]
     if concise:
         lines += ["", "Your previous answer was cut off. Be much shorter: at most 5 stories, one short sentence per summary, omit also_covered_by."]
     return "\n".join(lines)
@@ -327,6 +426,14 @@ def run_group(registry, group, api_key):
     parsed = clean_text_fields(extract_json(blocks_text(blocks)))
     stories, dropped = filter_stories(parsed.get("stories", []), search_urls | feed_urls, all_domains)
 
+    bal = group.get("balance") or {}
+    domain_names = {o["domain"]: o["name"] for o in registry["outlets"].values()}
+    pool = [{"headline": i["title"], "outlet": i["outlet"], "url": i["url"], "summary": i["snippet"]} for i in feed_items]
+    pool += [{"headline": t, "outlet": outlet_for_url(u, domain_names), "url": u, "summary": ""}
+             for u, t in collect_search_titles(blocks).items() if host_allowed(u, all_domains)]
+    stories, balance_added = ensure_business_balance(stories, pool, bal.get("min_business", 0))
+    n_biz = sum(1 for st in stories if is_business_type(st.get("type")))
+
     # Where did each published story come from: an RSS feed item, a web search result, or both?
     feed_keys = {normalize_url(u) for u in feed_urls}
     search_keys = {normalize_url(u) for u in search_urls}
@@ -341,6 +448,9 @@ def run_group(registry, group, api_key):
     print(f"  feeds: {feed_report or 'none configured'}")
     print(f"  feed items kept after topic filter: {len(feed_items)} of {len(raw_items)}")
     print(f"  searches used: {searches}; stories kept: {len(stories)}, dropped (untraceable link): {dropped}")
+    if bal:
+        print(f"  business/economy stories: {n_biz} of {len(stories)}"
+              + (f" (added {balance_added} to reach the minimum of {bal.get('min_business', 2)})" if balance_added else ""))
     print(f"  stories by origin: {mix['feed']} from feeds, {mix['search']} from web search, {mix['both']} found in both")
     if not_visible:
         print(f"  not visible (blocked from search, no feed items): {', '.join(not_visible)}")
@@ -359,6 +469,7 @@ def run_group(registry, group, api_key):
         "not_visible": not_visible,
         "searches_used": searches,
         "sources_mix": mix,
+        "balance_added": balance_added,
     }
 
 
@@ -391,6 +502,7 @@ Choose the 5-7 best fits, ranked, and say in one short sentence (under 25 words)
 Rules:
 - Let the editorial guide decide. Prefer stories where several outlets converge, or that a top-tier source ran, but only when they fit the guide.
 - Do not pick the same story twice. If fewer than 5 genuinely fit, return fewer.
+- Mix story types where the guide allows: no more than 3 picks of the same type, and include at least one business or economy pick if any fit.
 - Use only the numbers shown in the list. Never invent a story.
 - Give an intro: one sentence on what today's candidates suggest for this newsletter.
 Respond with ONLY valid JSON, no preamble: {"intro": "...", "picks": [{"id": 12, "why": "..."}]}"""
@@ -437,7 +549,7 @@ def newsletter_candidates(output_groups, group_names):
                 continue
             seen.add(key)
             cands.append({"id": len(cands) + 1, "group": gname, "headline": st["headline"], "url": st["url"],
-                          "outlet": st.get("outlet", ""), "summary": st.get("summary", ""),
+                          "outlet": st.get("outlet", ""), "summary": st.get("summary", ""), "type": st.get("type", ""),
                           "also_covered_by": st.get("also_covered_by", [])})
     return cands
 
@@ -449,7 +561,8 @@ def build_newsletter_picks(name, cfg, output_groups, api_key):
     lines = []
     for c in cands:
         also = f" (also: {', '.join(c['also_covered_by'][:3])})" if c["also_covered_by"] else ""
-        lines.append(f"[{c['id']}] ({c['group']}) {c['outlet']}: {c['headline']} - {c['summary'][:160]}{also}")
+        kind = f" / {c['type']}" if c["type"] else ""
+        lines.append(f"[{c['id']}] ({c['group']}{kind}) {c['outlet']}: {c['headline']} - {c['summary'][:160]}{also}")
     user = (f"Newsletter: {name} ({cfg.get('cadence', '')})\n\nEditorial guide:\n{cfg['guide']}\n\n"
             "Candidate stories:\n" + "\n".join(lines))
     parsed = clean_text_fields(extract_json(ask_claude(api_key, PICKS_SYSTEM, user)))
@@ -465,7 +578,7 @@ def build_newsletter_picks(name, cfg, output_groups, api_key):
             continue  # ignore numbers that weren't in the list, and repeats
         used.add(i)
         # the link comes from our own list, never from the model
-        picks.append({"headline": c["headline"], "url": c["url"], "outlet": c["outlet"],
+        picks.append({"headline": c["headline"], "url": c["url"], "outlet": c["outlet"], "type": c["type"],
                       "group": c["group"], "why": str(p.get("why", "")).strip()})
         if len(picks) >= PICKS_MAX:
             break
