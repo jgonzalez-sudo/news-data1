@@ -795,6 +795,20 @@ def clean_brief(brief, corpus_text):
     return brief, dropped
 
 
+CITE_TAG = re.compile(r"</?(?:antml:)?cite\b[^>]*>", re.I)
+
+
+def strip_cite_tags(obj):
+    """Remove stray citation tags from every string in the model's JSON."""
+    if isinstance(obj, dict):
+        return {k: strip_cite_tags(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [strip_cite_tags(v) for v in obj]
+    if isinstance(obj, str):
+        return CITE_TAG.sub("", obj).strip()
+    return obj
+
+
 DEFAULT_BUSINESS_RULE = "At least 2 of the 5 executive_summary items must be business or economy stories if the data has any."
 AFRICA_BUSINESS_RULE = (
     "Business and economy stories belong in the top stories regularly: aim for 2 to 3 of the 5 executive_summary items "
@@ -870,7 +884,7 @@ def generate_editorial_brief(corpus_text, api_key, region_label="Africa", countr
                 raise RuntimeError(f"No text block found in Claude response. Blocks were: {content_blocks}")
             text = text_block["text"].strip()
             text = re.sub(r"^```(json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
-            return json.loads(text)
+            return strip_cite_tags(json.loads(text))
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
             last_error = e
             print(f"  [brief] attempt {attempt + 1} failed ({e})" + (" - retrying..." if attempt == 0 else ""))
