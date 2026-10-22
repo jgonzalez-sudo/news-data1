@@ -56,6 +56,8 @@ function matchGroups(text) {
 const stripCite = (s) => String(s || '').replace(/<\/?(?:antml:)?cite\b[^>]*>/gi, '');
 const esc = (s) => stripCite(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const safeUrl = (u) => String(u).replace(/ /g, '%20').replace(/\|/g, '%7C').replace(/</g, '%3C').replace(/>/g, '%3E');
+// A bold label such as *Health:* in front of each headline, so people scanning can see the kind of story at a glance
+const typeLabel = (t) => (t ? `*${esc(clip(t, 24))}:* ` : '');
 const clip = (s, n) => (String(s || '').length > n ? String(s).slice(0, n - 1) + '…' : String(s || ''));
 
 function hoursSince(iso) {
@@ -174,7 +176,7 @@ function groupBlocks(name, g) {
   if (g.overview) blocks.push({ type: 'section', text: { type: 'mrkdwn', text: clip(esc(g.overview), 2900) } });
   blocks.push({ type: 'divider' });
   for (const s of (g.stories || []).slice(0, 8)) {
-    let line = `*<${safeUrl(s.url)}|${esc(clip(s.headline, 200))}>*`;
+    let line = `${typeLabel(s.type)}<${safeUrl(s.url)}|${esc(clip(s.headline, 200))}>`;
     if (s.outlet) line += ` · _${esc(s.outlet)}_`;
     if (s.summary) line += `\n${esc(clip(s.summary, 500))}`;
     if (s.also_covered_by && s.also_covered_by.length) line += `\n_Also: ${esc(s.also_covered_by.join(', '))}_`;
@@ -209,7 +211,7 @@ function picksBlocks(name, n) {
   if (n.intro) blocks.push({ type: 'section', text: { type: 'mrkdwn', text: clip(esc(n.intro), 2900) } });
   blocks.push({ type: 'divider' });
   for (const p of (n.picks || []).slice(0, 7)) {
-    let line = `*<${safeUrl(p.url)}|${esc(clip(p.headline, 200))}>*`;
+    let line = `${typeLabel(p.type)}<${safeUrl(p.url)}|${esc(clip(p.headline, 200))}>`;
     if (p.outlet) line += ` · _${esc(p.outlet)}_`;
     if (p.group) line += ` (${esc(p.group)})`;
     if (p.why) line += `\n${esc(clip(p.why, 300))}`;
