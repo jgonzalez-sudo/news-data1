@@ -518,7 +518,112 @@ function matchByTeam(query, people) {
   return members.map((p) => ({ name: p.name, reason: `${matchedTeam} team` }));
 }
 
+
+// ---- "Taught" answers: curated rules from a Rules tab in the Google Sheet ----
+// Each row: keywords (comma-separated phrases) | people (comma-separated full
+// names, as they appear in the roster) | note (optional). If a question
+// contains any keyword phrase, those people are returned as the answer and
+// the fuzzy matching is skipped. Leave RULES_CSV_URL empty to disable.
+const RULES_CSV_URL = process.env.RULES_CSV_URL || '';
+
+function normalizePhrase(s) {
+  return ' ' + String(s).toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').trim() + ' ';
+}
+
+async function fetchRules() {
+  if (!RULES_CSV_URL) return [];
+  try {
+    const resp = await fetch(`${RULES_CSV_URL}${RULES_CSV_URL.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
+    if (!resp.ok) return [];
+    const rows = parseCSV(await resp.text());
+    if (rows.length < 2) return [];
+    const headers = rows[0].map((h) => h.trim().toLowerCase());
+    const col = (name) => headers.indexOf(name);
+    return rows.slice(1).map((r) => ({
+      keywords: (r[col('keywords')] || '').split(',').map((k) => normalizePhrase(k)).filter((k) => k.trim()),
+      people: (r[col('people')] || '').split(',').map((n) => n.trim()).filter(Boolean),
+      note: (r[col('note')] || '').trim(),
+    })).filter((r) => r.keywords.length && r.people.length);
+  } catch {
+    return [];
+  }
+}
+
+async function matchByRules(query, people) {
+  const rules = await fetchRules();
+  if (!rules.length) return null;
+  const q = normalizePhrase(query);
+  const byLower = Object.fromEntries(people.map((p) => [p.name.toLowerCase(), p]));
+  for (const rule of rules) {
+    if (rule.keywords.some((k) => q.includes(k))) {
+      const found = rule.people
+        .map((n) => byLower[n.toLowerCase()])
+        .filter(Boolean)
+        .map((p) => ({ name: p.name, reason: rule.note || 'Recommended contact' }));
+      if (found.length) return found;
+    }
+  }
+  return null;
+}
+
+
+// ---- Tech *support* vs. Tech *newsletter* ----
+// "Help with tech", "CMS is down", "locked out of Google" are requests for
+// technical support — not questions about the Tech newsletter or its team.
+// Detected here so they're answered from IT/tech-support people instead.
+const TECH_NEWSLETTER_HINTS = /\b(tech\s+(newsletter|team|section|reporters?|coverage|desk|beat)|(cover|covers|covering|write|writes|writing|report|reports|reporting)\s+(on\s+)?(tech|ai))\b/;
+const TECH_SUPPORT_HINTS = [
+  /\b(help|issue|issues|problem|problems|trouble|support|fix|broken|stuck)\b.*\b(tech|technology)\b/,
+  /\b(tech|technology)\s+(help|issue|issues|problem|problems|support|trouble)\b/,
+  /\b(cms|vpn|wifi|wi-fi|password|login|log in|laptop|2fa|locked out|crash\w*)\b/,
+  /\bgoogle\s+(access|drive|doc|docs|sheet|sheets|account)\b/,
+];
+const TECH_SUPPORT_TOKENS = new Set(['it', 'tech', 'technical', 'technology', 'cms', 'google',
+  'laptop', 'computer', 'hardware', 'software', 'systems', 'security', 'vpn', 'wifi',
+  'helpdesk', 'engineer', 'engineering', 'developer', 'wordpress', 'accounts', 'access']);
+
+function isTechSupportQuery(query) {
+  const q = query.toLowerCase();
+  if (TECH_NEWSLETTER_HINTS.test(q)) return false;
+  return TECH_SUPPORT_HINTS.some((re) => re.test(q));
+}
+
+// Looks at title + go_to_for + bio only — deliberately NOT the teams tags,
+// so everyone on the "Tech" newsletter team doesn't match.
+function techSupportMatch(people) {
+  const scored = people.map((p) => {
+    const tokens = new Set(tokenize(`${p.title} ${p.go_to_for} ${p.bio}`));
+    let score = 0;
+    TECH_SUPPORT_TOKENS.forEach((t) => { if (tokens.has(t)) score += 1; });
+    return { p, score };
+  }).filter((x) => x.score > 0);
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 5).map((x) => ({ name: x.p.name, reason: x.p.go_to_for || x.p.title || '' }));
+}
+
 async function findMatches(query, people) {
+  const ruleMatches = await matchByRules(query, people);
+  if (ruleMatches) return ruleMatches;
+
+  if (isTechSupportQuery(query)) {
+    const direct = techSupportMatch(people);
+    let fromClaude = [];
+    try {
+      fromClaude = await claudeMatch(
+        `${query} (This is a request for technical/IT support — e.g. CMS, accounts, access, hardware, crashes — NOT about the Tech newsletter or tech coverage.)`,
+        people
+      );
+    } catch {
+      fromClaude = [];
+    }
+    const seen = new Set();
+    const merged = [];
+    for (const m of [...direct, ...fromClaude]) {
+      if (!seen.has(m.name)) { merged.push(m); seen.add(m.name); }
+    }
+    return merged.slice(0, 5);
+  }
+
   const teamMatches = matchByTeam(query, people);
   if (teamMatches && teamMatches.length) return teamMatches.slice(0, 15);
 
