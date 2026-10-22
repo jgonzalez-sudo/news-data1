@@ -690,11 +690,10 @@ def story_score(story):
     return score
 
 
-def build_corpus(country_papers_data, international_data, max_per_country=8):
-    """Flatten a region's headlines into text for the model. Per country, top-tier
-    sources and business stories are ranked first, so they survive the cutoff.
-    Each line carries the outlet name, a star for top-tier sources, and the URL."""
-    lines = []
+def corpus_entries(country_papers_data, international_data, max_per_country=8):
+    """The headlines that go to the model, as structured entries. Per country, top-tier
+    sources and business stories are ranked first, so they survive the cutoff."""
+    entries = []
     for country, papers in country_papers_data.items():
         items = []
         for paper, stories in papers.items():
@@ -702,9 +701,67 @@ def build_corpus(country_papers_data, international_data, max_per_country=8):
         items.extend((s.get('source', 'Intl'), s) for s in (international_data.get(country) or []))
         items.sort(key=lambda it: story_score(it[1]), reverse=True)  # stable: ties keep feed order
         for outlet, s in items[:max_per_country]:
-            star = ' ★' if is_top_source(s.get('url', '')) else ''
-            lines.append(f"[{country} | {outlet}{star}] {s['title']} — {s.get('description', '')[:150]} (URL: {s.get('url', '')})")
+            entries.append({"country": country, "outlet": outlet, "top": is_top_source(s.get('url', '')),
+                            "title": s['title'], "description": s.get('description', ''), "url": s.get('url', '')})
+    return entries
+
+
+def build_corpus(country_papers_data, international_data, max_per_country=8):
+    """Flatten a region's headlines into text for the model. Each line carries the
+    outlet name, a star for top-tier sources, and the URL."""
+    lines = []
+    for e in corpus_entries(country_papers_data, international_data, max_per_country):
+        star = ' ★' if e['top'] else ''
+        lines.append(f"[{e['country']} | {e['outlet']}{star}] {e['title']} — {e['description'][:150]} (URL: {e['url']})")
     return "\n".join(lines)
+
+
+def business_signal(text):
+    hits = len({m.lower() for m in BUSINESS_TERMS.findall(text)})
+    return hits + (2 if MONEY_PATTERN.search(text) else 0)
+
+
+def item_is_business(item):
+    """Trust the model's own tag; fall back to keywords if an item has none."""
+    t = str(item.get('type', '')).strip().lower()
+    if t in ('business', 'other'):
+        return t == 'business'
+    return business_signal(item.get('headline', '')) >= 2
+
+
+def ensure_business_floor(brief, entries, minimum):
+    """Guarantee at least `minimum` business or economy stories among the top stories.
+    If the model fell short, swap in the strongest unused business headlines from the
+    day's feeds (top-tier sources first), replacing the lowest-ranked non-business items."""
+    items = brief.get('executive_summary') or []
+    have = sum(1 for i in items if item_is_business(i))
+    if minimum <= 0 or have >= minimum:
+        return brief, 0
+    used = {normalize_url(i['url']) for i in items if i.get('url')}
+    pool = []
+    for e in entries:
+        if normalize_url(e['url']) in used:
+            continue
+        sig = business_signal(f"{e['title']} {e['description']}")
+        if sig >= 2:
+            pool.append((sig + (3 if e['top'] else 0), e))
+    pool.sort(key=lambda x: -x[0])  # stable
+    replace_at = [i for i in range(len(items) - 1, -1, -1) if not item_is_business(items[i])]
+    swaps = 0
+    for _, e in pool:
+        if have + swaps >= minimum:
+            break
+        new = {"headline": e['title'] if len(e['title']) <= 110 else e['title'][:109] + '…',
+               "url": e['url'], "source": e['outlet'], "country": e['country'], "type": "business"}
+        if replace_at:
+            items[replace_at.pop(0)] = new
+        elif len(items) < 5:
+            items.append(new)
+        else:
+            break
+        swaps += 1
+    brief['executive_summary'] = items
+    return brief, swaps
 
 
 def clean_brief(brief, corpus_text):
@@ -738,10 +795,20 @@ def clean_brief(brief, corpus_text):
     return brief, dropped
 
 
-def generate_editorial_brief(corpus_text, api_key, region_label="Africa", countries=None):
+DEFAULT_BUSINESS_RULE = "At least 2 of the 5 executive_summary items must be business or economy stories if the data has any."
+AFRICA_BUSINESS_RULE = (
+    "Business and economy stories belong in the top stories regularly: aim for 2 to 3 of the 5 executive_summary items "
+    "to be business or economy stories (deals and investment, energy and mining projects, debt, central-bank and "
+    "currency moves, trade, major corporate news). Never fewer than 2 if the data has any, and never more than 3, "
+    "so human-stakes and politics stories keep their place."
+)
+
+
+def generate_editorial_brief(corpus_text, api_key, region_label="Africa", countries=None, business_rule=None):
     """Call Claude to produce a short executive summary, per-country highlights and
     newsletter suggestions as JSON. Every item carries a URL and a source name."""
     countries_line = f"Countries in this data: {', '.join(countries)}.\n" if countries else ""
+    business_rule = business_rule or DEFAULT_BUSINESS_RULE
     system_prompt = (
         f"You are a senior news editor for Semafor {region_label}. You will receive headlines gathered from RSS "
         "feeds across the region, each tagged [Country | Outlet] with a source URL. " + countries_line +
@@ -749,8 +816,7 @@ def generate_editorial_brief(corpus_text, api_key, region_label="Africa", countr
         "(1) human stakes (violence, deaths, humanitarian crises); (2) business and economics: major deals and "
         "investment (for example a government seeking a $42 billion LNG project), energy and mining projects, debt, "
         "central-bank and currency moves, trade, large corporate news; (3) politics and geopolitics with cross-border "
-        "significance. At least 2 of the 5 executive_summary items must be business or economy stories if the data has "
-        "any. Do not pick a story just because many outlets repeat it. Exclude local sports, book or event launches, "
+        "significance. " + business_rule + " Do not pick a story just because many outlets repeat it. Exclude local sports, book or event launches, "
         "opinion columns, travel listicles, celebrity news and routine local-government announcements unless they carry "
         "real national significance. If a country has nothing worth including, give it an empty list.\n"
         "SOURCES: lines marked with a star come from top-tier sources (news agencies, Bloomberg, BBC, The Guardian, "
@@ -760,7 +826,7 @@ def generate_editorial_brief(corpus_text, api_key, region_label="Africa", countr
         "LENGTH: be brief. Headlines and bullets under 15 words, no filler.\n"
         "Respond with ONLY valid JSON (no markdown fences, no preamble) in exactly this shape:\n"
         "{\n"
-        '  "executive_summary": [{"headline": "...", "url": "<exact URL>", "source": "...", "country": "..."}],  // exactly 5, most important first\n'
+        '  "executive_summary": [{"headline": "...", "url": "<exact URL>", "source": "...", "country": "...", "type": "business" or "other"}],  // exactly 5, most important first; type is "business" for business and economy stories\n'
         '  "country_highlights": {"<Country>": [{"headline": "...", "url": "<exact URL>", "source": "..."}]},  // 0-2 per country\n'
         '  "continental_briefing": {\n'
         '    "business_macro": [{"text": "...", "url": "<exact URL>", "source": "..."}],  // up to 2 per category\n'
@@ -945,7 +1011,8 @@ def slack_targets(region_label):
     return targets
 
 
-def run_editorial_brief(region_data, region_international, region_feeds, region_label, tracker_filename, json_prefix):
+def run_editorial_brief(region_data, region_international, region_feeds, region_label, tracker_filename, json_prefix,
+                        business_rule=None, business_floor=0):
     """Build the corpus, call Claude, upload the brief, and send it to Slack.
     Returns True only if the brief was generated AND GitHub accepted the upload
     AND every Slack destination accepted the message."""
@@ -961,10 +1028,16 @@ def run_editorial_brief(region_data, region_international, region_feeds, region_
                 k.split('-', 1)[1]: v for k, v in region_data.items() if k.startswith(country + '-')
             }
         corpus = build_corpus(grouped, region_international)
-        brief = generate_editorial_brief(corpus, ANTHROPIC_API_KEY, region_label=region_label, countries=list(region_feeds.keys()))
+        brief = generate_editorial_brief(corpus, ANTHROPIC_API_KEY, region_label=region_label,
+                                         countries=list(region_feeds.keys()), business_rule=business_rule)
         brief, dropped = clean_brief(brief, corpus)
         if dropped:
             print(f"  dropped {dropped} item(s) whose link wasn't in the input")
+        if business_floor:
+            brief, swapped = ensure_business_floor(brief, corpus_entries(grouped, region_international), business_floor)
+            n_biz = sum(1 for i in brief.get('executive_summary') or [] if item_is_business(i))
+            print(f"  top stories: {n_biz} business/economy of {len(brief.get('executive_summary') or [])}"
+                  + (f" (swapped in {swapped} to reach the minimum of {business_floor})" if swapped else ""))
         if not brief.get('executive_summary'):
             print(f"❌ {region_label} brief had no usable top stories after checking links.")
             return False
@@ -994,8 +1067,10 @@ def run_editorial_brief(region_data, region_international, region_feeds, region_
 
 
 REGION_CONFIG = {
-    'africa': dict(label='Africa', feeds=africa_feeds, translate=False, page='africa.html', prefix='africa'),
-    'latam': dict(label='LatAm', feeds=latam_feeds, translate=True, page='latam.html', prefix='latam'),
+    'africa': dict(label='Africa', feeds=africa_feeds, translate=False, page='africa.html', prefix='africa',
+                   business_rule=AFRICA_BUSINESS_RULE, business_floor=2),
+    'latam': dict(label='LatAm', feeds=latam_feeds, translate=True, page='latam.html', prefix='latam',
+                  business_rule=None, business_floor=0),
 }
 
 
@@ -1030,7 +1105,8 @@ def main():
         print(f"✅ {label} headlines uploaded" if ok else f"⚠️ {label} headline upload failed - check the GitHub token / workflow permissions")
         results[f"{label} headlines"] = bool(ok)
         total_stories += sum(len(v) for v in data.values())
-        results[f"{label} brief + Slack"] = run_editorial_brief(data, international, cfg['feeds'], label, cfg['page'], cfg['prefix'])
+        results[f"{label} brief + Slack"] = run_editorial_brief(data, international, cfg['feeds'], label, cfg['page'], cfg['prefix'],
+                                                                  business_rule=cfg['business_rule'], business_floor=cfg['business_floor'])
 
     print(f"\n📊 Total stories collected: {total_stories}")
     print("\n" + "=" * 50)
