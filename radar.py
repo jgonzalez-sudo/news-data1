@@ -47,6 +47,7 @@ Rules:
 - Stay on the group's topic. Feed items from general outlets include unrelated stories; ignore those.
 - Outlets marked state-run or company announcements publish official positions. When you cite one, say so in the summary (for example 'state-run Global Times says...').
 - Use at most 4 searches. Write no commentary before the answer: your final message must be only the JSON object.
+- Write plain text only in every field: no citation tags (such as <cite>), no markup.
 - Rank by newsworthiness for a global news audience: human stakes, major economic or policy moves, cross-border significance, and stories several outlets are converging on. Skip routine items, opinion columns, listicles and lifestyle.
 - Many outlets are paywalled, so you will usually see only headlines and snippets. Write each summary in your own words (one sentence, two at most), based only on what you actually saw. If you only saw a headline, keep the summary modest. Never quote more than a few words.
 - Every url must be copied exactly from a search result or feed item. Never invent or guess URLs, headlines or details.
@@ -210,6 +211,22 @@ def extract_json(text):
     return json.loads(text[start:end + 1])
 
 
+# ── cleaning ────────────────────────────────────────────────────────────────
+# With web search on, the model sometimes leaves <cite index="..."> markers inside its text.
+CITE_TAG = re.compile(r"</?(?:antml:)?cite\b[^>]*>", re.I)
+
+
+def clean_text_fields(obj):
+    """Recursively remove citation tags from every string in the model's JSON."""
+    if isinstance(obj, dict):
+        return {k: clean_text_fields(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [clean_text_fields(v) for v in obj]
+    if isinstance(obj, str):
+        return CITE_TAG.sub("", obj).strip()
+    return obj
+
+
 # ── validation ──────────────────────────────────────────────────────────────
 def normalize_url(u):
     p = urlparse(u.strip())
@@ -307,7 +324,7 @@ def run_group(registry, group, api_key):
 
     search_urls, search_errors = collect_urls(blocks)
     feed_urls = {i["url"] for i in feed_items}
-    parsed = extract_json(blocks_text(blocks))
+    parsed = clean_text_fields(extract_json(blocks_text(blocks)))
     stories, dropped = filter_stories(parsed.get("stories", []), search_urls | feed_urls, all_domains)
 
     # Where did each published story come from: an RSS feed item, a web search result, or both?
@@ -435,7 +452,7 @@ def build_newsletter_picks(name, cfg, output_groups, api_key):
         lines.append(f"[{c['id']}] ({c['group']}) {c['outlet']}: {c['headline']} - {c['summary'][:160]}{also}")
     user = (f"Newsletter: {name} ({cfg.get('cadence', '')})\n\nEditorial guide:\n{cfg['guide']}\n\n"
             "Candidate stories:\n" + "\n".join(lines))
-    parsed = extract_json(ask_claude(api_key, PICKS_SYSTEM, user))
+    parsed = clean_text_fields(extract_json(ask_claude(api_key, PICKS_SYSTEM, user)))
     by_id = {c["id"]: c for c in cands}
     picks, used = [], set()
     for p in parsed.get("picks", []):
