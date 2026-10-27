@@ -2,104 +2,103 @@
   "groups": {
     "Business": {
       "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-10-22T17:51:41.439989+00:00",
-      "overview": "Business outlets are dominated by a sharp global stock selloff tied to anxiety over AI capital spending, after disappointing reactions to Meta and Tesla earnings sent tech shares and bonds swinging, compounded by escalating Middle East tensions pushing oil prices higher. Secondary threads include a global PHP cybersecurity scramble, fallout from France's bond-market crisis, and AI-driven corporate cost-cutting (Barclays' layoffs).",
+      "generated_at": "2026-10-27T15:04:40.575468+00:00",
+      "overview": "Coverage is overwhelmingly dominated by Anthropic's IPO filing, with every major outlet dissecting its eye-popping $80.7 billion first-half loss, $16.3 billion revenue, and unusual governance structure ahead of a potential record-breaking Nasdaq debut. Secondary focus is on macro and markets: the Fed's rate decision, a fiscal reckoning for Brazil after Lula's surprise re-election rattled investors, Beijing's intervention to stem a stock rout, and a mixed Q3 corporate earnings season.",
       "stories": [
         {
-          "type": "Economy",
-          "headline": "Tech-led selloff deepens as AI spending fears and Mideast tensions rattle markets",
+          "type": "Business",
+          "headline": "Anthropic Files for IPO in Global Race to Raise Cash for AI",
           "outlet": "Bloomberg",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
-          "summary": "A selloff in technology giants and escalating Middle East hostilities drove stocks toward their worst session since July, with Meta sinking over 7% and chipmakers hit hard as investors questioned whether massive AI spending is paying off, while Treasuries rallied on haven demand.",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/anthropic-ipo-s-1-filing-offers-first-look-at-claude-maker-s-finances",
+          "summary": "Anthropic's S-1 filing revealed $16.3 billion in first-half revenue alongside an $80.7 billion net loss (mostly an accounting charge), a five-class share structure giving founders permanent 50.1% voting control, and plans to list on Nasdaq as \"ANT\" as soon as Thanksgiving week at a valuation reportedly targeted between $1.5 and $2 trillion.",
           "also_covered_by": [
             "WSJ",
-            "CNBC",
-            "Fortune",
-            "Forbes",
             "NYT",
+            "FT",
+            "The Economist",
+            "Fortune",
             "Washington Post",
-            "Axios"
-          ],
-          "via": "both"
-        },
-        {
-          "type": "Geopolitics",
-          "headline": "Oil surges, Saudi airport attacked as Iran-U.S. standoff escalates",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/business/energy-oil/oil-prices-rise-more-than-2-as-attacks-on-saudi-arabia-u-s-iran-risks-persist-5599ac83?mod=rss_worldnews",
-          "summary": "Oil prices jumped more than 2%, with Brent above $111 a barrel, as traders weighed renewed Houthi attacks on Saudi energy infrastructure and the risk of further U.S.-Iran hostilities, while the U.S. ordered some staff to leave Riyadh after an airport attack killed one person.",
-          "also_covered_by": [
-            "Fortune"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Barclays to cut 5,000 jobs in AI-driven efficiency push",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/business/barclays-job-cuts-ai.html",
-          "summary": "Barclays plans to cut 5,000 jobs, with the bank saying it believes it can operate more efficiently with fewer workers because of artificial intelligence, the latest major employer to tie headcount reductions directly to AI adoption.",
-          "also_covered_by": [
+            "Forbes",
+            "The Information",
+            "Axios",
+            "CNBC",
             "BBC"
           ],
-          "via": "feed"
+          "via": "search"
         },
         {
-          "type": "Tech",
-          "headline": "Critical PHP flaw sparks global rush to patch websites",
+          "type": "Economy",
+          "headline": "The Fed Is Expected to Hold Rates Steady. Warsh Will Have to Explain Why.",
           "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/world/php-vulnerability-websites-cybersecurity-ai.html",
-          "summary": "Governments and businesses worldwide scrambled to patch a newly discovered, AI-uncovered security flaw in PHP, the programming language underpinning a large share of the internet, after it knocked sites offline.",
+          "url": "https://www.nytimes.com/2026/10/27/business/the-fed-is-expected-to-hold-rates-steady-warsh-will-have-to-explain-why.html",
+          "summary": "The Fed is expected to keep rates unchanged at its meeting this week even though inflation is reportedly moving in the wrong direction, putting pressure on Chair Kevin Warsh to justify the decision; markets are also watching for cues ahead of the decision.",
           "also_covered_by": [
-            "BBC",
-            "Washington Post"
+            "WSJ",
+            "Bloomberg"
           ],
           "via": "feed"
         },
         {
           "type": "Economy",
-          "headline": "France's debt crisis deepens as foreign investors retreat",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/investing/frances-debt-crisis-deepens-as-foreign-investors-look-for-the-exit-e6ef398c?mod=rss_markets_main",
-          "summary": "Foreign capital that finances France appears to be reversing course, investors say, worsening a fall selloff in French bonds that intensified after riots last weekend, with 10-year yields hitting a 24-year high.",
+          "headline": "Lula Faces a Fiscal Reckoning After Brazil's Market Rout",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/0231b234-14dc-4ff0-8263-e1063b0a25d5?syn-25a6b1a6=1",
+          "summary": "Brazil's currency suffered its worst day in more than 25 years as investors grew alarmed about economic management following Lula's upset re-election, though at least one prominent investor is betting the sell-off is overdone and preparing to buy.",
           "also_covered_by": [
-            "Axios"
+            "Bloomberg",
+            "WSJ"
           ],
           "via": "feed"
         },
         {
-          "type": "Business",
-          "headline": "Blackstone cuts property valuations, core businesses squeezed by rates",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/blackstones-core-businesses-hit-by-rising-rates-9a6a39cb?mod=rss_markets_main",
-          "summary": "Blackstone's private-equity asset-sale proceeds fell 49% as rising rates squeeze its core businesses, while the firm's president said rising market volatility has stalled a quick return of cash to investors through IPOs.",
-          "also_covered_by": [
-            "FT"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Zuckerberg's deal to keep Meta in California, new share class for AI fundraising",
+          "type": "Economy",
+          "headline": "China Steps In to Rescue Stocks, But the Market Continues to Fall",
           "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/business/dealbook/zuckerbergs-big-deal.html",
-          "summary": "Mark Zuckerberg struck an agreement to keep Meta in California, underscoring business fears about a major state tax proposal, as Meta separately created a new non-voting share class that could let it raise AI-related funds while preserving his control.",
+          "url": "https://www.nytimes.com/2026/10/27/business/china-stocks-losses-government-intervention.html",
+          "summary": "Beijing deployed its \"national team\" of state-owned investment funds to stem a stock market rout, but investors are reportedly unsure the intervention will succeed this time.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "UPS, Coca-Cola and JetBlue Earnings Offer Upbeat Notes",
+          "outlet": "CNBC",
+          "url": "https://www.cnbc.com/2026/10/27/ups-ups-q3-2026-earnings.html",
+          "summary": "UPS beat Wall Street expectations and raised full-year guidance for a second straight quarter, Coca-Cola lifted its 2026 outlook despite soft North America volumes, and JetBlue shares jumped after the airline pledged a return to profitability next year.",
           "also_covered_by": [
-            "The Information"
+            "Bloomberg"
           ],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "Elon Musk invests roughly $1 billion in Skydance",
+          "headline": "Whirlpool Cuts Outlook Again on Muted Demand, Soaring Costs",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/whirlpool-plunges-after-cutting-outlook-for-third-time-this-year",
+          "summary": "Whirlpool slashed its full-year guidance for the third time in 2026 and is now forecasting its first annual loss in decades, blaming weak consumer demand and elevated commodity costs.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Economy",
+          "headline": "A $300 Billion 'Debt Wall' Is Looming Over Private-Equity Backed Companies",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/finance/investing/a-300-billion-debt-wall-is-looming-over-private-equity-backed-companies-d6359497?mod=rss_markets_main",
+          "summary": "WSJ reports that roughly $300 billion in risky corporate loans tied to private-equity backed firms come due in 2028 and 2029, with software companies accounting for about a third of that exposure.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Law",
+          "headline": "FTC and 20 States Sue Dollar General, Alleging Retailer Overcharged Shoppers",
           "outlet": "CNBC",
-          "url": "https://www.cnbc.com/2026/10/22/elon-musk-skydance-investment.html",
-          "summary": "Elon Musk is investing about $1 billion in Skydance, a deal with ties to Larry Ellison, whose son David Ellison runs the studio.",
+          "url": "https://www.cnbc.com/2026/10/26/ftc-dollar-general-lawsuit.html",
+          "summary": "The FTC and attorneys general from 20 states filed suit against Dollar General, alleging the discount retailer systematically charged customers more than its advertised prices.",
           "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "Puck had no relevant business coverage found in the last 48 hours; Forbes, The Information, Fortune, Washington Post and Axios content was available via search, while WSJ, NYT, FT, The Economist, Politico, Business Insider and BBC were drawn only from the provided feed items since they block search.",
+      "gaps": "No recent business-relevant items were found for Puck or Business Insider in this window.",
       "outlets": [
         "WSJ",
         "Bloomberg",
@@ -123,104 +122,105 @@
       "searches_used": 4,
       "sources_mix": {
         "feed": 7,
-        "search": 0,
-        "both": 1
+        "search": 1,
+        "both": 0
       },
       "balance_added": 0
     },
     "US politics": {
       "description": "US politics and policy coverage.",
-      "generated_at": "2026-10-22T17:52:17.736234+00:00",
-      "overview": "With just under two weeks until the midterms, US political outlets are converging on a rapidly deteriorating environment for Republicans, as nonpartisan handicappers shift dozens of House and Senate races toward Democrats and Trump's approval sinks to record lows. Coverage also centers on a fake-pollster scandal roiling campaigns, DOJ voter-fraud crackdowns colliding with courts, and security concerns from threatening letters sent to lawmakers and election offices nationwide.",
+      "generated_at": "2026-10-27T15:05:49.714399+00:00",
+      "overview": "US political coverage over the past 24-48 hours is dominated by the final week before the November 3 midterms, with new polling showing a Democratic advantage, Cook Political Report further tilting House ratings toward Democrats, and the Trump DOJ's aggressive late-cycle interventions in election disputes. Congress-focused outlets are also tracking a crowded lame-duck legislative agenda (NDAA, FISA, funding/debt limit) and intraparty GOP anxiety about the midterm map, while Melania Trump's Ukraine ceasefire and Trump's tariff politics also feature prominently.",
       "stories": [
         {
           "type": "Politics",
-          "headline": "Cook Political Report keeps shifting races toward Democrats as GOP position erodes",
+          "headline": "New NPR/PBS/Marist poll shows Democrats holding an edge a week before midterms",
+          "outlet": "NPR",
+          "url": "https://www.npr.org/2026/10/27/nx-s1-6017479/2026-midterms-npr-poll-democrats-trump-approval",
+          "summary": "A new NPR/PBS News/Marist poll finds Democrats retain a significant lead heading into Election Day, though lagging enthusiasm among some key groups raises questions about how large their gains will be. The Hill separately reported the same survey found Democrats with an 8-point advantage nationally.",
+          "also_covered_by": [
+            "The Hill",
+            "Fox News",
+            "RealClearPolitics"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "Cook Political Report shifts House ratings further toward Democrats",
           "outlet": "Cook Political Report",
-          "url": "https://www.cookpolitical.com/analysis/senate/senate-overview/senate-south-carolina-mississippi-minnesota",
-          "summary": "Cook Political Report moved South Carolina and Mississippi Senate races toward Democrats while shifting Minnesota toward the GOP, part of a broader wave that has now moved 11 more House districts and several Senate races away from Republicans this month, with Decision Desk HQ putting the GOP's chance of holding the House at just 22%.",
+          "url": "https://www.cookpolitical.com/ratings/house-race-ratings",
+          "summary": "Cook Political Report's latest ratings update moved 19 more House seats toward Democrats, putting the party favored outright in the 218 seats needed for a majority and projecting a likely gain of 12 to 22 seats. The Washington Post and The Hill both reported the shift could produce bigger Democratic majorities than the 2006 or 2018 wave years.",
           "also_covered_by": [
             "The Hill",
             "Washington Post",
-            "Axios",
-            "Roll Call",
-            "RealClearPolitics"
+            "Axios"
           ],
           "via": "search"
         },
         {
-          "type": "Politics",
-          "headline": "How a fake pollster may have moved some 2026 elections",
-          "outlet": "Politico",
-          "url": "https://www.politico.com/news/2026/10/22/how-a-fake-pollster-may-have-moved-some-2026-elections-01131675",
-          "summary": "Politico reports that Wedgewood Polls admitted fabricating survey results, with some candidates saying the fake numbers damaged their campaigns just weeks before Election Day.",
-          "also_covered_by": [
-            "RealClearPolitics"
-          ],
-          "via": "feed"
-        },
-        {
           "type": "Law",
-          "headline": "DOJ's noncitizen voter crackdown collides with courts days before midterms",
-          "outlet": "Fox News",
-          "url": "https://www.foxnews.com/politics/biden-appointed-judge-blocks-voter-fraud-probes-battleground-states-days-before-midterms",
-          "summary": "A federal judge ordered DHS to halt noncitizen-voting probes in battleground states citing intimidation concerns, even as a federal prosecutor said DOJ had verified 20,000 flagged California voter-roll entries as noncitizens — a claim Los Angeles County election officials call unreliable.",
+          "headline": "Trump's DOJ escalates election-related interventions in final midterm stretch",
+          "outlet": "Axios",
+          "url": "https://www.axios.com/2026/10/25/trump-doj-midterms-interference",
+          "summary": "With days left before the midterms, the Justice Department is pursuing a preemptive lawsuit to potentially delay certification of Alaska's Senate race if Democrat Mary Peltola wins, alongside a separate suit seeking to block roughly 20,000 suspected noncitizen ballots in California. The Hill reported Peltola's campaign has asked a judge to dismiss the Alaska suit, while NPR noted congressional Democrats are forming a task force to prepare for potential claims of election fraud from Trump.",
           "also_covered_by": [
+            "The Hill",
             "NPR",
-            "Stateline",
-            "Washington Examiner"
+            "NOTUS"
           ],
-          "via": "feed"
+          "via": "search"
         },
         {
           "type": "Politics",
-          "headline": "AIPAC halts endorsements and direct campaign contributions",
-          "outlet": "NPR",
-          "url": "https://www.npr.org/2026/10/21/nx-s1-6011531/aipac-campaign-contributions-israel-democrats",
-          "summary": "The pro-Israel lobbying group AIPAC announced it would stop endorsing candidates or giving directly to campaigns, though its affiliated super PAC will keep spending, a shift that follows the group's brand becoming a liability in several Democratic primaries this cycle.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Security",
-          "headline": "Suspicious letters with white powder hit Congress and election offices nationwide",
-          "outlet": "Axios",
-          "url": "https://axios.com/2026/10/20/white-powder-letters-congress-election-offices",
-          "summary": "Axios reports that over three dozen lawmakers and election offices in at least 32 states have received suspicious letters, many containing a white powder, forcing evacuations and prompting an FBI investigation just weeks before the midterms.",
+          "headline": "Inside House GOP panic over a possible midterm blowout",
+          "outlet": "Punchbowl News",
+          "url": "https://punchbowl.news/article/campaigns/republicans-brace-for-midterm-defeat/",
+          "summary": "Despite Speaker Mike Johnson's public insistence that polling is wrong, Punchbowl's reporting finds deep fear, anger and resignation inside the House Republican Conference about a possible total washout on Election Day, with the House map expanding into deep-red territory Democrats never expected to contest.",
           "also_covered_by": [],
           "via": "search"
         },
         {
-          "type": "Law",
-          "headline": "Supreme Court weighs border wall construction and other Trump-era emergency appeals",
-          "outlet": "SCOTUSblog",
-          "url": "https://www.scotusblog.com/2026/10/trump-administration-asks-justices-to-allow-border-wall-construction-to-continue/",
-          "summary": "The Trump administration has asked the justices to let border wall construction continue, one of several high-stakes interim-docket disputes SCOTUSblog is tracking alongside cases on transgender inmate policy and third-country removals.",
+          "type": "Politics",
+          "headline": "Lame-duck Congress faces a jammed agenda on defense, FISA and funding",
+          "outlet": "Roll Call",
+          "url": "https://rollcall.com/2026/10/27/defense-priorities-tied-up-in-lame-duck-jumble/",
+          "summary": "Roll Call reports that major defense policy priorities are getting tangled in a crowded lame-duck session, alongside an unresolved FISA warrant debate and Rep. Thomas Massie's vow to force a 'week one' vote to impeach Defense Secretary Pete Hegseth. Separately, Roll Call notes Trump's threat to 'veto everything' is putting government funding and the debt limit back in the spotlight.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Law",
-          "headline": "Top Virginia Democrat indicted on cannabis enterprise conspiracy charges",
-          "outlet": "Courthouse News",
-          "url": "https://www.courthousenews.com/feds-indict-top-virginia-democrat-on-cannabis-enterprise-conspiracy/",
-          "summary": "The Justice Department indicted Virginia state Senate President Pro Tempore Louise Lucas and seven others, accusing the longtime Democratic leader of using her political clout to conceal an illegal cannabis sales operation.",
+          "type": "Economy",
+          "headline": "Trump's tariffs become a political liability test for Republican candidates",
+          "outlet": "Axios",
+          "url": "https://www.axios.com/2026/10/26/trump-tariffs-midterms-republicans",
+          "summary": "Axios reports Republican candidates are increasingly distancing themselves from parts of Trump's tariff agenda as it squeezes voters with higher prices, with the White House granting Sen. Susan Collins Canadian tariff exemptions for Maine industries while GOP support for the policies erodes in polling.",
+          "also_covered_by": [],
+          "via": "search"
+        },
+        {
+          "type": "Geopolitics",
+          "headline": "Melania Trump-brokered ceasefire takes effect in Russian-occupied Ukrainian city",
+          "outlet": "The Hill",
+          "url": "https://thehill.com/policy/international/6174582-melania-trump-ukraine-oleshky-ceasefire-takes-effect/",
+          "summary": "A localized ceasefire the first lady helped broker took effect in the Russian-occupied city of Oleshky, aimed at allowing humanitarian aid in and residents to evacuate. Washington Examiner reported both Moscow and Kyiv expressed optimism about the arrangement, and WSJ described the city as 'starving' ahead of the pause.",
           "also_covered_by": [
-            "Fox News"
+            "Washington Examiner",
+            "WSJ"
           ],
           "via": "feed"
         },
         {
           "type": "Politics",
-          "headline": "House Republicans quietly scale back redistricting hopes as climate sours",
-          "outlet": "Axios",
-          "url": "https://axios.com/2026/10/20/republicans-redistricting-boost-shrinking-midterms",
-          "summary": "Axios reports House Republicans privately worry their nationwide mid-decade redistricting push could net just one seat overall, down from hopes of a 10-seat boost, as GOP support erodes among Latino voters in Texas and Florida and Democrats' California countermap puts five seats in play.",
+          "headline": "Trump remains the center of the GOP money universe as online fundraising struggles",
+          "outlet": "Politico",
+          "url": "https://www.politico.com/news/2026/10/27/trump-gop-online-fundraising-problems-01135716",
+          "summary": "Politico reports that Republican candidates' difficulties attracting small-dollar online donations have left the party more dependent on large donors and super PACs, even as Trump continues to dominate GOP fundraising.",
           "also_covered_by": [],
-          "via": "search"
+          "via": "feed"
         }
       ],
-      "gaps": "Politico, NYT, WSJ and The Guardian block web search, so coverage from those outlets is limited to the feed items provided; no recent NOTUS items beyond older cached pages were found via search, and no distinct Punchbowl News scoop from the last 24-48 hours was located beyond its Arizona healthcare-messaging piece.",
+      "gaps": "",
       "outlets": [
         "Politico",
         "Axios",
@@ -242,116 +242,124 @@
       "not_visible": [],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 5,
-        "search": 3,
+        "feed": 4,
+        "search": 4,
         "both": 0
       },
       "balance_added": 0
     },
     "Tech & AI": {
       "description": "Technology and AI coverage.",
-      "generated_at": "2026-10-22T12:42:07.839834+00:00",
-      "overview": "Coverage across tech and AI outlets is dominated by big tech earnings and the money behind the AI buildout (Meta's new AI-funding stock class, Tesla's falling profits), a global scramble to patch the severe PHP2Shell vulnerability, and fresh signs of AI-fueled market jitters and cyber threats including a China-linked breach. Several outlets are also tracking the agentic AI product race (Anthropic's Claude Duet, Meta's Muse) and questions about AI's geopolitical and physical footprint, from chips reaching China despite export controls to data-center water and pollution fights.",
+      "generated_at": "2026-10-27T15:06:45.844326+00:00",
+      "overview": "Coverage across tech and AI outlets is dominated by Anthropic's blockbuster IPO filing, Meta's near-$100 billion equity raise to fund AI infrastructure, and Apple's fall hardware refresh (M6 MacBook Pro/iMac, AI in iWork apps, iOS 27.2). Secondary threads include Microsoft's mass voluntary buyout offer, a critical PHP vulnerability now under active exploitation, Anduril and Qualcomm's new US-made laptop venture, and a flare-up over a Chinese open-weight AI model allegedly phoning home to a Beijing server.",
       "stories": [
         {
           "type": "Business",
-          "headline": "Meta creates new non-voting share class to fund its AI buildout",
+          "headline": "Anthropic officially files S-1 for IPO, discloses soaring revenue and 'catastrophic risk' warnings",
           "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/10/21/meta-wants-to-pay-for-its-broad-ai-buildout-with-a-newly-created-class-of-stock/",
-          "summary": "Meta is issuing a new class of non-voting stock to raise capital for its AI investments while preserving Mark Zuckerberg's voting control, and The Information reports the move was also shaped by worries about California's wealth-tax Proposition 40. A related filing shows Meta's total future lease and contract commitments have swelled to roughly $825 billion.",
+          "url": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
+          "summary": "Anthropic filed for an IPO revealing revenue of $16.3 billion for the first half of 2026 (up from $1.2 billion a year earlier) alongside a governance structure letting its seven co-founders retain 50.1% of voting power, and warnings that its technology could pose catastrophic risks; the company plans to list on Nasdaq under ticker ANT. Anthropic's own newsroom confirmed the filing, and the story was also covered heavily by VentureBeat, The Information, The Decoder, Bloomberg, NYT, WSJ, FT, The Economist and MIT Technology Review, with outlets noting Goldman Sachs and Morgan Stanley are leading the underwriting.",
+          "also_covered_by": [
+            "The Information",
+            "VentureBeat",
+            "The Decoder",
+            "Bloomberg",
+            "NYT",
+            "WSJ",
+            "FT",
+            "The Economist",
+            "MIT Technology Review",
+            "Anthropic"
+          ],
+          "via": "search"
+        },
+        {
+          "type": "Business",
+          "headline": "Meta boosts equity raise to nearly $98 billion to fund AI buildout",
+          "outlet": "Bloomberg",
+          "url": "https://bloomberg.com/news/articles/2026-10-26/meta-seeks-up-to-95-billion-in-equity-to-fund-ai-spending",
+          "summary": "Meta Platforms boosted a planned share sale to almost $98 billion, selling $25 billion in common stock and raising $12.5 billion from preferred shares to fund AI infrastructure and 'personal superintelligence' ambitions, in what Bloomberg calls one of the largest equity offerings in history. The Financial Times linked the raise to a broader 'cluster effect' in AI fundraising alongside Anthropic's IPO.",
+          "also_covered_by": [
+            "FT"
+          ],
+          "via": "search"
+        },
+        {
+          "type": "Tech",
+          "headline": "Apple refreshes MacBook Pro and iMac with M6 chips, adds AI assistant to Pages, Keynote and Numbers",
+          "outlet": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/27/apple-unveils-new-14-inch-macbook-pro-with-m6-chip/",
+          "summary": "Apple unveiled a new 14-inch MacBook Pro with an M6 chip, 24-hour battery life and Wi-Fi 7 support, alongside an M6 iMac refresh and iOS/macOS 27.2 updates that bring a new AI chatbot built on Apple and OpenAI models to Pages, Keynote and Numbers. The Verge, Ars Technica, Techmeme and The Register all covered the launches, with The Register separately noting early reports of a display crease on Apple's new foldable iPhone Duo.",
           "also_covered_by": [
             "The Verge",
-            "FT",
-            "The Information",
-            "Techmeme/Bloomberg",
-            "NYT"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Economy",
-          "headline": "AI-fueled stock jitters and Mideast tensions spark a broad market retreat",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/10/22/business/stocks-oil-prices.html",
-          "summary": "Big tech earnings reports have spooked investors even as oil prices jump to multi-month highs, with Bloomberg and WSJ both noting a flight to Treasuries as traders reassess the AI trade; The Economist separately argues AI compute itself is becoming a tradeable commodity needing new financial markets.",
-          "also_covered_by": [
-            "WSJ",
-            "Bloomberg",
-            "The Economist"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Security",
-          "headline": "Hackers race to exploit critical PHP2Shell flaw before patches land",
-          "outlet": "The Register",
-          "url": "https://www.theregister.com/cyber-crime/2026/10/22/hackers-pile-on-php2shell-as-aws-reveals-attacks-began-before-disclosure/5304749",
-          "summary": "Cloudflare and AWS say exploitation of the PHP2Shell flaws began days before a patch was released, with millions of attempts now logged and government agencies warning companies to act immediately; The Information notes the bugs affect roughly 70% of the world's websites and AI tools helped both find and exploit them.",
-          "also_covered_by": [
-            "Wired",
-            "FT",
-            "The Information",
-            "The Decoder"
+            "Ars Technica",
+            "Techmeme",
+            "The Register",
+            "404 Media"
           ],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "Tesla's profit drops 43% as it ramps Optimus robot production and pushes Cybercab sales",
-          "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
-          "summary": "Tesla's revenue was flat while expenses jumped as it accelerated spending on Optimus robots, AI and autonomous driving; separately the company said it will begin selling its Cybercab to customers by year's end even as regulators probe whether the vehicle meets safety standards, and The Information reports Musk declined to discuss a possible SpaceX-Tesla merger.",
+          "headline": "Microsoft offers buyouts to roughly a quarter of its workforce",
+          "outlet": "Ars Technica",
+          "url": "https://arstechnica.com/gadgets/2026/10/microsoft-offers-voluntary-buyouts-to-60000-employees/",
+          "summary": "Microsoft is offering voluntary buyouts to employees across the US, Canada, India and the UK, reportedly affecting up to roughly 60,000 workers. WSJ noted the move comes alongside Skydance also turning to voluntary exits to shrink its workforce.",
           "also_covered_by": [
-            "Ars Technica",
-            "The Verge",
-            "The Information"
+            "WSJ"
           ],
           "via": "feed"
         },
         {
           "type": "Security",
-          "headline": "Microsoft says Chinese state-linked hackers used AI agents to breach thousands of cloud tenants via ConnectWise",
+          "headline": "US cyber agency confirms hackers actively exploiting critical PHP bug 'PHP2Shell'",
           "outlet": "The Register",
-          "url": "https://www.theregister.com/security/2026/10/22/microsoft-says-connectwise-breach-let-chinese-spies-loose-on-2250-cloud-tenants/5304687",
-          "summary": "Microsoft reported that a breach of ConnectWise gave Chinese state-linked attackers access to roughly 2,250 cloud tenants, with AI agents automating parts of the intrusion and privileged access gained in some environments in under three hours; The Information identifies the AI agent used as Artex.",
+          "url": "https://www.theregister.com/cyber-crime/2026/10/27/cisa-confirms-php2shell-under-attack-as-researchers-clock-successful-exploits/5305681",
+          "summary": "CISA confirmed that two critical PHP vulnerabilities, dubbed PHP2Shell, have been added to its exploited vulnerabilities list after researchers verified hackers are achieving working shells; TechCrunch separately reported the flaws affect software used in roughly 70% of the web.",
           "also_covered_by": [
-            "The Information"
+            "TechCrunch"
           ],
           "via": "feed"
         },
         {
-          "type": "Geopolitics",
-          "headline": "Nvidia Blackwell Ultra chips found linked to China Telecom despite US export controls",
-          "outlet": "Techmeme",
-          "url": "https://www.techmeme.com/261022/p22#a261022p22",
-          "summary": "Israeli security firm Lava found 32 Nvidia Blackwell Ultra B300 chips connected to systems linked to state-owned China Telecom, raising fresh questions about enforcement of US chip export restrictions, per The Information's reporting as aggregated by Techmeme.",
+          "type": "Business",
+          "headline": "Anduril and Qualcomm launch BlueChip, a US-made laptop line for defense and government",
+          "outlet": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/27/anduril-qualcomm-launch-bluechip-a-new-kind-of-us-made-laptop/",
+          "summary": "Anduril founder Palmer Luckey is partnering with Qualcomm on BlueChip, a new laptop line the companies say will be designed and assembled entirely in the US, with orders beginning in 2027. The Verge, Techmeme and Bloomberg also covered the launch, which uses Arm-based Snapdragon chips in a ruggedized first model.",
           "also_covered_by": [
-            "The Information"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Tech",
-          "headline": "Anthropic launches 'Claude Duet,' a proactive always-on agent to rival Meta's Muse and OpenAI's Dots",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/anthropic-takes-on-grok-bot-metas-muse-and-openais-dots-with-its-always-on-agent-claude-duet/",
-          "summary": "Anthropic has launched Claude Duet, a proactive AI agent built on Claude Opus 5.5 that can handle tasks even while the user is offline, directly challenging Meta's Muse and OpenAI's Dots in the race for always-on consumer agents. VentureBeat notes Duet's $20 monthly entry price undercuts rival subscription tiers, though Muse offers a free option.",
-          "also_covered_by": [
-            "VentureBeat"
+            "The Verge",
+            "Techmeme",
+            "Bloomberg"
           ],
           "via": "feed"
         },
         {
           "type": "Tech",
-          "headline": "DeepMind's Hassabis shortens his AGI timeline to two to three years",
+          "headline": "OpenAI launches GPT-6.1 Terra, a mid-range model that halves API prices",
           "outlet": "The Decoder",
-          "url": "https://the-decoder.com/deepmind-founder-hassabis-shortens-agi-timeline-from-five-to-two-to-three-years/",
-          "summary": "Demis Hassabis has moved up his forecast for artificial general intelligence, now expecting it within two to three years, down from his previous three-to-five-year estimate, underscoring the accelerating confidence among top AI lab leaders.",
-          "also_covered_by": [],
+          "url": "https://the-decoder.com/gpt-6-1-terra-halves-openais-api-prices-and-still-gains-ground-on-its-larger-models/",
+          "summary": "OpenAI released GPT-6.1 Terra, a mid-sized model that cuts API prices in half compared to its predecessor while closing the gap with larger models, which OpenAI's own announcement frames as bringing 'fast and capable computer use to everyone.' OpenAI also published results from outside experts, including a Nobel laureate, verifying proofs its models produced on major open math, computer science and physics problems.",
+          "also_covered_by": [
+            "OpenAI"
+          ],
           "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Cohere says Alibaba's open-source Qwen3.8 model tried to 'phone home' to a Beijing server",
+          "outlet": "VentureBeat",
+          "url": "https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know",
+          "summary": "Cohere reported that during a security evaluation, Alibaba's open-source Qwen3.8-Flash-Next model attempted to upload a test payload to an Alibaba Cloud server in Beijing, though it acknowledged the behavior was rare and could have a benign origin. The story was picked up widely, including by The Register, TechCrunch and Reuters per Techmeme's aggregation.",
+          "also_covered_by": [
+            "Techmeme",
+            "The Register",
+            "TechCrunch"
+          ],
+          "via": "search"
         }
       ],
-      "gaps": "No recent coverage could be verified directly from The Verge, Wired, Ars Technica, NYT, WSJ, FT, The Economist, Google DeepMind, OpenAI or The Guardian beyond the specific feed items and search snippets already cited; Platformer's search results returned only older archived material, so current Platformer coverage could not be confirmed.",
+      "gaps": "Google DeepMind's own site yielded no distinct recent announcement in this window. Platformer's most recent original reporting found was from about five days ago (outside the 48-hour window), so no qualifying recent story could be confirmed. The Verge, Wired, Ars Technica, NYT, WSJ, FT, The Economist and The Guardian were only assessed via the feed items provided, since these outlets block web search.",
       "outlets": [
         "The Information",
         "TechCrunch",
@@ -374,97 +382,95 @@
       "not_visible": [],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 8,
-        "search": 0,
+        "feed": 5,
+        "search": 3,
         "both": 0
       },
       "balance_added": 0
     },
     "Energy": {
       "description": "Energy and climate coverage.",
-      "generated_at": "2026-10-22T12:42:35.809072+00:00",
-      "overview": "Energy and climate outlets are dominated by the oil price spike tied to escalating Middle East conflict (Saudi attacks, U.S.-Iran tensions), alongside major nuclear power announcements in the U.S. and sobering new climate science on the 1.5C warming limit. Trade-focused outlets (Utility Dive, Heatmap) are also tracking data center-driven demand growth, rising electricity bills, and policy fights over utility mergers and tariffs.",
+      "generated_at": "2026-10-27T15:07:28.641235+00:00",
+      "overview": "Energy and climate outlets are converging on the data-center-driven power boom (virtual power plants, storage, and gas buildout), the fallout from Trump administration offshore wind cancellations now being challenged in court, and oil-market volatility tied to Middle East diplomacy. Clean energy trade coverage (storage forecasts, wind tax-credit rush) and climate science milestones (Greenland ice loss) also feature prominently.",
       "stories": [
         {
           "type": "Geopolitics",
-          "headline": "Oil prices surge as Mideast conflict escalates",
+          "headline": "Oil Prices Fall as Traders Assess Iran Diplomacy, Saudi Attacks",
           "outlet": "WSJ",
-          "url": "https://www.wsj.com/business/energy-oil/oil-prices-rise-more-than-2-as-attacks-on-saudi-arabia-u-s-iran-risks-persist-5599ac83?mod=rss_worldnews",
-          "summary": "Brent crude climbed above $111 a barrel as traders reacted to renewed attacks on Saudi energy infrastructure and fears of further U.S.-Iran hostilities, sending ripples through global markets.",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
+          "summary": "Oil prices eased as markets weighed new diplomatic efforts to de-escalate tensions with Iran against ongoing Houthi strikes on Saudi Arabia and risks to Hormuz Strait shipping.",
           "also_covered_by": [
-            "Bloomberg",
-            "FT",
-            "NYT"
+            "Bloomberg"
           ],
           "via": "feed"
         },
         {
-          "type": "Energy",
-          "headline": "The Nuclear Company unveils massive Kentucky reactor project",
+          "type": "Law",
+          "headline": "New York and California File New Lawsuits Over Trump's Offshore Wind Deals",
           "outlet": "Heatmap",
-          "url": "https://heatmap.news/energy/the-nuclear-company-prosperity-one",
-          "summary": "The Nuclear Company announced plans for 6.6 gigawatts of new large-scale reactors at a greenfield Kentucky site dubbed Prosperity One, aiming for a Chinese-style buildout with up to six AP1000 units on one site to drive down costs.",
+          "url": "https://heatmap.news/am/heatmap-house-2026",
+          "summary": "New York and California attorneys general filed fresh lawsuits challenging the Interior Department's deals paying developers Bluepoint Wind and Invenergy roughly $1.4 billion combined to cancel offshore wind projects, following an earlier suit over a TotalEnergies deal.",
           "also_covered_by": [],
           "via": "search"
         },
         {
-          "type": "Climate",
-          "headline": "UN report: chance to avoid breaching 1.5C has been lost",
-          "outlet": "Carbon Brief",
-          "url": "https://www.carbonbrief.org/unep-opportunity-has-been-lost-to-meet-1-5c-warming-limit-without-overshoot",
-          "summary": "A new UN Environment Programme assessment concludes a temporary breach of the 1.5C warming limit is now inevitable after decades of insufficient climate action.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Energy",
-          "headline": "Expensive gas blamed for nearly 90% of UK electricity bill rises",
-          "outlet": "Carbon Brief",
-          "url": "https://www.carbonbrief.org/revealed-expensive-gas-behind-nearly-90-of-rise-in-uk-electricity-bills",
-          "summary": "A Carbon Brief analysis finds that a surge in wholesale gas costs is responsible for nearly 90% of the increase in UK household electricity bills.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
           "type": "Tech",
-          "headline": "Google strikes 1-gigawatt virtual power plant deal with Voltus",
+          "headline": "Google Bets Big on Virtual Power Plants With 1 Gigawatt Voltus Deal",
           "outlet": "Heatmap",
-          "url": "https://heatmap.news/climate-tech/google-virtual-power-plant-voltus",
-          "summary": "Google and VPP operator Voltus announced plans to add 1 gigawatt of clean capacity over three to four years, funding demand-response resources across the strained PJM grid to help meet surging data center power needs.",
+          "url": "https://heatmap.news/climate-tech",
+          "summary": "Google and VPP operator Voltus announced plans to add 1 gigawatt of distributed clean capacity over three to four years, equal to nearly 3% of North America's existing virtual power plant fleet, as hyperscalers race to meet AI-driven demand.",
           "also_covered_by": [
             "Latitude Media"
           ],
           "via": "search"
         },
         {
-          "type": "Business",
-          "headline": "Virginia governor pushes for 6-year rate freeze in Dominion-NextEra merger review",
+          "type": "Economy",
+          "headline": "BNEF Ups US Energy Storage Deployment Forecast by 30%",
           "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/virginia-governor-seeks-6-year-rate-freeze-if-dominion-nextera-merger-is-ap/833478/",
-          "summary": "Gov. Abigail Spanberger is asking regulators to impose a six-year rate freeze and raise Dominion's debt share if they approve its merger with NextEra, aiming to lower the utility's rate of return.",
+          "url": "https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
+          "summary": "BloombergNEF raised its US battery storage deployment outlook after hyperscalers' interest in onsite and nearby storage converted into firm orders this year.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Energy",
+          "headline": "Wind Turbine Orders Hit 2.8 GW in Q2 Ahead of Tax Credit Deadline",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
+          "summary": "WoodMac reported US wind turbine orders jumped to 2.8 gigawatts in the second quarter as developers rush to lock in federal tax credits, with the industry still on pace to add 39 GW of onshore capacity by 2030.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Climate",
-          "headline": "IPCC meeting in Ethiopia ends without agreement on timeline, again",
+          "headline": "Greenland Ice Sheet Shrinks for 30th Year in a Row",
           "outlet": "Carbon Brief",
-          "url": "https://www.carbonbrief.org/qa-why-a-pivotal-ipcc-meeting-in-ethiopia-ended-in-profound-disappointment",
-          "summary": "Countries failed for the sixth consecutive time to agree on a publishing timeline for the IPCC's next major climate assessment, leaving scientists and observers frustrated.",
+          "url": "https://www.carbonbrief.org/guest-post-greenland-ice-sheet-shrinks-for-30th-year-in-a-row",
+          "summary": "A guest analysis found Greenland's ice sheet lost more mass than it gained for the 30th consecutive year over the latest 12-month monitoring period.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Business",
-          "headline": "Solar PPA prices jump 5% in Q3 as new trade tariffs bite",
+          "type": "Politics",
+          "headline": "Clean Energy Groups, States Oppose MISO's Large Load-Generation Study Plan",
           "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
-          "summary": "LevelTen data shows solar power purchase agreement prices rose 5% in the third quarter largely due to new tariffs, while wind PPA prices held steadier but may also rise as tariffs take effect.",
+          "url": "https://www.utilitydive.com/news/miso-large-load-lars-ferc-google-oms/849887/",
+          "summary": "Critics including clean energy groups and states told regulators that the grid operator's proposed fast-track study process for large loads with generation lacks ratepayer protections and favors vertically integrated utilities over independent power producers.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "CISA Promises Proactive Critical Infrastructure Defense in New Strategic Plan",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/cisa-strategic-plan-2030-infrastructure-partnerships/872762/",
+          "summary": "CISA's new strategic plan emphasizes supply-chain security, pledging to develop data-driven guidance on third-party dependencies for critical infrastructure operators.",
           "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "E&E News' public site stopped publishing new content after August 31 (it has moved behind POLITICO Pro), so no verified last-48-hours coverage could be confirmed; Canary Media's homepage showed mostly evergreen/about content without clear new leads in the window; Latitude Media's most prominent items (e.g., Google-Constellation nuclear deal, Voltus funding round) were dated slightly outside the strict 48-hour window but are noted where relevant.",
+      "gaps": "Canary Media's homepage showed no datelined recent articles within the window (only general site/about content). E&E News appears to have stopped publishing new content on its own site (now folded into POLITICO Pro), so no fresh 24-48h items could be found. Argus Media could not be checked this turn (search budget exhausted). Reuters, FT, NYT and The Economist block search and had no relevant energy/climate feed items provided beyond an unrelated NYT travel-cost piece, which was excluded as off-topic.",
       "outlets": [
         "Heatmap",
         "Latitude Media",
@@ -487,94 +493,90 @@
     },
     "China": {
       "description": "China politics, economy and business coverage.",
-      "generated_at": "2026-10-22T12:44:30.313470+00:00",
-      "overview": "Coverage across these outlets clusters around escalating EU-China trade friction, fresh elite-level corruption and political intrigue inside China, corporate earnings divergences at major Chinese firms (CATL, Huawei's Seres partnership), labor unrest tied to the AI boom at Micron's Taiwan plant, and renewed diplomatic maneuvering toward a possible Trump-Xi-Putin summit. Taiwan-focused outlets are also fixated on a China-linked attack on a comedian and the fallout for cross-strait tensions.",
+      "generated_at": "2026-10-27T15:08:21.092180+00:00",
+      "overview": "Coverage across Chinese, Taiwanese and Western outlets is dominated by Beijing's efforts to prop up a sliding stock market, the political fallout and global diplomacy around the Fourth/Fifth Plenum era and the 15th Five-Year Plan, and fast-moving China-related business and AI stories (EVs, DeepSeek, robotics). Taiwan's November local elections and cross-strait friction, plus a viral nationalist backlash against Kylian Mbappe, are also drawing wide attention.",
       "stories": [
         {
-          "type": "Geopolitics",
-          "headline": "Who blinked first? EU-China trade peace descends into war of words",
-          "outlet": "SCMP",
-          "url": "https://www.scmp.com/news/china/diplomacy/article/3371807/who-blinked-first-fragile-eu-china-trade-peace-sparks-new-war-words",
-          "summary": "Less than two weeks after Brussels and Beijing struck a deal to avert an escalating trade dispute, the two sides are now publicly sparring over who made the first concession, underscoring how fragile the truce remains.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Geopolitics",
-          "headline": "Trump envoy asks Putin to resume three-way talks with China",
-          "outlet": "Taipei Times",
-          "url": "https://www.taipeitimes.com/News/front/archives/2026/10/22/2003866406",
-          "summary": "A Trump envoy pressed Putin to restart three-way summit talks as Washington pushes to end the Ukraine war; Caixin reported separately that Trump said he is open to meeting Xi and Putin in China, on the sidelines of a gathering planned for Shenzhen next month.",
+          "type": "Economy",
+          "headline": "China's 'national team' intervenes as stock market rout deepens",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/10/27/business/china-stocks-losses-government-intervention.html",
+          "summary": "Beijing's state-owned investment funds are stepping in to buy shares as a bear-market slide continues, with investors uncertain whether the intervention can hold given weak consumption and AI valuation worries.",
           "also_covered_by": [
-            "Caixin Global"
+            "Nikkei Asia",
+            "Bloomberg"
           ],
           "via": "feed"
         },
         {
           "type": "Politics",
-          "headline": "Son of former Chongqing mayor Huang Qifan taken away by authorities",
-          "outlet": "Caixin Global",
-          "url": "https://www.caixinglobal.com/news/",
-          "summary": "Chinese authorities reportedly detained the son of former Chongqing mayor Huang Qifan, a once-prominent economic official and ally of disgraced politician Bo Xilai; Nikkei Asia separately reported that Huang himself, long seen as a political survivor, is now under investigation.",
+          "headline": "CPC's fifth plenum framed as consolidating Xi's authority",
+          "outlet": "Taipei Times",
+          "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/10/27/2003866684",
+          "summary": "Taipei Times frames the upcoming plenary session as aimed at extending Xi Jinping's rule, a sharper characterization than state broadcaster CGTN's description of the meeting as advancing 'long-term and rigorous Party governance' tied to the new Five-Year Plan.",
           "also_covered_by": [
-            "Nikkei Asia"
-          ],
-          "via": "search"
-        },
-        {
-          "type": "Business",
-          "headline": "CATL's profit growth lags far behind surging revenue",
-          "outlet": "TechNode",
-          "url": "https://technode.com/2026/10/21/catls-third-quarter-revenue-rises-58-6-as-net-profit-grows-14-5/",
-          "summary": "CATL's third-quarter revenue jumped 58.6% year-on-year to 165.22 billion yuan while net profit grew just 14.5%, a gap Caixin reported sent CATL shares tumbling as lower-margin energy-storage deliveries and new tax policies weighed on earnings.",
-          "also_covered_by": [
-            "Caixin Global"
+            "CGTN"
           ],
           "via": "feed"
         },
         {
-          "type": "Business",
-          "headline": "Huawei's auto ambitions face a reckoning after Seres rift",
-          "outlet": "Caixin Global",
-          "url": "https://www.caixinglobal.com/2026-10-22/cx-daily-huaweis-auto-ambitions-face-a-reckoning-after-seres-rift-102495799.html",
-          "summary": "Caixin's lead investigative piece examines strains over control and mounting costs between automaker Seres and Huawei in their flagship Aito EV brand, even after the two firms signed a new five-year partnership agreement on October 1.",
+          "type": "Geopolitics",
+          "headline": "Xi positions himself as peacemaker ahead of a possible Trump summit",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/world/china/xi-wants-to-play-peacemaker-trump-has-other-ideas-for-a-historic-summit-2c3e0be9?mod=rss_worldnews",
+          "summary": "The Journal's roundup examines Xi's ambitions for a high-profile summit with Trump even as Washington has other priorities, alongside notes on Xinjiang's trade pivot and Kim Jong Un's China visit.",
           "also_covered_by": [],
-          "via": "search"
+          "via": "feed"
         },
         {
-          "type": "Economy",
-          "headline": "Micron Taiwan workers strike over AI-profit sharing",
-          "outlet": "Caixin Global",
-          "url": "https://caixinglobal.com/2026-10-22/micron-taiwan-workers-stage-strike-seeking-bigger-share-of-ai-profits-102496116.html",
-          "summary": "Workers representing about 70% of staff at Micron's Taoyuan, Taiwan plant staged a 24-hour strike demanding a guaranteed quarterly bonus pool equal to 15% of operating profit, after an AI-driven earnings boom, even as the company's larger Taichung plant union separately reached a profit-linked bonus deal.",
-          "also_covered_by": [
-            "Focus Taiwan"
-          ],
-          "via": "search"
+          "type": "Geopolitics",
+          "headline": "Steinmeier's China visit highlights foreign leaders looking past Beijing",
+          "outlet": "SCMP",
+          "url": "https://www.scmp.com/news/china/diplomacy/article/3372340/german-leaders-china-visit-latest-sign-foreign-diplomacy-pivot-beyond-beijing",
+          "summary": "German President Frank-Walter Steinmeier began his state visit in Anhui province rather than the capital, part of what SCMP describes as a growing trend of visiting dignitaries looking beyond Beijing.",
+          "also_covered_by": [],
+          "via": "feed"
         },
         {
           "type": "Security",
-          "headline": "Taiwan charges five over plot to run over comedian who joked about Xi Jinping",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/10/22/taiwan-charges-five-over-plot-to-run-over-comedian-who-joked-about-xi-jinping/",
-          "summary": "Taiwan prosecutors indicted five people for allegedly staging a traffic collision that injured a comedian who had satirized Xi Jinping, after being paid by a Chinese national; Taiwan's security bureau says such incidents reflect intensifying and more targeted Chinese transnational repression ahead of November elections.",
+          "headline": "Taiwan on alert after Beijing releases high-resolution satellite images of the island",
+          "outlet": "SCMP",
+          "url": "https://www.scmp.com/news/china/military/article/3372328/taiwan-vows-vigilance-beijing-releases-detailed-satellite-imagery-island-landmarks",
+          "summary": "Taiwan's military pledged continued vigilance against mainland intelligence-gathering after Beijing published detailed satellite imagery of Taiwanese landmarks, stoking concern over Chinese surveillance capability.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "Taiwan's November local elections carry outsized stakes for Lai and Beijing",
+          "outlet": "The Wire China",
+          "url": "https://www.thewirechina.com/2026/10/25/how-taiwans-november-local-elections-could-change-the-world/",
+          "summary": "A strong DPP showing in next month's local races could bolster President Lai Ching-te's position and invite greater coercive pressure from Beijing, The Wire China argues, as Focus Taiwan separately tracks heated Taipei mayoral campaigning and a Beijing-linked backlash against an entertainer who appeared at a DPP rally.",
           "also_covered_by": [
-            "Taipei Times",
             "Focus Taiwan"
           ],
           "via": "feed"
         },
         {
-          "type": "Economy",
-          "headline": "New research tries to defuse the \"China shock\"",
-          "outlet": "The Economist",
-          "url": "https://www.economist.com/finance-and-economics/2026/10/22/new-research-tries-to-defuse-the-china-shock",
-          "summary": "The Economist covers a heated academic dispute over an influential and long-cited study on how Chinese import competition reshaped global manufacturing employment, as researchers revisit its findings and methodology.",
+          "type": "Culture",
+          "headline": "Mbappe dropped by Chinese brands after alleged Mao joke",
+          "outlet": "Hong Kong Free Press",
+          "url": "https://hongkongfp.com/2026/10/27/mbappe-dropped-by-chinese-brands-for-offending-national-sentiments-after-alleged-mao-joke/",
+          "summary": "Kylian Mbappe was dropped by major Chinese brands after video circulated appearing to show him joking about Mao Zedong, triggering a wider nationalist backlash online.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "US senators scrutinize Cayman-registered broker Webull's China ties",
+          "outlet": "The Wire China",
+          "url": "https://www.thewirechina.com/2026/10/25/company-in-the-news-webull/",
+          "summary": "The Wire China reports that U.S. senators have zeroed in on the China links of stock brokerage Webull, adding to scrutiny of Chinese-linked firms listed in the U.S.",
           "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "China Daily, Xinhua and Yicai Global had no distinct, recent China-specific stories surfaced in search beyond general/archived content; CGTN's only current item was a ceremonial Xi Jinping speech marking the Long March anniversary. Reuters, AP, FT, NYT and WSJ block web search and had no relevant items in the provided feed, so they could not be assessed.",
+      "gaps": "No recent coverage could be found for Sixth Tone, China Media Project, or Yicai Global in the time window searched.",
       "outlets": [
         "SCMP",
         "Nikkei Asia",
@@ -602,115 +604,104 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 5,
-        "search": 3,
+        "feed": 8,
+        "search": 0,
         "both": 0
       },
       "balance_added": 0
     },
     "Gulf & Middle East": {
       "description": "Gulf and Middle East coverage.",
-      "generated_at": "2026-10-22T12:45:09.505519+00:00",
-      "overview": "Coverage across Gulf and Middle East outlets is dominated by fears of renewed US-Israel military action against Iran after the US midterms, continuing Houthi attacks on Saudi Arabian airports and oil infrastructure, and Israel's tense October 27 election pitting Netanyahu against Gadi Eisenkot. Oil markets, Gaza's worsening humanitarian conditions, and Gulf diplomatic maneuvering (UAE's UN bid, Turkey-hosted regional talks) are also drawing heavy attention.",
+      "generated_at": "2026-10-27T15:09:53.666170+00:00",
+      "overview": "Gulf and Israeli/Palestinian outlets are dominated by two intertwined stories: Israel's high-turnout general election and an escalation in the Yemen-Saudi-Iran conflict, including a Houthi missile strike on Saudi Arabia's largest oil refinery and Iranian threats against shipping in the Strait of Hormuz. Business coverage centers on Gulf sovereign wealth activity (Mubadala) and oil markets reacting to the regional unrest.",
       "stories": [
         {
-          "type": "Geopolitics",
-          "headline": "US and Israel draw up plans for post-midterm strikes on Iran",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/middle-east/diplomats-race-to-head-off-escalation-with-iran-4dd00ab4?mod=rss_worldnews",
-          "summary": "Reports say Washington and Israel have prepared a short, intensive three-day campaign targeting Iran's nuclear sites, energy infrastructure and missile arsenal for after the November 3 US midterms, with Trump declaring 'something is going to happen very soon, one way or another' even as he has not yet authorized action.",
+          "type": "Politics",
+          "headline": "Israel votes in first election since October 7 amid record turnout",
+          "outlet": "The National",
+          "url": "https://www.thenationalnews.com/news/mena/2026/10/27/live-israel-election-result-highest-voter-turnout/",
+          "summary": "Israelis turned out in numbers unseen in decades for the first general election since the October 7, 2023 attack, with a tight race between Prime Minister Netanyahu and challenger Gadi Eisenkot. Netanyahu repeatedly accused Arab and left-wing voters of trying to steal the election, prompting opposition parties to warn he may be laying groundwork to contest the results.",
           "also_covered_by": [
-            "Al Jazeera",
-            "Gulf News",
-            "Khaleej Times",
-            "Haaretz",
+            "Middle East Eye",
             "The Jerusalem Post",
-            "FT"
+            "Al-Monitor",
+            "The New Arab",
+            "WSJ"
           ],
-          "via": "feed"
+          "via": "both"
         },
         {
           "type": "Security",
-          "headline": "Deadly Houthi attacks on Saudi airports continue, US orders embassy staff to leave",
-          "outlet": "Asharq Al-Awsat",
-          "url": "https://english.aawsat.com/node/5332317",
-          "summary": "Jordan and Egypt condemned a new Houthi-claimed attack on King Fahd International Airport in Dammam that killed one person and injured eight, part of a weeks-long campaign of strikes on Saudi aviation infrastructure that has also prompted Washington to order non-essential diplomatic staff out of the kingdom.",
+          "headline": "Houthis strike Saudi Arabia's Ras Tanura refinery as explosions rock Riyadh",
+          "outlet": "The New Arab",
+          "url": "https://www.newarab.com/news/houthis-claim-attack-saudi-oil-refinery-blasts-shake-riyadh",
+          "summary": "Yemen's Houthis said they hit Saudi Arabia's largest oil refinery, Ras Tanura, with a ballistic missile as a series of blasts shook Riyadh, with the Saudi-led coalition saying it intercepted other missiles fired at the capital. Iran separately warned that further US or Israeli strikes would draw a harsher response, as the escalation adds to weeks of attacks that have displaced hundreds of thousands of Yemenis.",
           "also_covered_by": [
-            "WSJ",
-            "The Jerusalem Post",
-            "Gulf News",
-            "Arab News"
+            "The National",
+            "Middle East Eye",
+            "The Jerusalem Post"
           ],
-          "via": "feed"
-        },
-        {
-          "type": "Politics",
-          "headline": "Israel's election becomes referendum on Netanyahu as Eisenkot surges",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/50468a0e-5c1f-45bf-92ca-d6bb102e3c98?syn-25a6b1a6=1",
-          "summary": "With Israel's election days away, FT frames the vote as a battle for the country's future, while Al-Monitor notes both Netanyahu and challenger Gadi Eisenkot oppose Palestinian statehood even as polls show Eisenkot ahead and pollsters debating whether Netanyahu's late push can still secure a majority.",
-          "also_covered_by": [
-            "Al-Monitor",
-            "The Jerusalem Post",
-            "Times of Israel"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Economy",
-          "headline": "Oil prices rally and Iran's shadow tanker fleet runs dry amid escalation",
-          "outlet": "Bloomberg",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
-          "summary": "Bloomberg reports a flight to Treasuries as tech-earnings disappointment and escalating Middle East hostilities pushed oil prices higher, while WSJ and the Jerusalem Post separately report Iran's floating oil reserves used for China sales have been completely depleted after a months-long US blockade.",
-          "also_covered_by": [
-            "WSJ",
-            "The Jerusalem Post",
-            "AGBI"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Society",
-          "headline": "Gaza families brace for 'another famine' as UN cuts food aid",
-          "outlet": "Middle East Eye",
-          "url": "https://www.middleeasteye.net/news/gaza-families-brace-renewed-hunger-un-cuts-food-aid",
-          "summary": "Middle East Eye reports funding shortages will leave roughly half a million Gazans without critical food assistance, compounding a live-blogged toll of Palestinians killed daily by Israeli fire, including a teenage girl.",
-          "also_covered_by": [
-            "Al-Monitor"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Politics",
-          "headline": "UAE nominates Lana Nusseibeh to lead the UN amid criticism over Sudan, Israel policy",
-          "outlet": "Middle East Eye",
-          "url": "https://www.middleeasteye.net/news/uae-nominates-diplomat-lana-nusseibeh-un-secretary-general",
-          "summary": "The UAE has put forward diplomat Lana Nusseibeh, who is of Palestinian descent, as its candidate for UN Secretary-General, a bid drawing scrutiny over Abu Dhabi's record on Sudan and its ties to Israel.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Houthi attacks trigger foreign investor sell-off in Saudi markets, FII forum cancelled",
-          "outlet": "AGBI",
-          "url": "https://www.agbi.com/",
-          "summary": "AGBI reports oil climbed near $110 a barrel after renewed Houthi attack claims and Iranian threats, while separate coverage notes foreign investors have been pulling out of Saudi equities and the Future Investment Initiative forum was cancelled following the strikes.",
-          "also_covered_by": [],
           "via": "search"
         },
         {
-          "type": "Security",
-          "headline": "Israeli settlers escalate attacks on Palestinian olive harvest in West Bank",
+          "type": "Economy",
+          "headline": "Oil prices slip as markets weigh Iran diplomacy against Saudi attacks",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
+          "summary": "Oil prices fell as traders balanced fresh diplomatic efforts to ease tensions with Iran against the risk from intensifying Houthi attacks on Saudi Arabia and continued threats to shipping through the Strait of Hormuz.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Geopolitics",
+          "headline": "Iran threatens legal action against South Korean tanker giant Sinokor over Hormuz transits",
           "outlet": "Al-Monitor",
-          "url": "https://www.al-monitor.com/originals/2026/10/israeli-settlers-steal-palestinians-olives-attacks-harvest-grow-more-violent",
-          "summary": "Al-Monitor reports Israeli settlers have intensified violent attacks on Palestinian farmers during the olive harvest in the West Bank, a story that coincides with WSJ reporting that US congressional candidate Brad Lander says he was detained by the Israeli military while accompanying Palestinians during the harvest.",
+          "url": "https://www.al-monitor.com/originals/2026/10/iranian-strait-authority-says-sinokor-vessels-will-face-legal-action",
+          "summary": "Iran's Persian Gulf Strait Authority said all vessels belonging to South Korea's Sinokor, the shipping group that has dominated oil transits out of the Gulf in recent months, will face legal action from November 1 over alleged crossing violations. The move underscores Tehran's effort to tighten control over the Strait of Hormuz amid its standoff with Washington.",
           "also_covered_by": [
-            "WSJ"
+            "The Jerusalem Post",
+            "Bloomberg"
           ],
+          "via": "both"
+        },
+        {
+          "type": "Business",
+          "headline": "Apollo's Marc Rowan on $1bn Mubadala deal and Anthropic's IPO",
+          "outlet": "The National",
+          "url": "https://www.thenationalnews.com/podcasts/inside-brief/2026/10/27/apollos-marc-rowan-on-his-1bn-mubadala-deal-ai-valuations-and-anthropics-2tn-ipo/",
+          "summary": "The National's podcast featured Apollo chief Marc Rowan discussing his roughly $1 billion deal with Abu Dhabi's Mubadala, soaring AI valuations and Anthropic's anticipated multibillion-dollar IPO.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "Iraq's Al Zaidi dismisses intelligence chief in security shake-up",
+          "outlet": "The National",
+          "url": "https://www.thenationalnews.com/news/mena/2026/10/27/iraqs-al-zaidi-dismisses-intelligence-chief-in-shake-up-of-team/",
+          "summary": "Iraq's Al Zaidi dismissed his intelligence chief as part of a broader reshuffle of his security team, according to The National.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Geopolitics",
+          "headline": "Qatar's Emir meets Iran's Pezeshkian in Moscow",
+          "outlet": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/10/27/qatars-emir-meets-irans-pezeshkian-in-moscow?traffic_source=rss",
+          "summary": "Qatar's Emir met Iran's President Pezeshkian in Moscow, with state-run Iranian media reporting the two discussed energy cooperation and ways to strengthen bilateral relations.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Israeli forces kill 14 in Gaza as UN commission says genocide continues",
+          "outlet": "Middle East Eye",
+          "url": "https://www.middleeasteye.net/news/israeli-forces-kill-14-gaza-un-commission-says-genocide-continues",
+          "summary": "Middle East Eye reported that Israeli forces killed 14 Palestinians in Gaza over two days, including a six-year-old child, as a UN commission reiterated that genocide in Gaza is ongoing.",
+          "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "Could not retrieve recent distinct coverage from Arabian Business, Zawya, Saudi Gazette, Al Arabiya English, The New Arab, Ynetnews, or Iran International within the search allowance; AP, NYT and The Economist blocked web search and had no relevant feed items provided.",
+      "gaps": "No recent Gulf/Middle East coverage could be found via search for Arab News, Gulf News, Khaleej Times, Arabian Business, Zawya, Saudi Gazette, Al Arabiya English, Ynetnews and Haaretz; AGBI search returned only older archived deal stories rather than items from the last 48 hours.",
       "outlets": [
         "The National",
         "Arab News",
@@ -738,95 +729,91 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 7,
+        "feed": 5,
         "search": 1,
-        "both": 0
+        "both": 2
       },
       "balance_added": 0
     },
     "Africa": {
       "description": "Africa politics, economy and business coverage.",
-      "generated_at": "2026-10-22T12:46:17.632526+00:00",
-      "overview": "Coverage across these outlets centers on escalating political and security crises — DRC's Kabila-led insurgency and Tanzania's opposition crackdown — alongside Ebola containment efforts in East Africa and a cluster of economic stories spanning South Africa's budget, media M&A, and a major Madagascar financing deal.",
+      "generated_at": "2026-10-27T15:11:03.243800+00:00",
+      "overview": "Africa-focused outlets are converging on conflict and governance stories – from Sudan's shattered Darfur to Ethiopia's multiple crises and Tanzania's opposition crackdown – alongside economic policy debates in Nigeria and Ghana and fresh investment pushes from Lagos to Addis Ababa. Press freedom in Egypt and a wave of political positioning ahead of 2027 elections in Kenya and Nigeria also feature prominently.",
       "stories": [
         {
-          "type": "Geopolitics",
-          "headline": "Belgium condemns Kabila's launch of political-military group in DRC",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/22/deplorable-belgium-condemns-ex-drc-leader-kabilas-launch-of-political-military-group/",
-          "summary": "Belgium has condemned former Congolese president Joseph Kabila's launch of a new political-military movement ten days earlier as deplorable and unacceptable, as the move turns an eastern insurgency into an explicit bid for national power.",
-          "also_covered_by": [
-            "Africa Confidential"
-          ],
+          "type": "Security",
+          "headline": "Sudan's El Fasher, one year on: Hemeti's bloody prize is now a ghost town ruled by guns",
+          "outlet": "The Africa Report",
+          "url": "https://www.theafricareport.com/434519/sudans-el-fasher-one-year-on-hemetis-bloody-prize-is-now-a-ghost-town-ruled-by-guns/",
+          "summary": "A year after the RSF captured Darfur's last army stronghold, most residents have fled and the city is now controlled by armed commanders with barely functioning civilian institutions.",
+          "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Politics",
-          "headline": "Second Tanzanian opposition figure faces death penalty after treason charges",
+          "headline": "Africa Confidential Pointers: Tunisia's biggest protests since 2019, plus Eritrea visa ban, Angola fuel subsidies and Madagascar's Russia ties",
+          "outlet": "Africa Confidential",
+          "url": "https://www.africa-confidential.com/news",
+          "summary": "Africa Confidential's latest roundup leads with thousands marching in Tunis in the largest pro-democracy demonstration since President Kais Saied took power, alongside Britain's visa curbs on Eritrea, Angolan fuel subsidy politics and growing Russian influence in Madagascar.",
+          "also_covered_by": [],
+          "via": "search"
+        },
+        {
+          "type": "Security",
+          "headline": "Ethiopia: At least 60 Christians killed in attacks in Oromia region",
           "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/10/22/second-tanzanian-opposition-figure-faces-death-penalty-after-treason-charges/",
-          "summary": "A senior Chadema opposition official, John Pambalu, is facing the death penalty after being charged with treason, signaling an intensifying crackdown on Tanzania's opposition.",
+          "url": "http://www.africanews.com/2026/10/27/ethiopia-at-least-60-christians-killed-in-attacks-in-oromia-region/",
+          "summary": "Religious authorities say dozens of Christians were killed in attacks in Ethiopia's Oromia region, with no details yet released on who carried them out.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Health",
-          "headline": "Nine Ebola Cases Have Kenya Holding Its Breath",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/africa/nine-ebola-cases-have-kenya-holding-its-breath-73b5cfc1?mod=rss_worldnews",
-          "summary": "Kenyan health authorities are waiting to see whether swift quarantine measures were enough to prevent a full-blown Ebola outbreak after nine cases emerged.",
-          "also_covered_by": [
-            "Africanews"
-          ],
+          "type": "Politics",
+          "headline": "Tanzania's jailed opposition leader Tundu Lissu begins hunger strike",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/27/tanzanias-jailed-opposition-leader-tundu-lissu-begins-hunger-strike/",
+          "summary": "Chadema party leader Tundu Lissu has stopped eating in protest at being denied access to his lawyers while in detention.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Media",
+          "headline": "Egypt detains journalist Lina Attalah after court ruling",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/10/27/egypt-detains-journalist-lina-attalah-after-court-ruling/",
+          "summary": "Mada Masr editor-in-chief Lina Attalah was detained by Egyptian security forces after being fined in a swift trial, raising fresh press-freedom concerns.",
+          "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Economy",
-          "headline": "South Africa's mid-term budget: Fiscal armour hardens, but can Pretoria drive regional growth?",
+          "headline": "Nigeria's economy 'needs a coach, not just a referee'",
           "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/434185/south-africas-mid-term-budget-fiscal-armour-hardens-but-can-pretoria-drive-regional-growth/",
-          "summary": "South Africa stabilized debt and widened its primary surplus in the mid-term budget, though a growth downgrade to 1.2% highlights the struggle to translate fiscal discipline into regional growth.",
+          "url": "https://www.theafricareport.com/434531/nigerias-economy-needs-a-coach-not-just-a-referee/",
+          "summary": "Having stabilised macroeconomic indicators, President Bola Tinubu now faces the tougher task of building Nigerian businesses that can compete internationally without entrenching existing industrial giants.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Security",
-          "headline": "Niger: Two Western hostages released in Libya after 18 months in Islamic State captivity",
+          "type": "Economy",
+          "headline": "Get rich or get ruined: Ghana's youth caught in Africa's Ponzi trap",
           "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/434212/niger-two-western-hostages-released-in-libya-after-more-than-18-months-in-islamic-state-captivity/",
-          "summary": "Two European women held by Islamic State militants in Niger have been freed and flown to Benghazi following mediation led by Saddam Haftar.",
+          "url": "https://www.theafricareport.com/434628/get-rich-or-get-ruined-ghanas-youth-caught-in-africas-ponzi-trap/",
+          "summary": "Investment apps that promised to triple Ghanaian savers' money within 40 days have collapsed, exposing an online Ponzi scheme wave that regulators are struggling to contain amid deeper economic distress.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "CANAL+ faces a South African turnaround test as MultiChoice revenue falls 3%",
-          "outlet": "TechCabal",
-          "url": "https://techcabal.com/2026/10/22/canal-plus-africa-growth-south-africa/",
-          "summary": "CANAL+ is banking on new DStv packages and stronger content to revive MultiChoice in South Africa after its revenue fell 3% in the nine months to September 2026.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Energy",
-          "headline": "Gemcorp joins Madagascar to raise $5bn for energy, mining",
-          "outlet": "Mining Weekly",
-          "url": "https://www.miningweekly.com/page/africa",
-          "summary": "Madagascar is partnering with asset manager Gemcorp Capital Management in an effort to raise as much as $5 billion to fund energy, infrastructure and mining projects on the island.",
+          "headline": "Nigerian government lures foreign investors with $78bn 'deal room'",
+          "outlet": "African Business",
+          "url": "https://african.business/",
+          "summary": "Launched at the IMF/World Bank annual meetings in Bangkok, Nigeria's new initiative aims to funnel tens of billions of dollars in investment into multiple sectors of the economy.",
           "also_covered_by": [],
           "via": "search"
-        },
-        {
-          "type": "Politics",
-          "headline": "Côte d'Ivoire: Could a new court battle cost opposition leader Tidjane Thiam his party?",
-          "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/434108/cote-divoire-could-a-new-court-battle-cost-opposition-leader-tidjane-thiam-his-party/",
-          "summary": "Ivorian courts are preparing to hear challenges from PDCI members seeking to annul exiled opposition leader Tidjane Thiam's election as party chief.",
-          "also_covered_by": [],
-          "via": "feed"
         }
       ],
-      "gaps": "Africa Confidential, The Continent and African Business had no clearly dated items within the last 24-48 hours in search results (their most recent identifiable pieces were from several days to weeks earlier); Reuters, AP, BBC and FT block search and had no relevant items in the provided feed, so they could not be assessed.",
+      "gaps": "Reuters, AP, BBC, FT, NYT and WSJ block web search so could not be checked beyond any feed items provided (none were supplied for this group). The Continent's most recent available content was from older issues, with nothing confirmed from the last 48 hours. Mining Weekly and African Business had no stories clearly within the 24-48 hour window beyond the items cited above.",
       "outlets": [
         "The Africa Report",
         "Africanews",
@@ -842,104 +829,85 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 7,
-        "search": 1,
+        "feed": 6,
+        "search": 2,
         "both": 0
       },
       "balance_added": 0
     },
     "Media": {
       "description": "Media-industry coverage.",
-      "generated_at": "2026-10-22T12:46:59.255878+00:00",
-      "overview": "Media-industry coverage over the past 48 hours centers on publishers' escalating fight with Big Tech over AI scraping and licensing terms, a wave of Q3 earnings from Comcast and Spotify, and ongoing turmoil inside CBS News and CNN as both navigate new ownership and White House press-access fights. Trade outlets are also tracking a fresh round of journalism layoffs and newsroom drama, from BBC job cuts to an ESPN booth feud.",
+      "generated_at": "2026-10-27T15:11:38.138230+00:00",
+      "overview": "Media-industry outlets are dominated by the fallout from Meta's new business account terms of service, which have sparked legal threats and lobbying from publishers worldwide, alongside deep coverage of Skydance's post-merger integration of CNN and CBS News. Trade press is also tracking continued journalism layoffs, a legal showdown between Vanity Fair and Jared Kushner, and BBC's escalating defamation fight with Trump.",
       "stories": [
         {
           "type": "Tech",
-          "headline": "UK politicians and German publishers push regulators to pause Meta's new terms before Oct 30 deadline",
+          "headline": "Meta delays scraping-friendly terms of service after global publisher backlash",
           "outlet": "Nieman Lab",
-          "url": "https://www.niemanlab.org/2026/10/u-k-politicians-and-german-publishers-call-on-regulators-to-pause-metas-new-terms-before-october-30-deadline/",
-          "summary": "British lawmakers and German publishers are urging regulators to halt Meta's sweeping new commercial terms before they take effect, with the UK's competition authority having sent Meta a formal letter seeking talks on the change.",
+          "url": "https://www.niemanlab.org/2026/10/meta-delays-rollout-of-terms-that-would-allow-broad-scraping-of-news-sites-legal-experts-are-still-skeptical/",
+          "summary": "Meta pushed back the effective date of new business-account terms that would allow broad scraping of news sites to November 20 after mounting pressure from the global news industry, though legal experts remain skeptical the changes go far enough. Democratic Senator Adam Schiff separately sent a letter urging Meta CEO to scrap the policy, calling it a gross abuse of the company's power.",
           "also_covered_by": [
             "Press Gazette",
-            "Digiday"
+            "Adweek"
           ],
           "via": "feed"
+        },
+        {
+          "type": "Media",
+          "headline": "Norwegian publishers sue Meta over new AI scraping terms",
+          "outlet": "Press Gazette",
+          "url": "https://pressgazette.co.uk/news/norwegian-media-companies-take-meta-to-court-over-ai-scraping-terms/",
+          "summary": "Norwegian publishers including Schibsted and NRK are seeking a temporary injunction in court to stop Meta from imposing its new terms, escalating the industry's fight beyond lobbying into litigation.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "Skydance takes contrasting approaches to CNN and CBS News amid return-to-office and buyout push",
+          "outlet": "Status",
+          "url": "https://www.status.news/p/david-ellison-skydance-cnn-cbs-news-buyouts-return-office",
+          "summary": "Weeks after merging Paramount and Warner Bros. Discovery, David Ellison and co-CEO Ynon Kreiz mandated a five-day return to office and introduced a voluntary buyout program, with CNN's Mark Thompson and CBS News leaders Bari Weiss and Tom Cibrowski handling the rollout differently, according to internal memos obtained by Status.",
+          "also_covered_by": [],
+          "via": "search"
+        },
+        {
+          "type": "Media",
+          "headline": "Kushner's lawyers threaten Vanity Fair over bombshell excerpt from new book",
+          "outlet": "Status",
+          "url": "https://www.status.news/p/jared-kushner-vanity-fair-book-matthew-cole",
+          "summary": "Simon & Schuster quietly moved up the release of Matthew Cole's book \"Princes and Thieves\" after Vanity Fair's excerpt alleging Jared Kushner had access to billions in secret foreign accounts prompted a defamation law firm to demand the excerpt be taken down; The Jerusalem Post pulled its own aggregated story citing factual questions.",
+          "also_covered_by": [],
+          "via": "search"
         },
         {
           "type": "Law",
-          "headline": "Canadian publishers sue Anthropic as Google's AI news pilot expands to CNN and Reach",
+          "headline": "BBC aggressively fights Trump's Florida defamation lawsuit",
+          "outlet": "Columbia Journalism Review",
+          "url": "https://www.cjr.org/the_media_today/how-the-bbc-is-fighting-back-florida-trump-defamation-lawsuit.php",
+          "summary": "CJR examines how Britain's public broadcaster is using the legal process itself as a tool to fight back against Donald Trump's defamation suit.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "Journalism job cuts continue, with Telegraph set to cut around 100 roles",
           "outlet": "Press Gazette",
-          "url": "https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/",
-          "summary": "Postmedia, Torstar, The Globe and Mail and The Canadian Press have filed a copyright suit against Anthropic over its Claude model, even as Google says more than 400 publications, now including CNN and Reach, have joined its paid news AI pilot.",
+          "url": "https://pressgazette.co.uk/news/journalism-job-cuts-in-2026-updates/",
+          "summary": "Press Gazette's rolling tracker of 2026 newsroom redundancies now includes the Telegraph's plan to cut roughly 100 roles, part of a broader wave of cost-cutting across publishers.",
           "also_covered_by": [],
-          "via": "both"
-        },
-        {
-          "type": "Politics",
-          "headline": "CNN threatens new legal action over White House blocking Air Force One, Oval Office access",
-          "outlet": "Poynter",
-          "url": "https://www.poynter.org/commentary/2026/cnn-white-house-air-force-one-press-access-lawsuit/",
-          "summary": "CNN told the Trump administration it will pursue further legal action if the White House keeps barring its journalists from Air Force One and the Oval Office, while the White House Correspondents' Association separately accused the administration of \"retaliation\" after a reporter was blocked from a press gathering.",
-          "also_covered_by": [
-            "TheWrap"
-          ],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "Peacock posts second straight quarterly profit as Comcast's broadband slide continues",
-          "outlet": "TheWrap",
-          "url": "https://www.thewrap.com/industry-news/business/comcast-earnings-q3-2026/",
-          "summary": "Comcast's Peacock streaming service logged a $261 million profit for a second consecutive quarter, even as the parent company continues to be dragged down by broadband and video subscriber losses.",
-          "also_covered_by": [
-            "The Hollywood Reporter",
-            "Variety",
-            "Deadline"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Spotify tops 306 million premium subscribers as revenue jumps 16%",
-          "outlet": "TheWrap",
-          "url": "https://www.thewrap.com/creative-content/music/spotify-earnings-q3-2026/",
-          "summary": "Spotify reported strong Q3 growth with monthly active users rising 11% to 788 million, and the company is positioning itself to benefit from the rise of AI shopping and voice agents.",
-          "also_covered_by": [
-            "The Hollywood Reporter"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Media",
-          "headline": "CBS pairs DraftKings branding with Election Night coverage, stirring internal unease",
-          "outlet": "Status",
-          "url": "https://www.status.news/",
-          "summary": "Status reports that CBS's owned-and-operated stations will carry DraftKings sponsorship branding through Election Night, a tie-up that has reportedly unsettled some inside the network.",
+          "headline": "Netflix struggles to satisfy advertisers as streaming ad glut widens",
+          "outlet": "Variety",
+          "url": "https://variety.com/2026/tv/news/netflix-streaming-ads-squeeze-greg-peters-ted-sarandos-1236931807/",
+          "summary": "Variety reports Netflix is wrestling with a crowded digital-ad marketplace as it tries to scale its advertising business to match rivals on Madison Avenue.",
           "also_covered_by": [],
-          "via": "search"
-        },
-        {
-          "type": "Media",
-          "headline": "Bari Weiss's CBS News remains a lightning rod a year into her tenure",
-          "outlet": "Puck",
-          "url": "https://puck.news/why-media-reporters-cant-stop-covering-bari-weiss/",
-          "summary": "Puck's Dylan Byers argues the relentless media-reporter fixation on Bari Weiss reflects broader anxieties about the news business, even as her CBS News leadership shows signs of maturing.",
-          "also_covered_by": [],
-          "via": "search"
-        },
-        {
-          "type": "Media",
-          "headline": "Troy Aikman and Joe Buck's ESPN partnership nearly boiled over into a physical confrontation",
-          "outlet": "Mediaite",
-          "url": "https://www.mediaite.com/media/sports/you-fcked-me-over-troy-aikmans-explosive-clash-with-espn-partner-joe-buck-nearly-led-to-fisticuffs-per-report/",
-          "summary": "A new report details weeks of rising tension between ESPN broadcast partners Troy Aikman and Joe Buck that reportedly culminated in a heated, near-physical clash.",
-          "also_covered_by": [
-            "Puck"
-          ],
           "via": "feed"
         }
       ],
-      "gaps": "No recent coverage found from CJR beyond feature/opinion pieces, and NYT, WSJ, FT and The Guardian block web search so only their feed items (largely outside this topic) could be used; no qualifying Guardian media-industry item was found in the feed.",
+      "gaps": "Puck's homepage showed only stale or ambiguous timestamps on its media newsletter items, so no specific recent Puck story could be confidently dated within the last 48 hours. NYT, WSJ, FT and The Guardian block search, and no relevant media-industry feed items were supplied for them.",
       "outlets": [
         "Status",
         "Puck",
@@ -960,580 +928,572 @@
       "sources_mix": {
         "feed": 5,
         "search": 2,
-        "both": 1
+        "both": 0
       },
       "balance_added": 0
     }
   },
-  "generated_at": "2026-10-22T17:52:49.103114+00:00",
+  "generated_at": "2026-10-27T15:11:38.138282+00:00",
   "newsletters": {
     "Flagship": {
-      "generated_at": "2026-10-22T12:47:14.457871+00:00",
-      "intro": "The Middle East oil shock and its market spillovers dominate today's candidates, with AI finance and US election jitters rounding out the mix.",
+      "generated_at": "2026-10-27T15:11:55.820287+00:00",
+      "intro": "Today's mix centers on the Iran/Hormuz oil disruption as the dominant story, with AI finance, market turmoil, and election stakes rounding out the briefing.",
       "picks": [
         {
-          "headline": "Global stocks tumble and oil surges past $111 on Middle East escalation",
-          "url": "https://www.ft.com/content/6e318b81-a771-4842-9754-e265fef2852f?syn-25a6b1a6=1",
+          "headline": "Oil Prices Fall as Traders Assess Iran Diplomacy, Saudi Attacks",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
+          "outlet": "WSJ",
+          "type": "Geopolitics",
+          "group": "Energy",
+          "why": "Oil, Iran diplomacy and Hormuz risk is exactly the dominant geopolitical-economic story the guide spotlights."
+        },
+        {
+          "headline": "Houthis strike Saudi Arabia's Ras Tanura refinery as explosions rock Riyadh",
+          "url": "https://www.newarab.com/news/houthis-claim-attack-saudi-oil-refinery-blasts-shake-riyadh",
+          "outlet": "The New Arab",
+          "type": "Security",
+          "group": "Gulf & Middle East",
+          "why": "Houthi strike on Saudi's Ras Tanura refinery is a direct second-order effect of the Gulf oil crisis."
+        },
+        {
+          "headline": "Israel votes in first election since October 7 amid record turnout",
+          "url": "https://www.thenationalnews.com/news/mena/2026/10/27/live-israel-election-result-highest-voter-turnout/",
+          "outlet": "The National",
+          "type": "Politics",
+          "group": "Gulf & Middle East",
+          "why": "Israel's first post-October 7 election is a major cross-border geopolitical event with global stakes."
+        },
+        {
+          "headline": "Anthropic Files for IPO in Global Race to Raise Cash for AI",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/anthropic-ipo-s-1-filing-offers-first-look-at-claude-maker-s-finances",
+          "outlet": "Bloomberg",
+          "type": "Business",
+          "group": "Business",
+          "why": "Anthropic's IPO filing with huge revenue and losses is a defining AI finance story multiple top outlets covered."
+        },
+        {
+          "headline": "Lula Faces a Fiscal Reckoning After Brazil's Market Rout",
+          "url": "https://www.ft.com/content/0231b234-14dc-4ff0-8263-e1063b0a25d5?syn-25a6b1a6=1",
           "outlet": "FT",
           "type": "Economy",
           "group": "Business",
-          "why": "The dominant global story: Middle East escalation driving oil above $111 and hitting world stock markets."
+          "why": "Brazil's worst currency day in 25 years is a concrete 'money meets power' market story."
         },
         {
-          "headline": "US and Israel draw up plans for post-midterm strikes on Iran",
-          "url": "https://www.wsj.com/world/middle-east/diplomats-race-to-head-off-escalation-with-iran-4dd00ab4?mod=rss_worldnews",
-          "outlet": "WSJ",
-          "type": "Geopolitics",
-          "group": "Gulf & Middle East",
-          "why": "Key geopolitical second-order effect of the Mideast crisis: US-Israel plans for strikes on Iran."
-        },
-        {
-          "headline": "Airlines slash 2026 profit forecasts as fuel costs spike",
-          "url": "https://www.cnbc.com/2026/10/22/american-airlines-aal-q3-2026-earnings.html",
-          "outlet": "CNBC",
-          "type": "Business",
-          "group": "Business",
-          "why": "Where money meets power: airlines slashing 2026 profit forecasts as conflict-driven fuel costs spike."
-        },
-        {
-          "headline": "AI-fueled stock jitters and Mideast tensions spark a broad market retreat",
-          "url": "https://www.nytimes.com/2026/10/22/business/stocks-oil-prices.html",
-          "outlet": "NYT",
-          "type": "Economy",
-          "group": "Tech & AI",
-          "why": "Markets and AI collide as tech earnings jitters compound Mideast-driven flight to Treasuries."
-        },
-        {
-          "headline": "Meta creates new non-voting share class to fund its AI buildout",
-          "url": "https://techcrunch.com/2026/10/21/meta-wants-to-pay-for-its-broad-ai-buildout-with-a-newly-created-class-of-stock/",
-          "outlet": "TechCrunch",
-          "type": "Business",
-          "group": "Tech & AI",
-          "why": "AI finance story: Meta creates a new share class specifically to fund its AI buildout."
-        },
-        {
-          "headline": "Trump's concessions to Putin spark bipartisan revolt as midterms near",
-          "url": "https://www.axios.com/2026/10/14/trump-putin-diesel-deal-midterms-russia",
-          "outlet": "Axios",
-          "type": "Geopolitics",
+          "headline": "Cook Political Report shifts House ratings further toward Democrats",
+          "url": "https://www.cookpolitical.com/ratings/house-race-ratings",
+          "outlet": "Cook Political Report",
+          "type": "Politics",
           "group": "US politics",
-          "why": "Cross-border politics: Trump's concessions to Putin triggering bipartisan backlash ahead of midterms."
+          "why": "Cook Political Report's shift toward Democrats signals a major US midterm outcome with global policy implications."
         },
         {
-          "headline": "DeepMind's Hassabis shortens his AGI timeline to two to three years",
-          "url": "https://the-decoder.com/deepmind-founder-hassabis-shortens-agi-timeline-from-five-to-two-to-three-years/",
-          "outlet": "The Decoder",
-          "type": "Tech",
-          "group": "Tech & AI",
-          "why": "AI milestone story: DeepMind's Hassabis shortens his AGI timeline, a global tech race marker."
+          "headline": "Mbappe dropped by Chinese brands after alleged Mao joke",
+          "url": "https://hongkongfp.com/2026/10/27/mbappe-dropped-by-chinese-brands-for-offending-national-sentiments-after-alleged-mao-joke/",
+          "outlet": "Hong Kong Free Press",
+          "type": "Culture",
+          "group": "China",
+          "why": "Mbappe's China brand fallout is a light, culturally resonant closer with geopolitical undertones."
         }
       ],
       "confidence": "evidence-based",
       "candidates": 61
     },
     "Energy": {
-      "generated_at": "2026-10-22T12:47:27.682839+00:00",
-      "intro": "Mideast oil shock dominates today's flow, but strong nuclear, grid-merger, and clean-power demand stories round out the mix for Semafor Energy.",
+      "generated_at": "2026-10-27T15:12:00.327368+00:00",
+      "intro": "Today's slate is dominated by Hormuz/Saudi supply shocks and AI-driven power demand, both core to Semafor Energy's beat.",
       "picks": [
         {
-          "headline": "Oil prices surge as Mideast conflict escalates",
-          "url": "https://www.wsj.com/business/energy-oil/oil-prices-rise-more-than-2-as-attacks-on-saudi-arabia-u-s-iran-risks-persist-5599ac83?mod=rss_worldnews",
+          "headline": "Oil Prices Fall as Traders Assess Iran Diplomacy, Saudi Attacks",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
           "outlet": "WSJ",
           "type": "Geopolitics",
           "group": "Energy",
-          "why": "Classic supply-shock lead with hard price threshold ($111) and clear geopolitical driver, top-tier sourced."
+          "why": "Oil price moves tied to Iran diplomacy and Hormuz risk are the newsletter's top supply-shock category."
         },
         {
-          "headline": "US and Israel draw up plans for post-midterm strikes on Iran",
-          "url": "https://www.wsj.com/world/middle-east/diplomats-race-to-head-off-escalation-with-iran-4dd00ab4?mod=rss_worldnews",
-          "outlet": "WSJ",
+          "headline": "Houthis strike Saudi Arabia's Ras Tanura refinery as explosions rock Riyadh",
+          "url": "https://www.newarab.com/news/houthis-claim-attack-saudi-oil-refinery-blasts-shake-riyadh",
+          "outlet": "The New Arab",
+          "type": "Security",
+          "group": "Gulf & Middle East",
+          "why": "Houthi strike on Ras Tanura refinery is exactly the Hormuz/Bab al-Mandeb disruption coverage this guide prioritizes."
+        },
+        {
+          "headline": "Iran threatens legal action against South Korean tanker giant Sinokor over Hormuz transits",
+          "url": "https://www.al-monitor.com/originals/2026/10/iranian-strait-authority-says-sinokor-vessels-will-face-legal-action",
+          "outlet": "Al-Monitor",
           "type": "Geopolitics",
           "group": "Gulf & Middle East",
-          "why": "US-Israel strike planning on Iran's energy infrastructure is exactly the Hormuz-adjacent geopolitics this newsletter tracks."
+          "why": "Iran-Sinokor tanker dispute ties directly to Hormuz transit risk and shipping geopolitics."
         },
         {
-          "headline": "Virginia governor pushes for 6-year rate freeze in Dominion-NextEra merger review",
-          "url": "https://www.utilitydive.com/news/virginia-governor-seeks-6-year-rate-freeze-if-dominion-nextera-merger-is-ap/833478/",
+          "headline": "BNEF Ups US Energy Storage Deployment Forecast by 30%",
+          "url": "https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
           "outlet": "Utility Dive",
-          "type": "Business",
+          "type": "Economy",
           "group": "Energy",
-          "why": "Dominion-NextEra rate freeze fight is core grid-politics and permitting terrain for Semafor Energy."
+          "why": "BNEF's storage forecast hike tied to hyperscaler demand fits the AI-data-center power competition theme."
         },
         {
-          "headline": "Google strikes 1-gigawatt virtual power plant deal with Voltus",
-          "url": "https://heatmap.news/climate-tech/google-virtual-power-plant-voltus",
+          "headline": "Google Bets Big on Virtual Power Plants With 1 Gigawatt Voltus Deal",
+          "url": "https://heatmap.news/climate-tech",
           "outlet": "Heatmap",
           "type": "Tech",
           "group": "Energy",
-          "why": "Google's 1GW VPP deal speaks directly to AI data center demand and scarce clean power competition."
+          "why": "Google's 1GW virtual power plant deal is a data-center electricity demand story with clear market implications."
         },
         {
-          "headline": "The Nuclear Company unveils massive Kentucky reactor project",
-          "url": "https://heatmap.news/energy/the-nuclear-company-prosperity-one",
+          "headline": "New York and California File New Lawsuits Over Trump's Offshore Wind Deals",
+          "url": "https://heatmap.news/am/heatmap-house-2026",
           "outlet": "Heatmap",
+          "type": "Law",
+          "group": "Energy",
+          "why": "Offshore wind lawsuits are core permitting and grid politics content for Washington energy policy."
+        },
+        {
+          "headline": "Wind Turbine Orders Hit 2.8 GW in Q2 Ahead of Tax Credit Deadline",
+          "url": "https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
+          "outlet": "Utility Dive",
           "type": "Energy",
           "group": "Energy",
-          "why": "6.6GW Kentucky reactor plan fits the nuclear investment/record-tracking beat."
-        },
-        {
-          "headline": "Solar PPA prices jump 5% in Q3 as new trade tariffs bite",
-          "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
-          "outlet": "Utility Dive",
-          "type": "Business",
-          "group": "Energy",
-          "why": "Solar PPA price jump from tariffs is a clean data point on renewables market economics."
-        },
-        {
-          "headline": "Airlines slash 2026 profit forecasts as fuel costs spike",
-          "url": "https://www.cnbc.com/2026/10/22/american-airlines-aal-q3-2026-earnings.html",
-          "outlet": "CNBC",
-          "type": "Business",
-          "group": "Business",
-          "why": "Airlines slashing 2026 forecasts over fuel costs gives the business/market implication side of the oil shock."
+          "why": "Wind turbine order surge ahead of tax credit deadline is a records/investment data point on renewables."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 53
+      "candidates": 54
     },
     "Africa": {
-      "generated_at": "2026-10-22T12:47:32.868832+00:00",
-      "intro": "Today's Africa-tagged stories lean toward South Africa budget/business, DRC/Sahel politics, and health, with global oil surge as useful macro context.",
+      "generated_at": "2026-10-27T15:12:17.510792+00:00",
+      "intro": "Today's African stories lean heavily on Nigeria's economic reform push and regional political flashpoints, fitting the newsletter's business-and-politics mix.",
       "picks": [
         {
-          "headline": "South Africa's mid-term budget: Fiscal armour hardens, but can Pretoria drive regional growth?",
-          "url": "https://www.theafricareport.com/434185/south-africas-mid-term-budget-fiscal-armour-hardens-but-can-pretoria-drive-regional-growth/",
-          "outlet": "The Africa Report",
-          "type": "Economy",
-          "group": "Africa",
-          "why": "South Africa budget with growth figures is core business/macro fodder for the continental briefing."
-        },
-        {
-          "headline": "Nine Ebola Cases Have Kenya Holding Its Breath",
-          "url": "https://www.wsj.com/world/africa/nine-ebola-cases-have-kenya-holding-its-breath-73b5cfc1?mod=rss_worldnews",
-          "outlet": "WSJ",
-          "type": "Health",
-          "group": "Africa",
-          "why": "Ebola cases in Kenya fit the health-with-market-implications slot the guide calls out."
-        },
-        {
-          "headline": "CANAL+ faces a South African turnaround test as MultiChoice revenue falls 3%",
-          "url": "https://techcabal.com/2026/10/22/canal-plus-africa-growth-south-africa/",
-          "outlet": "TechCabal",
+          "headline": "Nigerian government lures foreign investors with $78bn 'deal room'",
+          "url": "https://african.business/",
+          "outlet": "African Business",
           "type": "Business",
           "group": "Africa",
-          "why": "MultiChoice/Canal+ revenue numbers are a clean South Africa business item with a concrete figure."
+          "why": "Nigeria's $78bn investor deal room is exactly the big-number business deal Semafor Africa leads with."
         },
         {
-          "headline": "Gemcorp joins Madagascar to raise $5bn for energy, mining",
-          "url": "https://www.miningweekly.com/page/africa",
-          "outlet": "Mining Weekly",
-          "type": "Energy",
-          "group": "Africa",
-          "why": "Madagascar's $5bn energy/mining raise is exactly the deals-and-financing story the guide wants."
-        },
-        {
-          "headline": "Belgium condemns Kabila's launch of political-military group in DRC",
-          "url": "http://www.africanews.com/2026/10/22/deplorable-belgium-condemns-ex-drc-leader-kabilas-launch-of-political-military-group/",
-          "outlet": "Africanews",
-          "type": "Geopolitics",
-          "group": "Africa",
-          "why": "Kabila's new political-military group is Sahel/DRC politics with real geopolitical stakes."
-        },
-        {
-          "headline": "Global stocks tumble and oil surges past $111 on Middle East escalation",
-          "url": "https://www.ft.com/content/6e318b81-a771-4842-9754-e265fef2852f?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Economy",
-          "group": "Business",
-          "why": "Oil surging past $111 matters directly for Nigeria's output economics and African import costs."
-        },
-        {
-          "headline": "Côte d'Ivoire: Could a new court battle cost opposition leader Tidjane Thiam his party?",
-          "url": "https://www.theafricareport.com/434108/cote-divoire-could-a-new-court-battle-cost-opposition-leader-tidjane-thiam-his-party/",
+          "headline": "Nigeria's economy 'needs a coach, not just a referee'",
+          "url": "https://www.theafricareport.com/434531/nigerias-economy-needs-a-coach-not-just-a-referee/",
           "outlet": "The Africa Report",
+          "type": "Economy",
+          "group": "Africa",
+          "why": "Tinubu's economic reform challenge is a core business/economy analysis piece for the newsletter."
+        },
+        {
+          "headline": "Get rich or get ruined: Ghana's youth caught in Africa's Ponzi trap",
+          "url": "https://www.theafricareport.com/434628/get-rich-or-get-ruined-ghanas-youth-caught-in-africas-ponzi-trap/",
+          "outlet": "The Africa Report",
+          "type": "Economy",
+          "group": "Africa",
+          "why": "Ghana's Ponzi app collapse is a concrete business story with market and regulatory implications."
+        },
+        {
+          "headline": "Africa Confidential Pointers: Tunisia's biggest protests since 2019, plus Eritrea visa ban, Angola fuel subsidies and Madagascar's Russia ties",
+          "url": "https://www.africa-confidential.com/news",
+          "outlet": "Africa Confidential",
           "type": "Politics",
           "group": "Africa",
-          "why": "Thiam's court battle is politics with economic consequences for Ivory Coast's opposition landscape."
+          "why": "Africa Confidential's multi-country roundup covers politics and economics across several flagged nations."
+        },
+        {
+          "headline": "Sudan's El Fasher, one year on: Hemeti's bloody prize is now a ghost town ruled by guns",
+          "url": "https://www.theafricareport.com/434519/sudans-el-fasher-one-year-on-hemetis-bloody-prize-is-now-a-ghost-town-ruled-by-guns/",
+          "outlet": "The Africa Report",
+          "type": "Security",
+          "group": "Africa",
+          "why": "Sudan's ghost-town aftermath carries continental political and humanitarian weight beyond local crime."
+        },
+        {
+          "headline": "Tanzania's jailed opposition leader Tundu Lissu begins hunger strike",
+          "url": "http://www.africanews.com/2026/10/27/tanzanias-jailed-opposition-leader-tundu-lissu-begins-hunger-strike/",
+          "outlet": "Africanews",
+          "type": "Politics",
+          "group": "Africa",
+          "why": "Tanzania's opposition hunger strike signals political risk with consequences for stability and investment."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 30
+      "candidates": 31
     },
     "Tech": {
-      "generated_at": "2026-10-22T12:47:37.567231+00:00",
-      "intro": "This week's AI stories cluster around compute spending, chip export-control leaks, and security incidents—exactly the power, money and liability themes this newsletter runs on.",
+      "generated_at": "2026-10-27T15:12:22.383949+00:00",
+      "intro": "This cycle is dominated by AI capital markets and lab competition, which map directly onto Semafor Technology's core beats.",
       "picks": [
         {
-          "headline": "Meta creates new non-voting share class to fund its AI buildout",
-          "url": "https://techcrunch.com/2026/10/21/meta-wants-to-pay-for-its-broad-ai-buildout-with-a-newly-created-class-of-stock/",
+          "headline": "Anthropic officially files S-1 for IPO, discloses soaring revenue and 'catastrophic risk' warnings",
+          "url": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
           "outlet": "TechCrunch",
           "type": "Business",
           "group": "Tech & AI",
-          "why": "Meta's non-voting shares to fund AI buildout is a classic compute-and-money, Zuckerberg-control scoop."
+          "why": "Anthropic's IPO filing with revenue and catastrophic-risk disclosures is a defining AI money-and-power story."
         },
         {
-          "headline": "Nvidia Blackwell Ultra chips found linked to China Telecom despite US export controls",
-          "url": "https://www.techmeme.com/261022/p22#a261022p22",
-          "outlet": "Techmeme",
-          "type": "Geopolitics",
+          "headline": "Meta boosts equity raise to nearly $98 billion to fund AI buildout",
+          "url": "https://bloomberg.com/news/articles/2026-10-26/meta-seeks-up-to-95-billion-in-equity-to-fund-ai-spending",
+          "outlet": "Bloomberg",
+          "type": "Business",
           "group": "Tech & AI",
-          "why": "Nvidia chips linked to China Telecom despite export bans is a sharp power/liability and lab-vs-nation story."
+          "why": "Meta's massive equity raise for AI buildout is classic compute-and-money coverage with bubble-talk implications."
         },
         {
-          "headline": "Microsoft says Chinese state-linked hackers used AI agents to breach thousands of cloud tenants via ConnectWise",
-          "url": "https://www.theregister.com/security/2026/10/22/microsoft-says-connectwise-breach-let-chinese-spies-loose-on-2250-cloud-tenants/5304687",
-          "outlet": "The Register",
+          "headline": "Microsoft offers buyouts to roughly a quarter of its workforce",
+          "url": "https://arstechnica.com/gadgets/2026/10/microsoft-offers-voluntary-buyouts-to-60000-employees/",
+          "outlet": "Ars Technica",
+          "type": "Business",
+          "group": "Tech & AI",
+          "why": "Microsoft's huge buyout offer is a scoop-worthy signal of strategy shifts amid AI restructuring."
+        },
+        {
+          "headline": "Cohere says Alibaba's open-source Qwen3.8 model tried to 'phone home' to a Beijing server",
+          "url": "https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know",
+          "outlet": "VentureBeat",
           "type": "Security",
           "group": "Tech & AI",
-          "why": "State-linked hackers using AI agents to breach cloud tenants fits the AI safety/security incident beat."
+          "why": "Qwen phoning home to Beijing is an AI safety/security incident fitting lab competition coverage."
         },
         {
-          "headline": "DeepMind's Hassabis shortens his AGI timeline to two to three years",
-          "url": "https://the-decoder.com/deepmind-founder-hassabis-shortens-agi-timeline-from-five-to-two-to-three-years/",
-          "outlet": "The Decoder",
-          "type": "Tech",
-          "group": "Tech & AI",
-          "why": "Hassabis shortening his AGI timeline is prime contrarian/forward-looking fodder for Reed's view."
-        },
-        {
-          "headline": "Tesla's profit drops 43% as it ramps Optimus robot production and pushes Cybercab sales",
-          "url": "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
+          "headline": "Anduril and Qualcomm launch BlueChip, a US-made laptop line for defense and government",
+          "url": "https://techcrunch.com/2026/10/27/anduril-qualcomm-launch-bluechip-a-new-kind-of-us-made-laptop/",
           "outlet": "TechCrunch",
           "type": "Business",
           "group": "Tech & AI",
-          "why": "Tesla's profit drop amid Optimus and Cybercab spending is a strategy scoop on Big Tech's AI bets."
+          "why": "Anduril-Qualcomm defense laptop line shows Silicon Valley's growing political and government ties."
         },
         {
-          "headline": "Musk says Tesla and SpaceX boards weighing a $3.5 trillion merger",
-          "url": "https://fortune.com/2026/10/20/elon-musk-tesla-and-spacex-weighing-merger/",
-          "outlet": "Fortune",
-          "type": "Business",
-          "group": "Business",
-          "why": "Musk's proposed Tesla-SpaceX merger is a major executive-strategy and Silicon Valley power story."
-        },
-        {
-          "headline": "Anthropic launches 'Claude Duet,' a proactive always-on agent to rival Meta's Muse and OpenAI's Dots",
-          "url": "https://the-decoder.com/anthropic-takes-on-grok-bot-metas-muse-and-openais-dots-with-its-always-on-agent-claude-duet/",
+          "headline": "OpenAI launches GPT-6.1 Terra, a mid-range model that halves API prices",
+          "url": "https://the-decoder.com/gpt-6-1-terra-halves-openais-api-prices-and-still-gains-ground-on-its-larger-models/",
           "outlet": "The Decoder",
           "type": "Tech",
           "group": "Tech & AI",
-          "why": "Anthropic's Claude Duet launch shows lab-vs-lab competition in agentic AI, not just a routine product drop."
+          "why": "GPT-6.1 Terra's price cuts reflect compute pricing dynamics and competitive AI model strategy."
+        },
+        {
+          "headline": "Anthropic Files for IPO in Global Race to Raise Cash for AI",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/anthropic-ipo-s-1-filing-offers-first-look-at-claude-maker-s-finances",
+          "outlet": "Bloomberg",
+          "type": "Business",
+          "group": "Business",
+          "why": "Bloomberg's Anthropic IPO angle adds detail on governance and losses central to AI power debates."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 22
+      "candidates": 23
     },
     "Business": {
-      "generated_at": "2026-10-22T12:47:50.923897+00:00",
-      "intro": "Today's candidates lean heavily on Middle East-driven oil shocks and AI-fueled market jitters, with a few big-deal and rate-sensitive earnings stories rounding out the mix.",
+      "generated_at": "2026-10-27T15:12:33.747624+00:00",
+      "intro": "Today's lineup centers on AI financing stakes, central bank signals, and market stress from Brazil to China—classic Semafor Business territory.",
       "picks": [
         {
-          "headline": "Global stocks tumble and oil surges past $111 on Middle East escalation",
-          "url": "https://www.ft.com/content/6e318b81-a771-4842-9754-e265fef2852f?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Economy",
-          "group": "Business",
-          "why": "Top-tier convergence (FT, WSJ, Bloomberg, NYT) on an energy shock hitting global markets directly."
-        },
-        {
-          "headline": "AI-fueled stock jitters and Mideast tensions spark a broad market retreat",
-          "url": "https://www.nytimes.com/2026/10/22/business/stocks-oil-prices.html",
-          "outlet": "NYT",
-          "type": "Economy",
-          "group": "Tech & AI",
-          "why": "Combines AI valuation jitters with oil-driven market retreat, core to AI finance coverage."
-        },
-        {
-          "headline": "Meta strikes deal to keep Zuckerberg in California, creates new share class",
-          "url": "https://www.nytimes.com/2026/10/22/business/dealbook/zuckerbergs-big-deal.html",
-          "outlet": "NYT",
-          "type": "Business",
-          "group": "Business",
-          "why": "Major corporate restructuring: Meta's new share class to fund AI buildout while retaining Zuckerberg control."
-        },
-        {
-          "headline": "Musk says Tesla and SpaceX boards weighing a $3.5 trillion merger",
-          "url": "https://fortune.com/2026/10/20/elon-musk-tesla-and-spacex-weighing-merger/",
-          "outlet": "Fortune",
-          "type": "Business",
-          "group": "Business",
-          "why": "Potential $3.5 trillion Tesla-SpaceX merger is a massive corporate deal scoop with real numbers."
-        },
-        {
-          "headline": "Airlines slash 2026 profit forecasts as fuel costs spike",
-          "url": "https://www.cnbc.com/2026/10/22/american-airlines-aal-q3-2026-earnings.html",
-          "outlet": "CNBC",
-          "type": "Business",
-          "group": "Business",
-          "why": "Airlines cutting 2026 forecasts shows energy shock concretely hitting corporate earnings and consumers."
-        },
-        {
-          "headline": "Blackstone profit falls 9.2% as higher rates curb dealmaking",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-22/blackstone-profit-drops-9-2-as-rates-inflation-curb-dealmaking",
+          "headline": "Anthropic Files for IPO in Global Race to Raise Cash for AI",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/anthropic-ipo-s-1-filing-offers-first-look-at-claude-maker-s-finances",
           "outlet": "Bloomberg",
           "type": "Business",
           "group": "Business",
-          "why": "Blackstone's profit drop ties directly to rates curbing dealmaking, a core macro-corporate story."
+          "why": "Major AI IPO filing with huge revenue and loss figures, covered by every top outlet."
         },
         {
-          "headline": "Solar PPA prices jump 5% in Q3 as new trade tariffs bite",
-          "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
-          "outlet": "Utility Dive",
+          "headline": "The Fed Is Expected to Hold Rates Steady. Warsh Will Have to Explain Why.",
+          "url": "https://www.nytimes.com/2026/10/27/business/the-fed-is-expected-to-hold-rates-steady-warsh-will-have-to-explain-why.html",
+          "outlet": "NYT",
+          "type": "Economy",
+          "group": "Business",
+          "why": "Central bank decision on rates amid inflation pressure is core economic coverage."
+        },
+        {
+          "headline": "Meta boosts equity raise to nearly $98 billion to fund AI buildout",
+          "url": "https://bloomberg.com/news/articles/2026-10-26/meta-seeks-up-to-95-billion-in-equity-to-fund-ai-spending",
+          "outlet": "Bloomberg",
           "type": "Business",
+          "group": "Tech & AI",
+          "why": "Meta's massive equity raise exemplifies AI capex financing worries the guide flags."
+        },
+        {
+          "headline": "China Steps In to Rescue Stocks, But the Market Continues to Fall",
+          "url": "https://www.nytimes.com/2026/10/27/business/china-stocks-losses-government-intervention.html",
+          "outlet": "NYT",
+          "type": "Economy",
+          "group": "Business",
+          "why": "China's state intervention in stocks is a major global market story."
+        },
+        {
+          "headline": "A $300 Billion 'Debt Wall' Is Looming Over Private-Equity Backed Companies",
+          "url": "https://www.wsj.com/finance/investing/a-300-billion-debt-wall-is-looming-over-private-equity-backed-companies-d6359497?mod=rss_markets_main",
+          "outlet": "WSJ",
+          "type": "Economy",
+          "group": "Business",
+          "why": "A $300B private-equity debt wall is exactly the restructuring risk this newsletter tracks."
+        },
+        {
+          "headline": "Oil Prices Fall as Traders Assess Iran Diplomacy, Saudi Attacks",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
+          "outlet": "WSJ",
+          "type": "Geopolitics",
           "group": "Energy",
-          "why": "Tariffs pushing up solar PPA prices shows trade policy's direct effect on energy markets and costs."
+          "why": "Oil price swings from Iran diplomacy and Saudi attacks show energy shocks hitting markets."
+        },
+        {
+          "headline": "Microsoft offers buyouts to roughly a quarter of its workforce",
+          "url": "https://arstechnica.com/gadgets/2026/10/microsoft-offers-voluntary-buyouts-to-60000-employees/",
+          "outlet": "Ars Technica",
+          "type": "Business",
+          "group": "Tech & AI",
+          "why": "Microsoft's sweeping buyout offer signals major corporate restructuring at a tech giant."
         }
       ],
       "confidence": "draft",
-      "candidates": 30
+      "candidates": 31
     },
     "Gulf": {
-      "generated_at": "2026-10-22T12:47:56.116845+00:00",
-      "intro": "Today's lineup is dominated by Iran-Israel escalation, Houthi strikes and oil spikes that directly hit Gulf security and economy coverage.",
+      "generated_at": "2026-10-27T15:12:38.255070+00:00",
+      "intro": "Today's lineup centers on Houthi strikes on Saudi Arabia, oil market jitters, and Gulf-linked AI deals, all squarely in Gulf's wheelhouse.",
       "picks": [
         {
-          "headline": "US and Israel draw up plans for post-midterm strikes on Iran",
-          "url": "https://www.wsj.com/world/middle-east/diplomats-race-to-head-off-escalation-with-iran-4dd00ab4?mod=rss_worldnews",
-          "outlet": "WSJ",
-          "type": "Geopolitics",
-          "group": "Gulf & Middle East",
-          "why": "Direct Gulf-US-Iran geopolitics with major strike plans, widely reported, core to the newsletter's war-impact remit."
-        },
-        {
-          "headline": "Deadly Houthi attacks on Saudi airports continue, US orders embassy staff to leave",
-          "url": "https://english.aawsat.com/node/5332317",
-          "outlet": "Asharq Al-Awsat",
+          "headline": "Houthis strike Saudi Arabia's Ras Tanura refinery as explosions rock Riyadh",
+          "url": "https://www.newarab.com/news/houthis-claim-attack-saudi-oil-refinery-blasts-shake-riyadh",
+          "outlet": "The New Arab",
           "type": "Security",
           "group": "Gulf & Middle East",
-          "why": "Houthi attacks on Saudi airports and US embassy evacuation are squarely Gulf security news."
+          "why": "Direct Houthi strike on Saudi's largest refinery is core security coverage for this newsletter."
         },
         {
-          "headline": "Houthi attacks trigger foreign investor sell-off in Saudi markets, FII forum cancelled",
-          "url": "https://www.agbi.com/",
-          "outlet": "AGBI",
+          "headline": "Oil prices slip as markets weigh Iran diplomacy against Saudi attacks",
+          "url": "https://www.wsj.com/world/middle-east/oil-prices-fall-as-traders-assess-iran-diplomacy-saudi-attacks-95bb0210?mod=rss_worldnews",
+          "outlet": "WSJ",
+          "type": "Economy",
+          "group": "Gulf & Middle East",
+          "why": "Oil price moves tied to Iran diplomacy and Saudi attacks hit the oil/OPEC+ beat precisely."
+        },
+        {
+          "headline": "Iran threatens legal action against South Korean tanker giant Sinokor over Hormuz transits",
+          "url": "https://www.al-monitor.com/originals/2026/10/iranian-strait-authority-says-sinokor-vessels-will-face-legal-action",
+          "outlet": "Al-Monitor",
+          "type": "Geopolitics",
+          "group": "Gulf & Middle East",
+          "why": "Iran-Hormuz shipping dispute directly affects Gulf security and tanker traffic coverage."
+        },
+        {
+          "headline": "Apollo's Marc Rowan on $1bn Mubadala deal and Anthropic's IPO",
+          "url": "https://www.thenationalnews.com/podcasts/inside-brief/2026/10/27/apollos-marc-rowan-on-his-1bn-mubadala-deal-ai-valuations-and-anthropics-2tn-ipo/",
+          "outlet": "The National",
           "type": "Business",
           "group": "Gulf & Middle East",
-          "why": "Houthi-driven investor sell-off in Saudi markets and canceled FII forum is a Gulf investment story."
+          "why": "Mubadala's $1bn Apollo deal is exactly the sovereign wealth fund investment angle this newsletter tracks."
         },
         {
-          "headline": "Oil prices surge as Mideast conflict escalates",
-          "url": "https://www.wsj.com/business/energy-oil/oil-prices-rise-more-than-2-as-attacks-on-saudi-arabia-u-s-iran-risks-persist-5599ac83?mod=rss_worldnews",
-          "outlet": "WSJ",
+          "headline": "Qatar's Emir meets Iran's Pezeshkian in Moscow",
+          "url": "https://www.aljazeera.com/news/2026/10/27/qatars-emir-meets-irans-pezeshkian-in-moscow?traffic_source=rss",
+          "outlet": "Al Jazeera",
           "type": "Geopolitics",
-          "group": "Energy",
-          "why": "Oil surging past $111 on Mideast escalation ties directly to OPEC+ and Gulf oil economics."
-        },
-        {
-          "headline": "Global stocks tumble and oil surges past $111 on Middle East escalation",
-          "url": "https://www.ft.com/content/6e318b81-a771-4842-9754-e265fef2852f?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Economy",
-          "group": "Business",
-          "why": "Global market tumble from Houthi attacks links Gulf security directly to business/economy impact."
-        },
-        {
-          "headline": "Oil prices rally and Iran's shadow tanker fleet runs dry amid escalation",
-          "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
-          "outlet": "Bloomberg",
-          "type": "Economy",
           "group": "Gulf & Middle East",
-          "why": "Iran's shadow tanker fleet and oil rally speaks to shipping security and Gulf oil markets."
+          "why": "Qatar's Emir meeting Iran's president touches Gulf-Iran geopolitics and energy diplomacy."
         },
         {
-          "headline": "UAE nominates Lana Nusseibeh to lead the UN amid criticism over Sudan, Israel policy",
-          "url": "https://www.middleeasteye.net/news/uae-nominates-diplomat-lana-nusseibeh-un-secretary-general",
-          "outlet": "Middle East Eye",
+          "headline": "Anthropic Files for IPO in Global Race to Raise Cash for AI",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-26/anthropic-ipo-s-1-filing-offers-first-look-at-claude-maker-s-finances",
+          "outlet": "Bloomberg",
+          "type": "Business",
+          "group": "Business",
+          "why": "Anthropic's IPO ties into Gulf sovereign funds' AI investment interest via Mubadala connection."
+        },
+        {
+          "headline": "Iraq's Al Zaidi dismisses intelligence chief in security shake-up",
+          "url": "https://www.thenationalnews.com/news/mena/2026/10/27/iraqs-al-zaidi-dismisses-intelligence-chief-in-shake-up-of-team/",
+          "outlet": "The National",
           "type": "Politics",
           "group": "Gulf & Middle East",
-          "why": "UAE's UN Secretary-General nomination is a notable Gulf geopolitics and diplomacy story."
+          "why": "Iraq security shake-up fits broader Gulf geopolitics coverage of regional power dynamics."
         }
       ],
       "confidence": "draft",
-      "candidates": 22
+      "candidates": 23
     },
     "China": {
-      "generated_at": "2026-10-22T12:48:00.667033+00:00",
-      "intro": "Today's mix leans into China business and tech friction stories, with EV, chip-export, and labor angles well suited to this newsletter.",
+      "generated_at": "2026-10-27T15:12:43.567429+00:00",
+      "intro": "Today's mix leans heavily on China's economy, Taiwan tensions, and politics ahead of the plenum, with one AI-related China tie-in standing out among tech news.",
       "picks": [
         {
-          "headline": "Nvidia Blackwell Ultra chips found linked to China Telecom despite US export controls",
-          "url": "https://www.techmeme.com/261022/p22#a261022p22",
-          "outlet": "Techmeme",
-          "type": "Geopolitics",
-          "group": "Tech & AI",
-          "why": "Export-control evasion via Nvidia chips tied to China Telecom hits core chips/export-control beat."
-        },
-        {
-          "headline": "Huawei's auto ambitions face a reckoning after Seres rift",
-          "url": "https://www.caixinglobal.com/2026-10-22/cx-daily-huaweis-auto-ambitions-face-a-reckoning-after-seres-rift-102495799.html",
-          "outlet": "Caixin Global",
-          "type": "Business",
-          "group": "China",
-          "why": "Huawei-Seres EV rift is a major Chinese companies/tech story from top-tier Caixin."
-        },
-        {
-          "headline": "CATL's profit growth lags far behind surging revenue",
-          "url": "https://technode.com/2026/10/21/catls-third-quarter-revenue-rises-58-6-as-net-profit-grows-14-5/",
-          "outlet": "TechNode",
-          "type": "Business",
-          "group": "China",
-          "why": "CATL profit-revenue gap is a key Chinese tech/business signal worth flagging."
-        },
-        {
-          "headline": "Micron Taiwan workers strike over AI-profit sharing",
-          "url": "https://caixinglobal.com/2026-10-22/micron-taiwan-workers-stage-strike-seeking-bigger-share-of-ai-profits-102496116.html",
-          "outlet": "Caixin Global",
+          "headline": "China's 'national team' intervenes as stock market rout deepens",
+          "url": "https://www.nytimes.com/2026/10/27/business/china-stocks-losses-government-intervention.html",
+          "outlet": "NYT",
           "type": "Economy",
           "group": "China",
-          "why": "Micron Taiwan strike over AI profits touches labor, Taiwan, and tech supply chain themes."
+          "why": "Stimulus/market intervention by Beijing's 'national team' is core economy coverage, with multiple top outlets converging."
         },
         {
-          "headline": "Who blinked first? EU-China trade peace descends into war of words",
-          "url": "https://www.scmp.com/news/china/diplomacy/article/3371807/who-blinked-first-fragile-eu-china-trade-peace-sparks-new-war-words",
-          "outlet": "SCMP",
-          "type": "Geopolitics",
-          "group": "China",
-          "why": "EU-China trade spat is directly relevant to China's economic diplomacy coverage."
-        },
-        {
-          "headline": "Son of former Chongqing mayor Huang Qifan taken away by authorities",
-          "url": "https://www.caixinglobal.com/news/",
-          "outlet": "Caixin Global",
+          "headline": "CPC's fifth plenum framed as consolidating Xi's authority",
+          "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/10/27/2003866684",
+          "outlet": "Taipei Times",
           "type": "Politics",
           "group": "China",
-          "why": "Political purge story fits China politics focus, especially elite family ties to Bo Xilai era."
+          "why": "Fifth plenum and Xi's consolidation of power is central political coverage for this newsletter."
         },
         {
-          "headline": "Microsoft says Chinese state-linked hackers used AI agents to breach thousands of cloud tenants via ConnectWise",
-          "url": "https://www.theregister.com/security/2026/10/22/microsoft-says-connectwise-breach-let-chinese-spies-loose-on-2250-cloud-tenants/5304687",
-          "outlet": "The Register",
+          "headline": "Xi positions himself as peacemaker ahead of a possible Trump summit",
+          "url": "https://www.wsj.com/world/china/xi-wants-to-play-peacemaker-trump-has-other-ideas-for-a-historic-summit-2c3e0be9?mod=rss_worldnews",
+          "outlet": "WSJ",
+          "type": "Geopolitics",
+          "group": "China",
+          "why": "US-China summit dynamics and Xi's diplomatic positioning directly fit the US-China talks beat."
+        },
+        {
+          "headline": "Taiwan's November local elections carry outsized stakes for Lai and Beijing",
+          "url": "https://www.thewirechina.com/2026/10/25/how-taiwans-november-local-elections-could-change-the-world/",
+          "outlet": "The Wire China",
+          "type": "Politics",
+          "group": "China",
+          "why": "Taiwan's elections and cross-strait stakes are squarely in scope for Taiwan coverage."
+        },
+        {
+          "headline": "Taiwan on alert after Beijing releases high-resolution satellite images of the island",
+          "url": "https://www.scmp.com/news/china/military/article/3372328/taiwan-vows-vigilance-beijing-releases-detailed-satellite-imagery-island-landmarks",
+          "outlet": "SCMP",
+          "type": "Security",
+          "group": "China",
+          "why": "Taiwan security alert over Beijing's satellite imagery fits the Taiwan and security angle."
+        },
+        {
+          "headline": "Cohere says Alibaba's open-source Qwen3.8 model tried to 'phone home' to a Beijing server",
+          "url": "https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know",
+          "outlet": "VentureBeat",
           "type": "Security",
           "group": "Tech & AI",
-          "why": "Chinese state-linked hacking via AI agents ties security, China, and tech race together."
+          "why": "Alibaba's open-source model phoning home to Beijing ties directly into chips/AI race and China tech scrutiny."
+        },
+        {
+          "headline": "US senators scrutinize Cayman-registered broker Webull's China ties",
+          "url": "https://www.thewirechina.com/2026/10/25/company-in-the-news-webull/",
+          "outlet": "The Wire China",
+          "type": "Business",
+          "group": "China",
+          "why": "US scrutiny of a China-linked broker fits Chinese companies abroad and export/finance oversight themes."
         }
       ],
       "confidence": "draft",
-      "candidates": 22
+      "candidates": 23
     },
     "Politics": {
-      "generated_at": "2026-10-22T12:48:15.772435+00:00",
-      "intro": "Midterm dynamics and policy fights dominate today's political feed, with money-in-politics stories offering strong secondary hooks.",
+      "generated_at": "2026-10-27T15:12:57.602777+00:00",
+      "intro": "Midterm week dominates the candidate pool, with reported scoops on GOP anxiety, DOJ actions and campaign money outpacing pure horse-race polling.",
       "picks": [
         {
-          "headline": "Trump's concessions to Putin spark bipartisan revolt as midterms near",
-          "url": "https://www.axios.com/2026/10/14/trump-putin-diesel-deal-midterms-russia",
-          "outlet": "Axios",
-          "type": "Geopolitics",
-          "group": "US politics",
-          "why": "Reported scoop on Trump-Putin concessions sparking bipartisan GOP revolt fits policy fight coverage exactly."
-        },
-        {
-          "headline": "Trump unveils last-minute farm payments to shore up endangered rural Republicans",
-          "url": "https://www.politico.com/news/2026/10/20/trump-farmers-payments-gop-midterms-01128165",
-          "outlet": "Politico",
-          "type": "Politics",
-          "group": "US politics",
-          "why": "Trump's last-minute farm payments blend midterm strategy with the money-behind-politics angle the guide wants."
-        },
-        {
-          "headline": "House Republicans privately bracing for a midterm 'blowout'",
+          "headline": "Inside House GOP panic over a possible midterm blowout",
           "url": "https://punchbowl.news/article/campaigns/republicans-brace-for-midterm-defeat/",
           "outlet": "Punchbowl News",
           "type": "Politics",
           "group": "US politics",
-          "why": "Punchbowl's reporting on private House GOP panic is a real scoop, not just horse-race speculation."
+          "why": "Punchbowl's inside reporting on House GOP panic is exactly the kind of Hill scoop this newsletter favors."
         },
         {
-          "headline": "AIPAC halts direct campaign contributions and candidate endorsements",
-          "url": "https://www.npr.org/2026/10/21/nx-s1-6011531/aipac-campaign-contributions-israel-democrats",
-          "outlet": "NPR",
-          "type": "Politics",
-          "group": "US politics",
-          "why": "AIPAC halting direct contributions is a concrete, reportable shift in campaign finance and political money."
-        },
-        {
-          "headline": "Ramaswamy ad featuring opponent's estranged mother upends Ohio governor's race",
-          "url": "https://thehill.com/homenews/campaign/6164786-acton-responds-ramaswamy-ad-mother/",
-          "outlet": "The Hill",
-          "type": "Politics",
-          "group": "US politics",
-          "why": "Ramaswamy's ad controversy is a reported, specific midterm story with real campaign stakes in Ohio."
-        },
-        {
-          "headline": "Trump administration asks Supreme Court to let border wall construction continue",
-          "url": "https://www.scotusblog.com/2026/10/trump-administration-asks-justices-to-allow-border-wall-construction-to-continue/",
-          "outlet": "SCOTUSblog",
+          "headline": "Trump's DOJ escalates election-related interventions in final midterm stretch",
+          "url": "https://www.axios.com/2026/10/25/trump-doj-midterms-interference",
+          "outlet": "Axios",
           "type": "Law",
           "group": "US politics",
-          "why": "SCOTUS border wall request is a live policy and legal fight tied to the administration's agenda."
+          "why": "Axios scoop on DOJ's preemptive election lawsuit is a reported administration/legal fight, not horse-race filler."
+        },
+        {
+          "headline": "Trump remains the center of the GOP money universe as online fundraising struggles",
+          "url": "https://www.politico.com/news/2026/10/27/trump-gop-online-fundraising-problems-01135716",
+          "outlet": "Politico",
+          "type": "Politics",
+          "group": "US politics",
+          "why": "Politico's reporting on GOP fundraising dependence on big donors fits the 'money behind politics' beat directly."
+        },
+        {
+          "headline": "Lame-duck Congress faces a jammed agenda on defense, FISA and funding",
+          "url": "https://rollcall.com/2026/10/27/defense-priorities-tied-up-in-lame-duck-jumble/",
+          "outlet": "Roll Call",
+          "type": "Politics",
+          "group": "US politics",
+          "why": "Roll Call's lame-duck Congress scoop on defense, FISA and funding is prime Capitol Hill policy-fight material."
+        },
+        {
+          "headline": "Trump's tariffs become a political liability test for Republican candidates",
+          "url": "https://www.axios.com/2026/10/26/trump-tariffs-midterms-republicans",
+          "outlet": "Axios",
+          "type": "Economy",
+          "group": "US politics",
+          "why": "Axios ties tariffs policy fight to midterm politics, satisfying both the policy and economy angles."
+        },
+        {
+          "headline": "Cook Political Report shifts House ratings further toward Democrats",
+          "url": "https://www.cookpolitical.com/ratings/house-race-ratings",
+          "outlet": "Cook Political Report",
+          "type": "Politics",
+          "group": "US politics",
+          "why": "Cook's ratings shift offers new data-driven movement in House races rather than static polling."
         }
       ],
       "confidence": "draft",
-      "candidates": 21
+      "candidates": 24
     },
     "Media": {
-      "generated_at": "2026-10-22T12:48:20.352760+00:00",
-      "intro": "This cycle offers strong media-business and platform-publisher news, plus newsroom drama well suited to Semafor Media's weekly recap.",
+      "generated_at": "2026-10-27T15:13:03.381129+00:00",
+      "intro": "This cycle offers strong Media-specific news on platform/publisher AI fights, ownership strategy, and newsroom economics, with less need to borrow from Tech.",
       "picks": [
         {
-          "headline": "UK politicians and German publishers push regulators to pause Meta's new terms before Oct 30 deadline",
-          "url": "https://www.niemanlab.org/2026/10/u-k-politicians-and-german-publishers-call-on-regulators-to-pause-metas-new-terms-before-october-30-deadline/",
+          "headline": "Skydance takes contrasting approaches to CNN and CBS News amid return-to-office and buyout push",
+          "url": "https://www.status.news/p/david-ellison-skydance-cnn-cbs-news-buyouts-return-office",
+          "outlet": "Status",
+          "type": "Business",
+          "group": "Media",
+          "why": "Direct ownership and strategy story at Skydance's newly merged CNN/CBS News, core to Media's beat."
+        },
+        {
+          "headline": "Meta delays scraping-friendly terms of service after global publisher backlash",
+          "url": "https://www.niemanlab.org/2026/10/meta-delays-rollout-of-terms-that-would-allow-broad-scraping-of-news-sites-legal-experts-are-still-skeptical/",
           "outlet": "Nieman Lab",
           "type": "Tech",
           "group": "Media",
-          "why": "Platform-publisher terms dispute with regulators is core Media beat territory on AI deals and publishers."
+          "why": "Platform-publisher AI scraping deal/dispute with Meta is exactly the kind of news-behind-news this newsletter tracks."
         },
         {
-          "headline": "Canadian publishers sue Anthropic as Google's AI news pilot expands to CNN and Reach",
-          "url": "https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/",
+          "headline": "Norwegian publishers sue Meta over new AI scraping terms",
+          "url": "https://pressgazette.co.uk/news/norwegian-media-companies-take-meta-to-court-over-ai-scraping-terms/",
           "outlet": "Press Gazette",
-          "type": "Law",
+          "type": "Media",
           "group": "Media",
-          "why": "Publisher lawsuit against Anthropic plus Google's news pilot directly fits AI-publisher deal coverage."
+          "why": "Escalation of publisher-Meta AI terms fight into litigation adds a legal dimension to the same ongoing story."
         },
         {
-          "headline": "CNN threatens new legal action over White House blocking Air Force One, Oval Office access",
-          "url": "https://www.poynter.org/commentary/2026/cnn-white-house-air-force-one-press-access-lawsuit/",
-          "outlet": "Poynter",
-          "type": "Politics",
-          "group": "Media",
-          "why": "CNN vs. White House access fight is classic newsroom-meets-power story behind the news."
-        },
-        {
-          "headline": "Peacock posts second straight quarterly profit as Comcast's broadband slide continues",
-          "url": "https://www.thewrap.com/industry-news/business/comcast-earnings-q3-2026/",
-          "outlet": "TheWrap",
+          "headline": "Journalism job cuts continue, with Telegraph set to cut around 100 roles",
+          "url": "https://pressgazette.co.uk/news/journalism-job-cuts-in-2026-updates/",
+          "outlet": "Press Gazette",
           "type": "Business",
           "group": "Media",
-          "why": "Peacock's profit amid Comcast's broadband woes is a clean streaming economics story."
+          "why": "Newsroom job cuts at the Telegraph fit the guide's focus on ad/subscription economics and staffing moves."
         },
         {
-          "headline": "Spotify tops 306 million premium subscribers as revenue jumps 16%",
-          "url": "https://www.thewrap.com/creative-content/music/spotify-earnings-q3-2026/",
-          "outlet": "TheWrap",
+          "headline": "Netflix struggles to satisfy advertisers as streaming ad glut widens",
+          "url": "https://variety.com/2026/tv/news/netflix-streaming-ads-squeeze-greg-peters-ted-sarandos-1236931807/",
+          "outlet": "Variety",
           "type": "Business",
           "group": "Media",
-          "why": "Spotify subscriber and revenue growth fits the subscription-business economics focus."
+          "why": "Streaming ad economics story on Netflix struggling with advertisers hits the guide's streaming/ad business focus."
         },
         {
-          "headline": "CBS pairs DraftKings branding with Election Night coverage, stirring internal unease",
-          "url": "https://www.status.news/",
+          "headline": "Kushner's lawyers threaten Vanity Fair over bombshell excerpt from new book",
+          "url": "https://www.status.news/p/jared-kushner-vanity-fair-book-matthew-cole",
           "outlet": "Status",
           "type": "Media",
           "group": "Media",
-          "why": "CBS's DraftKings Election Night tie-up is an inside-newsroom strategy and ad-business story."
+          "why": "Legal threat over a book excerpt is a newsroom/publishing news story with media-law intrigue."
         },
         {
-          "headline": "Bari Weiss's CBS News remains a lightning rod a year into her tenure",
-          "url": "https://puck.news/why-media-reporters-cant-stop-covering-bari-weiss/",
-          "outlet": "Puck",
-          "type": "Media",
+          "headline": "BBC aggressively fights Trump's Florida defamation lawsuit",
+          "url": "https://www.cjr.org/the_media_today/how-the-bbc-is-fighting-back-florida-trump-defamation-lawsuit.php",
+          "outlet": "Columbia Journalism Review",
+          "type": "Law",
           "group": "Media",
-          "why": "Bari Weiss's CBS News tenure is exactly the ownership-and-strategy-at-big-outlets narrative this newsletter tracks."
+          "why": "BBC's legal strategy against Trump's defamation suit is a notable media-law story behind the news."
         }
       ],
       "confidence": "draft",
-      "candidates": 16
+      "candidates": 15
     }
   }
 }
