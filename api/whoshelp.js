@@ -739,6 +739,31 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Slack gives up after 3 seconds, but the lookup (sheet, rules, Claude,
+  // Slack user list) takes longer. So: answer Slack right away, finish the
+  // lookup in the background, and post the result to Slack's response_url.
+  const responseUrl = params.get('response_url');
+  const vercelCtx = globalThis[Symbol.for('@vercel/request-context')]?.get?.();
+
+  if (responseUrl && vercelCtx && typeof vercelCtx.waitUntil === 'function') {
+    res.status(200).json({ response_type: 'ephemeral', text: `Looking up "${query}"…` });
+    vercelCtx.waitUntil(
+      buildHelpPayload(query).then((payload) =>
+        fetch(responseUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...payload, replace_original: true }),
+        })
+      ).catch((err) => console.error('whoshelp background error', err))
+    );
+    return;
+  }
+
+  // Fallback: old behaviour (answer only once the lookup is done).
+  res.status(200).json(await buildHelpPayload(query));
+}
+
+async function buildHelpPayload(query) {
   try {
     const csvResp = await fetch(`${SHEET_CSV_URL}${SHEET_CSV_URL.includes('?') ? '&' : '?'}_ts=${Date.now()}`);
     if (!csvResp.ok) throw new Error(`Sheet fetch failed: ${csvResp.status}`);
@@ -748,11 +773,10 @@ export default async function handler(req, res) {
     const matches = await findMatches(query, people);
 
     if (!matches || !matches.length) {
-      res.status(200).json({
+      return {
         response_type: 'ephemeral',
         text: `Couldn't find anyone in the directory for "${query}". Try rephrasing?`,
-      });
-      return;
+      };
     }
 
     const byName = Object.fromEntries(people.map((p) => [p.name, p]));
@@ -774,11 +798,11 @@ export default async function handler(req, res) {
     const slackUserMap = await fetchSlackUserMap();
     const { text, blocks } = buildResponse(query, annotated, byName, slackUserMap);
 
-    res.status(200).json({ response_type: 'ephemeral', text, blocks });
+    return { response_type: 'ephemeral', text, blocks };
   } catch (err) {
-    res.status(200).json({
+    return {
       response_type: 'ephemeral',
       text: `Something went wrong looking that up: ${err.message}`,
-    });
+    };
   }
 }
