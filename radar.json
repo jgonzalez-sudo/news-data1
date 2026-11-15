@@ -2,108 +2,113 @@
   "groups": {
     "Business": {
       "description": "What the major business and general-news outlets are leading with.",
-      "generated_at": "2026-11-15T12:30:53.319642+00:00",
-      "overview": "Coverage across business and general-news outlets is dominated by the fallout from Nvidia founder Jensen Huang's resignation amid a spy-affair scandal, which is reshaping conversations about AI industry leadership, China export policy, and market stability. The imminent Anthropic IPO and a worldwide Microsoft outage are the other major threads tying together outlets this week.",
+      "generated_at": "2026-11-15T19:14:54.475115+00:00",
+      "overview": "Coverage is dominated by the fallout from Nvidia CEO Jensen Huang's resignation amid an alleged Chinese espionage scandal, and the high-stakes Anthropic IPO landing in its shadow. Outlets are also tracking a sharp AI-stocks selloff, a global Microsoft/FAA tech outage, and US-China tensions ahead of the Trump-Xi summit.",
       "stories": [
         {
           "type": "Business",
-          "headline": "Nvidia Board Urged to Weigh Reinstating Jensen Huang as Scandal Fallout Widens",
-          "outlet": "CNBC",
-          "url": "https://www.cnbc.com/2026/11/14/nvidia-investors-jensen-huang-return-board-letter.html",
-          "summary": "Nvidia founder Jensen Huang resigned amid affair allegations including one involving a suspected Chinese spy, and two major shareholders, Altimeter's Brad Gerstner and Atreides' Gavin Baker, are now pressing the board to leave open the possibility of his return rather than rushing a permanent successor. The saga has triggered congressional testimony demands, shareholder lawsuits, and a roughly $450 billion hit to Nvidia's market value.",
+          "headline": "Nvidia leadership crisis deepens with Bessent, Congress and Musk weighing in",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/24edbb84-7520-4ef0-a57c-30359e12ccc5?syn-25a6b1a6=1",
+          "summary": "Treasury Secretary Scott Bessent is pushing Nvidia to install an outside CEO and has questioned whether the chipmaker skirted China export restrictions, while Congress moves to tighten AI chip export rules and Commerce Secretary Lutnick faces mounting scrutiny over his ties to the company; Elon Musk has meanwhile called for Jensen Huang's reinstatement.",
           "also_covered_by": [
             "WSJ",
-            "NYT",
-            "FT",
+            "BBC",
             "Washington Post",
             "The Economist",
-            "BBC",
-            "Forbes",
-            "Fortune",
-            "The Information",
-            "Bloomberg"
+            "Axios",
+            "CNBC"
           ],
-          "via": "search"
+          "via": "feed"
         },
         {
-          "type": "Geopolitics",
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "summary": "FT reports that Jensen Huang's alleged affair with a suspected Chinese spy has added momentum for lawmakers to tighten U.S. export restrictions on AI chips reaching China. Commerce Secretary Howard Lutnick is also facing scrutiny over his handling of the Megaspeed export-control investigation tied to the affair.",
+          "type": "Business",
+          "headline": "Anthropic's historic IPO lands as a referendum on the AI trade",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom",
+          "summary": "Anthropic is set to debut on the Nasdaq this week in what could be the largest IPO ever, with Nvidia, Google and other partners committing $26 billion in a concurrent private placement; the listing comes just days after Nvidia's first earnings report without Jensen Huang, making it a high-stakes test of investor faith in AI according to multiple outlets.",
           "also_covered_by": [
-            "BBC",
-            "Washington Post",
-            "The Economist"
+            "NYT",
+            "FT",
+            "Axios",
+            "Fortune",
+            "CNBC",
+            "The Information",
+            "WSJ"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Economy",
+          "headline": "Data center construction stocks lose $4.2 trillion as AI trade unravels",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
+          "summary": "Shares in AI 'picks and shovels' companies have been hit hard by a broader tech sell-off, as instability at Nvidia and questions over the AI buildout spook markets, with the Nasdaq erasing nearly $2.5 trillion in a single session according to Fortune's reporting.",
+          "also_covered_by": [
+            "WSJ",
+            "Axios",
+            "Fortune"
           ],
           "via": "feed"
         },
         {
           "type": "Tech",
-          "headline": "Anthropic Prices Record IPO Targeting Over $1 Trillion Valuation Amid AI Market Jitters",
-          "outlet": "Axios",
-          "url": "https://www.axios.com/2026/11/10/anthropic-ipo-terms",
-          "summary": "Anthropic set terms for what could be one of the largest IPOs ever, with the company seeking to raise up to $62.5 billion at a market cap that could top $1 trillion. The offering, expected to begin trading this week, is being closely watched as a referendum on the broader AI trade just as Nvidia's leadership crisis has rattled investor confidence.",
+          "headline": "Microsoft Outlook outage and FAA groundstop expose tech fragility",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/11/15/business/technology-dependence-microsoft-airlines.html",
+          "summary": "A global Microsoft Outlook/Teams/Copilot outage that disrupted government services, hospitals and police departments, coinciding with an FAA router failure, has highlighted how dependent critical infrastructure is on a handful of fragile tech systems; Microsoft says services are now fully restored.",
           "also_covered_by": [
-            "WSJ",
-            "NYT",
-            "FT",
-            "Forbes"
+            "Washington Post",
+            "BBC",
+            "Bloomberg"
           ],
-          "via": "search"
+          "via": "feed"
+        },
+        {
+          "type": "Geopolitics",
+          "headline": "US and allies sign accord to shield AI supply chains from China ahead of Trump-Xi summit",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/3c2197fc-9618-4838-91e6-522ce1a96a22?syn-25a6b1a6=1",
+          "summary": "The United States and allied nations have signed a pact aimed at protecting AI supply chains from China, timed just ahead of President Trump's planned meeting with Xi Jinping at the APEC forum in Shenzhen.",
+          "also_covered_by": [],
+          "via": "feed"
         },
         {
           "type": "Tech",
-          "headline": "Microsoft Says All Services Restored After Day-Long Global Outage",
-          "outlet": "Washington Post",
-          "url": "https://www.washingtonpost.com/the-seven/2026/11/14/microsoft-services-restored-after-global-outage/",
-          "summary": "Microsoft said it completed efforts to fix a global outage that had disrupted Outlook, Teams, and Copilot, affecting communications at hospitals, police departments, and government services worldwide.",
+          "headline": "SpaceX achieves historic Starship rocket catch",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/11/14/science/spacex-starship-first-catch.html",
+          "summary": "SpaceX's Starship spacecraft returned from orbit and was caught at the same Texas launch site, a milestone toward the company's vision of fully reusable rockets.",
           "also_covered_by": [
-            "NYT",
+            "The Economist"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Megaspeed discloses timeline of Alice Huang's departure, deepening Nvidia spy scandal",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/11/15/business/megaspeed-alice-huang-nvidia-china.html",
+          "summary": "Singapore-based Megaspeed disclosed that former executive Alice Huang, who had a relationship with ousted Nvidia CEO Jensen Huang and is suspected by US officials of spying for China, left the company in August 2025, adding new detail to the unfolding timeline.",
+          "also_covered_by": [
             "BBC"
           ],
           "via": "feed"
         },
         {
           "type": "Economy",
-          "headline": "Data Centre Construction Stocks Lose $4.2tn as AI Trade Boom Unravels",
-          "outlet": "FT",
-          "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
-          "summary": "Shares in AI infrastructure 'picks and shovels' companies have been hit hard by a broader tech selloff, with data center construction stocks collectively losing trillions in value as skepticism grows about the pace of the AI buildout.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Tech",
-          "headline": "SpaceX Makes History With Successful Rocket Catch in Texas",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/11/14/science/spacex-starship-first-catch.html",
-          "summary": "SpaceX's Starship spacecraft returned from orbit and landed at the same site where it launched, marking a milestone toward the company's goal of fully reusable rockets.",
+          "headline": "Nvidia scandal reaches the heart of Trump's cabinet",
+          "outlet": "The Economist",
+          "url": "https://www.economist.com/united-states/2026/11/13/the-jensen-huang-scandal-reaches-donald-trumps-cabinet",
+          "summary": "The fallout from Jensen Huang's downfall is spreading into the Trump administration, with Commerce Secretary Howard Lutnick facing pointed questions over his handling of chip export policy toward China.",
           "also_covered_by": [
-            "Bloomberg"
+            "BBC",
+            "Axios"
           ],
-          "via": "feed"
-        },
-        {
-          "type": "Law",
-          "headline": "Family Dollar to Pay $63 Million Settlement for Overcharging Customers",
-          "outlet": "NYT",
-          "url": "https://www.nytimes.com/2026/11/14/business/family-dollar-overcharging-settlement.html",
-          "summary": "The discount retailer agreed to a $63 million settlement after federal regulators and 17 states alleged it had been overcharging shoppers at checkout since 2023.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Economy",
-          "headline": "Crypto's Slow-Motion Selloff Leaves Traders Weary and Hopeless",
-          "outlet": "Bloomberg",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-15/crypto-s-slow-motion-selloff-leaves-traders-weary-and-hopeless",
-          "summary": "Bitcoin's latest decline is testing even committed crypto investors as prices approach their lowest levels of the year amid broader market turbulence.",
-          "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "No recent business-relevant items were found for Business Insider or Puck. Politico's recent output in the feed was limited to general political stories (Alaska governor race, NY politics) without a clear business angle.",
+      "gaps": "Puck, Forbes and Business Insider yielded little distinct business coverage beyond general Jensen Huang/Nvidia commentary already found via Fortune and Axios; Politico's recent items were largely political (midterms, MAGA polling) rather than business-focused so were excluded.",
       "outlets": [
         "WSJ",
         "Bloomberg",
@@ -126,64 +131,68 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 6,
-        "search": 2,
+        "feed": 8,
+        "search": 0,
         "both": 0
       },
       "balance_added": 0
     },
     "US politics": {
       "description": "US politics and policy coverage.",
-      "generated_at": "2026-11-15T12:31:27.100935+00:00",
-      "overview": "Coverage across these outlets is dominated by the fallout from Democrats' sweeping Nov. 3 midterm victories, especially the fight over who leads Senate Democrats and how Republicans regrouped under Thune. Secondary threads include the Supreme Court's new asylum case, the lame-duck legislative agenda, and continuing fallout from the Nvidia/Jensen Huang spy scandal.",
+      "generated_at": "2026-11-15T19:15:38.022851+00:00",
+      "overview": "US politics coverage is dominated by the fallout from Democrats' sweeping midterm wins, including a rare internal leadership fight as Chris Van Hollen challenges Chuck Schumer for Senate Democratic leader, and a Friday nationwide FAA ground stop that has triggered a scramble for billions in emergency air-traffic-control funding. Outlets are also tracking Democrats' post-election strategy sessions in Denver, a brewing Nvidia/China national-security scandal threatening Commerce Secretary Lutnick, and escalating Iran-related tensions testing the Trump-Vance relationship.",
       "stories": [
         {
           "type": "Politics",
-          "headline": "Van Hollen's insurgent challenge to Schumer roils Senate Democrats",
+          "headline": "Van Hollen challenges Schumer for Senate Democratic leader",
           "outlet": "Axios",
-          "url": "https://www.axios.com/2026/11/13/senate-democrats-van-hollen-schumer-election",
-          "summary": "Sen. Chris Van Hollen is mounting the first contested Senate Democratic leadership race in over 30 years, challenging Chuck Schumer ahead of a Dec. 1 secret-ballot vote, with Schumer currently holding more public endorsements (14 to 5) but needing 28-29 votes to win.",
+          "url": "https://www.axios.com/2026/11/13/schumer-van-hollen-senate-majority-leader",
+          "summary": "Sen. Chris Van Hollen is mounting an insurgent bid against Chuck Schumer for Senate Democratic leader ahead of a Dec. 1 secret-ballot vote, with Van Hollen claiming over 10 senators' support while Schumer says he has the votes to win, exposing deep divisions in the party just after its historic midterm sweep.",
           "also_covered_by": [
-            "Punchbowl News",
             "The Hill",
             "NPR",
-            "Fox News"
+            "Washington Examiner",
+            "RealClearPolitics"
           ],
           "via": "search"
         },
         {
           "type": "Politics",
-          "headline": "Thune survives bruising post-election leadership fight",
-          "outlet": "Fox News",
-          "url": "https://www.foxnews.com/politics/inside-senate-gops-tense-post-election-reckoning-thune-clashes-republican-critics",
-          "summary": "Senate Republicans kept John Thune as leader by acclamation after a contentious closed-door meeting in which conservative critics demanded a lame-duck strategy roadmap before voting, with one lawmaker comparing the session to \"Festivus.\"",
+          "headline": "Trump administration escalates funding demands after nationwide FAA ground stop",
+          "outlet": "Roll Call",
+          "url": "https://rollcall.com/2026/11/13/air-travel-halt-prompts-calls-for-faa-communications-upgrades/",
+          "summary": "After Friday's nationwide ground stop, Transportation Secretary Sean Duffy raised his ask to Congress to $50 billion for air-traffic-control modernization, up from $30.1 billion a day earlier, while Democrats including Van Hollen question why previously appropriated funds weren't fully spent.",
           "also_covered_by": [
-            "Punchbowl News",
-            "The Hill"
+            "The Hill",
+            "Fox News",
+            "Washington Examiner",
+            "Stateline",
+            "Courthouse News",
+            "Washington Post"
           ],
-          "via": "feed"
+          "via": "both"
         },
         {
           "type": "Politics",
-          "headline": "Democrats chart post-midterm path at Denver conference as blue wave reshapes states",
+          "headline": "Democrats gather in Denver to chart post-midterm path, warn against overreach",
           "outlet": "NPR",
           "url": "https://www.npr.org/2026/11/14/nx-s1-6037777/democrats-midterms-whats-next-conference",
-          "summary": "Democrats from across the country gathered in Denver for a two-day conference to plot strategy after midterm wins that also ended long-running GOP dominance in state legislatures and will give women a record number of state legislative seats.",
+          "summary": "Democrats from across the country met in Denver for a two-day conference following their sweeping midterm victories, with party figures warning the sweeping wins could be squandered if the party doesn't manage its newfound power carefully.",
           "also_covered_by": [
-            "Stateline",
             "RealClearPolitics",
-            "The Hill"
+            "The Dispatch"
           ],
           "via": "feed"
         },
         {
-          "type": "Politics",
-          "headline": "Democrat Jonathan Kreiss-Tomkins flips Alaska's governorship",
-          "outlet": "Politico",
-          "url": "https://www.politico.com/news/2026/11/14/jonathan-kreiss-tomkins-wins-alaska-governor-01166573",
-          "summary": "Politico reports it is the first time Alaskans have elected a Democrat to the corner office in over two decades, part of the broader post-midterm realignment in the state.",
+          "type": "Business",
+          "headline": "Nvidia/China scandal puts Commerce Secretary Lutnick in the crosshairs",
+          "outlet": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2026/nov/13/nvidia-scandal-sparks-us-national-security-concerns-china",
+          "summary": "Treasury Secretary Scott Bessent has reportedly blamed Commerce Secretary Howard Lutnick's department for inaction as questions mount over senior Trump officials' knowledge of an alleged Chinese spy's ties to Nvidia's Jensen Huang, with Lutnick facing calls for his ouster.",
           "also_covered_by": [
-            "NPR"
+            "RealClearPolitics",
+            "The Hill"
           ],
           "via": "feed"
         },
@@ -192,46 +201,42 @@
           "headline": "Supreme Court agrees to hear case on Trump's asylum suspension",
           "outlet": "SCOTUSblog",
           "url": "https://www.scotusblog.com/2026/11/supreme-court-agrees-to-hear-case-on-trump-administrations-suspension-of-asylum/",
-          "summary": "The Supreme Court will take up a challenge to the Trump administration's \"invasion\"-based asylum ban at the southern border, a case Roll Call notes will put a signature immigration policy before the justices.",
-          "also_covered_by": [
-            "Roll Call"
-          ],
+          "summary": "The Supreme Court has agreed to take up a challenge to the Trump administration's suspension of asylum processing, setting up a major ruling on executive authority over immigration law.",
+          "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Politics",
-          "headline": "GOP's lame-duck agenda centers on judicial confirmations and defense funding",
-          "outlet": "The Hill",
-          "url": "https://thehill.com/homenews/senate/6221099-gop-lame-duck-agenda-cramer/",
-          "summary": "Sen. Kevin Cramer said Senate Republicans will prioritize confirming Trump's federal judge nominees and advancing a reconciliation package to fund defense during their final weeks controlling the chamber, with Thune touting 58 confirmed judges so far this Congress.",
+          "type": "Geopolitics",
+          "headline": "Vance and Trump diverge on how to end the Iran War as Bahrain fends off Iranian drone strikes",
+          "outlet": "NPR",
+          "url": "https://www.npr.org/2026/11/15/nx-s1-6040447/in-calling-for-an-end-to-the-iran-war-vance-walks-a-fine-line-with-trump",
+          "summary": "A rift is opening between President Trump and Vice President Vance over how to end the Iran War, even as Bahrain said it intercepted a six-drone Iranian attack on a U.S. airbase early Sunday.",
           "also_covered_by": [
-            "Punchbowl News"
-          ],
-          "via": "both"
-        },
-        {
-          "type": "Business",
-          "headline": "Trump's economic advisers clash over Commerce's handling of Nvidia spy scandal",
-          "outlet": "Washington Post",
-          "url": "https://www.washingtonpost.com/business/2026/11/13/treasury-secretary-points-commerce-secretary-failure-restrict-nvidia-customer/",
-          "summary": "The Washington Post reports Treasury Secretary pointed blame at Commerce Secretary Howard Lutnick over the department's investigation into whether Megaspeed, tied to the Jensen Huang spy-sex scandal, breached export restrictions; The Guardian similarly reports Lutnick faces questions over what senior officials knew.",
-          "also_covered_by": [
-            "The Guardian",
-            "RealClearPolitics"
+            "The Hill",
+            "WSJ"
           ],
           "via": "feed"
         },
         {
           "type": "Security",
-          "headline": "Pentagon prepares its own prosecution of general accused of leaking",
+          "headline": "Pentagon prepares own prosecution of general accused of leaking",
           "outlet": "Washington Post",
           "url": "https://www.washingtonpost.com/national-security/2026/11/15/pentagon-prepares-its-own-prosecution-lt-gen-brett-sylvia/",
-          "summary": "Lt. Gen. Brett Sylvia now faces legal jeopardy on two fronts after allegations from Defense Secretary Pete Hegseth's team were previously referred to the Justice Department, according to the Washington Post.",
+          "summary": "Lt. Gen. Brett Sylvia now faces legal jeopardy on two fronts after the Pentagon moved to pursue its own prosecution following allegations from Defense Secretary Pete Hegseth's team that were already referred to the Justice Department.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "Alaska elects first Democratic governor in two decades",
+          "outlet": "Politico",
+          "url": "https://www.politico.com/news/2026/11/14/jonathan-kreiss-tomkins-wins-alaska-governor-01166573",
+          "summary": "Democrat Jonathan Kreiss-Tomkins flipped Alaska's governorship, marking the first time Alaskans have elected a Democrat to the corner office in more than two decades.",
           "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "Could not verify current leading stories from NYT or WSJ beyond the single feed items provided, as these outlets block web search; National Review and Washington Examiner's recent output leaned toward opinion/culture pieces rather than hard news, limiting usable items from those outlets this cycle.",
+      "gaps": "Punchbowl News and NOTUS had no recent (last 48-hour) coverage available via search; Cook Political Report's most recent available analysis predates the last 48 hours. Politico, NYT, WSJ, and The Guardian were limited to the feed items provided since these outlets block web search.",
       "outlets": [
         "Politico",
         "Axios",
@@ -261,111 +266,119 @@
     },
     "Tech & AI": {
       "description": "Technology and AI coverage.",
-      "generated_at": "2026-11-15T12:32:07.601246+00:00",
-      "overview": "Coverage across tech and AI outlets is dominated by the fallout from Nvidia CEO Jensen Huang's resignation over an alleged affair with a suspected Chinese spy, and by Anthropic's blockbuster, oversubscribed IPO this week. Secondary threads include a nationwide FAA ground stop blamed on legacy equipment, Tesla's limited Cybercab rollout, and new evidence of Chinese AI labs circumventing chip export controls.",
+      "generated_at": "2026-11-15T19:16:34.101664+00:00",
+      "overview": "Coverage across nearly every tech and AI outlet is dominated by the fallout from Nvidia CEO Jensen Huang's resignation amid a Chinese espionage scandal, and by Anthropic's blockbuster, oversubscribed IPO expected to be the largest in history. Secondary threads include US-China tech decoupling (a new Pax Silica allied tech-protection pact, scrutiny of Commerce Secretary Lutnick, and reports Chinese labs are training on banned Nvidia chips), plus Apple's smart glasses plans and a nationwide FAA ground stop that renewed worries about tech fragility.",
       "stories": [
         {
           "type": "Business",
-          "headline": "Nvidia's leadership crisis deepens after Jensen Huang's ouster",
-          "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/",
-          "summary": "Nvidia's security chief quietly departed in August, raising fresh questions about oversight just as Jensen Huang stepped down over his relationship with an executive at a firm suspected of helping funnel chips to China; a petition backed by Elon Musk and other tech executives calling for Huang's reinstatement had passed 115,000 signatures. The Information reported that the resignation left 'far more questions than answers,' while Rest of World and Techmeme note Asian governments and insiders are scrambling to assess the fallout.",
+          "headline": "Nvidia CEO Jensen Huang Resigns, Creating Uncertainty for the AI Sector",
+          "outlet": "The Information",
+          "url": "https://www.theinformation.com/articles/nvidia-ceo-jensen-huang-resigns-creating-uncertainty-ai-sector",
+          "summary": "The Information reports Jensen Huang's resignation 'upends the world's second-most-valuable company and rattles one of the foundations of the AI economy,' with CFO Colette Kress stepping in as interim CEO; a staff and tech-industry petition (signed by Elon Musk and others) to reinstate him has drawn more than 100,000 signatures. VentureBeat separately assesses whether the departure could puncture the broader 'AI bubble,' noting Nvidia's extensive circular financing deals with AI startups as the biggest risk.",
           "also_covered_by": [
+            "TechCrunch",
+            "The Verge",
             "The Decoder",
-            "Techmeme",
-            "Rest of World",
-            "The Information",
+            "The Register",
+            "NYT",
             "WSJ",
             "FT",
+            "Bloomberg",
             "The Economist",
-            "Bloomberg",
             "The Guardian",
-            "NYT",
-            "Platformer",
             "VentureBeat"
-          ],
-          "via": "feed"
-        },
-        {
-          "type": "Business",
-          "headline": "Anthropic's IPO is six times oversubscribed, on track to be the largest ever",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/anthropics-ipo-is-six-times-oversubscribed-and-on-track-to-become-the-largest-public-offering-in-history/",
-          "summary": "Anthropic is on track for the largest IPO ever, with orders exceeding available shares by a factor of six, as the company targets a roughly $1.4 trillion valuation and Nvidia itself buys $10 billion of stock through a concurrent private placement. CEO Dario Amodei told JPMorgan's Jamie Dimon he hopes the offering will 'underpromise and overdeliver,' even as he separately admitted deep uncertainty about compute spending heading into next year.",
-          "also_covered_by": [
-            "WSJ",
-            "FT",
-            "NYT",
-            "Bloomberg",
-            "Techmeme"
           ],
           "via": "search"
         },
         {
-          "type": "Tech",
-          "headline": "FAA's nationwide ground stop traced to copper-wire replacement work",
-          "outlet": "The Verge",
-          "url": "https://www.theverge.com/transportation/1033898/faa-ground-stop-sean-duffy-faa-copper-wire",
-          "summary": "Transportation Secretary Sean Duffy said Friday's nationwide ground stop, the FAA's third ever, stemmed from routine work replacing outdated copper wiring with fiber, and FAA administrator Bryan Bedford stressed there was 'zero evidence of anything AI-related.' Ars Technica and The Register also covered the outage and its causes, while Ars separately reported the FAA has been expanding AI-based tools to manage air traffic congestion without involving the controllers' union.",
+          "type": "Business",
+          "headline": "Anthropic's IPO Makes Dario Amodei the New Face of the AI Boom",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom",
+          "summary": "Anthropic is set to go public this week in what is expected to be the largest IPO ever, with Bloomberg noting the debut will force Dario Amodei to fill the 'leading pitchman' void left by Huang while proving AI firms can turn infrastructure spending into real profit. The Decoder reports the offering, aiming to raise up to $64.4 billion at a roughly $1.4 trillion valuation, is already about six times oversubscribed even as Amodei admits 'huge uncertainty' over nearly $901 billion in compute commitments.",
           "also_covered_by": [
-            "TechCrunch",
-            "Ars Technica",
-            "The Register",
-            "NYT"
+            "NYT",
+            "WSJ",
+            "FT",
+            "The Decoder",
+            "TechCrunch"
+          ],
+          "via": "both"
+        },
+        {
+          "type": "Politics",
+          "headline": "Bessent Urges Nvidia to Pick Outsider as Next CEO",
+          "outlet": "WSJ",
+          "url": "https://www.wsj.com/tech/ai/bessent-urges-nvidia-to-pick-outsider-as-next-ceo-f9d21a83?mod=rss_worldnews",
+          "summary": "Treasury Secretary Scott Bessent is pushing Nvidia to hire an external CEO and has demanded answers within 10 days on whether the company pushed 'seemingly illicit' chip sales to China to boost revenue. FT and Techmeme report the same demand for a leadership 'shake-up,' while the Economist and Guardian note the scandal is also fueling momentum in Congress for tighter chip export rules.",
+          "also_covered_by": [
+            "FT",
+            "Techmeme",
+            "Bloomberg",
+            "The Economist",
+            "The Guardian"
           ],
           "via": "feed"
         },
         {
-          "type": "Business",
-          "headline": "Tesla opens limited Cybercab pre-orders with steep monthly fee",
-          "outlet": "TechCrunch",
-          "url": "https://techcrunch.com/2026/11/14/tesla-opens-cybercab-pre-orders-for-personal-use-with-geo-restrictions-and-a-299-monthly-fee/",
-          "summary": "Tesla began inviting select customers to pre-order a Cybercab 'for personal use,' complete with geographic restrictions and a $299 monthly subscription fee that even Elon Musk conceded is too high. The Verge noted the fine print tempers Tesla's autonomous-future marketing, as the offer applies only to a limited pool of buyers for now.",
+          "type": "Geopolitics",
+          "headline": "US and Pax Silica Allies Agree to Joint List of AI Technologies to Protect from China",
+          "outlet": "Financial Times",
+          "url": "https://www.ft.com/content/3c2197fc-9618-4838-91e6-522ce1a96a22?syn-25a6b1a6=1",
+          "summary": "The US and allies including Japan, the UK and India have agreed to create a joint list of AI technologies and supply chains to shield from China, timed ahead of Trump's meeting with Xi Jinping at the APEC forum in Shenzhen.",
           "also_covered_by": [
-            "The Verge"
+            "Techmeme"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Politics",
+          "headline": "Investigation: Lutnick Pushed to Narrow Chip Curbs Affecting Former Firm's Client",
+          "outlet": "New York Times",
+          "url": "https://www.techmeme.com/261115/p9#a261115p9",
+          "summary": "An NYT investigation reported via Techmeme alleges Commerce Secretary Howard Lutnick pushed to narrow chip export curbs affecting a client of his former firm, Cantor Fitzgerald, whose Malaysia data center may serve China's Tencent, adding to scrutiny as Lutnick is set to join Trump on a trip to China this week.",
+          "also_covered_by": [
+            "The Guardian"
           ],
           "via": "feed"
         },
         {
           "type": "Security",
-          "headline": "Chinese AI labs reportedly training on Nvidia's Blackwell chips despite export controls",
+          "headline": "Chinese AI Labs Are Training Models on Nvidia's Blackwell Despite Export Controls",
           "outlet": "The Register",
           "url": "https://www.theregister.com/ai-and-ml/2026/11/13/chinese-ai-labs-are-training-models-on-nvidias-blackwell-despite-export-controls-says-ex-openai-engineer/5309891",
-          "summary": "A forensic report cited by an ex-OpenAI engineer claims to have found Blackwell's technical fingerprint in models from DeepSeek, Moonshot AI, MiniMax and Ant Group, suggesting Chinese labs are accessing restricted Nvidia hardware despite U.S. export controls. The finding lands amid heightened scrutiny of chip-smuggling routes following the Jensen Huang scandal.",
+          "summary": "A forensic report cited by The Register finds fingerprints of Nvidia's export-banned Blackwell GPUs in models from DeepSeek, Moonshot AI, MiniMax and Ant Group. TechCrunch similarly reports that China's most powerful open-weight AI models were trained on Nvidia chips the U.S. government had restricted from export, intensifying scrutiny of Nvidia amid the Huang scandal.",
           "also_covered_by": [
-            "WSJ"
+            "TechCrunch"
           ],
           "via": "feed"
         },
         {
-          "type": "Society",
-          "headline": "South Korea's top exam scorer admits using AI to cheat",
-          "outlet": "The Guardian",
-          "url": "https://www.theguardian.com/technology/2026/nov/15/ai-cheating-south-korea-college-entrance-exam",
-          "summary": "A test-taker who scored near-perfectly on a South Korean national exam admitted to sending photos of questions to an AI tool, stoking fears of similar cheating ahead of next week's national college entrance exam.",
-          "also_covered_by": [],
+          "type": "Tech",
+          "headline": "FAA Ground Stop and Microsoft Outlook Outage Expose Fragile Tech Dependence",
+          "outlet": "NYT",
+          "url": "https://www.nytimes.com/2026/11/15/business/technology-dependence-microsoft-airlines.html",
+          "summary": "NYT argues that back-to-back incidents involving Microsoft Outlook and a nationwide FAA ground stop this past week show how dependent daily life has become on fragile technology. Ars Technica and The Register report the FAA's third-ever nationwide ground stop was blamed on faulty, outdated equipment, while the FAA has separately been expanding an AI advisory tool across US airspace without involving the air traffic controllers' union.",
+          "also_covered_by": [
+            "Ars Technica",
+            "The Register",
+            "TechCrunch"
+          ],
           "via": "feed"
         },
         {
           "type": "Tech",
-          "headline": "OpenAI launches ChatGPT Wallet for agent-driven purchases",
-          "outlet": "OpenAI",
-          "url": "https://openai.com/index/introducing-chatgpt-wallet",
-          "summary": "OpenAI announced ChatGPT Wallet, a company-stated 'secure way for agents in ChatGPT Work, Codex, and dots to complete purchases with user approval and existing card protections,' extending its agentic commerce push.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Tech",
-          "headline": "Meituan releases giant agent model trained entirely without Nvidia chips",
-          "outlet": "The Decoder",
-          "url": "https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/",
-          "summary": "Meituan released weights for LongCat-2.5, a 1.6-trillion-parameter agent model built and trained entirely on Chinese hardware, scoring 88.4 on Terminal Bench and landing just behind leading Western models—underscoring China's push toward Nvidia-independent AI infrastructure.",
-          "also_covered_by": [],
+          "headline": "Apple's First Smart Glasses Are Coming Together",
+          "outlet": "The Verge",
+          "url": "https://www.theverge.com/tech/1033968/apples-first-smart-glasses-are-coming-together",
+          "summary": "The Verge reports Bloomberg's Mark Gurman says Apple's first smart glasses, which will lack augmented-reality features, are expected to be unveiled soon, with Techmeme detailing plans to show them at WWDC and ship by end of 2027 with deep Siri and third-party app integration.",
+          "also_covered_by": [
+            "Techmeme"
+          ],
           "via": "feed"
         }
       ],
-      "gaps": "IEEE Spectrum and 404 Media had no recent items directly on this group's main storylines (Nvidia/Anthropic); their available pieces were tangential (microcredentials for AI governance, monkeys watching Minions). Google DeepMind had no company announcements found in the last 48 hours on this topic.",
+      "gaps": "MIT Technology Review, Platformer, IEEE Spectrum, and Rest of World did not return any recent, group-relevant coverage in search; The Verge, Wired, Ars Technica, NYT, WSJ, FT, The Economist, and The Guardian were assessed only via the provided feed items since they block web search. Google DeepMind's own announcement channels did not surface any new company posts in the search results obtained.",
       "outlets": [
         "The Information",
         "TechCrunch",
@@ -388,84 +401,79 @@
       "not_visible": [],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 7,
+        "feed": 6,
         "search": 1,
-        "both": 0
+        "both": 1
       },
       "balance_added": 0
     },
     "Energy": {
       "description": "Energy and climate coverage.",
-      "generated_at": "2026-11-15T12:32:50.492505+00:00",
-      "overview": "Coverage is dominated by the aftermath of COP31 in Antalya, with outlets focused on a steep drop in climate-finance pledges and UN Secretary-General Guterres's parting attack on fossil fuel interests. Energy-focused outlets are also tracking fallout from Nvidia CEO Jensen Huang's resignation and its ripple effects on AI data-center power deals, nuclear project delays in Canada and the US, Exxon's legal challenge to EU carbon capture rules, and rising US energy prices feeding inflation and Fed rate-hike expectations.",
+      "generated_at": "2026-11-15T19:17:25.167058+00:00",
+      "overview": "Coverage is dominated by the COP31 climate summit in Turkey, where a global electrification pledge and a steep drop in climate-finance commitments are the central storylines, alongside fresh data showing global fossil-fuel emissions may dip slightly in 2026 due to the Iran conflict. US-focused outlets are heavily tracking how the Trump administration's deregulatory and protectionist energy policies (grid equipment import bans, coal-plant support) are colliding with surging AI/data-center power demand and grid capacity constraints.",
       "stories": [
         {
-          "type": "Energy",
-          "headline": "Jensen Huang's Nvidia resignation throws AI data-center energy boom into fresh chaos",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/am/nvidia-meta-sublime-stegra",
-          "summary": "Heatmap reports Huang's departure is rattling the AI buildout just as the same dispatch notes China signed a $15 billion deal to sell 7 gigawatts of solar, wind, storage and transmission infrastructure to Turkey at COP31, and California ordered its big utilities to build a common framework for virtual power plants.",
-          "also_covered_by": [],
+          "type": "Climate",
+          "headline": "COP31's electrification pledge wins support, with caveats on clean power and finance",
+          "outlet": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/daily-briefing-electrification-pledge-wins-support-greta-at-cop31-ed-milibands-answers",
+          "summary": "More than 50 countries are backing a pledge to raise electricity's share of global final energy use to 35% by 2035 from roughly 23% today, with the EU widely expected to join, while Greta Thunberg told the summit the planet 'is being killed.'",
+          "also_covered_by": [
+            "Canary Media"
+          ],
           "via": "search"
         },
         {
           "type": "Climate",
           "headline": "Climate-finance pledges fall 70% as countries meet at COP31",
           "outlet": "Carbon Brief",
-          "url": "https://www.carbonbrief.org/analysis-climate-finance-pledges-fall-70-as-countries-meet-at-cop31",
-          "summary": "Carbon Brief's analysis finds the amount of public funding pledged to help developing countries tackle climate change has dropped by more than 70% in 2026, as most prior multi-year pledges expired and the US withdrew from international climate efforts while European aid budgets were cut.",
+          "url": "https://carbonbrief.org/analysis-climate-finance-pledges-fall-70-as-countries-meet-at-cop31",
+          "summary": "Carbon Brief analysis finds public climate-finance pledges to developing nations have collapsed to just $11.7bn a year from around $40bn, as the US has withdrawn from international climate efforts and European aid budgets shrink.",
           "also_covered_by": [],
           "via": "search"
         },
         {
           "type": "Climate",
-          "headline": "UN chief's closing COP31 message: fossil fuels are 'killing our planet'",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/adaptation/indonesia-smoke",
-          "summary": "In what Heatmap describes as likely his final speech before the summit as UN chief, Guterres railed against a world still on what he called the path to mutually assured destruction, accusing fossil fuel interests of profiting while the planet suffers.",
-          "also_covered_by": [],
-          "via": "search"
-        },
-        {
-          "type": "Law",
-          "headline": "Exxon sues the EU over carbon capture rules",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/am/guterres-cop31",
-          "summary": "Exxon Mobil filed a confidential legal challenge to the European Union's carbon capture regulations, which the Financial Times called the latest attempt by the US energy giant to roll back Brussels' flagship green rules.",
+          "headline": "Fossil-fuel CO2 emissions set to dip in 2026 as Iran conflict hits oil use",
+          "outlet": "Carbon Brief",
+          "url": "https://carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+          "summary": "New Global Carbon Project figures project a roughly 0.4% fall in fossil CO2 emissions for 2026, driven mainly by a 1.9% drop in oil emissions tied to higher prices and supply disruption from the Hormuz closure, though coal emissions continue to rise slightly.",
           "also_covered_by": [
-            "FT"
+            "Canary Media"
           ],
           "via": "search"
         },
         {
           "type": "Energy",
-          "headline": "Leading small modular nuclear reactor project in Canada will be late and over budget",
-          "outlet": "Canary Media",
-          "url": "https://www.canarymedia.com/articles/nuclear/small-modular-nuclear-reactor-late-canada",
-          "summary": "Ontario Power Generation said its first BWRX-300 unit at the Darlington site will miss its October 2030 target and blow past its $7.7 billion Canadian budget, underscoring persistent timeline and cost challenges for North American nuclear builds.",
+          "headline": "Utility, tech officials see opportunities to increase grid utilization",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/utility-tech-officials-see-opportunities-to-increase-grid-utilization/874644/",
+          "summary": "At BNEF's Houston Summit, utility and tech panelists including Google's Tyler Norris said US grid utilization sits at just 40-60%, and that flexible interconnection deals with large data-center loads could free up significant capacity without new infrastructure.",
           "also_covered_by": [],
           "via": "search"
         },
         {
-          "type": "Economy",
-          "headline": "US energy prices keep climbing, pushing inflation and rate-hike expectations higher",
-          "outlet": "Heatmap",
-          "url": "https://heatmap.news/economy/october-inflation",
-          "summary": "Heatmap reports October's 0.4% overall price rise was led partly by energy costs climbing 0.7%, with gasoline up 37% year-over-year and Maine heating oil prices up 80%, a jump that analysts say makes a December Fed rate hike more likely.",
-          "also_covered_by": [],
+          "type": "Energy",
+          "headline": "Trump ban on foreign grid components sparks industry concern over cost, practicality",
+          "outlet": "Utility Dive",
+          "url": "https://www.utilitydive.com/news/trump-ban-on-foreign-grid-components-sparks-industry-concern-over-practical/873752/",
+          "summary": "Industry stakeholders warned that Executive Order 14421, which lets Energy Secretary Chris Wright block foreign-made bulk-power equipment, could worsen existing shortages of transformers and substations even as it aims to address genuine security risks.",
+          "also_covered_by": [
+            "Canary Media"
+          ],
           "via": "search"
         },
         {
           "type": "Law",
-          "headline": "California's climate disclosure laws partly survive appeals court ruling",
-          "outlet": "Utility Dive",
-          "url": "https://www.utilitydive.com/news/whats-next-for-california-climate-laws-sb253-sb261-following-appeals-court-split-decision/874631/",
-          "summary": "The Ninth Circuit Court of Appeals allowed California's scope 1 and scope 2 emissions reporting under SB 253 to proceed while halting enforcement of scope 3 reporting and a related climate-risk disclosure law, SB 261.",
+          "headline": "Consider the Lobstermen Affected by New York's Empire Wind",
+          "outlet": "Heatmap",
+          "url": "https://heatmap.news/plus/the-fight/hotspots/equinor-lobster-new-york",
+          "summary": "A family of lobstermen sued Equinor in federal court claiming the Empire Wind project's compensatory mitigation program failed to offset damage to lobster fishing grounds, a closely-watched case given the Trump administration's ongoing review of other offshore wind permits.",
           "also_covered_by": [],
-          "via": "feed"
+          "via": "search"
         }
       ],
-      "gaps": "Latitude Media and Argus Media had no recent energy coverage found via search; E&E News search results returned only older archived stories outside the 48-hour window. Reuters, FT, WSJ, NYT and The Economist block search, and their feed items provided (Anthropic's IPO, Nvidia chip smuggling) were tech-focused rather than energy/climate stories, so they are not reflected here.",
+      "gaps": "Could not find stories from the last 24-48 hours for Argus Media, Latitude Media, or E&E News; search results for these outlets mostly surfaced older articles (Latitude Media's most relevant piece was from Nov. 4, Argus Media's from May, and E&E News's from recent months but not this week). Reuters, FT, WSJ, NYT, and The Economist block search, so only the energy-related feed items provided for those outlets could be considered, and none were on-topic for this group.",
       "outlets": [
         "Heatmap",
         "Latitude Media",
@@ -480,7 +488,7 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 1,
+        "feed": 0,
         "search": 6,
         "both": 0
       },
@@ -488,99 +496,102 @@
     },
     "China": {
       "description": "China politics, economy and business coverage.",
-      "generated_at": "2026-11-15T12:33:50.925244+00:00",
-      "overview": "Coverage across Chinese, Taiwanese and Western outlets is dominated by the fallout from Nvidia CEO Jensen Huang's resignation amid a China-espionage scandal, and by the run-up to the Trump-Xi-Putin trilateral at next week's APEC summit in Shenzhen. Business and economy outlets are also tracking China's surging AI-driven export data, a battery-swap station race between CATL and Nio, and continued scrutiny of US-China tech and talent flows.",
+      "generated_at": "2026-11-15T19:18:55.238664+00:00",
+      "overview": "Coverage across these outlets is dominated by two intertwined storylines: the run-up to the APEC Economic Leaders' summit in Shenzhen, where Trump, Xi and Putin are set for an unprecedented trilateral meeting, and the fallout from Jensen Huang's resignation as Nvidia CEO amid a Chinese espionage scandal. State-run outlets are promoting Shenzhen's summit preparations as a showcase of China's global economic leadership, while business and tech outlets dig into Nvidia's succession crisis and its ties to a Singapore-based chip buyer now linked to Chinese intelligence.",
       "stories": [
         {
-          "type": "Tech",
-          "headline": "China sees Nvidia chief Huang's swift downfall as political hit",
+          "type": "Geopolitics",
+          "headline": "Trump, Xi and Putin to hold first-ever trilateral meeting at APEC Shenzhen summit",
           "outlet": "Nikkei Asia",
-          "url": "https://asia.nikkei.com/business/tech/semiconductors/china-sees-nvidia-chief-huang-s-swift-downfall-as-political-hit",
-          "summary": "Chinese officials and commentators are framing Jensen Huang's abrupt resignation as CEO over an alleged affair with a suspected Chinese spy as a political hit rather than a personal scandal, with some saying he was targeted for being ethnic Chinese. Nvidia's board has said it has no reason to believe secrets were compromised, while the episode is fueling a Washington push for tighter chip export curbs.",
+          "url": "https://asia.nikkei.com/politics/international-relations/apec/trump-to-meet-putin-and-xi-in-china-white-house-says",
+          "summary": "The White House said Trump will raise nuclear arms reduction when he meets Xi and Putin on the sidelines of the APEC forum in Shenzhen this week, a meeting China has resisted framing around weapons issues since it is hosting a summit meant to focus on trade. State-run Xinhua, Global Times and CGTN are promoting the November 18-19 summit as a showcase of China's role as a stabilizing economic power, while Hong Kong Free Press and Taipei Times flagged the historic three-way format.",
           "also_covered_by": [
-            "SCMP",
-            "Taipei Times",
-            "Focus Taiwan",
-            "China Daily",
-            "Caixin Global",
+            "Global Times",
+            "CGTN",
+            "Xinhua",
             "Hong Kong Free Press",
-            "WSJ",
-            "NYT",
-            "ChinaTalk"
+            "Taipei Times",
+            "FT"
           ],
           "via": "search"
         },
         {
-          "type": "Geopolitics",
-          "headline": "Trump, Xi, Putin to hold historic meeting in China",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/11/14/trump-xi-putin-to-hold-historic-meeting-in-china-white-house/",
-          "summary": "The White House confirmed Donald Trump, Vladimir Putin and Xi Jinping will hold the first-ever three-way meeting between the three leaders on the sidelines of the APEC summit in Shenzhen on November 18-19, with nuclear arms reduction and the Iran war expected to feature but not the Ukraine conflict. Chinese state media say Xi will chair the Shenzhen gathering and push a China-led AI cooperation agenda as a rival to Washington's chip-control initiatives.",
+          "type": "Business",
+          "headline": "Bessent presses Nvidia to pick an outsider as new CEO after Jensen Huang's ouster",
+          "outlet": "SCMP",
+          "url": "https://www.scmp.com/news/world/united-states-canada/article/3374512/bessent-says-nvidia-must-go-outside-company-find-new-ceo",
+          "summary": "US Treasury Secretary Scott Bessent said Nvidia needs to look outside the company for a new chief executive and questioned whether the chipmaker pushed illicit China sales to boost revenue, days after Jensen Huang abruptly stepped down. Caixin Global reported Nvidia shares have fallen more than 20% over the past month as the board's independent investigation into Huang's conduct continues, with Congress seeking a closed-door briefing.",
           "also_covered_by": [
+            "FT",
+            "WSJ",
+            "Caixin Global",
             "Nikkei Asia",
-            "Global Times",
+            "Focus Taiwan"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Alleged Chinese spy tied to Nvidia scandal is now in Beijing, as Megaspeed dealings face scrutiny",
+          "outlet": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-12/alleged-chinese-spy-at-center-of-nvidia-firestorm-is-in-beijing",
+          "summary": "Alice Huang, the Megaspeed International founder suspected by US intelligence of being a Chinese agent, has returned to Beijing with the knowledge of security officials, Bloomberg reported. Caixin Global detailed how she built the Singapore data-center firm's reported assets from almost nothing to nearly $3 billion in three years while it became a major Nvidia chip buyer, and Beijing's foreign ministry has dismissed the spy allegations as a smear.",
+          "also_covered_by": [
+            "Caixin Global",
+            "Hong Kong Free Press",
             "SCMP"
           ],
-          "via": "both"
+          "via": "search"
         },
         {
           "type": "Economy",
-          "headline": "China's Exports Jump on Strong AI Trade",
-          "outlet": "Caixin Global",
-          "url": "https://www.caixinglobal.com/2026-11-10/chinas-exports-jump-on-strong-ai-trade-102503130.html",
-          "summary": "China's exports rose 35.2% in October from a year earlier, beating forecasts as AI-related shipments of chips and computing equipment sustained rapid growth even as car exports slowed sharply. Imports also surged 41.6%, with much of the export gain driven by rising prices rather than larger shipment volumes.",
-          "also_covered_by": [],
-          "via": "search"
-        },
-        {
-          "type": "Business",
-          "headline": "CATL targets 6,000 passenger car battery swap stations in 2027, potentially overtaking Nio",
-          "outlet": "CnEVPost",
-          "url": "https://cnevpost.com/2026/11/13/catl-targets-6000-passenger-car-swap-stations-2027/",
-          "summary": "Battery giant CATL plans 5,000 urban and 1,000 highway swap stations covering 297 Chinese cities by 2027, a build-out that could put it ahead of current market leader Nio in the fast-growing battery-swap segment.",
+          "headline": "US and allies sign pact to shield AI supply chains from China ahead of Shenzhen summit",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/3c2197fc-9618-4838-91e6-522ce1a96a22?syn-25a6b1a6=1",
+          "summary": "Washington and allied governments signed an agreement aimed at protecting AI supply chains from Chinese influence just ahead of Trump's trip to the APEC forum in Shenzhen, where he is due to meet Xi Jinping.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Security",
-          "headline": "The Massive Chinese Spy Operation Targeting Western Tech and AI",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/china/the-massive-chinese-spy-operation-targeting-western-tech-and-ai-cd58ff86?mod=rss_worldnews",
-          "summary": "WSJ reporting examines a broad Chinese espionage effort aimed at Western technology and AI firms, a story that has gained new urgency amid the Jensen Huang scandal and related congressional scrutiny.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Security",
-          "headline": "Spies and silicon chips: Alice Huang's tangled corporate web",
-          "outlet": "Hong Kong Free Press",
-          "url": "https://hongkongfp.com/2026/11/14/spies-and-silicon-chips-alice-huangs-tangled-corporate-web/",
-          "summary": "An AFP investigation into Singapore-based Megaspeed, the company tied to the woman at the center of the Jensen Huang affair, found the firm dealt in billions of dollars of advanced AI chips while its office appeared to be an empty shell. Caixin has separately reported that the woman, Alice Huang, has ties to a Shanghai fund manager who came under criminal scrutiny.",
+          "type": "Politics",
+          "headline": "Congress moves to tighten AI chip export rules following Nvidia scandal",
+          "outlet": "FT",
+          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
+          "summary": "Lawmakers are advancing stricter rules on AI chip exports to China, with reporting suggesting Jensen Huang's alleged affair with a suspected Chinese intelligence asset has added momentum to the push. ChinaTalk devoted an emergency podcast to the proposed MATCH Act in the wake of Huang's departure.",
           "also_covered_by": [
-            "Caixin Global"
+            "ChinaTalk"
           ],
           "via": "feed"
         },
         {
-          "type": "Society",
-          "headline": "China Poached This Top Harvard Professor. Now He Wants Others to Join Him.",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/world/china/china-poached-this-top-harvard-professor-now-he-wants-others-to-join-him-1e03222d?mod=rss_worldnews",
-          "summary": "WSJ profiles Liu Jun's move from Beijing to Boston and back as emblematic of a broader exodus of Chinese scholars from US universities, as Beijing works to recruit top academic talent back home.",
+          "type": "Business",
+          "headline": "COMAC's CE-25A electric commercial aircraft completes first crewed flight",
+          "outlet": "Pandaily",
+          "url": "https://pandaily.com/comac-ce-25a-electric-commercial-aircraft-first-crewed-flight",
+          "summary": "China's state-backed planemaker COMAC flew its 19-seat CE-25A electric aircraft with two pilots and a flight test engineer aboard, covering more than 60 kilometers in just over 16 minutes in its first crewed test.",
+          "also_covered_by": [],
+          "via": "feed"
+        },
+        {
+          "type": "Security",
+          "headline": "Taiwan to extend Rednote restrictions and tighten cybersecurity after data breaches",
+          "outlet": "Taipei Times",
+          "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/16/2003867815",
+          "summary": "Taiwanese officials are expected to extend restrictions on the Chinese app Rednote again, according to sources, as the foreign ministry separately rolled out tighter cybersecurity measures following recent data breaches affecting government-linked systems.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "COMAC's CE-25A Electric Commercial Aircraft Completes Its First Crewed Flight",
-          "outlet": "Pandaily",
-          "url": "https://pandaily.com/comac-ce-25a-electric-commercial-aircraft-first-crewed-flight",
-          "summary": "China's state-backed planemaker COMAC flew its 19-seat CE-25A electric aircraft with two pilots and a flight test engineer aboard for the first time, covering just over 60 kilometers in under 17 minutes.",
+          "headline": "Nio opens its northernmost China battery-swap station to serve extreme-cold markets",
+          "outlet": "CnEVPost",
+          "url": "https://cnevpost.com/2026/11/15/nio-opens-northernmost-swap-station-china-heihe/",
+          "summary": "Nio opened a new battery swap station in Heihe, Heilongjiang, its northernmost in China, touting 3-minute swaps even where temperatures can fall to -48°C, as the EV maker expands its charging network into harsh climates.",
           "also_covered_by": [],
           "via": "feed"
         }
       ],
-      "gaps": "No recent items could be found for Sixth Tone, China Media Project, CGTN, Yicai Global, TechNode or Xinhua; Reuters, AP and The Economist blocked search so only their feed items (none provided for this group) could be used.",
+      "gaps": "No recent China-specific coverage was found via search for Rest of World, Sixth Tone, China Media Project, The Wire China, Yicai Global or TechNode within the search allowance used; Reuters, AP, NYT and The Economist block search so only feed items (where provided) were used for them.",
       "outlets": [
         "SCMP",
         "Nikkei Asia",
@@ -608,9 +619,9 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 5,
+        "feed": 6,
         "search": 2,
-        "both": 1
+        "both": 0
       },
       "balance_added": 0
     },
@@ -746,26 +757,15 @@
     },
     "Africa": {
       "description": "Africa politics, economy and business coverage.",
-      "generated_at": "2026-11-15T12:35:11.991429+00:00",
-      "overview": "Coverage across African and international outlets this week centers on the DRC's Ebola outbreak disrupting mining operations and schools, US geopolitical maneuvering in Congo and West Africa's critical minerals sector, and a cluster of economic stories spanning mining deals, tech outages, and aviation fuel shortages. Politics coverage is dominated by election delays in South Sudan and security crackdowns in Burkina Faso, while business desks are watching De Beers, Mozambique's national carrier, and Big Tech's grip on African infrastructure.",
+      "generated_at": "2026-11-15T19:20:41.562528+00:00",
+      "overview": "Coverage across African outlets is dominated by security and governance stories playing out across the continent - from an Ebola scare at a major DRC mine and Sudan's deepening fuel crisis to diplomatic rifts at the Francophonie summit - alongside business stories on mining deals, African tech infrastructure and investment. Several business and mining outlets are also tracking a wave of corporate and financing news, including a major Angola-De Beers stake move and new foreign lending into Southern African projects.",
       "stories": [
         {
-          "type": "Health",
-          "headline": "Barrick furloughs employees at Congo's Kibali gold mine as Ebola precaution",
-          "outlet": "Mining Weekly",
-          "url": "https://www.miningweekly.com/page/latest-news",
-          "summary": "Barrick Mining is furloughing staff and subcontractors at its Kibali gold mine in DR Congo after officials reported two Ebola deaths in a nearby community, according to an internal memo cited by Reuters.",
-          "also_covered_by": [
-            "Africanews"
-          ],
-          "via": "search"
-        },
-        {
-          "type": "Politics",
-          "headline": "Trump picks pastor and early backer as US ambassador to the DRC",
-          "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/436340/us-africa-trump-picks-pastor-and-early-backer-as-us-ambassador-to-the-drc/",
-          "summary": "John Mark Burns, a South Carolina preacher with no diplomatic experience, has been tapped to fill a DRC ambassadorial post left vacant for almost a year as Washington tightens its grip on Congo's cobalt sector.",
+          "type": "Geopolitics",
+          "headline": "Francophonie summit opens in Cambodia overshadowed by African tensions",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/11/15/francophonie-summit-opens-in-cambodia-overshadowed-by-african-tensions/",
+          "summary": "DR Congo is threatening to quit the Francophonie organization if Rwanda's Louise Mushikiwabo is re-elected to a third term as its head, spilling Kinshasa-Kigali tensions onto the global stage.",
           "also_covered_by": [],
           "via": "feed"
         },
@@ -773,17 +773,19 @@
           "type": "Business",
           "headline": "Angola seeks 10% stake in De Beers under Anglo's proposed exit",
           "outlet": "Mining Weekly",
-          "url": "https://www.miningweekly.com/page/diamonds",
-          "summary": "Angola is seeking a 10% holding in De Beers as part of Anglo American's proposed sale of its stake in the major diamond producer, a mines ministry spokesperson told Reuters.",
-          "also_covered_by": [],
+          "url": "https://www.miningweekly.com/page/latest-news",
+          "summary": "Angola's mines ministry has told Reuters it wants a 10% holding in De Beers as part of Anglo American's planned sale of its stake in the diamond giant, a move that could reshape ownership of one of the world's top diamond producers.",
+          "also_covered_by": [
+            "Reuters"
+          ],
           "via": "search"
         },
         {
-          "type": "Business",
-          "headline": "AirMozambique warns of flight cancellations due to fuel shortage",
-          "outlet": "Bloomberg",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-15/airmozambique-warns-of-flight-cancellations-due-to-fuel-shortage",
-          "summary": "Mozambique's national carrier warned that fuel supply restrictions in the country mean it may have to cancel some flights.",
+          "type": "Economy",
+          "headline": "Daily life in Sudan paralysed by deepening fuel crisis and rising costs",
+          "outlet": "Africanews",
+          "url": "http://www.africanews.com/2026/11/15/daily-life-in-sudan-paralysed-by-deepening-fuel-crisis-and-rising-costs/",
+          "summary": "Sudan's civil war has crippled domestic oil refining while Middle East conflict volatility pushes prices higher, compounding hardship for ordinary Sudanese already battered by famine warnings.",
           "also_covered_by": [],
           "via": "feed"
         },
@@ -792,41 +794,39 @@
           "headline": "South Sudan postpones first general election from December to February",
           "outlet": "Africanews",
           "url": "http://www.africanews.com/2026/11/15/south-sudan-postpones-first-general-election-from-december-to-february/",
-          "summary": "The elections commission says the delay will allow for additional processes including distribution of registration materials and civic education ahead of the country's first national vote.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Geopolitics",
-          "headline": "US quietly counters China and Russia in West Africa's mining sector",
-          "outlet": "The Africa Report",
-          "url": "https://www.theafricareport.com/436326/lithium-gold-uranium-the-quiet-us-counter-offensive-against-china-and-russia-in-west-africa/",
-          "summary": "Washington is hunting for gold and lithium in Mali, moving to muscle in against entrenched Chinese and Russian players amid opaque deals and intensifying geopolitical rivalry.",
+          "summary": "South Sudan's electoral commission has delayed what would be the country's first-ever general election to February, citing the need for more time on voter registration materials and civic education.",
           "also_covered_by": [],
           "via": "feed"
         },
         {
           "type": "Tech",
-          "headline": "Microsoft's 18-hour outage exposed South Africa's dependence on Big Tech",
+          "headline": "Microsoft's outage showed Africa's banks had no real plan B",
           "outlet": "TechCabal",
-          "url": "https://techcabal.com/2026/11/13/microsoft-outage-south-africa-big-tech/",
-          "summary": "A global Microsoft outage disrupted South African businesses and public institutions including Eskom, Absa and FlySafair, highlighting the country's growing reliance on Big Tech's cloud infrastructure.",
-          "also_covered_by": [
-            "Africanews"
-          ],
+          "url": "https://techcabal.com/2026/11/15/the-next-wave-microsofts-outage-showed-africas-banks-had-no-real-plan-b/",
+          "summary": "TechCabal's newsletter examines how a recent Microsoft cloud outage exposed the fragility of African banks' digital infrastructure and their lack of contingency planning.",
+          "also_covered_by": [],
           "via": "feed"
         },
         {
-          "type": "Security",
-          "headline": "Burkina Faso issues arrest warrants for around 20 people, including journalists",
-          "outlet": "Africanews",
-          "url": "http://www.africanews.com/2026/11/14/burkina-faso-issues-arrest-warrants-for-around-20-people/",
-          "summary": "The warrants target exiled journalists, activists, a former minister and ex-military officers who face terrorism-related charges.",
+          "type": "Business",
+          "headline": "David Moinina Sengeh: Sierra Leone is betting on West Africa",
+          "outlet": "African Business",
+          "url": "https://african.business/sectors/trade-investment",
+          "summary": "A profile piece looks at Sierra Leone's strategy to position itself within West African regional trade and investment networks as a path to growth.",
           "also_covered_by": [],
-          "via": "feed"
+          "via": "search"
+        },
+        {
+          "type": "Security",
+          "headline": "Hassan Sheikh's enemies cut a deal",
+          "outlet": "Africa Confidential",
+          "url": "https://www.africa-confidential.com/news",
+          "summary": "Africa Confidential reports that al-Shabaab is courting dissident clans in Somalia as President Hassan Sheikh Mohamud's bid to extend his presidency strains the military campaign against the jihadist group.",
+          "also_covered_by": [],
+          "via": "search"
         }
       ],
-      "gaps": "Africa Confidential, The Continent and African Business were checked via web search only (site search, no direct access), and nothing dated within the strict last-24-48h window beyond items already reflected could be confirmed as newly published; Reuters, AP, BBC, FT, NYT and WSJ block web search and had no relevant feed items provided for this beat.",
+      "gaps": "The Continent yielded no stories from the last 48 hours in search (only older archived PDF issues were found). Reuters, AP, BBC, FT, NYT and WSJ block web search and no feed items for those outlets were provided for this beat, so their current coverage could not be assessed.",
       "outlets": [
         "The Africa Report",
         "Africanews",
@@ -842,96 +842,112 @@
       ],
       "searches_used": 4,
       "sources_mix": {
-        "feed": 6,
-        "search": 2,
+        "feed": 4,
+        "search": 3,
         "both": 0
       },
       "balance_added": 0
     },
     "Media": {
       "description": "Media-industry coverage.",
-      "generated_at": "2026-11-15T12:36:02.408678+00:00",
-      "overview": "Media-industry coverage over the past two days is dominated by Saturday Night Live's topical cold open and monologue referencing the Jensen Huang/Nvidia scandal and the FAA ground stop, alongside a wave of stories on network cost-cutting (CNN, ABC, CBS), publisher battles with AI platforms, and post-midterm scrutiny of political journalism and press freedom.",
+      "generated_at": "2026-11-15T19:21:32.208909+00:00",
+      "overview": "Coverage across entertainment and media trades is dominated by the fallout from Nvidia CEO Jensen Huang's resignation amid a scandal involving an alleged Chinese spy, which outlets are also framing as a story about the power of investigative journalism. Entertainment trades are heavily focused on Billy Evans's first televised response to his portrayal in 'You Can See Everything,' Johnny Depp's box-office comeback with 'Ebenezer,' and SNL's topical cold open, while journalism-focused outlets are tracking AI's reshaping of the news business, from publisher lawsuits and licensing deals to AI-driven political ad spending and Washington Post's financial turnaround.",
       "stories": [
         {
-          "type": "Culture",
-          "headline": "SNL's John Mulaney-hosted episode skewers Jensen Huang scandal, RFK Jr. and FAA chaos",
+          "type": "Business",
+          "headline": "Nvidia CEO Jensen Huang Resigns After Multiple Affairs, Including With Alleged Chinese Spy",
           "outlet": "Variety",
-          "url": "https://variety.com/2026/tv/news/bowen-yang-jensen-huang-snl-cold-open-john-mulaney-tech-1236947900/",
-          "summary": "Bowen Yang made a surprise return to play ousted Nvidia chief Jensen Huang in a cold open mocking tech billionaires' vulnerability to honey-pot plots, while host John Mulaney used his monologue to mock HHS Secretary Robert F. Kennedy Jr.",
+          "url": "https://variety.com/2026/biz/news/nvidia-ceo-jensen-huang-resigns-affairs-alleged-chinese-spy-1236945653/",
+          "summary": "Nvidia's board forced out founder Jensen Huang after revelations of an affair with a woman suspected of spying for China and a second affair with a subordinate, a scandal that also hammered the company's stock over national security concerns. Mediaite and Puck both frame the saga as a case study in investigative journalism's power, with Congress now demanding to know what the White House knew about the relationship.",
           "also_covered_by": [
-            "The Hollywood Reporter",
-            "Deadline",
+            "Puck",
             "Mediaite",
-            "TheWrap"
+            "Adweek",
+            "TheWrap",
+            "Bloomberg"
+          ],
+          "via": "search"
+        },
+        {
+          "type": "Culture",
+          "headline": "Billy Evans Defends Himself Against 'Controlling Monster' Portrayal in 'You Can See Everything'",
+          "outlet": "TheWrap",
+          "url": "https://www.thewrap.com/creative-content/movies/billy-evans-defends-himself-not-controlling-monster-cbs-interview/",
+          "summary": "In his first televised interview, Elizabeth Holmes's husband Billy Evans pushed back on his depiction in the Nathan Fielder/Lance Oppenheim A24 documentary and said he has no regrets about participating, while also telling Deadline he \"did not give consent\" for nudity included in the film.",
+          "also_covered_by": [
+            "Variety",
+            "Deadline"
           ],
           "via": "feed"
         },
         {
           "type": "Business",
-          "headline": "Status details wave of cost-cutting and contract anxiety across CNN, ABC and CBS",
-          "outlet": "Status",
-          "url": "https://www.status.news/",
-          "summary": "Oliver Darcy's Status has run consecutive dispatches this week on turmoil inside TV news divisions, including pieces titled 'CNN's Contract Cliff,' 'Facing the Exits,' 'ABC's Cost-Cutting Anxiety' and 'The CBS-CNN Cashout,' pointing to deepening financial pressure at major networks.",
-          "also_covered_by": [],
-          "via": "search"
-        },
-        {
-          "type": "Tech",
-          "headline": "UK watchdog probes Meta's AI scraping terms as publishers warn of revenue hit",
-          "outlet": "Press Gazette",
-          "url": "https://pressgazette.co.uk/news/",
-          "summary": "Press Gazette reports that trade group Digital Content Next told a court that AI content retrieval is \"already eating away\" at publisher businesses, as the UK's Competition and Markets Authority opened an investigation into whether Meta's proposed scraping terms could \"unfairly harm\" publishers.",
-          "also_covered_by": [],
-          "via": "search"
+          "headline": "Johnny Depp's 'Ebenezer' Tops Box Office With $19 Million Domestic, $42 Million Worldwide",
+          "outlet": "Deadline",
+          "url": "https://deadline.com/2026/11/box-office-global-ebenezer-ramayana-godzilla-minus-zero-1237224479/",
+          "summary": "Depp's modest Christmas Carol redo took the No. 1 domestic spot with $19 million while performing stronger overseas, as Amazon MGM's heist film 'How to Rob a Bank' flopped with just $5 million.",
+          "also_covered_by": [
+            "Variety",
+            "The Hollywood Reporter",
+            "TheWrap"
+          ],
+          "via": "feed"
         },
         {
           "type": "Media",
-          "headline": "The Atlantic keeps hiring despite questions over its business strategy",
-          "outlet": "Puck",
-          "url": "https://puck.news/media",
-          "summary": "Dylan Byers writes that The Atlantic's announcement of another new round of writer hires continues what he calls a \"curious business strategy\" of expanding editorial headcount at a magazine-identified brand owned by Laurene Powell Jobs.",
+          "headline": "'SNL' Cold Open Skewers RFK Jr., Jensen Huang and FAA Travel Chaos",
+          "outlet": "The Hollywood Reporter",
+          "url": "https://www.hollywoodreporter.com/tv/tv-news/bowen-yang-snl-john-mulaney-ground-stop-microsoft-1236755542/",
+          "summary": "Host John Mulaney devoted much of his monologue to mocking HHS Secretary RFK Jr., while Bowen Yang returned as a disgraced Jensen Huang advising tech CEOs amid the real-life Nvidia scandal, in an episode that also referenced the weekend's nationwide FAA ground stop.",
+          "also_covered_by": [
+            "TheWrap",
+            "Mediaite",
+            "Deadline"
+          ],
+          "via": "feed"
+        },
+        {
+          "type": "Business",
+          "headline": "The Washington Post Nears Breakeven After 'Hundreds and Hundreds of Millions' in Losses",
+          "outlet": "Adweek",
+          "url": "https://www.adweek.com/media/",
+          "summary": "Adweek reports the Post is approaching financial breakeven following a prolonged period of heavy losses, a notable turnaround story for one of the industry's most closely watched legacy newsrooms.",
           "also_covered_by": [],
           "via": "search"
         },
         {
           "type": "Law",
-          "headline": "Cravath employee charged with insider trading tied to Paramount-Warner Bros. deal",
-          "outlet": "WSJ",
-          "url": "https://www.wsj.com/finance/regulation/cravath-employee-is-charged-with-insider-trading-using-confidential-deal-information-a5cdd0a9?mod=rss_markets_main",
-          "summary": "Federal prosecutors charged a Cravath employee with insider trading, alleging the person netted $70,000 in profits using confidential information related to client matters including Paramount's acquisition of Warner Bros.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Politics",
-          "headline": "Democrats weigh using new congressional control to shore up press freedom",
-          "outlet": "Poynter",
-          "url": "https://www.poynter.org/reporting-editing/2026/democrats-house-senate-press-freedom-trump/",
-          "summary": "Poynter reports that within 48 hours of Democrats securing both chambers of Congress, Senator Richard Blumenthal emailed the FCC demanding records as part of a press-freedom-related investigation.",
-          "also_covered_by": [],
-          "via": "feed"
-        },
-        {
-          "type": "Politics",
-          "headline": "Democratic-funded 'pink slime' local news sites surface in Ohio midterms",
-          "outlet": "Columbia Journalism Review",
-          "url": "https://www.cjr.org/most-recent",
-          "summary": "CJR examines how NorthStar Civic Media, which brands itself as independent local reporting, was founded by a former Democratic campaign staffer and received over a million dollars in Meta ad spending from Democratic funders promoting its sites.",
+          "headline": "News Publishers Escalate AI Litigation: NYT, Chicago Tribune and Others Sue Brave Software",
+          "outlet": "Press Gazette",
+          "url": "https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/",
+          "summary": "Press Gazette's running tracker shows US newspapers including the New York Times suing browser maker Brave for allegedly scraping articles for AI firms, Canadian publishers suing Anthropic, and Reach and CNN signing new AI licensing deals with Google, amid a wave of similar suits and deals globally.",
           "also_covered_by": [],
           "via": "search"
         },
         {
-          "type": "Media",
-          "headline": "Savannah Guthrie re-ups at Today as NBC News cancels streaming show Stay Tuned",
-          "outlet": "Adweek",
-          "url": "https://www.adweek.com/tvnewser/ticker-savannah-guthrie-to-remain-on-today-after-contract-extension/",
-          "summary": "Adweek reports Savannah Guthrie is staying on NBC's Today after a contract extension, noting that NBC News has canceled the primetime program Stay Tuned, which aired on NBC News Now.",
-          "also_covered_by": [],
+          "type": "Politics",
+          "headline": "Political Campaigns Spent $187 Million Promoting AI-Generated Ads in the 2026 Midterms",
+          "outlet": "Poynter",
+          "url": "https://www.niemanlab.org/reading/political-campaigns-spent-187-million-promoting-ai-generated-ads-in-the-2026-midterms/",
+          "summary": "Poynter found midterm campaigns spent $187 million boosting AI-generated ads, more than 3,000 times the spend in 2024, with roughly 90% of that spending coming from Republican-affiliated groups.",
+          "also_covered_by": [
+            "Nieman Lab"
+          ],
+          "via": "search"
+        },
+        {
+          "type": "Law",
+          "headline": "Russell Brand Accuser Waives Anonymity, Alleging Rape at Age 16",
+          "outlet": "Deadline",
+          "url": "https://deadline.com/2026/11/russell-brand-mia-latter-waives-anonymity-allege-rape-1237224442/",
+          "summary": "One of Russell Brand's accusers has given up her legal right to anonymity to speak publicly after the comedian was imprisoned for rape and sexual assault.",
+          "also_covered_by": [
+            "Press Gazette"
+          ],
           "via": "feed"
         }
       ],
-      "gaps": "NYT, FT and The Guardian provided no media-industry feed items and block web search, so no current leads could be gathered for them.",
+      "gaps": "NYT, WSJ, FT and The Guardian block direct search access and had no relevant items in the provided feed, so their current coverage could not be independently verified beyond mentions in other outlets' reporting.",
       "outlets": [
         "Status",
         "Puck",
@@ -957,75 +973,67 @@
       "balance_added": 0
     }
   },
-  "generated_at": "2026-11-15T12:36:02.408727+00:00",
+  "generated_at": "2026-11-15T19:21:32.208950+00:00",
   "newsletters": {
     "Flagship": {
-      "generated_at": "2026-11-15T12:36:19.363623+00:00",
-      "intro": "Today's lineup centers on Hormuz escalation and the Nvidia/Huang fallout rippling through AI chip politics and markets, with China's export surge and Anthropic's record IPO rounding out the economic picture.",
+      "generated_at": "2026-11-15T19:21:54.209539+00:00",
+      "intro": "The Nvidia/Jensen Huang fallout and the Iran-driven Gulf escalation dominate today's wires, with AI-trade jitters and US-China-Russia diplomacy supplying the rest of a classic Flagship mix.",
       "picks": [
         {
-          "headline": "Three oil tankers catch fire after hitting mines in Strait of Hormuz",
-          "url": "https://www.al-monitor.com/originals/2026/11/irans-navy-says-three-tankers-fire-after-hitting-mines-hormuz",
-          "outlet": "Al-Monitor",
-          "type": "Energy",
-          "group": "Gulf & Middle East",
-          "why": "Tankers hit mines in Hormuz, the dominant oil-supply disruption story with direct market and insurance effects."
+          "headline": "Nvidia leadership crisis deepens with Bessent, Congress and Musk weighing in",
+          "url": "https://www.ft.com/content/24edbb84-7520-4ef0-a57c-30359e12ccc5?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Business",
+          "group": "Business",
+          "why": "Nvidia leadership crisis is the dominant cross-border story, hitting Treasury, Congress and China policy at once."
         },
         {
-          "headline": "Trump, Xi, Putin to hold historic meeting in China",
-          "url": "https://hongkongfp.com/2026/11/14/trump-xi-putin-to-hold-historic-meeting-in-china-white-house/",
-          "outlet": "Hong Kong Free Press",
+          "headline": "Iran escalates attacks on Bahrain and Saudi Arabia",
+          "url": "https://www.wsj.com/world/middle-east/iran-attacks-bahrain-as-conflict-escalates-62ffd1b3?mod=rss_worldnews",
+          "outlet": "WSJ",
+          "type": "Geopolitics",
+          "group": "Gulf & Middle East",
+          "why": "Iran's widening strikes on Bahrain and Saudi Arabia are the next chapter in Flagship's ongoing war-and-oil thread."
+        },
+        {
+          "headline": "Anthropic's historic IPO lands as a referendum on the AI trade",
+          "url": "https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom",
+          "outlet": "Bloomberg",
+          "type": "Business",
+          "group": "Business",
+          "why": "Anthropic's IPO is a concrete, numbers-heavy test of the AI trade Flagship tracks closely."
+        },
+        {
+          "headline": "Trump, Xi and Putin to hold first-ever trilateral meeting at APEC Shenzhen summit",
+          "url": "https://asia.nikkei.com/politics/international-relations/apec/trump-to-meet-putin-and-xi-in-china-white-house-says",
+          "outlet": "Nikkei Asia",
           "type": "Geopolitics",
           "group": "China",
-          "why": "First-ever Trump-Xi-Putin meeting is major cross-border geopolitics with global stakes."
+          "why": "A first-ever Trump-Xi-Putin trilateral is exactly the cross-border politics Flagship flags for geopolitical consequence."
         },
         {
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Geopolitics",
-          "group": "Business",
-          "why": "Congress tightening AI chip export rules ties AI regulation to US-China chip politics."
-        },
-        {
-          "headline": "Anthropic's IPO is six times oversubscribed, on track to be the largest ever",
-          "url": "https://the-decoder.com/anthropics-ipo-is-six-times-oversubscribed-and-on-track-to-become-the-largest-public-offering-in-history/",
-          "outlet": "The Decoder",
-          "type": "Business",
-          "group": "Tech & AI",
-          "why": "Anthropic's record, 6x-oversubscribed IPO is a concrete AI-finance milestone with a trillion-dollar number."
-        },
-        {
-          "headline": "Data Centre Construction Stocks Lose $4.2tn as AI Trade Boom Unravels",
+          "headline": "Data center construction stocks lose $4.2 trillion as AI trade unravels",
           "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
           "outlet": "FT",
           "type": "Economy",
           "group": "Business",
-          "why": "AI infrastructure stocks losing $4.2tn is exactly the money-meets-power chart Flagship favors."
+          "why": "The $4.2tn AI data-center selloff gives Flagship its chart-ready market story on AI finances."
         },
         {
-          "headline": "China's Exports Jump on Strong AI Trade",
-          "url": "https://www.caixinglobal.com/2026-11-10/chinas-exports-jump-on-strong-ai-trade-102503130.html",
-          "outlet": "Caixin Global",
-          "type": "Economy",
+          "headline": "Congress moves to tighten AI chip export rules following Nvidia scandal",
+          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Politics",
           "group": "China",
-          "why": "China's 35.2% export jump driven by AI shipments is a hard economic number with global trade implications."
-        },
-        {
-          "headline": "SpaceX Makes History With Successful Rocket Catch in Texas",
-          "url": "https://www.nytimes.com/2026/11/14/science/spacex-starship-first-catch.html",
-          "outlet": "NYT",
-          "type": "Tech",
-          "group": "Business",
-          "why": "SpaceX's historic rocket catch offers the light, concrete science closer the newsletter likes."
+          "why": "Congress tightening chip export rules ties the Nvidia scandal directly to US-China tech policy, a core Flagship beat."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 63
+      "candidates": 57
     },
     "Energy": {
-      "generated_at": "2026-11-15T12:36:33.608998+00:00",
-      "intro": "Today's mix leans heavily on Gulf supply-shock escalation and AI-driven power demand, with climate-finance and nuclear investment stories rounding out the policy angle.",
+      "generated_at": "2026-11-15T19:22:05.968820+00:00",
+      "intro": "Today's mix leans heavily on Hormuz/Bab al-Mandeb supply shocks and AI-driven grid strain, both core Energy beats, plus a few policy and climate-finance angles.",
       "picks": [
         {
           "headline": "Three oil tankers catch fire after hitting mines in Strait of Hormuz",
@@ -1033,7 +1041,7 @@
           "outlet": "Al-Monitor",
           "type": "Energy",
           "group": "Gulf & Middle East",
-          "why": "Tanker mine strikes in Hormuz are a textbook supply-shock story with direct price and insurance implications."
+          "why": "Tanker mine strikes in Hormuz are the quintessential oil supply-shock story this newsletter leads with."
         },
         {
           "headline": "Yemeni government forces retreat, handing Houthis control of Bab el-Mandeb Strait",
@@ -1041,87 +1049,79 @@
           "outlet": "The National",
           "type": "Security",
           "group": "Gulf & Middle East",
-          "why": "Houthi control of Bab el-Mandeb directly threatens shipping chokepoints central to this newsletter's beat."
+          "why": "Houthi control of Bab al-Mandeb directly threatens shipping lanes, a core Energy geopolitics beat."
         },
         {
-          "headline": "US energy prices keep climbing, pushing inflation and rate-hike expectations higher",
-          "url": "https://heatmap.news/economy/october-inflation",
-          "outlet": "Heatmap",
-          "type": "Economy",
-          "group": "Energy",
-          "why": "Hard inflation data tied to energy costs gives a clear market implication for US consumers and rate expectations."
-        },
-        {
-          "headline": "Leading small modular nuclear reactor project in Canada will be late and over budget",
-          "url": "https://www.canarymedia.com/articles/nuclear/small-modular-nuclear-reactor-late-canada",
-          "outlet": "Canary Media",
+          "headline": "Trump ban on foreign grid components sparks industry concern over cost, practicality",
+          "url": "https://www.utilitydive.com/news/trump-ban-on-foreign-grid-components-sparks-industry-concern-over-practical/873752/",
+          "outlet": "Utility Dive",
           "type": "Energy",
           "group": "Energy",
-          "why": "SMR cost overrun is a concrete nuclear investment record/setback that fits the IEA-style tracking focus."
+          "why": "Trump's grid-component ban is exactly the Washington permitting/grid politics angle the guide flags."
         },
         {
-          "headline": "Jensen Huang's Nvidia resignation throws AI data-center energy boom into fresh chaos",
-          "url": "https://heatmap.news/am/nvidia-meta-sublime-stegra",
-          "outlet": "Heatmap",
+          "headline": "Utility, tech officials see opportunities to increase grid utilization",
+          "url": "https://www.utilitydive.com/news/utility-tech-officials-see-opportunities-to-increase-grid-utilization/874644/",
+          "outlet": "Utility Dive",
           "type": "Energy",
           "group": "Energy",
-          "why": "Links AI data-center buildout chaos to real electricity demand and clean power competition."
+          "why": "Utility and tech views on grid utilization speak directly to AI data center electricity demand competition."
         },
         {
-          "headline": "Climate-finance pledges fall 70% as countries meet at COP31",
-          "url": "https://www.carbonbrief.org/analysis-climate-finance-pledges-fall-70-as-countries-meet-at-cop31",
+          "headline": "Fossil-fuel CO2 emissions set to dip in 2026 as Iran conflict hits oil use",
+          "url": "https://carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
           "outlet": "Carbon Brief",
           "type": "Climate",
           "group": "Energy",
-          "why": "Climate-finance pledge collapse at COP31 fits the newsletter's outside-US policy and energy security lens."
+          "why": "Global Carbon Project data ties Iran conflict oil price swings to emissions, a classic hard-number market read."
         },
         {
-          "headline": "California's climate disclosure laws partly survive appeals court ruling",
-          "url": "https://www.utilitydive.com/news/whats-next-for-california-climate-laws-sb253-sb261-following-appeals-court-split-decision/874631/",
-          "outlet": "Utility Dive",
-          "type": "Law",
+          "headline": "Daily life in Sudan paralysed by deepening fuel crisis and rising costs",
+          "url": "http://www.africanews.com/2026/11/15/daily-life-in-sudan-paralysed-by-deepening-fuel-crisis-and-rising-costs/",
+          "outlet": "Africanews",
+          "type": "Economy",
+          "group": "Africa",
+          "why": "Sudan's fuel crisis shows energy security reshaping policy outside the US, with a clear economic toll."
+        },
+        {
+          "headline": "COP31's electrification pledge wins support, with caveats on clean power and finance",
+          "url": "https://www.carbonbrief.org/daily-briefing-electrification-pledge-wins-support-greta-at-cop31-ed-milibands-answers",
+          "outlet": "Carbon Brief",
+          "type": "Climate",
           "group": "Energy",
-          "why": "Court ruling on emissions disclosure rules is exactly the grid/permitting politics angle the guide wants."
+          "why": "COP31 electrification pledge offers a record-style policy target relevant to clean power investment tracking."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 55
+      "candidates": 49
     },
     "Africa": {
-      "generated_at": "2026-11-15T12:36:38.899259+00:00",
-      "intro": "Africa candidates today skew toward DRC/mining health risk, US-China mineral competition, and a scattering of business/tech items fitting the newsletter's continental and deal-driven habits.",
+      "generated_at": "2026-11-15T19:22:10.620372+00:00",
+      "intro": "Today's mix is thin on Africa-specific business news, but a few stories fit the Continental Briefing's Business & Macro, Geopolitics and Climate buckets.",
       "picks": [
         {
-          "headline": "Barrick furloughs employees at Congo's Kibali gold mine as Ebola precaution",
-          "url": "https://www.miningweekly.com/page/latest-news",
-          "outlet": "Mining Weekly",
-          "type": "Health",
-          "group": "Africa",
-          "why": "Health story with market implications for a major DRC gold mine, directly hitting the health/market-impact criterion."
-        },
-        {
           "headline": "Angola seeks 10% stake in De Beers under Anglo's proposed exit",
-          "url": "https://www.miningweekly.com/page/diamonds",
+          "url": "https://www.miningweekly.com/page/latest-news",
           "outlet": "Mining Weekly",
           "type": "Business",
           "group": "Africa",
-          "why": "Concrete business deal with a number (10% stake) in Angola's diamond sector fits the business/mining lead criteria."
+          "why": "Angola's 10% De Beers stake bid is a concrete mining/critical minerals deal fitting Business & Macro."
         },
         {
-          "headline": "US quietly counters China and Russia in West Africa's mining sector",
-          "url": "https://www.theafricareport.com/436326/lithium-gold-uranium-the-quiet-us-counter-offensive-against-china-and-russia-in-west-africa/",
-          "outlet": "The Africa Report",
+          "headline": "Daily life in Sudan paralysed by deepening fuel crisis and rising costs",
+          "url": "http://www.africanews.com/2026/11/15/daily-life-in-sudan-paralysed-by-deepening-fuel-crisis-and-rising-costs/",
+          "outlet": "Africanews",
+          "type": "Economy",
+          "group": "Africa",
+          "why": "Sudan's fuel crisis ties civil war to economic consequences, a core politics-with-economic-impact story."
+        },
+        {
+          "headline": "Francophonie summit opens in Cambodia overshadowed by African tensions",
+          "url": "http://www.africanews.com/2026/11/15/francophonie-summit-opens-in-cambodia-overshadowed-by-african-tensions/",
+          "outlet": "Africanews",
           "type": "Geopolitics",
           "group": "Africa",
-          "why": "US-China-Russia mineral competition in Mali is core geopolitics/minerals territory for this newsletter."
-        },
-        {
-          "headline": "Trump picks pastor and early backer as US ambassador to the DRC",
-          "url": "https://www.theafricareport.com/436340/us-africa-trump-picks-pastor-and-early-backer-as-us-ambassador-to-the-drc/",
-          "outlet": "The Africa Report",
-          "type": "Politics",
-          "group": "Africa",
-          "why": "US ambassador pick for DRC speaks to US engagement with Africa amid mineral and diplomatic stakes."
+          "why": "DRC-Rwanda tensions at the Francophonie summit fit Geopolitics & Politics country-flagged briefing items."
         },
         {
           "headline": "South Sudan postpones first general election from December to February",
@@ -1129,159 +1129,159 @@
           "outlet": "Africanews",
           "type": "Politics",
           "group": "Africa",
-          "why": "Politics with economic consequences as South Sudan election delay affects stability and investment outlook."
+          "why": "South Sudan's election delay is politics with clear economic/stability consequences for the region."
         },
         {
-          "headline": "Microsoft's 18-hour outage exposed South Africa's dependence on Big Tech",
-          "url": "https://techcabal.com/2026/11/13/microsoft-outage-south-africa-big-tech/",
+          "headline": "Microsoft's outage showed Africa's banks had no real plan B",
+          "url": "https://techcabal.com/2026/11/15/the-next-wave-microsofts-outage-showed-africas-banks-had-no-real-plan-b/",
           "outlet": "TechCabal",
           "type": "Tech",
           "group": "Africa",
-          "why": "Tech story showing South African dependence on Big Tech, fitting the Tech & Deals briefing slot."
+          "why": "Microsoft outage exposing African banks' fragility fits the Tech & Deals section squarely."
         },
         {
-          "headline": "AirMozambique warns of flight cancellations due to fuel shortage",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-15/airmozambique-warns-of-flight-cancellations-due-to-fuel-shortage",
-          "outlet": "Bloomberg",
-          "type": "Business",
+          "headline": "Climate-finance pledges fall 70% as countries meet at COP31",
+          "url": "https://carbonbrief.org/analysis-climate-finance-pledges-fall-70-as-countries-meet-at-cop31",
+          "outlet": "Carbon Brief",
+          "type": "Climate",
+          "group": "Energy",
+          "why": "Collapsing climate-finance pledges to developing nations directly affects African climate funding and markets."
+        },
+        {
+          "headline": "Hassan Sheikh's enemies cut a deal",
+          "url": "https://www.africa-confidential.com/news",
+          "outlet": "Africa Confidential",
+          "type": "Security",
           "group": "Africa",
-          "why": "Business item on Mozambique's airline fuel shortage ties to currency/supply issues with continental relevance."
+          "why": "Al-Shabaab courting Somali clans amid presidential strain is politics with wider security relevance."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 31
+      "candidates": 28
     },
     "Tech": {
-      "generated_at": "2026-11-15T12:36:53.967791+00:00",
-      "intro": "AI power struggles, compute economics, and US-China tech rivalry dominate today's crop, giving this newsletter plenty of its signature power-and-money fodder.",
+      "generated_at": "2026-11-15T19:22:28.642622+00:00",
+      "intro": "The Nvidia leadership upheaval dominates today's news, giving Semafor Tech ample material on power, money and exec drama in AI.",
       "picks": [
         {
-          "headline": "Nvidia's leadership crisis deepens after Jensen Huang's ouster",
-          "url": "https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/",
-          "outlet": "TechCrunch",
+          "headline": "Nvidia CEO Jensen Huang Resigns, Creating Uncertainty for the AI Sector",
+          "url": "https://www.theinformation.com/articles/nvidia-ceo-jensen-huang-resigns-creating-uncertainty-ai-sector",
+          "outlet": "The Information",
           "type": "Business",
           "group": "Tech & AI",
-          "why": "Classic Reed-style exec scoop on Huang's ouster and Nvidia governance, the newsletter's bread and butter."
+          "why": "Jensen Huang's resignation is the definitive exec scoop reshaping Big Tech's AI foundation."
         },
         {
-          "headline": "Anthropic's IPO is six times oversubscribed, on track to be the largest ever",
-          "url": "https://the-decoder.com/anthropics-ipo-is-six-times-oversubscribed-and-on-track-to-become-the-largest-public-offering-in-history/",
-          "outlet": "The Decoder",
+          "headline": "Nvidia leadership crisis deepens with Bessent, Congress and Musk weighing in",
+          "url": "https://www.ft.com/content/24edbb84-7520-4ef0-a57c-30359e12ccc5?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Business",
+          "group": "Business",
+          "why": "Ties together Bessent, Congress and Musk weighing in—classic Silicon Valley-meets-Washington power play."
+        },
+        {
+          "headline": "Anthropic's IPO Makes Dario Amodei the New Face of the AI Boom",
+          "url": "https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom",
+          "outlet": "Bloomberg",
           "type": "Business",
           "group": "Tech & AI",
-          "why": "Anthropic's record IPO is exactly the compute-and-money bubble-talk story this newsletter tracks."
+          "why": "Anthropic's record IPO is exactly the compute-and-money story this newsletter tracks closely."
         },
         {
-          "headline": "Chinese AI labs reportedly training on Nvidia's Blackwell chips despite export controls",
+          "headline": "Data center construction stocks lose $4.2 trillion as AI trade unravels",
+          "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Economy",
+          "group": "Business",
+          "why": "A $4.2 trillion data-center selloff feeds directly into the bubble-talk thesis the guide favors."
+        },
+        {
+          "headline": "Congress moves to tighten AI chip export rules following Nvidia scandal",
+          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Politics",
+          "group": "China",
+          "why": "Congress tightening chip export rules is core power-and-liability regulatory terrain for this newsletter."
+        },
+        {
+          "headline": "Investigation: Lutnick Pushed to Narrow Chip Curbs Affecting Former Firm's Client",
+          "url": "https://www.techmeme.com/261115/p9#a261115p9",
+          "outlet": "New York Times",
+          "type": "Politics",
+          "group": "Tech & AI",
+          "why": "An NYT investigative scoop on Lutnick's conflicts fits the regulation-versus-lawsuits liability angle."
+        },
+        {
+          "headline": "Chinese AI Labs Are Training Models on Nvidia's Blackwell Despite Export Controls",
           "url": "https://www.theregister.com/ai-and-ml/2026/11/13/chinese-ai-labs-are-training-models-on-nvidias-blackwell-despite-export-controls-says-ex-openai-engineer/5309891",
           "outlet": "The Register",
           "type": "Security",
           "group": "Tech & AI",
-          "why": "Chinese labs allegedly using banned Blackwell chips hits power, liability and lab-vs-lab competition themes."
-        },
-        {
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Geopolitics",
-          "group": "Business",
-          "why": "Congress tightening export rules after the Huang scandal is regulation-meets-Big Tech, core guide territory."
-        },
-        {
-          "headline": "Data Centre Construction Stocks Lose $4.2tn as AI Trade Boom Unravels",
-          "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Economy",
-          "group": "Business",
-          "why": "Data center stock collapse is a hard economy angle on AI infrastructure bubble talk."
-        },
-        {
-          "headline": "China sees Nvidia chief Huang's swift downfall as political hit",
-          "url": "https://asia.nikkei.com/business/tech/semiconductors/china-sees-nvidia-chief-huang-s-swift-downfall-as-political-hit",
-          "outlet": "Nikkei Asia",
-          "type": "Tech",
-          "group": "China",
-          "why": "China framing Huang's fall as political hit shows Silicon Valley as a geopolitical force, a guide staple."
-        },
-        {
-          "headline": "The Massive Chinese Spy Operation Targeting Western Tech and AI",
-          "url": "https://www.wsj.com/world/china/the-massive-chinese-spy-operation-targeting-western-tech-and-ai-cd58ff86?mod=rss_worldnews",
-          "outlet": "WSJ",
-          "type": "Security",
-          "group": "China",
-          "why": "WSJ's Chinese espionage investigation feeds directly into AI security and lab competition coverage."
+          "why": "Evidence of banned Blackwell chips in Chinese models is a sharp AI security and export-control story."
         }
       ],
       "confidence": "evidence-based",
-      "candidates": 24
+      "candidates": 20
     },
     "Business": {
-      "generated_at": "2026-11-15T12:37:05.899319+00:00",
-      "intro": "AI-driven turmoil dominates today's business news, from Nvidia's leadership crisis to recalibrated AI valuations and inflation pressures tied to energy costs.",
+      "generated_at": "2026-11-15T19:22:40.728221+00:00",
+      "intro": "AI-related market turmoil and corporate power struggles dominate today's lineup, with Nvidia's leadership crisis rippling across companies, politics and markets.",
       "picks": [
         {
-          "headline": "Anthropic Prices Record IPO Targeting Over $1 Trillion Valuation Amid AI Market Jitters",
-          "url": "https://www.axios.com/2026/11/10/anthropic-ipo-terms",
-          "outlet": "Axios",
-          "type": "Tech",
-          "group": "Business",
-          "why": "Record $1 trillion-plus IPO from Anthropic is exactly the big-deal story this newsletter prioritizes."
-        },
-        {
-          "headline": "Nvidia Board Urged to Weigh Reinstating Jensen Huang as Scandal Fallout Widens",
-          "url": "https://www.cnbc.com/2026/11/14/nvidia-investors-jensen-huang-return-board-letter.html",
-          "outlet": "CNBC",
+          "headline": "Nvidia leadership crisis deepens with Bessent, Congress and Musk weighing in",
+          "url": "https://www.ft.com/content/24edbb84-7520-4ef0-a57c-30359e12ccc5?syn-25a6b1a6=1",
+          "outlet": "FT",
           "type": "Business",
           "group": "Business",
-          "why": "Leadership upheaval at Nvidia, a top AI company, is a major corporate power shakeup."
+          "why": "Major corporate leadership crisis with political pressure, central to AI finance and corporate power coverage."
         },
         {
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Geopolitics",
+          "headline": "Anthropic's historic IPO lands as a referendum on the AI trade",
+          "url": "https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom",
+          "outlet": "Bloomberg",
+          "type": "Business",
           "group": "Business",
-          "why": "Export rule tightening shows tariffs/export policy directly reshaping chipmakers and AI supply chains."
+          "why": "Historic IPO testing AI valuations and financing is a core business/economy story."
         },
         {
-          "headline": "Data Centre Construction Stocks Lose $4.2tn as AI Trade Boom Unravels",
+          "headline": "Data center construction stocks lose $4.2 trillion as AI trade unravels",
           "url": "https://www.ft.com/content/d5adde7e-68cc-455b-ba78-b39cc3676b7a?syn-25a6b1a6=1",
           "outlet": "FT",
           "type": "Economy",
           "group": "Business",
-          "why": "AI capex jitters wiping trillions from data-center stocks hits the AI finance/valuations beat squarely."
+          "why": "Massive market value loss in AI infrastructure stocks directly fits AI finance and capex worries."
         },
         {
-          "headline": "US energy prices keep climbing, pushing inflation and rate-hike expectations higher",
-          "url": "https://heatmap.news/economy/october-inflation",
-          "outlet": "Heatmap",
-          "type": "Economy",
-          "group": "Energy",
-          "why": "Energy-driven inflation feeding rate-hike expectations ties directly to central bank and inflation coverage."
+          "headline": "Microsoft Outlook outage and FAA groundstop expose tech fragility",
+          "url": "https://www.nytimes.com/2026/11/15/business/technology-dependence-microsoft-airlines.html",
+          "outlet": "NYT",
+          "type": "Tech",
+          "group": "Business",
+          "why": "Tech outage disrupting government and business systems shows corporate/tech fragility with economic stakes."
         },
         {
-          "headline": "China's Exports Jump on Strong AI Trade",
-          "url": "https://www.caixinglobal.com/2026-11-10/chinas-exports-jump-on-strong-ai-trade-102503130.html",
-          "outlet": "Caixin Global",
-          "type": "Economy",
-          "group": "China",
-          "why": "China's export surge driven by AI trade is a concrete economy story with numbers."
+          "headline": "US and allies sign accord to shield AI supply chains from China ahead of Trump-Xi summit",
+          "url": "https://www.ft.com/content/3c2197fc-9618-4838-91e6-522ce1a96a22?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Geopolitics",
+          "group": "Business",
+          "why": "US-allied AI supply chain pact tied to tariffs and China trade fits geopolitical business coverage."
         },
         {
-          "headline": "Crypto's Slow-Motion Selloff Leaves Traders Weary and Hopeless",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-15/crypto-s-slow-motion-selloff-leaves-traders-weary-and-hopeless",
-          "outlet": "Bloomberg",
+          "headline": "Nvidia scandal reaches the heart of Trump's cabinet",
+          "url": "https://www.economist.com/united-states/2026/11/13/the-jensen-huang-scandal-reaches-donald-trumps-cabinet",
+          "outlet": "The Economist",
           "type": "Economy",
           "group": "Business",
-          "why": "Crypto's broad selloff reflects market turbulence relevant to macro and investor sentiment coverage."
+          "why": "Scandal reaching Trump's cabinet shows corporate power colliding with government, a distinct economic governance angle."
         }
       ],
       "confidence": "draft",
-      "candidates": 31
+      "candidates": 26
     },
     "Gulf": {
-      "generated_at": "2026-11-15T12:37:10.193106+00:00",
-      "intro": "Today's mix is heavy on Iran-conflict security stories and Gulf investment deals, both core to this newsletter's focus.",
+      "generated_at": "2026-11-15T19:22:45.132220+00:00",
+      "intro": "Today's mix centers on Iran-related security escalation and Gulf shipping risk, plus a notable Gulf investment deal, giving Semafor Gulf plenty to work with.",
       "picks": [
         {
           "headline": "Iran escalates attacks on Bahrain and Saudi Arabia",
@@ -1289,7 +1289,7 @@
           "outlet": "WSJ",
           "type": "Geopolitics",
           "group": "Gulf & Middle East",
-          "why": "Direct Iran-war security escalation hitting Bahrain and Saudi Arabia, core Gulf security coverage."
+          "why": "Direct Iran-Bahrain-Saudi escalation is core Gulf security territory, widely corroborated across outlets."
         },
         {
           "headline": "Three oil tankers catch fire after hitting mines in Strait of Hormuz",
@@ -1297,7 +1297,7 @@
           "outlet": "Al-Monitor",
           "type": "Energy",
           "group": "Gulf & Middle East",
-          "why": "Strait of Hormuz tanker mine strikes directly affect Gulf oil shipping security, a key beat."
+          "why": "Strait of Hormuz tanker incident hits the oil/shipping security nexus this newsletter tracks closely."
         },
         {
           "headline": "Yemeni government forces retreat, handing Houthis control of Bab el-Mandeb Strait",
@@ -1305,7 +1305,7 @@
           "outlet": "The National",
           "type": "Security",
           "group": "Gulf & Middle East",
-          "why": "Bab el-Mandeb Strait shift affects Gulf shipping security and Houthi threat tracking."
+          "why": "Houthi control of Bab el-Mandeb directly affects Gulf shipping security, a guide priority."
         },
         {
           "headline": "Oman signs multibillion-dollar investment package with China",
@@ -1313,7 +1313,7 @@
           "outlet": "Arabian Business",
           "type": "Economy",
           "group": "Gulf & Middle East",
-          "why": "Oman sovereign wealth fund's major China investment deal fits Gulf investment and deals focus."
+          "why": "Omani sovereign wealth fund's major China investment deal fits Gulf investment coverage precisely."
         },
         {
           "headline": "Saudi stocks rebound but war damage still weighs on Gulf industry",
@@ -1321,7 +1321,7 @@
           "outlet": "AGBI",
           "type": "Business",
           "group": "Gulf & Middle East",
-          "why": "Saudi stock market recovery amid war damage is a direct Gulf economy story."
+          "why": "Saudi stock market recovery amid war damage is squarely Gulf economic news."
         },
         {
           "headline": "Senior Hamas commander killed in Israeli strike in Gaza",
@@ -1329,7 +1329,7 @@
           "outlet": "The National",
           "type": "Security",
           "group": "Gulf & Middle East",
-          "why": "Israeli strike on Hamas commander ties into regional security dynamics the newsletter tracks."
+          "why": "Israeli strike on Hamas commander ties into broader Gulf-adjacent regional security dynamics."
         },
         {
           "headline": "Netanyahu and Eisenkot clash over Israeli unity government",
@@ -1337,103 +1337,119 @@
           "outlet": "Haaretz",
           "type": "Politics",
           "group": "Gulf & Middle East",
-          "why": "Israeli political clash over Iran nuclear threat response relates to Gulf-relevant regional security."
+          "why": "Israeli unity government debate over Iran threat has direct bearing on Gulf geopolitics."
         }
       ],
       "confidence": "draft",
-      "candidates": 23
+      "candidates": 22
     },
     "China": {
-      "generated_at": "2026-11-15T12:37:20.950273+00:00",
-      "intro": "Today's mix centers on the Nvidia/Huang fallout's China angle, export-control tightening, and strong AI-driven trade data—core Semafor China territory.",
+      "generated_at": "2026-11-15T19:22:59.656481+00:00",
+      "intro": "Today's mix leans into the Nvidia-Huang fallout's China angles—export controls, chip smuggling, and spy scandals—alongside APEC diplomacy and Taiwan security.",
       "picks": [
         {
-          "headline": "Trump, Xi, Putin to hold historic meeting in China",
-          "url": "https://hongkongfp.com/2026/11/14/trump-xi-putin-to-hold-historic-meeting-in-china-white-house/",
-          "outlet": "Hong Kong Free Press",
+          "headline": "Trump, Xi and Putin to hold first-ever trilateral meeting at APEC Shenzhen summit",
+          "url": "https://asia.nikkei.com/politics/international-relations/apec/trump-to-meet-putin-and-xi-in-china-white-house-says",
+          "outlet": "Nikkei Asia",
           "type": "Geopolitics",
           "group": "China",
-          "why": "Trump-Xi-Putin summit is a landmark US-China talks story with major geopolitical stakes."
+          "why": "Trump-Xi-Putin APEC meeting is a direct US-China talks story central to this newsletter's core beat."
         },
         {
-          "headline": "China's Exports Jump on Strong AI Trade",
-          "url": "https://www.caixinglobal.com/2026-11-10/chinas-exports-jump-on-strong-ai-trade-102503130.html",
-          "outlet": "Caixin Global",
+          "headline": "US and allies sign pact to shield AI supply chains from China ahead of Shenzhen summit",
+          "url": "https://www.ft.com/content/3c2197fc-9618-4838-91e6-522ce1a96a22?syn-25a6b1a6=1",
+          "outlet": "FT",
           "type": "Economy",
           "group": "China",
-          "why": "China's AI-driven export surge is exactly the economy/chips intersection this newsletter tracks."
+          "why": "New AI supply-chain pact targeting China fits export-controls and chips coverage squarely."
         },
         {
-          "headline": "Chinese AI labs reportedly training on Nvidia's Blackwell chips despite export controls",
+          "headline": "Congress moves to tighten AI chip export rules following Nvidia scandal",
+          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
+          "outlet": "FT",
+          "type": "Politics",
+          "group": "China",
+          "why": "Tighter AI chip export rules tie directly to export controls and the chip race with China."
+        },
+        {
+          "headline": "Chinese AI Labs Are Training Models on Nvidia's Blackwell Despite Export Controls",
           "url": "https://www.theregister.com/ai-and-ml/2026/11/13/chinese-ai-labs-are-training-models-on-nvidias-blackwell-despite-export-controls-says-ex-openai-engineer/5309891",
           "outlet": "The Register",
           "type": "Security",
           "group": "Tech & AI",
-          "why": "Alleged Blackwell chips in Chinese AI models directly tests export control enforcement."
+          "why": "Chinese labs using banned Blackwell GPUs is a key chips-and-AI-race, export-control evasion story."
         },
         {
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Geopolitics",
-          "group": "Business",
-          "why": "Congress tightening chip export rules post-Nvidia scandal is core export-control coverage."
-        },
-        {
-          "headline": "China sees Nvidia chief Huang's swift downfall as political hit",
-          "url": "https://asia.nikkei.com/business/tech/semiconductors/china-sees-nvidia-chief-huang-s-swift-downfall-as-political-hit",
-          "outlet": "Nikkei Asia",
-          "type": "Tech",
-          "group": "China",
-          "why": "Chinese framing of Huang's ouster as political hit ties AI race to US-China tension."
-        },
-        {
-          "headline": "Meituan releases giant agent model trained entirely without Nvidia chips",
-          "url": "https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/",
-          "outlet": "The Decoder",
-          "type": "Tech",
-          "group": "Tech & AI",
-          "why": "Meituan's giant model trained without Nvidia chips shows China's chip-independence push."
-        },
-        {
-          "headline": "The Massive Chinese Spy Operation Targeting Western Tech and AI",
-          "url": "https://www.wsj.com/world/china/the-massive-chinese-spy-operation-targeting-western-tech-and-ai-cd58ff86?mod=rss_worldnews",
-          "outlet": "WSJ",
+          "headline": "Alleged Chinese spy tied to Nvidia scandal is now in Beijing, as Megaspeed dealings face scrutiny",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-12/alleged-chinese-spy-at-center-of-nvidia-firestorm-is-in-beijing",
+          "outlet": "Bloomberg",
           "type": "Security",
           "group": "China",
-          "why": "WSJ's deep dive on Chinese espionage targeting AI firms fits chips/export-control beat."
+          "why": "Alleged Chinese spy's return to Beijing links Nvidia scandal to China security and tech transfer concerns."
+        },
+        {
+          "headline": "Taiwan to extend Rednote restrictions and tighten cybersecurity after data breaches",
+          "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/16/2003867815",
+          "outlet": "Taipei Times",
+          "type": "Security",
+          "group": "China",
+          "why": "Taiwan's Rednote restrictions and cybersecurity moves fit the Taiwan and security beat well."
+        },
+        {
+          "headline": "COMAC's CE-25A electric commercial aircraft completes first crewed flight",
+          "url": "https://pandaily.com/comac-ce-25a-electric-commercial-aircraft-first-crewed-flight",
+          "outlet": "Pandaily",
+          "type": "Business",
+          "group": "China",
+          "why": "COMAC's electric aircraft milestone showcases Chinese tech ambitions abroad, a core business angle."
         }
       ],
       "confidence": "draft",
-      "candidates": 24
+      "candidates": 20
     },
     "Politics": {
-      "generated_at": "2026-11-15T12:37:25.589257+00:00",
-      "intro": "Today's mix favors leadership fights and post-midterm maneuvering in Congress, plus a notable policy/business crossover around AI chip export rules.",
+      "generated_at": "2026-11-15T19:23:04.303845+00:00",
+      "intro": "Nvidia/Lutnick fallout and congressional leadership fights dominate today's politics-relevant stories, with solid scoop-driven options on Capitol Hill and the administration.",
       "picks": [
         {
-          "headline": "Van Hollen's insurgent challenge to Schumer roils Senate Democrats",
-          "url": "https://www.axios.com/2026/11/13/senate-democrats-van-hollen-schumer-election",
+          "headline": "Van Hollen challenges Schumer for Senate Democratic leader",
+          "url": "https://www.axios.com/2026/11/13/schumer-van-hollen-senate-majority-leader",
           "outlet": "Axios",
           "type": "Politics",
           "group": "US politics",
-          "why": "Reported scoop on a rare contested Senate Democratic leadership race, directly hits Congress coverage."
+          "why": "Reported scoop on an insurgent Senate Democratic leadership challenge ahead of a real vote."
         },
         {
-          "headline": "Thune survives bruising post-election leadership fight",
-          "url": "https://www.foxnews.com/politics/inside-senate-gops-tense-post-election-reckoning-thune-clashes-republican-critics",
-          "outlet": "Fox News",
-          "type": "Politics",
+          "headline": "Nvidia/China scandal puts Commerce Secretary Lutnick in the crosshairs",
+          "url": "https://www.theguardian.com/technology/2026/nov/13/nvidia-scandal-sparks-us-national-security-concerns-china",
+          "outlet": "The Guardian",
+          "type": "Business",
           "group": "US politics",
-          "why": "Fresh reporting on Thune's leadership survival and lame-duck GOP strategy fits Congress focus."
+          "why": "Reveals internal administration blame-shifting over Lutnick, exactly the 'who's up or down' angle the guide wants."
         },
         {
-          "headline": "GOP's lame-duck agenda centers on judicial confirmations and defense funding",
-          "url": "https://thehill.com/homenews/senate/6221099-gop-lame-duck-agenda-cramer/",
-          "outlet": "The Hill",
+          "headline": "Investigation: Lutnick Pushed to Narrow Chip Curbs Affecting Former Firm's Client",
+          "url": "https://www.techmeme.com/261115/p9#a261115p9",
+          "outlet": "New York Times",
+          "type": "Politics",
+          "group": "Tech & AI",
+          "why": "NYT investigation on Lutnick's conflict-of-interest policy push is a genuine scoop on money/politics overlap."
+        },
+        {
+          "headline": "Trump administration escalates funding demands after nationwide FAA ground stop",
+          "url": "https://rollcall.com/2026/11/13/air-travel-halt-prompts-calls-for-faa-communications-upgrades/",
+          "outlet": "Roll Call",
           "type": "Politics",
           "group": "US politics",
-          "why": "New reporting on concrete lame-duck legislative priorities like judicial confirmations and defense funding."
+          "why": "Policy fight over FAA funding with new reporting on escalating dollar figures from the administration."
+        },
+        {
+          "headline": "Vance and Trump diverge on how to end the Iran War as Bahrain fends off Iranian drone strikes",
+          "url": "https://www.npr.org/2026/11/15/nx-s1-6040447/in-calling-for-an-end-to-the-iran-war-vance-walks-a-fine-line-with-trump",
+          "outlet": "NPR",
+          "type": "Geopolitics",
+          "group": "US politics",
+          "why": "Reported rift between Trump and Vance on Iran policy fits administration infighting coverage."
         },
         {
           "headline": "Supreme Court agrees to hear case on Trump's asylum suspension",
@@ -1441,95 +1457,47 @@
           "outlet": "SCOTUSblog",
           "type": "Law",
           "group": "US politics",
-          "why": "SCOTUS taking up Trump's asylum policy is a major new policy/legal fight worth tracking."
+          "why": "SCOTUS taking up asylum suspension case is a major policy/executive authority fight worth flagging."
         },
         {
-          "headline": "Trump's economic advisers clash over Commerce's handling of Nvidia spy scandal",
-          "url": "https://www.washingtonpost.com/business/2026/11/13/treasury-secretary-points-commerce-secretary-failure-restrict-nvidia-customer/",
-          "outlet": "Washington Post",
-          "type": "Business",
-          "group": "US politics",
-          "why": "Scoop on infighting among Trump's economic advisers over Commerce's Nvidia handling is pure money-and-politics."
-        },
-        {
-          "headline": "Congress Moves to Pass Tighter AI Chip Export Rules Following Nvidia Scandal",
-          "url": "https://www.ft.com/content/3062790a-553d-41b8-9c7d-bae17b9d2e29?syn-25a6b1a6=1",
-          "outlet": "FT",
-          "type": "Geopolitics",
-          "group": "Business",
-          "why": "Congress moving on AI chip export rules ties policy fights directly to the newsletter's AI regulation beat."
-        },
-        {
-          "headline": "Democrat Jonathan Kreiss-Tomkins flips Alaska's governorship",
+          "headline": "Alaska elects first Democratic governor in two decades",
           "url": "https://www.politico.com/news/2026/11/14/jonathan-kreiss-tomkins-wins-alaska-governor-01166573",
           "outlet": "Politico",
           "type": "Politics",
           "group": "US politics",
-          "why": "Concrete midterm result showing partisan realignment in Alaska's governorship fits election-aftermath coverage."
+          "why": "Alaska flipping to a Democratic governor is a concrete midterms result, not just horse-race speculation."
         }
       ],
       "confidence": "draft",
-      "candidates": 24
+      "candidates": 21
     },
     "Media": {
-      "generated_at": "2026-11-15T12:37:30.734902+00:00",
-      "intro": "This cycle's best Media fits are newsroom economics and leadership stories: TV news cost-cutting, contract moves, publisher-AI fights, and insider-trading fallout from a big media deal.",
+      "generated_at": "2026-11-15T19:23:20.516405+00:00",
+      "intro": "Today's lineup mostly skews tech and entertainment gossip, leaving just a few stories that match Semafor Media's focus on outlet strategy, publisher deals, and ad economics.",
       "picks": [
         {
-          "headline": "Status details wave of cost-cutting and contract anxiety across CNN, ABC and CBS",
-          "url": "https://www.status.news/",
-          "outlet": "Status",
+          "headline": "The Washington Post Nears Breakeven After 'Hundreds and Hundreds of Millions' in Losses",
+          "url": "https://www.adweek.com/media/",
+          "outlet": "Adweek",
           "type": "Business",
           "group": "Media",
-          "why": "Directly on-beat: cost-cutting and contract turmoil inside CNN, ABC and CBS newsrooms."
+          "why": "Washington Post's path to breakeven is classic ownership/strategy news for a major outlet."
         },
         {
-          "headline": "Savannah Guthrie re-ups at Today as NBC News cancels streaming show Stay Tuned",
-          "url": "https://www.adweek.com/tvnewser/ticker-savannah-guthrie-to-remain-on-today-after-contract-extension/",
-          "outlet": "Adweek",
-          "type": "Media",
-          "group": "Media",
-          "why": "Classic newsroom-moves item: Guthrie's contract extension paired with NBC canceling a streaming show."
-        },
-        {
-          "headline": "Cravath employee charged with insider trading tied to Paramount-Warner Bros. deal",
-          "url": "https://www.wsj.com/finance/regulation/cravath-employee-is-charged-with-insider-trading-using-confidential-deal-information-a5cdd0a9?mod=rss_markets_main",
-          "outlet": "WSJ",
+          "headline": "News Publishers Escalate AI Litigation: NYT, Chicago Tribune and Others Sue Brave Software",
+          "url": "https://pressgazette.co.uk/platforms/news-publisher-ai-deals-lawsuits-openai-google/",
+          "outlet": "Press Gazette",
           "type": "Law",
           "group": "Media",
-          "why": "Ownership/strategy angle on the Paramount-Warner Bros. deal, with a legal twist worth flagging."
+          "why": "NYT and peers suing Brave over AI scraping is exactly the platform-publisher deal/litigation beat."
         },
         {
-          "headline": "UK watchdog probes Meta's AI scraping terms as publishers warn of revenue hit",
-          "url": "https://pressgazette.co.uk/news/",
-          "outlet": "Press Gazette",
-          "type": "Tech",
-          "group": "Media",
-          "why": "Platform-publisher AI deal tension, a core Semafor Media theme, from a credible trade outlet."
-        },
-        {
-          "headline": "The Atlantic keeps hiring despite questions over its business strategy",
-          "url": "https://puck.news/media",
-          "outlet": "Puck",
-          "type": "Media",
-          "group": "Media",
-          "why": "Ownership and strategy scrutiny at a major outlet, exactly the 'news behind the news' angle."
-        },
-        {
-          "headline": "Democrats weigh using new congressional control to shore up press freedom",
-          "url": "https://www.poynter.org/reporting-editing/2026/democrats-house-senate-press-freedom-trump/",
+          "headline": "Political Campaigns Spent $187 Million Promoting AI-Generated Ads in the 2026 Midterms",
+          "url": "https://www.niemanlab.org/reading/political-campaigns-spent-187-million-promoting-ai-generated-ads-in-the-2026-midterms/",
           "outlet": "Poynter",
           "type": "Politics",
           "group": "Media",
-          "why": "Press freedom and FCC oversight story tied to shifting congressional power, relevant to media policy watchers."
-        },
-        {
-          "headline": "Democratic-funded 'pink slime' local news sites surface in Ohio midterms",
-          "url": "https://www.cjr.org/most-recent",
-          "outlet": "Columbia Journalism Review",
-          "type": "Politics",
-          "group": "Media",
-          "why": "Local news business/strategy story exposing funding behind ostensibly independent outlets."
+          "why": "Massive AI ad spend surge touches the newsletter's interest in advertising business trends."
         }
       ],
       "confidence": "draft",
